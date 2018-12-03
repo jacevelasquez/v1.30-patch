@@ -1,0 +1,869 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links.ejs %>
+  </head>
+  <style>
+
+	.form-control{
+	width: 100%;
+	}
+	select {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	}
+    [disabled]{
+    color:#ccc;
+	background-color:#ddd;
+    }
+    label{
+    color:black;
+	width:10%;
+    }
+	
+	table { 
+    width: 750px; 
+    border-collapse: collapse; 
+  table-layout:fixed;
+
+ 
+    }
+
+th { color:white;
+	  text-align: center;
+ }	
+	
+th { 
+    background: #173e43; 
+ 
+    font-weight: bold; 
+    }
+td { 
+    padding: 10px; 
+	width:20px;
+    border: 1px solid #ccc; 
+    text-align: left; 
+    font-size: 14px;
+	min-width: 100px;
+	text-align: center;
+	background-color:white;
+    }
+.remo td {
+	background-color :#eee;
+}
+
+a:disabled {
+    pointer-events: none;
+}
+  </style>
+
+  <body>
+
+    <% include ../views/header.ejs %>
+	
+<br />
+<br />
+<br />
+
+
+<div class="panel panel-success">
+  <!-- Default panel contents -->
+  <div class="panel-heading" style="background-color:#DFDCE3"><a href="/legone/survey/surveyform/households/<%=array[0].eacode%>"><%=array[0].eacode%></a><span class="pull-right" style="font-family:'Arial';">&nbsp;<a onclick="form11('<%=array[0].eacode%>','<%=array[0].hcn%>','<%=array[0].shsn%>')"> <i class="glyphicon glyphicon-user"></i>Membership &nbsp;&nbsp;&nbsp;<a href="/legone/survey/surveyform/households/<%=array[0].eacode%>"><i class="glyphicon glyphicon-th-list"></i>&nbsp;Listings</a></span></div>
+  <div class="panel-body">
+    <div class="col-md-4">
+ <b>HCN : </b><%=array[0].hcn%>    <b>SHSN</b> : <%=array[0].shsn%>  </div>
+  </div>
+
+  <!-- List group -->
+ 
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+ 
+    
+  <div class="panel panel-default">
+
+      <div class="panel-body">
+          <h3><i>Household Forms</i></h3>
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.2 - HOUSEHOLD AND OTHER DEMOGRAPHIC INFORMATION </a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select class="form-control" name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f12" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f12" itemid="0" style='width:150px; display:inline-block;'>
+				<option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Completed Interview</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f12" /></textarea></li>           
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.3 - HOUSEHOLD FOOD SECURITY (HOUSEHOLD FOOD INSECURITY ACCESS SCALE)</a> : <strong style="color:red;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select class="form-control" name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f13" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f13" itemid="0" style='width:150px; display:inline-block;'>
+				 <option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Completed Interview</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f13" /></textarea></li>           
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.4 - Household Food Frequency </a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select class="form-control" name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f14" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f14" itemid="0" style='width:150px; display:inline-block;     margin-bottom: 0px;'>
+				 <option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Completed Interview</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f14" /></textarea></li>           
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.5 - HOUSEHOLD FOOD SECURITY (FOOD INSECURITY EXPERIENCE SCALE)</a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select class="form-control" name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f15" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f15" itemid="0" style='width:150px; display:inline-block; '>
+				 <option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Completed Interview</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f15" /></textarea></li>                 
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.6 - HOUSEHOLD GOVERNMENT PROGRAM PARTICIPATION</a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select class="form-control" name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f16" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f16" itemid="0" style='width:150px; display:inline-block;'>
+				 <option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Completed Interview</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f16" /></textarea></li>                 
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.7 - HOUSEHOLD AWARENESS AND USAGE OF IODIZED SALT</a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select class="form-control" name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f17" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f17" itemid="0" style='width:150px; display:inline-block;'>
+				 <option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Completed Interview</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f17" /></textarea></li>                 
+ 
+
+ 
+             <input type="hidden" id="eacode" name="eacode" value=""/ />
+            <input type="hidden" id="hcn" name="hcn" value=""/ />
+            <input type="hidden" id="shsn" name="shsn" value=""/>
+            <input type="hidden" id="MEMBER_CODE" name="MEMBER_CODE" value=""/>
+             <h3><i>Individual Forms (Interview Status)</i></h3>
+			
+			 <table id="myTable" class="table table-striped">
+			<thead>
+	
+					<tr>
+						<th align="center" style="color:yellow;">CALLBACK<br><span class="glyphicon glyphicon-arrow-down"></span></th>
+						<th align="center">Age</th>
+						<th align="center">MEMNO</th>
+						<th align="center">3.1</th>
+						<th align="center">3.2</th>
+						<th align="center">4.1</th>
+						<th align="center">4.2</th>
+						<th align="center">4.3</th>
+						<th align="center">4.4</th>
+						<th align="center">4.5</th>
+						<th align="center">4.6</th>
+						<th align="center">4.7</th>
+						<th align="center">4.8</th>
+						<th align="center">4.9</th>
+						<th align="center">4.10</th>
+						<th align="center">5.2</th>
+						<th align="center">5.3</th>
+						<th align="center">5.4</th>
+						<th align="center">5.5</th>
+						<th align="center">5.6</th>
+						<th align="center">5.7</th>
+						<th align="center">5.8</th>
+						<th align="center">7.3</th>
+						<th align="center">8.3</th>
+						<th align="center">FinalForm</th>
+					</tr>
+			</thead>
+			<tbody>
+			
+			<% array2.forEach(function(row){ %>
+			
+			<div id="demo<%=row.id%>" class="modal" role="dialog">
+			<div class="modal-dialog">
+			<div class="modal-content">
+			 <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">CALLBACK FOR <%=row.GIVENNAME%> <%=row.SURNAME%></h4>
+			  </div>
+			  <div class="modal-body">
+			  <input type="date" class="form-control" placeholder="Visit 1 date" style="display:inline-block; width:330px" name="visit1_<%=row.id%>"  id="visit1_<%=row.id%>" onkeyup="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')" />
+      
+            <select name='INTERVIEW_STATUS1' style="display:inline-block; width:330px" id='INTERVIEW_STATUS1_<%=row.id%>' class='form-control' onchange="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')">
+			<option value=''>Select Interview status</option>
+				<option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Partly Completed</option>
+				<option value='3'>3 - Respondent Incapacitated</option>
+				<option value='4'>4 - Refused</option>
+				<option value='5'>5 - Not at Home (Away during the Survey Period)</option>
+				<option value='6'>6 - Away from an Extended Period of time Working/Schooling (LOCAL)</option>
+				<option value='7'>7 - 7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+				<option value='8'>8 - Others</option></select>
+			<input type="text" class="form-control" placeholder="..." style="display:inline-block; width:330px" name="comment1_<%=row.id%>"  id="comment1_<%=row.id%>" onkeyup="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')" />
+			<br>
+		   	
+			
+			<input type="date" class="form-control" placeholder="Visit 2 date" style="display:inline-block; width:330px" name="visit2_<%=row.id%>"  id="visit2_<%=row.id%>" onkeyup="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')" />
+            <select name='INTERVIEW_STATUS2' style="display:inline-block; width:330px" id='INTERVIEW_STATUS2_<%=row.id%>' class='form-control' onchange="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')">
+			<option value=''>Select Interview status</option>
+				<option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Partly Completed</option>
+				<option value='3'>3 - Respondent Incapacitated</option>
+				<option value='4'>4 - Refused</option>
+				<option value='5'>5 - Not at Home (Away during the Survey Period)</option>
+				<option value='6'>6 - Away from an Extended Period of time Working/Schooling (LOCAL)</option>
+				<option value='7'>7 - 7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+				<option value='8'>8 - Others</option></select>
+			<input type="text" class="form-control" placeholder="..." style="display:inline-block; width:330px" name="comment2_<%=row.id%>"  id="comment2_<%=row.id%>" onkeyup="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')" />
+			
+			<br>
+			<input type="date" class="form-control" placeholder="Visit 3 date" style="display:inline-block; width:330px" name="visit3_<%=row.id%>"  id="visit3_<%=row.id%>" onkeyup="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')" />
+            <select name='INTERVIEW_STATUS3' style="display:inline-block; width:330px" id='INTERVIEW_STATUS3_<%=row.id%>' class='form-control' onchange="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')">
+			<option value=''>Select Interview status</option>
+				<option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Partly Completed</option>
+				<option value='3'>3 - Respondent Incapacitated</option>
+				<option value='4'>4 - Refused</option>
+				<option value='5'>5 - Not at Home (Away during the Survey Period)</option>
+				<option value='6'>6 - Away from an Extended Period of time Working/Schooling (LOCAL)</option>
+				<option value='7'>7 - 7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+				<option value='8'>8 - Others</option></select>
+			<input type="text" class="form-control" placeholder="..." style="display:inline-block; width:330px" name="comment3_<%=row.id%>"  id="comment3_<%=row.id%>" onkeyup="is1('<%=row.id%>','<%=row.MEMBER_CODE%>')" />
+			
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" id="close" data-dismiss="modal" onclick="close('<%=row.id%>')">Close</button>
+			</div>
+			
+			</div>
+			</div>
+			</div>
+			<tr id="remo_<%=row.MEMBER_CODE%>">
+			<td id="<%=row.MEMBER_CODE%>"> 
+			<a  data-target="#demo<%=row.id%>" data-toggle="modal"> <%=row.GIVENNAME%> <%=row.SURNAME%></a>
+		
+			</td>
+			<td align="center"><%=row.AGE.toFixed(1)%></td>
+			<td align="center" class="mem"><%=row.MEMBER_CODE%></td>
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f31/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control hide_link' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f31' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f31' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f32/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f32' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f32' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f41/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f41' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f41' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f42/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f42' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f42' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f43/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f43' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f43' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f44/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f44' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f44' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f45/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f45' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f45' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f46/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f46' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f46' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f47/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f47' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f47' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f48/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f48' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f48' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f49/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f49' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f49' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f410/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f410' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f410' >
+			</a></td>
+
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f411/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f411' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f411' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f52/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f52' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f52' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f53/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f53' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f53' >
+			</a></td>
+		
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f54/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f54' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f54' >
+			</a></td>
+
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f55/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f55' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f55' >
+			</a></td>
+	
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f56/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f56' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f56' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f57/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f57' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f57' >
+			</a></td>
+			
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f58/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f58' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f58' >
+			</a></td>
+
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f59/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f59' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f59' >
+			</a></td>
+		
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f73/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f73' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f73' >
+			</a></td>
+		
+			<td class="rem">
+			<a href="/legone/survey/surveyform/save/f82/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" class ='form-control ' disabled  name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_f82' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_f82' >
+			</a></td>
+		
+			<td style="background-color:green" >
+			<select class ='form-control'  name='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%>_final' id='INTERVIEW_STATUS_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>_final' itemid='1' style='width:150px; display:inline-block;'>
+			<option value='' >Select Interview status</option>
+			<option value='1' >1 - Completed</option>
+			<option value='2' >2 - Partly Completed</option>
+			<option value='3' >3 - Respondent Incapacitated</option>
+			<option value='4' >4  - Refused</option>
+			<option value='5' >5 - Not at Home (Away during the Survey Period)</option>
+			<option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option>
+			<option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+			<option value='8'>Others</option></select></td>
+			
+			
+			<% });%>
+			</tbody>
+			</table>
+           
+                 <!-- <span class="pull-right"> -->
+			<!-- <p>  -->
+			<!-- 1 - Completed <br> -->
+			<!-- 2 - Partly Completed<br> -->
+			<!-- 3 - Respondent Incapacitated<br> -->
+			<!-- 4  - Refused<br> -->
+			<!-- 5 - Not at Home (Away during the Survey Period)<br> -->
+			<!-- 6 - Away from an Extended Period of time working/Schooling (LOCAL)<br> -->
+			<!-- 7 - Away from an Extended Period of time working/Schooling (ABROAD)<br> -->
+			<!-- 8 - Others<br> -->
+			<!-- </p></span>     -->
+			
+			<h3><i>Anthropometric measurements (per individual)</i></h3>
+			<table id="myTable2" class="table table-striped">
+			<thead>
+	
+					<tr>
+						
+						<th align="center">NAME</th>
+						<th align="center">AGE</th>
+						<th align="center">MEMNO</th>
+						<th align="center">WEIGHT1</th>
+						<th align="center">WEIGHT2</th>
+						<th align="center">HEIGHT1</th>
+						<th align="center">HEIGHT2</th>
+						<th align="center">REMARKS</th>
+						<th align="center">WAIST1</th>
+						<th align="center">WAIST2</th>
+						<th align="center">WAIST3</th>
+						<th align="center">HIP1</th>
+						<th align="center">HIP2</th>
+						<th align="center">HIP3</th>
+						<th align="center">MUAC1</th>
+						<th align="center">MUAC2</th>
+						<th align="center">MUAC3</th>
+						<th align="center">MIL</th>
+						<th align="center">BP1_S</th>
+						<th align="center">BP1_D</th>
+						<th align="center">BP2_S</th>
+						<th align="center">BP2_D</th>
+						<th align="center">BP3_S</th>
+						<th align="center">BP3_D</th>
+						
+					</tr>
+			</thead>
+			<tbody>
+			
+			<% array21.forEach(function(row2){ %>
+	
+			
+			<tr>
+			<td align="center" class="mem" name="mem_<%=row2.eacode%><%=row2.hcn%><%=row2.shsn%><%=row2.MEMBER_CODE%>"></td>
+			<td align="center" class="mem" name="age_<%=row2.eacode%><%=row2.hcn%><%=row2.shsn%><%=row2.MEMBER_CODE%>"></td>
+			<td align="center"><%=row2.MEMBER_CODE%></td>
+			<td align="center"><%=row2.WEIGHT1%></td>
+			<td align="center"><%=row2.WEIGHT2%></td>
+			<td align="center"><%=row2.HEIGHT1%></td>
+			<td align="center"><%=row2.HEIGHT2%></td>
+			<td align="center"><%=row2.OTH_REM%></td>
+			<td align="center"><%=row2.WAIST1%></td>
+			<td align="center"><%=row2.WAIST2%></td>
+			<td align="center"><%=row2.WAIST3%></td>
+			<td align="center"><%=row2.HIP1%></td>
+			<td align="center"><%=row2.HIP2%></td>
+			<td align="center"><%=row2.HIP3%></td>
+			<td align="center"><%=row2.MUAC1%></td>
+			<td align="center"><%=row2.MUAC2%></td>
+			<td align="center"><%=row2.MUAC3%></td>
+			<td align="center"><%=row2.MIL%></td>
+			<td align="center"><%=row2.BP1_SYSTOLIC%></td>
+			<td align="center"><%=row2.BP1_DIASTOLIC%></td>
+			<td align="center"><%=row2.BP2_SYSTOLIC%></td>
+			<td align="center"><%=row2.BP2_DIASTOLIC%></td>
+			<td align="center"><%=row2.BP3_SYSTOLIC%></td>
+			<td align="center"><%=row2.BP3_DIASTOLIC%></td>
+			
+			
+			
+			</tr>
+			<% });%>
+			</tbody>
+			</table>
+            
+
+      </div>
+  <!--  </div>-->
+  </div>
+
+  
+</div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  
+  
+       var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = bigIdString.substring(20,22);
+
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+    document.getElementById('MEMBER_CODE').value = D;
+   
+   
+	$("html").bind("keypress", function(e) {
+          if(e.keyCode == 13) {
+            return false;
+			}
+			if (event.keyCode === 39 || event.keyCode === 34 || event.keyCode === 96 ) { // apostrophe, double quote, tilde
+        // prevent the keypress
+        return false;
+    }
+      });
+	
+     
+    var data = {};
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+    data.MEMBER_CODE = D;
+
+	$('.mem').each(function() {
+	
+	var data = {};
+	data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+    data.MEMBER_CODE = $(this).text();
+	
+	
+	var preg = A.substring(A.length-1);
+	
+
+				
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/surveyform/summary',						
+                        success: function(data) {
+						
+						
+						
+                            for(var i=0;i<data['f11'].length;i++)
+                            {
+							 $('[name=mem_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+']').text(data['f11'][i].SURNAME+', '+data['f11'][i].GIVENNAME);
+							 $('[name=age_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+']').text(data['f11'][i].AGE.toFixed(1));
+                             $('#INTERVIEW_STATUS1_'+data['f11'][i].id+'').val(data['f11'][i].INTERVIEW_STATUS1); 
+							 $('#INTERVIEW_STATUS2_'+data['f11'][i].id+'').val(data['f11'][i].INTERVIEW_STATUS2); 
+							 $('#INTERVIEW_STATUS3_'+data['f11'][i].id+'').val(data['f11'][i].INTERVIEW_STATUS3);
+							 $('[name=visit1_'+data['f11'][i].id+']').val(data['f11'][i].visit1); 
+							 $('[name=visit2_'+data['f11'][i].id+']').val(data['f11'][i].visit2); 
+							 $('[name=visit3_'+data['f11'][i].id+']').val(data['f11'][i].visit3); 
+							 $('[name=comment1_'+data['f11'][i].id+']').val(data['f11'][i].comment1); 
+							 $('[name=comment2_'+data['f11'][i].id+']').val(data['f11'][i].comment2); 
+							 $('[name=comment3_'+data['f11'][i].id+']').val(data['f11'][i].comment3); 
+							var forms = ['f21','f31','f32','f41','f42','f43','f44','f45','f46','f47','f48','f49','f410','f411','f52','f53','f54','f55','f56','f57','f58','f59','f73','f82'];
+							for(var x in forms){
+							 $('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_'+forms[x]+'').text(data[forms[x]][i].INTERVIEW_STATUS);
+							 }
+							
+							 $('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_final').val(data['f11'][i].INTERVIEW_STATUSF);
+		/*f31*/					 if(data['f11'][i].PSC >0 && data['f11'][i].PSC <10 && data['f11'][i].AGE >=12 && data['f11'][i].SEX ==2)   { $('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f31').removeAttr("disabled"); };
+		/*f32*/					 if(data['f11'][i].MATERNAL == 1)                     {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f32').removeAttr("disabled");	}
+		/*f41*/					 if(data['f11'][i].AGE >=0 && data['f11'][i].AGE <6 )  { $('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f41').removeAttr("disabled");	}
+		/*f42*/					 if(data['f11'][i].AGE >=0 &&	 data['f11'][i].AGE < 2)  {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f42').removeAttr("disabled");	}
+		/*f43*/					 if(data['f11'][i].AGE >=0 &&	 data['f11'][i].AGE < 6 )  {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f43').removeAttr("disabled");	}
+		/*f44*/					 if(data['f11'][i].AGE >=6 && data['f11'][i].AGE <13)     {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f44').removeAttr("disabled");	}
+		/*f45*/					 if(data['f11'][i].AGE >=13 && data['f11'][i].AGE <19)  {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f45').removeAttr("disabled");	}
+		/*f46*/					 if(data['f11'][i].AGE >=60 )                   {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f46').removeAttr("disabled");	}
+		/*f47*/					 if(data['f11'][i].AGE >=15)   {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f47').removeAttr("disabled");	}
+		/*f48*/					 if(data['f11'][i].AGE >=21)                   {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f48').removeAttr("disabled");	}
+		/*f49*/					 if(preg == 'P' && data['f11'][i].PSC >0 && data['f11'][i].PSC <10 && data['f11'][i].SEX ==2)                   {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f49').removeAttr("disabled");	}
+		/*f410*/				 if(data['f11'][i].AGE >=15 && data['f11'][i].AGE <50 && data['f11'][i].SEX ==2)                    {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f410').removeAttr("disabled");	}		
+		/*f411*/				 if(data['f11'][i].AGE >=13 && data['f11'][i].AGE <60)                    {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f411').removeAttr("disabled");	}			
+		/*f52*/					 if(data['f11'][i].AGE >=20)                    {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f52').removeAttr("disabled");	}
+		/*f53*/					 if(data['f11'][i].AGE >=10)                    {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f53').removeAttr("disabled");}
+		/*f54*/					 if(data['f11'][i].AGE >=10)                   {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f54').removeAttr("disabled");	}
+		/*f55*/					 if(data['f11'][i].AGE >=20)  {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f55').removeAttr("disabled");	}
+		/*f56*/					 if(data['f11'][i].AGE >=15  && data['f11'][i].SEX == 2 || data['f11'][i].AGE >=20)                   {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f56').removeAttr("disabled");	}
+		/*f57*/					 if(data['f11'][i].AGE >=20)  {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f57').removeAttr("disabled");	}
+		/*f58*/					 if(data['f11'][i].AGE >=20 && data['f11'][i].SEX == 2)  {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f58').removeAttr("disabled");	}
+		/*f59*/					 if(data['f11'][i].AGE >=13)  {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f59').removeAttr("disabled");	}	
+		/*f73*/					 if(data['f11'][i].AGE < 3.083333)                    {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f73').removeAttr("disabled");	}
+		/*f82*/					 if(data['f11'][i].AGE > 0.5)                    {	$('#INTERVIEW_STATUS_'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'_f82').removeAttr("disabled");	}
+
+						   }
+						   
+						   
+                        }
+                    });
+					
+	
+	});
+	
+	$("td > a").on("click", function(event){
+    if ($(this).is("[disabled]")) {
+			event.preventDefault();
+		}
+	if ($(this).closest('td').css('background-color') == 'rgb(238, 238, 238)') {
+			event.preventDefault();
+		}
+	});
+	
+	
+	$('.hide_link').each(function() {
+	
+	var spl = $(this).attr('id').split('_');
+	
+	data.eacode = spl[2].substring(0,12);
+	data.hcn = spl[2].substring(12,16);
+	data.shsn = spl[2].substring(16,20);
+	data.MEMBER_CODE = spl[2].substring(20,22);
+	
+	$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/surveyform/form11/post3',						
+                        success: function(data) {
+
+						if(data[0].INTERVIEW_STATUS >1){
+						$('#remo_'+data[0].MEMBER_CODE).addClass('remo');
+						}
+						}
+	
+	});
+	
+	});
+					
+		
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/household_summary/view',						
+                            success: function(data) {
+
+                                $('[name=INTERVIEW_STATUS_'+data['f12'][0].eacode+data['f12'][0].hcn+data['f12'][0].shsn+'_f12]').val(data['f12'][0].INTERVIEW_STATUS);
+                                $('[name=INTERVIEW_STATUS_'+data['f13'][0].eacode+data['f13'][0].hcn+data['f13'][0].shsn+'_f13]').val(data['f13'][0].INTERVIEW_STATUS);
+                                $('[name=INTERVIEW_STATUS_'+data['f14'][0].eacode+data['f14'][0].hcn+data['f14'][0].shsn+'_f14]').val(data['f14'][0].INTERVIEW_STATUS);
+                                $('[name=INTERVIEW_STATUS_'+data['f15'][0].eacode+data['f15'][0].hcn+data['f15'][0].shsn+'_f15]').val(data['f15'][0].INTERVIEW_STATUS);
+                                $('[name=INTERVIEW_STATUS_'+data['f16'][0].eacode+data['f16'][0].hcn+data['f16'][0].shsn+'_f16]').val(data['f16'][0].INTERVIEW_STATUS);
+								$('[name=INTERVIEW_STATUS_'+data['f17'][0].eacode+data['f17'][0].hcn+data['f17'][0].shsn+'_f17]').val(data['f17'][0].INTERVIEW_STATUS);
+                          
+                          }
+                        });    
+                        
+               
+                    
+
+  });
+  
+    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = bigIdString.substring(20,22);
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+    document.getElementById('MEMBER_CODE').value = D;
+	
+	function is1(id,MEMBER_CODE) {
+	
+		var data = {};
+        data.hcn = $('[name=hcn]').val();
+        data.shsn = $('[name=shsn]').val();
+		data.eacode = $('[name=eacode]').val();
+		data.MEMBER_CODE = MEMBER_CODE;
+		data.INTERVIEW_STATUS1 = $('#INTERVIEW_STATUS1_'+id+'').val();
+		data.INTERVIEW_STATUS2 = $('#INTERVIEW_STATUS2_'+id+'').val();
+		data.INTERVIEW_STATUS3 = $('#INTERVIEW_STATUS3_'+id+'').val();
+		data.visit1 = $('#visit1_'+id+'').val();
+		data.visit2 = $('#visit2_'+id+'').val();
+		data.visit3 = $('#visit3_'+id+'').val();
+		data.comment1 = $('#comment1_'+id+'').val();
+		data.comment2 = $('#comment2_'+id+'').val();
+		data.comment3 = $('#comment3_'+id+'').val();
+
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+							contentType: 'application/json',
+									url: '/legone/survey/surveyform/summary/form11/post',						
+									success: function(data) {
+								
+									}
+								});
+
+		}
+
+  $('[name=INTERVIEW_STATUS_'+A+B+C+'_f12]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f12]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form12/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+
+    $('[name=INTERVIEW_STATUS_'+A+B+C+'_f13]').change(function() {
+          var data = {};
+
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f13]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+          $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form13/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+      $('[name=INTERVIEW_STATUS_'+A+B+C+'_f14]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f14]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form14/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+      $('[name=INTERVIEW_STATUS_'+A+B+C+'_f15]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f15]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form15/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+        $('[name=INTERVIEW_STATUS_'+A+B+C+'_f16]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f16]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form16/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+        $('[name=INTERVIEW_STATUS_'+A+B+C+'_f17]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f17]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form17/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_final]', function() {
+  var data = {};
+  
+
+        data.INTERVIEW_STATUS = $(this).val();
+		data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).parent().siblings(":first").attr('id');
+			
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/final/post',						
+                            success: function(data) {
+                                alert('Updated last INTERVIEW_STATUS');
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+function form11(eacode,hcn,shsn) {
+window.location.href = '/legone/survey/surveyform/form11/'+eacode+hcn+shsn;
+}
+ 
+function close(id) {
+
+	$('#demo'+id+'').modal('toggle');
+}
+
+
+
+</script>   
+  
+  
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

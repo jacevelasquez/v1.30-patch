@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Food Frequency Food Frequency Questionnaire of 18 Years Old and Above</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="cache-control" content="no-cache" /> -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" /> -->
+    <base href="/">
+
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/material.min.css" />
+    <link rel='stylesheet' href='/fonts/font.css'>
+    <link rel="stylesheet" href="/fonts/icon.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <style type="text/css">
+        /* Hide when Angular is not yet loaded and initialized */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important; }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Food Frequency App</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+              <a class="mdl-navigation__link" href="/legone/survey/surveyform/form11/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Home</a>
+              <a class="mdl-navigation__link" href="/legone/survey/surveyform/save/f56/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Food Groups</a>
+              <a class="mdl-navigation__link" href="/food/taste-preference/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Taste Preference</a>
+            </nav>
+          </div>
+        </header>
+
+        <div class="mdl-layout__drawer" id="sidenav">
+          <span class="mdl-layout-title">Food Groups</span>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/legone/survey/surveyform/form11/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Home</a>
+            <a class="mdl-navigation__link" href="/food/grains/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Cereals and Grains</a>
+            <a class="mdl-navigation__link" href="/food/processed-grains/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Processed Cereals and Grains</a>
+            <a class="mdl-navigation__link" href="/food/pigmented-grains/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Pigmented Cereals and Grains</a>
+            <a class="mdl-navigation__link" href="/food/root-crops/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Roots and Tubers</a>
+            <a class="mdl-navigation__link" href="/food/processed-root-crops/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Processed Roots and Tubers</a>
+            <a class="mdl-navigation__link" href="/food/vegetables/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Vegetables</a>
+            <a class="mdl-navigation__link" href="/food/processed-vegetables/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Processed Vegetables</a>
+            <a class="mdl-navigation__link" href="/food/fruits/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Fruits</a>
+            <a class="mdl-navigation__link" href="/food/seeds/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Seeds</a>
+            <a class="mdl-navigation__link" href="/food/processed-seeds/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Processed Seeds</a>
+            <a class="mdl-navigation__link" href="/food/meat/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Meat and Poultry</a>
+            <a class="mdl-navigation__link" href="/food/processed-meat/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Processed Meat and Poultry</a>
+            <a class="mdl-navigation__link" href="/food/eggs/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Eggs</a>
+            <a class="mdl-navigation__link" href="/food/processed-eggs/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Processed Eggs</a>
+            <a class="mdl-navigation__link" href="/food/seafood/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Seafood</a>
+            <a class="mdl-navigation__link" href="/food/processed-seafood/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Processed Seafood</a>
+            <a class="mdl-navigation__link" href="/food/oil/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Fats and Oils</a>
+            <a class="mdl-navigation__link" href="/food/fried-food/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Fried Foods</a>
+            <a class="mdl-navigation__link" href="/food/milk-and-dairy/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Milk and Dairy</a>
+            <a class="mdl-navigation__link" href="/food/alcoholic-drinks/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Alcoholic Drinks</a>
+            <a class="mdl-navigation__link" href="/food/sweetened-drinks/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Sweetened Drinks</a>
+            <a class="mdl-navigation__link" href="/food/sweets/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Sugar and Sweets</a>
+            <a class="mdl-navigation__link" href="/food/spices/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Spices and Condiments</a>
+            <a class="mdl-navigation__link" href="/food/soups/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Soups</a>
+            <a class="mdl-navigation__link" href="/food/taste-preference/<%= users[0].eacode%><%= users[0].hcn%><%= users[0].shsn%><%= users[0].MEMBER_CODE%>">Taste Preference</a>
+          </nav>
+        </div>
+
+        <main class="mdl-layout__content">
+          <form action="/save" method="post" id="survey-form" class="mdl-grid">
+            <% for(var i in questions) { %>
+            <div class="mdl-cell mdl-cell--3-col " id="<%= questions[i].category %>">
+              <div class="food-card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expaTitlend" style="background-image: url(../assets/img/<%= questions[i].image %>);">
+                  <h2 class="mdl-card__title-text"><%= questions[i].question %><br>
+                    <span> <%= questions[i].alt_question %></span>
+                  </h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
+                    <select class="mdl-textfield__input" type="text" id="<%= questions[i].qkey %>" name="<%=questions[i].qkey%>" readonly>
+                      <% if (questions[i].category == "taste-preference" && questions[i].qkey == "f57_A_TASTE") { %>
+                        <option class="mdl-menu__item" value="" ></option>
+                        <option class="mdl-menu__item" value="0" >Sweet</option>
+                        <option class="mdl-menu__item" value="1" >Moderate</option>
+                        <option class="mdl-menu__item" value="2" >Salty</option>
+                        <option class="mdl-menu__item" value="3" >Bland</option>
+                        <option class="mdl-menu__item" value="4" >Sweet and Salty</option>
+                        <option class="mdl-menu__item" value="5" >Sour</option>
+                        <option class="mdl-menu__item" value="6" >Other</option>
+                      </select>
+                      <label for="<%= questions[i].qkey %>" class="mdl-textfield__label">Taste Preference</label>
+                      <% } else if (questions[i].category == "taste-preference" && questions[i].qkey == "f57_B_MEALS") { %>
+                        <option class="mdl-menu__item" value="" ></option>
+                        <option class="mdl-menu__item" value="0" >0</option>
+                        <option class="mdl-menu__item" value="1" >1</option>
+                        <option class="mdl-menu__item" value="2" >2</option>
+                        <option class="mdl-menu__item" value="3" >3</option>
+                        <option class="mdl-menu__item" value="4" >4</option>
+                        <option class="mdl-menu__item" value="5" >5</option>
+                        <option class="mdl-menu__item" value="6" >6</option>
+                        <option class="mdl-menu__item" value="7" >7</option>
+                        <option class="mdl-menu__item" value="8" >8</option>
+                        <option class="mdl-menu__item" value="9" >9</option>
+                        <option class="mdl-menu__item" value="10" >10</option>
+                        <option class="mdl-menu__item" value="11" >11</option>
+                        <option class="mdl-menu__item" value="12" >12</option>
+                        <option class="mdl-menu__item" value="13" >13</option>
+                        <option class="mdl-menu__item" value="14" >14</option>
+                        <option class="mdl-menu__item" value="15" >15</option>
+                        <option class="mdl-menu__item" value="16" >16</option>
+                        <option class="mdl-menu__item" value="17" >17</option>
+                        <option class="mdl-menu__item" value="18" >18</option>
+                        <option class="mdl-menu__item" value="19" >19</option>
+                        <option class="mdl-menu__item" value="20" >20</option>
+                        <option class="mdl-menu__item" value="21" >21</option>
+                      </select>
+                      <label for="<%= questions[i].qkey %>" class="mdl-textfield__label">Meals Per Week</label>
+                      <% } else { %>
+                        <option class="mdl-menu__item" value="" ></option>
+                        <option class="mdl-menu__item" value="0" >Never</option>
+                        <option class="mdl-menu__item" value="1" >1x a day</option>
+                        <option class="mdl-menu__item" value="2" >2x a day</option>
+                        <option class="mdl-menu__item" value="3" >3x a day</option>
+                        <option class="mdl-menu__item" value="4" >1x a week</option>
+                        <option class="mdl-menu__item" value="5" >2x a week</option>
+                        <option class="mdl-menu__item" value="6" >3x a week</option>
+                        <option class="mdl-menu__item" value="7" >4x a week</option>
+                        <option class="mdl-menu__item" value="8" >5x a week</option>
+                        <option class="mdl-menu__item" value="9" >6x a week</option>
+                        <option class="mdl-menu__item" value="10" >1x a month</option>
+                        <option class="mdl-menu__item" value="11" >2x a month</option>
+                        <option class="mdl-menu__item" value="12" >3x a month</option>
+                      </select>
+                      <label for="<%= questions[i].qkey %>" class="mdl-textfield__label">Food Frequency</label>
+                      <% } %>
+                    <span class="mdl-textfield__error">Don"t forget to select a frequency!</span>
+                  </div>
+                  <div class="other mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="<%= questions[i].qkey %>_OTH" name="<%= questions[i].qkey %>_OTH"/>
+                    <label class="mdl-textfield__label" for="<%=questions[i].qkey%>_OTH">Notes</label>
+                    <span class="mdl-textfield__error">Only alphabet and no spaces, please!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+            <!-- <!-- <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" type="submit" id="submit"> -->
+              <!-- <i class="material-icons">update</i> -->
+            <!-- </button> --> 
+          </form>
+
+          <!-- <div class="page-content" ui-view></div> -->
+
+        </main>
+    </div>
+
+        <!-- <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">Title</div>
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="#">Help</a></li>
+            </ul>
+          </div>
+        </footer> -->
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script defer src="/jquery/material.min.js"></script>
+    <script src="/assets/data.js"></script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+      // disable Enter key
+      $("html").bind("keypress", function(e) {
+          if(e.keyCode == 13)
+            return false;
+      });
+
+    });
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,110 @@
+body {
+	background-color: #ddd;
+}
+
+.page {
+	background-color: #fff;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	padding: 25px 25px;
+}
+
+.questions {
+	table-layout: fixed;
+	width: 100%;
+}
+
+th {
+	background-color: #ccc;
+	padding-left: 10px;
+}
+
+th, td {
+	border: 1px solid;
+	border-bottom: none;
+}
+
+h3 {
+	font-weight: bold;
+	margin: 0;
+}
+
+#smhead {
+	font-size: 22px;
+}
+
+.images {
+	display: block;
+	box-sizing: border-box;
+}
+
+img {
+	width: 75%; 
+	height: 75%; 
+}
+
+.fcode, .fcode2 {
+	border: 0;
+	outline: 0;
+	background: transparent;
+	text-align: center;
+}
+
+table, .fcode2 {
+	border-bottom: 1px solid black;
+}
+
+/* .fcode { */
+	/* width: 50px; */
+/* } */
+
+.fcode2 {
+	width: 120px;
+}
+
+.parent {
+	display: table;
+  	margin: auto;
+  	text-align:center;
+}
+
+.block {
+    text-align:left;
+}
+
+p span 
+{
+    display: block;
+}
+
+.qnum {
+	margin-top: 5px;
+	margin-bottom: 3px;
+	margin-left: 13px;
+	display: block;
+	position: static;
+	vertical-align: text-top;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.tripart {
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-right-width: 1px;
+}
+
+.tr-nobot>td {
+	border-bottom: none;
+}
+
+.tr-notop>td {
+	border-top: none;
+}

@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% include ../views/links.ejs %>
+
+  </head>
+  <style>
+
+.table-striped tbody > tr:nth-child(odd) > td,
+ {
+  background-color: white; }	
+	
+th { 
+    background: #173e43; 
+    color: white; 
+    font-weight: bold; 
+    }
+td, th { 
+    padding: 10px; 
+	width:20px;
+    border: 1px solid #ccc; 
+    text-align: left; 
+    font-size: 18px;
+	min-width: 20px;
+	text-align: center;
+    }
+#forms td
+	{
+	min-width: 60px;
+	table-layout:fixed;
+	}
+  </style>
+
+  <body>
+
+    <% include ../views/header.ejs %>
+
+
+        <div class="row">
+<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/awesome-bootstrap-checkbox.css" />
+
+<br />
+<br />
+<br />
+      <ul class="list-group">
+         <li class="list-group-item clearfix">
+            <strong style="font-size:1.5em;"><center><% 
+		array.forEach(function(row){ %>
+		
+		<%=row.eacode%> - <%=row.areaname%> <br>	
+		<% }); %>
+		</center></strong>
+  
+         </li>
+      </ul>
+<div style="margin-left:200px;">
+<h4> Notes : </h4>
+<h4> 1. This form is to be accomplished by the Team Leader / Local Researcher immediately after data collection in the survey area</h4>
+<h4> 2. Entries should should be checked against Form 1.1 - Household Membership and Computer-generated output of consistency</h4><br>
+</div>
+<div class="row">
+<div style="margin-left: 80px;" class="col-md-11">
+
+<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for hcn/shsn.." title="Type in a name" class="form-control"> -->
+
+<h2><i>SUMMARY OF HOUSEHOLDS BY AGE GROUP</i></h2>
+<a href="#" class="export">Export Table data into Excel</a>
+<div id="dvData">
+<table id="myTable" class="table table-striped">
+<thead>
+		<tr>
+			<th colspan="3"> #</th>
+			<th colspan="3">0 to 5 years old</th>
+			<th colspan="6"> Age Groups</th>
+			<th colspan="2"> PSC</th>
+			<th colspan="4">Callback/IS</th>
+		</tr>
+        <tr>
+            <td >No</td>
+			<td>ea</td>
+			<td>HCN/SHSN</td>
+			<td>hhead</td>
+			<td >0 to 5 months</td>
+			<td >6 to 23 months</td>
+			<td >24 to 71 months</td>
+			<td >6 to 12 years</td>
+            <td >13 to 19 years</td>
+			<td >20 to 59 years</td>
+			<td >Greater tdan 60 yrs</td>
+			<td >TOTAL <br>(AGE)</td>
+			<td >Pregnant</td>
+			<td >Lactating</td>
+			<td >is1</td>
+			<td >is2</td>
+			<td >is3</td>
+			<td >is Final</td>
+
+        </tr>
+</thead>
+<tbody>
+		
+</tbody>
+		<% 
+		var i=1;
+		array2.forEach(function(row){ %>
+		<tr>
+		<td><div id="summary1_<%=row.hcn%><%=row.shsn%>"><%= i++%></div></td>
+		<td><%=row.eacode.substring(9,12)%></td>
+		<td class="hcn"><%=row.hcn%> | <%=row.shsn%> </td>
+		<td><div id="summary4_<%=row.hcn%><%=row.shsn%>"><a onclick="view_info('<%=row.eacode%>','<%=row.hcn%>','<%=row.shsn%>')" target="_blank"><%=row.hhead%></a></div></td>
+		<td class="sum sum5"><div id="summary5_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td class="sum sum6"><div id="summary6_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td class="sum sum7"><div id="summary7_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td class="sum sum8"><div id="summary8_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td class="sum sum9"><div id="summary9_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td class="sum sum10"><div id="summary10_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td class="sum sum11"><div id="summary11_<%=row.hcn%><%=row.shsn%>">0</div></td>
+				<td class="total_sum" style="background-color:green; color:white;"><div id="total_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td class="sum12"><div id="summary12_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td class="sum13"><div id="summary13_<%=row.hcn%><%=row.shsn%>">0</div></td>
+		<td><div id="summary14_<%=row.hcn%><%=row.shsn%>"><%=row.INTERVIEW_STATUS1%></div></td>
+		<td><div id="summary15_<%=row.hcn%><%=row.shsn%>"><%=row.INTERVIEW_STATUS2%></div></td>
+		<td><div id="summary16_<%=row.hcn%><%=row.shsn%>"><%=row.INTERVIEW_STATUS3%></div></td>
+		<td><div id="summary17_<%=row.hcn%><%=row.shsn%>"><%=row.INTERVIEW_STATUS4%></div></td>
+		</tr>
+		
+		<%});%>
+		<tr>
+		<td></td>	
+		<td></td>
+		<td></td>
+		<td text-align="center"> TOTAL</td>
+		<td id="total_age5" class="sum" style="background-color:green; color:white;"> 0</td>
+		<td id="total_age6" class="sum" style="background-color:green; color:white;"> 0</td>
+		<td id="total_age7" class="sum" style="background-color:green; color:white;"> 0</td>
+		<td id="total_age8" class="sum" style="background-color:green; color:white;"> 0</td>
+		<td id="total_age9" class="sum" style="background-color:green; color:white;"> 0</td>
+		<td id="total_age10" class="sum" style="background-color:green; color:white;"> 0</td>
+		<td id="total_age11" class="sum" style="background-color:green; color:white;"> 0</td>
+		<td style="color:white; background-color:black;" id="total_all" class="total_sum"> 0</td>
+		
+		</tr>
+</table>
+</div>		
+<br>
+<h2><i>SUMMARY OF HOUSEHOLDS BY FORMS</i></h2>
+<table id="forms" >
+	<tr>
+	<th >No</th>
+	<th>HCN/SHSN</th>
+	<th>HOUSEHOLD HEAD</th>
+	<th>1.2</th>
+	<th>1.3</th>
+	<th>1.4</th>
+	<th>1.5</th>
+	<th>1.6</th>
+	<th>1.7</th>
+	<th>2.1</th>
+	<th>3.1</th>
+	<th>3.2</th>
+	<th>4.1</th>
+	<th>4.2</th>
+	<th>4.3</th>
+	<th>4.4</th>
+	<th>4.5</th>
+	<th>4.6</th>
+	<th>4.7</th>
+	<th>4.8</th>
+	<th>4.9</th>
+	<th>4.10</th>
+	<th>5.2</th>
+	<th>5.3</th>
+	<th>5.4</th>
+	<th>5.5</th>
+	<th>5.6</th>
+	<th>5.7</th>
+	<th>5.8</th>
+	<th>7.3</th>
+	<th>8.2</th>
+	</tr>
+	<% 
+		var i=1;
+		array2.forEach(function(row){ %>
+	<tr>
+	<td><div id="summary1_<%=row.hcn%><%=row.shsn%>"><%= i++%></div></td>
+	<td class="hcn"><%=row.hcn%> | <%=row.shsn%> </td>
+	<td><div id="summary4_<%=row.hcn%><%=row.shsn%>"><a onclick="view_info('<%=row.eacode%>','<%=row.hcn%>','<%=row.shsn%>')" target="_blank"><%=row.hhead%></a></div></td>
+	<td align="center" id="f12_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f13_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f14_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f15_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f16_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f17_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f21_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f31_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f32_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f41_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f42_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f43_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f44_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f45_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f46_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f47_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f48_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f49_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f410_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f411_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f52_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f53_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f54_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f55_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f56_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f57_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f58_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f59_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f73_<%=row.hcn%><%=row.shsn%>">0</td>
+	<td align="center" id="f82_<%=row.hcn%><%=row.shsn%>">0</td>
+	</tr>
+	<%});%>
+	<tr>
+	<td colspan="3">TOTAL</td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array12.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array13.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array14.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array15.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array16.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array17.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array21.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array31.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array32.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array41.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array42.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array43.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array44.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array45.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array46.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array47.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array48.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array49.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array410.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array411.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array52.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array53.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array54.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array55.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array56.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array57.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array58.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array59.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array73.length)%></b></td>
+	<td align="center" style="background-color:green; color:white;"><b><%=JSON.stringify(array82.length)%></b></td>
+	</tr>
+</table>
+		
+	
+	
+</div>
+</div>
+
+
+
+<script src="/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function (){
+
+		
+	
+  $('.hcn').each(function() {
+
+	var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+
+	    var data = {};
+		data.eacode = bigIdString.substring(0,12);
+		data.hcn = $(this).text().substring(0,4);
+		data.shsn = $(this).text().substring($(this).text().length-5);
+		
+		
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summ',						
+                        success: function(data) {
+						
+						$('#f12_'+data['f11'].hcn+data['f11'].shsn).text(data['f12']);
+						$('#f13_'+data['f11'].hcn+data['f11'].shsn).text(data['f13']);
+						$('#f14_'+data['f11'].hcn+data['f11'].shsn).text(data['f14']);
+						$('#f15_'+data['f11'].hcn+data['f11'].shsn).text(data['f15']);
+						$('#f16_'+data['f11'].hcn+data['f11'].shsn).text(data['f16']);
+						$('#f17_'+data['f11'].hcn+data['f11'].shsn).text(data['f17']);
+						
+						$('#f21_'+data['f11'].hcn+data['f11'].shsn).text(data['f21']);
+						$('#f31_'+data['f11'].hcn+data['f11'].shsn).text(data['f31']);
+						$('#f32_'+data['f11'].hcn+data['f11'].shsn).text(data['f32']);
+						$('#f41_'+data['f11'].hcn+data['f11'].shsn).text(data['f41']);
+						$('#f42_'+data['f11'].hcn+data['f11'].shsn).text(data['f42']);
+						$('#f43_'+data['f11'].hcn+data['f11'].shsn).text(data['f43']);
+						$('#f44_'+data['f11'].hcn+data['f11'].shsn).text(data['f44']);
+						$('#f45_'+data['f11'].hcn+data['f11'].shsn).text(data['f45']);
+						$('#f46_'+data['f11'].hcn+data['f11'].shsn).text(data['f46']);
+						$('#f47_'+data['f11'].hcn+data['f11'].shsn).text(data['f47']);
+						$('#f48_'+data['f11'].hcn+data['f11'].shsn).text(data['f48']);
+						$('#f49_'+data['f11'].hcn+data['f11'].shsn).text(data['f49']);
+						$('#f410_'+data['f11'].hcn+data['f11'].shsn).text(data['f410']);
+						$('#f411_'+data['f11'].hcn+data['f11'].shsn).text(data['f411']);
+						$('#f52_'+data['f11'].hcn+data['f11'].shsn).text(data['f52']);
+						$('#f53_'+data['f11'].hcn+data['f11'].shsn).text(data['f53']);
+						$('#f54_'+data['f11'].hcn+data['f11'].shsn).text(data['f54']);
+						$('#f55_'+data['f11'].hcn+data['f11'].shsn).text(data['f55']);
+						$('#f56_'+data['f11'].hcn+data['f11'].shsn).text(data['f56']);
+						$('#f57_'+data['f11'].hcn+data['f11'].shsn).text(data['f57']);
+						$('#f58_'+data['f11'].hcn+data['f11'].shsn).text(data['f58']);
+						$('#f59_'+data['f11'].hcn+data['f11'].shsn).text(data['f59']);
+						$('#f73_'+data['f11'].hcn+data['f11'].shsn).text(data['f73']);
+						$('#f82_'+data['f11'].hcn+data['f11'].shsn).text(data['f82']);
+
+                        }
+                    }); 
+
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary5',						
+                        success: function(data) {
+						if(data[0].AGE>=0 && data[0].AGE <=0.499){
+						$('#summary5_'+data[0].hcn+data[0].shsn+'').text(data.length);
+						}
+						
+                        }
+                    });   	
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary6',						
+                        success: function(data) {
+						if(data[0].AGE>=0.5 && data[0].AGE <=1.999){
+						$('#summary6_'+data[0].hcn+data[0].shsn+'').text(data.length);
+						}
+                        }
+                    });  
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary7',						
+                        success: function(data) {
+						
+						$('#summary7_'+data[0].hcn+data[0].shsn+'').text(data.length);
+						
+                        }
+                    });  
+					
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary8',						
+                        success: function(data) {
+						
+						$('#summary8_'+data[0].hcn+data[0].shsn+'').text(data.length);
+						
+                        }
+                    }); 
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary9',						
+                        success: function(data) {
+						
+						$('#summary9_'+data[0].hcn+data[0].shsn+'').text(data.length);
+						
+                        }
+                    }); 
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary10',						
+                        success: function(data) {
+
+						$('#summary10_'+data[0].hcn+data[0].shsn+'').text(data.length);
+
+                        }
+                    }); 
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary11',						
+                        success: function(data) {
+			
+						$('#summary11_'+data[0].hcn+data[0].shsn+'').text(data.length);
+						
+                        }
+                    }); 
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary12',						
+                        success: function(data) {
+				
+						$('#summary12_'+data[0].hcn+data[0].shsn+'').text(data.length);
+						
+                        }
+                    });
+				
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/summary13',						
+                        success: function(data) {
+						
+						if(data[0].PSC >=10 && data[0].PSC <=12){
+						$('#summary13_'+data[0].hcn+data[0].shsn+'').text(data.length);
+						}
+						
+						var sum_5=0;
+						$('td.sum5').each(function() {   sum_5 += parseInt($(this).text()); }); 
+						$('#total_age5').html("<b>"+sum_5+"</b>");
+						
+						var sum_6=0;
+						$('td.sum6').each(function() {   sum_6 += parseInt($(this).text()); }); 
+						$('#total_age6').html("<b>"+sum_6+"</b>");
+						
+						var sum_7=0;
+						$('td.sum7').each(function() {   sum_7 += parseInt($(this).text()); }); 
+						$('#total_age7').html("<b>"+sum_7+"</b>");
+						
+						var sum_8=0;
+						$('td.sum8').each(function() {   sum_8 += parseInt($(this).text()); }); 
+						$('#total_age8').html("<b>"+sum_8+"</b>");
+						
+						var sum_9=0;
+						$('td.sum9').each(function() {   sum_9 += parseInt($(this).text()); }); 
+						$('#total_age9').html("<b>"+sum_9+"</b>");
+						
+						var sum_10=0;
+						$('td.sum10').each(function() {   sum_10 += parseInt($(this).text()); }); 
+						$('#total_age10').html("<b>"+sum_10+"</b>");
+						
+						var sum_11=0;
+						$('td.sum11').each(function() {   sum_11 += parseInt($(this).text()); }); 
+						$('#total_age11').html("<b>"+sum_11+"</b>");
+						
+						
+						
+						
+						$('tr').each(function () {
+							//the value of sum needs to be reset for each row, so it has to be set inside the row loop
+							var sum = 0
+							//find the combat elements in the current row and sum it 
+							$(this).find('.sum').each(function () {
+								var combat = $(this).text();
+							
+								if (!isNaN(combat) && combat.length !== 0) {
+									sum += parseFloat(combat);
+								}
+							});
+							//set the value of currents rows sum to the total-combat element in the current row
+							$('.total_sum', this).html("<b>"+sum+"</b>");
+						});
+						
+                        }
+                    }); 
+					
+
+					
+	});
+
+	function exportTableToCSV($table, filename) {
+
+		var $rows = $table.find('tr:has(td)'),
+
+		// Temporary delimiter characters unlikely to be typed by keyboard
+		// This is to avoid accidentally splitting the actual contents
+		tmpColDelim = String.fromCharCode(11), // vertical tab character
+		tmpRowDelim = String.fromCharCode(0), // null character
+
+		// actual delimiter characters for CSV format
+		colDelim = '","',
+		rowDelim = '"\r\n"',
+
+		// Grab text from table into CSV formatted string
+		csv = '"' + $rows.map(function(i, row) {
+			var $row = $(row),
+			$cols = $row.find('td');
+
+			return $cols.map(function(j, col) {
+			var $col = $(col),
+				text = $col.text();
+
+			return text.replace(/"/g, '""'); // escape double quotes
+
+			}).get().join(tmpColDelim);
+
+		}).get().join(tmpRowDelim)
+		.split(tmpRowDelim).join(rowDelim)
+		.split(tmpColDelim).join(colDelim) + '"';
+
+		// Deliberate 'false', see comment below
+		if (false && window.navigator.msSaveBlob) {
+
+		var blob = new Blob([decodeURIComponent(csv)], {
+			type: 'text/csv;charset=utf8'
+		});
+
+		// Crashes in IE 10, IE 11 and Microsoft Edge
+		// See MS Edge Issue #10396033
+		// Hence, the deliberate 'false'
+		// This is here just for completeness
+		// Remove the 'false' at your own risk
+		window.navigator.msSaveBlob(blob, filename);
+
+		} else if (window.Blob && window.URL) {
+		// HTML5 Blob        
+		var blob = new Blob([csv], {
+			type: 'text/csv;charset=utf-8'
+		});
+		var csvUrl = URL.createObjectURL(blob);
+
+		$(this)
+			.attr({
+			'download': filename,
+			'href': csvUrl
+			});
+		} else {
+		// Data URI
+		var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+		$(this)
+			.attr({
+			'download': filename,
+			'href': csvData,
+			'target': '_blank'
+			});
+		}
+		}
+
+		// This must be a hyperlink
+		$(".export").on('click', function(event) {
+		// CSV
+		var args = [$('#dvData>table'), '<%=array[0].eacode%>_ageGroup.csv'];
+
+		exportTableToCSV.apply(this, args);
+
+		// If CSV, don't do event.preventDefault() or return false
+		// We actually need this to be a typical hyperlink
+		});
+
+
+  
+  });
+  
+  
+  function colSum() {
+    var sum=0;
+    //iterate through each input and add to sum
+    $('td.row5').each(function() {     
+            sum += parseInt($(this).text());                     
+    }); 
+    //change value of total
+    $('#mySum').html(sum);
+}
+
+	function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+function view_info(eacode,hcn,shsn) { 
+var data = {};
+	data.eacode = eacode;
+	data.hcn = hcn;
+	data.shsn = shsn;
+	
+	$.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/inserthousehold',						
+                            success: function(data) {
+                                
+                            }
+                        });
+						
+ window.open('/legone/survey/surveyform/form11/'+eacode+hcn+shsn,'_blank');
+ 
+}
+
+</script>      
+    </div>
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

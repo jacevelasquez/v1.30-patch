@@ -1,0 +1,1118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<% include ../views/links.ejs %>
+
+  </head>
+
+  <body>
+
+    <% include ../views/header.ejs %>
+
+      <div class="container">
+        <div class="row">
+        <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/awesome-bootstrap-checkbox.css" />
+
+<br />
+<br />
+<br />
+      <ul class="list-group">
+         <li class="list-group-item clearfix">
+            <strong style="font-size:1.1em;">&nbsp;&nbsp;&nbsp;EACODE : <%=array[0].eacode%>&nbsp;&nbsp;&nbsp;HCN : <%=array[0].hcn%>&nbsp;&nbsp;&nbsp;SHSN : <%=array[0].shsn%></strong>
+            <span class="pull-left">
+            <div class="dropdown-left">
+    <a alt="Household forms" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+         <span class="glyphicon glyphicon-home"></span>
+         <b class="caret"></b>
+    </a>
+      <ul class="dropdown-menu">      
+        <li id="f12"><a href="/legone/survey/surveyform/form12/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.2 - Household and Other Demographic Information </a></li>  
+        <li id="f13"><a href="/legone/survey/surveyform/form13/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.3 - Household Food Security (HFIAS) </a></li>   
+        <li id="f14"><a href="/legone/survey/surveyform/form14/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.4 - Household Food Frequency </a></li>   
+        <li id="f15"><a href="/legone/survey/surveyform/form15/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.5 - Household Food Security (FIES)</a></li>
+		<li id="f16"><a href="/legone/survey/surveyform/form16/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.6 - Household Government Program Participation</a></li>
+		<li id="f17"><a href="/legone/survey/surveyform/form17/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.7 - Household Awareness and Usage of Iodized Salt</a></li>
+      </ul>
+
+    </div>
+            </span>
+     <span class="pull-right" style="font-family:'Arial';"><a href="/legone/survey/surveyform/form11/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>"><i class="glyphicon glyphicon-user"></i>&nbsp;Membership</a>&nbsp; <a href="/legone/survey/surveyform/households/<%=array[0].eacode%>"><i class="glyphicon glyphicon-th-list"></i>&nbsp;Listings</a></span>
+              
+             
+          </li>
+      </ul>
+<div class="container">
+	<h3><span class="pull-right"><label id="minutes">00</label><label id="quot">:</label><label id="seconds">00</label><label id="ext"></label></span></h3>
+    <div class="row">
+    <b>  <h3>Form 1.4 - Household Food Frequency</h3>
+	Ask the meal planner of all the foods and drinks served/prepared to the household members for the last 7 days (during the past week) for each food group category. (Note for enumerator: exclude foods eaten outside the home)</b>
+	<div class="row">
+	<div class="col-md-6">
+	<br>1. Ask the meal planner if they consume foods belonging under each food group listed below for the last 7 days.<br> 
+	<h5><i>“Anu-anong pagkain ang hinahanda o nakonsumo ng miyembro ng pamilya na kasali sa bawat grupo ng pagkain na nakalista sa ibaba noong nakaraan 7 araw.”</i></h5>2. Then ask how many days in the past week the food item has been served.<br>
+	<h5><i>“Ilang araw sa nakaraang linggo hinanda o kinain ang pagkain?”</i>
+	</div>
+	<div class="col-md-6">
+	</h5>3. If there were two or more food items served under one food group ask what is the food that was served the MOST during the past week<br>
+	<h5><i>“Alin sa mga nabanggit na pagkain sa bawat grupo ang pinakamadalas na kainin noong nakaraang linggo?”</i></h5>4. Ask what is the source of the food item that was served the MOST?<br>
+	<h5><i>“Saan nanggaling o binili ang pagkain na madalas ihanda o nakonsumo?”</i></h5>
+	</div>
+	</div>
+      <form action="/legone/survey/surveyform/form14" method="post">
+           <div class="row">
+     <form action="/legone/survey/surveyform/form14" method="post">
+    
+  <div class="form-group col-lg-4">
+        <h4>Respondent's name (Copy from Form 1.1)</h4>
+    <!--  -->
+	    <select name="RES_NAME" id="RES_NAME" class="form-control">
+		<option value=''>Please select..</option>
+        </select>
+    
+   </div>
+   </div>
+		<div class="page active-page" id="page1">
+		
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+            <tr><td class="product">1. CEREALS AND PRODUCTS<br><br> <button class="btn-info btn">*PICTURE*<div><img src="/f14/1.jpg" height="350" width="350" /></div></a></td><td>Rice, bread, noodles, biscuits, cookies or any rice and cereal products like <i>biko ,suman (malagkit), puto , noodles/pasta, porridge (arrozcaldo, champorado)</i> and others</td><td><select name='CEREAL_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1' >1 - Yes</option></select></td><td><select name='CEREAL_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1'>1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7'>7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='CEREAL_SERVE'  class='form-control' value=''/></td><td><select name='CEREAL_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'>1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_1" name="OTH_1"/></td></tr>
+		  </table>
+		</div>
+		<div class="page active-page" id="page2">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+			<tr><td class="product">2. VITAMIN A RICH VEGETABLES AND TUBERS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/2.jpg" height="350" width="350" /></div></a></td><td>carrots, squash, sweet potatoes that are yellow or orange inside</td><td><select name='VITAMINA_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'>1 - Yes</option></select></td><td><select name='VITAMINA_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2'   >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='VITAMINA_SERVE'  class='form-control' value=''/></td><td><select name='VITAMINA_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_2" name="OTH_2"/></td></tr>
+		  </table>
+		</div>
+		<div class="page active-page" id="page3">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+			<tr><td class="product">3. WHITE TUBERS AND ROOTS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/3.jpg" height="350" width="350" /></div></a></td><td>white potatoes, potato, cassava, yacon, <i>tugi</i> or foods made from roots like <i> French fries, pitsi-pitsi, bibingka, camote cue  etc.</i></td><td><select name='WHITETUBERS_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='WHITETUBERS_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2'   >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='WHITETUBERS_SERVE'  class='form-control' value=''/></td><td><select name='WHITETUBERS_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_3" name="OTH_3"/></td></tr>
+		  </table>
+		</div>
+		<div class="page active-page" id="page4">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>	
+			<tr><td class="product">4. DARK LEAFY GREEN VEGETABLES, INCLUDING WILD ONES<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/4.jpg" height="350" width="350" /></div></a></td><td>dark green, leafy vegetables, such as <i> camote tops, kangkong, malunggay, cassava leaves etc. </i>, including wild ones like pako and others</td><td><select name='DARKLEAFY_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='DARKLEAFY_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2'   >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='DARKLEAFY_SERVE'  class='form-control' value=''/></td><td><select name='DARKLEAFY_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_4" name="OTH_4"/></td></tr>
+		  </table>
+		</div>
+		<div class="page active-page" id="page5">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>	
+			<tr><td class="product">5. OTHER VEGETABLES INCLUDING WILD VEGETABLES<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/5.jpg" height="350" width="350" /></div></a></td><td><i>Eggplant, sitao, ampalaya</i> and other wild vegetables like <i>rattan shoot, bamboo shoots </i> and others </td><td><select name='OTHVEG_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='OTHVEG_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3'   >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='OTHVEG_SERVE'  class='form-control' value=''/></td><td><select name='OTHVEG_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_5" name="OTH_5"/></td></tr>
+		  </table>
+		</div>
+		<div class="page active-page" id="page6">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+			<tr><td class="product">6. VITAMIN A RICH FRUITS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/6.jpg" height="350" width="350" /></div></a></td><td>ripe mangoes, papayas,<i> guava, melon, passion fruit, dragon fruit and others </i></td><td><select name='VITAMARICH_CONS'  class='form-control'><option value=''>Select one</option><option value='0'   >0 - No</option><option value='1' >1 - Yes</option></select></td><td><select name='VITAMARICH_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='VITAMARICH_SERVE'  class='form-control' value=''/></td><td><select name='VITAMARICH_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1' >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_6" name="OTH_6"/></td></tr>
+			</table>
+		</div>
+		<div class="page active-page" id="page7">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>	
+			<tr><td class="product">7. OTHER FRUITS, INCLUDING WILD FRUITS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/7.jpg" height="350" width="350" /></div></a></td><td>like banana, <i>guyabano</i>, Star apple, <i>chico, atis</i> and wild fruits like sapinit (wild raspberry), <i>bangkoro, bignay and others</i></td><td><select name='OTHERFRUITS_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='OTHERFRUITS_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7'   >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='OTHERFRUITS_SERVE'  class='form-control' value=''/></td><td><select name='OTHERFRUITS_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_7" name="OTH_7"/></td></tr>
+				  </table>
+		</div>
+		<div class="page active-page" id="page8">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+			<tr><td class="product">8. MEAT, FRESH AND PROCESSED<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/8.jpg" height="350" width="350" /></div></a></td><td>fresh like beef, pork, lamb, goat, rabbit, chicken, duck, or other birds, wild game, boar, snake, turtle; processed meat like hotdog, <i>tocino, longanisa</i> and others</td><td><select name='MEAT_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='MEAT_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4'   >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='MEAT_SERVE'  class='form-control' value=''/></td><td><select name='MEAT_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_8" name="OTH_8"/></td></tr>
+				  </table>
+		</div>
+		<div class="page active-page" id="page9">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+	
+			<tr><td class="product">9. ORGAN MEATS (IRON-RICH)<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/9.jpg" height="350" width="350" /></div></a></td><td>liver, kidney, heart or other organ meats or blood-based foods like<i> dinuguan, isaw (chicken/pork), bopis, sisig</i> and others</td><td><select name='ORGANMEATS_CONS'  class='form-control'><option value=''>Select one</option><option value='0'   >0 - No</option><option value='1' >1 - Yes</option></select></td><td><select name='ORGANMEATS_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='ORGANMEATS_SERVE'  class='form-control' value=''/></td><td><select name='ORGANMEATS_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1' >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_9" name="OTH_9"/></td></tr>
+				  </table>
+		</div>
+		<div class="page active-page" id="page10">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+			<tr><td class="product">10. EGGS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/10.jpg" height="350" width="350" /></div></a></td><td>Any eggs, fresh and salted</td><td><select name='EGGS_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='EGGS_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3'   >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='EGGS_SERVE'  class='form-control' value=''/></td><td><select name='EGGS_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_10" name="OTH_10"/></td></tr>
+				  </table>
+		</div>
+		<div class="page active-page" id="page11">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+	
+			<tr><td class="product">11. FISH AND SHELLFISH<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/11.jpg" height="350" width="350" /></div></a></td><td>Fresh, dried, processed, like sardines, <i>tuyo, tinapa, alamang</i> and others</td><td><select name='FISH_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='FISH_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7'   >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='FISH_SERVE'  class='form-control' value=''/></td><td><select name='FISH_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_11" name="OTH_11"/></td></tr>
+				  </table>
+		</div>
+		<div class="page active-page" id="page12">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+	
+			<tr><td class="product">12. LEGUMES, NUTS AND SEEDS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/12.jpg" height="350" width="350" /></div></a></td><td><i>beans, peas, lentils, nuts, seeds</i> or foods made from these like <i>pork and beans, guisantes de lata, tokwa, tofu</i> and others</td><td><select name='LEGUMES_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='LEGUMES_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3'   >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='LEGUMES_SERVE'  class='form-control' value=''/></td><td><select name='LEGUMES_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_12" name="OTH_12"/></td></tr>
+				  </table>
+		</div>
+		<div class="page active-page" id="page13">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+	
+			<tr><td class="product">13. MILK AND MILK PRODUCTS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/13.jpg" height="350" width="350" /></div></a></td><td>milk (fresh, canned milk, powder) and products like cheese, yogurt, ice cream, <i>leche flan</i> and others</td><td><select name='MILK_CONS'  class='form-control'><option value=''>Select one</option><option value='0'   >0 - No</option><option value='1' >1 - Yes</option></select></td><td><select name='MILK_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='MILK_SERVE'  class='form-control' value=''/></td><td><select name='MILK_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1' >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_13" name="OTH_13"/></td></tr>
+				  </table>
+		</div>
+		<div class="page active-page" id="page14">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+	
+			<tr><td class="product">14. OILS AND FATS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/14.jpg" height="350" width="350" /></div></a></td><td>oil, fats or butter added to food or used for cooking</td><td><select name='OILS_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='OILS_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4'   >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7' >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='OILS_SERVE'  class='form-control' value=''/></td><td><select name='OILS_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1' >1 - Purchase/bought</option><option value='2'   >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_14" name="OTH_14"/></td></tr>
+				  </table>
+		</div>
+		<div class="page active-page" id="page15">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+	
+			<tr><td class="product">15. SWEETS<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/15.jpg" height="350" width="350" /></div></a></td><td>sugar, candies, honey, sweetened soda, sugary foods like chocolates and others</td><td><select name='SWEETS_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='SWEETS_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7'   >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='SWEETS_SERVE'  class='form-control' value=''/></td><td><select name='SWEETS_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1'   >1 - Purchase/bought</option><option value='2' >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_15" name="OTH_15"/></td></tr>
+		 </table>
+		</div>
+		<div class="page active-page" id="page16">
+          <table class="table table-bordered table-striped">
+            <tr><th>FOOD GROUP</th><th style="width:300px;">EXAMPLES</th><th style="width:50px;">CONSUMPTION CODE<br />
+             0 - No<br/>  1 - Yes </th><th style="width:140px;"><h5>ACTUAL NO. OF DAYS FOOD  CONSUMED IN THE PAST WEEK</h5></th><th style="width:200px;">SERVED THE MOST <br />FOOD ITEM)  </th><th style="width:200px;">SOURCE CODE</th></tr>
+	
+			<tr><td class="product">16. SPICES, CONDIMENTS, BEVERAGES<br><br> <button class="btn-info btn">*PICTURE*<div class="song-selector"><img src="/f14/16.jpg" height="350" width="350" /></div></a></td><td>Pepper, salt, <i>granulated and liquid seasoning</i>, condiments like <i>vetsin</i>, soy sauce, hot sauce, coffee, tea, alcoholic beverages like beer, brandy, wine and locally made like <i>basi, tuba, lambanog, vino kulafu</i> and others</td><td><select name='SPICES_CONS'  class='form-control'><option value=''>Select one</option><option value='0' >0 - No</option><option value='1'   >1 - Yes</option></select></td><td><select name='SPICES_ACTUAL'  class='form-control'><option value=''>Select one</option><option value='1' >1 - One day</option><option value='2' >2 - Two Days</option><option value='3' >3 - Three Days</option><option value='4' >4 - Four Days</option><option value='5' >5 - Five Days</option><option value='6' >6 - Six Days</option><option value='7'   >7 - Seven Days</option><option value='999999' >99 - Not Applicable</option></select></td><td><input type'text' name='SPICES_SERVE'  class='form-control' value=''/></td><td><select name='SPICES_SOURCE' class='form-control' ><option value=''>Select one</option><option value='1' >1 - Purchase/bought</option><option value='2'   >2 - Own produce</option><option value='3' >3 - Not own produced, but hunted, fished, gathered (wild plants and animals)</option><option value='4' >4 - Borrowed</option><option value='5' >5 - Exchanged for labor (Food for work)</option><option value='6' >6 - Barter</option><option value='7' >7 - Received as gift</option><option value='8' >8 - Food aid</option><option value='9' >9 - Given/Free</option><option value='10' >10 - Others, specify</option><option value='999999' >99 - Not Applicable</option></select><input type="text" class="form-control" id="OTH_16" name="OTH_16"/></td></tr>        
+		</table>
+		</div>
+
+          
+          <!--<input type="hidden" name="id" value="" />        //-->
+              <input type="hidden" name="record_type" value="" />
+            <input type="hidden" id="eacode" name="eacode" value=""/ />
+            <input type="hidden" id="hcn" name="hcn" value=""/ />
+            <input type="hidden" id="shsn" name="shsn" value=""/>
+            <input type="hidden" name="house_url" value="" />
+            <input type="hidden" id="memkey" name="memkey" value=""/>
+    <!-- <button type="submit" class="btn btn-lg btn-warning" id="save_f14" >Save</button> -->
+	
+    </form>
+    </div>
+  </div>
+<div class="pull-right" id="btn_all">
+<div class="form-group"> <input  class="btn" type="button" id="prevbtn" value="«">
+	<input  class="btn" type="button" id="nextbtn" value="»">
+               
+    <label>
+        Last Date edited:
+    </label>
+             <input type="text" class="form-control" id="DATE_EDIT" name="DATE_EDIT" value="" readonly />
+    </div>
+	<ul class="btn-group pagination" id="btn-group">
+	<button class="btn butt" type="button" id="btn_start"  value="1"> &#9665&#9665</button>
+	
+	<button class="btn butt active-btn buttonL" type="button" id="btn_page1"  value="1"> 1 </button>
+	<% 
+	var y = 16;
+	var form = "f14";
+	var form2 = "form14";
+	for(x=2;x<=y;x++)  { %>
+
+		<button class="btn butt buttonL" type="button" id="btn_page<%=x%>"  value="<%=x%>"> <%=x%> </button> 
+	<% } %>
+	
+		
+		<button class="btn butt" type="button" id="btn_end"  value="<%- y%>"> &#9655&#9655 </button>
+	<input type="text" id="jump" maxlength="2" class="form-control" style="max-width:30%; display:inline-block; max-length:100%;" placeholder="Go to.." >
+	</ul>
+</div>
+
+<div class="modal" id="recap">
+  <div class="modal-dialog-summ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Saved Successfully : Re-cap of Answers</h4>
+      </div>
+      <div class="modal-body">
+        <div class="list-group" id="listAnswers">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+	  
+		<select class ='form-control btn btn-primary' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS' style='width:200px;'>
+			<option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Covered Household</option>
+				<option value='2' >2 - Partly Completed</option>
+				</optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup>
+			</select>
+        <button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Back to form</button>
+        <button type="button" id="closeModal" class="btn btn-default" onclick='close()'>Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style type="text/css">
+a img {
+    display: none;
+}
+
+a:hover img {
+    display: inline;   
+}
+
+  #f15Modal .modal-dialog {
+  width: 60%;
+}
+th{
+	width:20%;
+}
+.prev_btn 
+{
+	position: fixed;
+	top: 100px;
+	left: 1200px;
+}
+.active-btn
+{
+	color:white;
+}.next_btn
+{
+	position: fixed;
+	top: 100px;
+	left: 1200px;
+}
+
+th{
+	background-color:#173e43;
+	color:white;
+} </style>
+
+<script src="/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/jquery/respondents.js"></script>
+<script type="text/javascript">
+  $(document).ready(function (){
+  
+  
+    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = bigIdString.substring(20,22);
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+    
+    var data= {};
+    
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+    duration = 0;
+						
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form14/post',						
+                            success: function(data) {
+                               console.log(data);
+                               var input = JSON.parse(JSON.stringify(data));
+                               Object.keys(input).forEach(function(key) {
+                               var val = input[key];
+                               var view ="$('[name="+key+"]').val(data."+key+");";
+                               var view2 ="$('#"+key+"').val(data."+key+");";
+                              
+                               eval(view);
+                               eval(view2);
+
+                                }); 
+								
+								$('#RES_NAME').val(data.RES_NAME);
+								
+								if(data.INTERVIEW_TIME > 0)
+								{
+								$('#minutes').text(Math.floor(data.INTERVIEW_TIME/60));
+								$('#quot').text(" mins &  ");
+								$('#seconds').text(data.INTERVIEW_TIME%60);
+								$('#ext').text(" secs");
+								}
+								else {
+								var minutesLabel = document.getElementById("minutes");
+								var secondsLabel = document.getElementById("seconds");
+								var totalSeconds = 0;
+								setInterval(setTime, 1000);
+								
+								function setTime()
+								{
+									++totalSeconds;
+									secondsLabel.innerHTML = pad(totalSeconds%60);
+									minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+									
+								}
+
+								function pad(val)
+								{
+									var valString = val + "";
+									if(valString.length < 2)
+									{
+										return "0" + valString;
+									}
+									else
+									{
+										return valString;
+									}
+								}
+								}
+                                
+                                $( "input[value*='999999']" ).parent().parent().find('li, input[type!=hidden],select').prop('disabled',true).addClass('disabled');
+                                $("input[value!='999999']").parent().find("input[value!='999999'],select").prop('disabled',false).removeClass('disabled');
+                              
+                                $( "input[type=hidden]" ).each(function() {
+                                var name = $(this).attr('name');
+                                var id = $(this).attr('id');
+                                var val = $(this).val();
+
+                                $('li[id=chk_'+name+'_'+val+']').addClass('active');
+                                if($('input[name='+name+']').val() == '1') {
+                                $('input[name='+name+']').prop('checked',true); }
+                                }); 
+								
+								if(data.CEREAL_SOURCE != 10){
+								$('#OTH_1').attr('disabled',true);
+								}
+								
+								if(data.VITAMINA_SOURCE != 10){
+								$('#OTH_2').attr('disabled',true);
+								}
+								
+								if(data.WHITETUBERS_SOURCE != 10){
+								$('#OTH_3').attr('disabled',true);
+								}
+								
+								if(data.DARKLEAFY_SOURCE != 10){
+								$('#OTH_4').attr('disabled',true);
+								}
+								
+								if(data.OTHVEG_SOURCE != 10){
+								$('#OTH_5').attr('disabled',true);
+								}
+								
+								if(data.VITAMARICH_SOURCE != 10){
+								$('#OTH_6').attr('disabled',true);
+								}
+								
+								if(data.OTHERFRUITS_SOURCE != 10){
+								$('#OTH_7').attr('disabled',true);
+								}
+								
+								if(data.MEAT_SOURCE != 10){
+								$('#OTH_8').attr('disabled',true);
+								}
+								
+								if(data.ORGANMEATS_SOURCE != 10){
+								$('#OTH_9').attr('disabled',true);
+								}
+								
+								if(data.EGGS_SOURCE != 10){
+								$('#OTH_10').attr('disabled',true);
+								}
+								
+								if(data.FISH_SOURCE != 10){
+								$('#OTH_11').attr('disabled',true);
+								}
+								
+								if(data.LEGUMES_SOURCE != 10){
+								$('#OTH_12').attr('disabled',true);
+								}
+								
+								if(data.MILK_SOURCE != 10){
+								$('#OTH_13').attr('disabled',true);
+								}
+								
+								if(data.OILS_SOURCE != 10){
+								$('#OTH_14').attr('disabled',true);
+								}
+								
+								if(data.SWEETS_SOURCE != 10){
+								$('#OTH_15').attr('disabled',true);
+								}
+								
+								if(data.SPICES_SOURCE != 10){
+								$('#OTH_16').attr('disabled',true);
+								}
+								
+								
+                          }
+                        });
+						
+$('#page<%- y %>').append("<button type='button' onclick='update()' class='btn btn-lg btn-warning' id='updateButton'> Save or Update </button>");                       
+                        
+for(x=6;x<=<%- y%>;x++){
+$('#btn_page'+x+'').hide(); 
+}  
+					         $("[name$='CONS']").change(function(){
+        var vardetail = $(this).attr("name");
+        
+        vardetail = vardetail.split("_");
+
+      if($(this).val()==0){
+          $("[name='" + vardetail[0] + "_ACTUAL'").val(999999);
+          $("[name='" + vardetail[0] + "_ACTUAL'").prop("disabled",true);
+
+          $("[name='" + vardetail[0] + "_SERVE'").val(999999);
+          $("[name='" + vardetail[0] + "_SERVE'").prop("disabled",true);
+
+          $("[name='" + vardetail[0] + "_SOURCE'").val(999999);
+          $("[name='" + vardetail[0] + "_SOURCE'").prop("disabled",true);;      }
+      else{
+
+          $("[name='" + vardetail[0] + "_ACTUAL'").val("");
+          $("[name='" + vardetail[0] + "_ACTUAL'").prop("disabled",false);
+
+          $("[name='" + vardetail[0] + "_SERVE'").val("");
+          $("[name='" + vardetail[0] + "_SERVE'").prop("disabled",false);
+
+          $("[name='" + vardetail[0] + "_SOURCE'").val("");
+          $("[name='" + vardetail[0] + "_SOURCE'").prop("disabled",false);
+      }
+
+    });
+
+
+  });
+
+$('#closeModal').click(function (){
+	
+    var data= {};
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+ 
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form14/post',						
+                            success: function(data) {
+							if(data.INTERVIEW_STATUS > 0 ) {
+							window.location.href='/legone/survey/surveyform/form11/'+data.eacode+data.hcn+data.shsn;
+							}
+							else {
+							alert("Please set INTERVIEW_STATUS");
+							}
+							
+							}
+					});
+	
+	});
+	
+	
+
+	$('[name=CEREAL_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=CEREAL_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	$("[name=CEREAL_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=CEREAL_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=VITAMINA_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=VITAMINA_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=VITAMINA_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=WHITETUBERS_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=WHITETUBERS_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=WHITETUBERS_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=DARKLEAFY_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=DARKLEAFY_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=DARKLEAFY_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=OTHVEG_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=OTHVEG_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=OTHVEG_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=VITAMARICH_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=VITMARICH_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=VITAMARICH_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=OTHERFRUITS_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=OTHERFRUITS_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=OTHERFRUITS_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=MEAT_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=MEAT_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=MEAT_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=ORGANMEATS_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=ORGANMEATS_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=ORGANMEATS_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=EGGS_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=EGGS_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=EGGS_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=LEGUMES_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=LEGUMES_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=LEGUMES_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=MILK_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=MILK_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=MILK_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=OILS_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=OILS_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=OILS_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=SWEETS_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=SWEETS_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=SWEETS_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=SPICES_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=SPICES_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=SPICES_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	$('[name=FISH_CONS').change(function() {
+	if($(this).val() == 1) {
+	$("[name=FISH_ACTUAL] option[value='999999']").attr("disabled","disabled");
+	}
+	else {
+	$("[name=FISH_ACTUAL] option[value='999999']").removeAttr('disabled');
+	}
+	});
+	
+	
+	
+	$('[name=CEREAL_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_1').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_1').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=VITAMINA_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_2').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_2').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=WHITETUBERS_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_3').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_3').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=DARKLEAFY_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_4').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_4').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=OTHVEG_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_5').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_5').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=VITAMARICH_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_6').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_6').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=OTHERFRUITS_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_7').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_7').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=MEAT_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_8').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_8').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=ORGANMEATS_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_9').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_9').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=EGGS_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_10').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_10').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=FISH_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_11').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_11').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=LEGUMES_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_12').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_12').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=MILK_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_13').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_13').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=OILS_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_14').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_14').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=SWEETS_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_15').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_15').attr('disabled',false); 
+	}
+	});
+	
+	$('[name=SPICES_SOURCE').change(function() {
+	if($(this).val() != 10) {
+	$('#OTH_16').attr('disabled',true); 
+	}
+	else {
+	$('#OTH_16').attr('disabled',false); 
+	}
+	});
+	
+	
+	var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+	
+	$("select").change(function(){
+		var checkbx  = $(this).attr("name");
+          checkbx = checkbx.substring(0,checkbx.length);
+      
+      if ($(this).is(':checked')) {
+          $('#'+checkbx + "_").val(1);
+      }
+      else{
+
+       $('#'+checkbx + "_").val(0);
+       
+     }
+	 var data = {};
+		  data.eacode = A;
+		  data.hcn = B;
+		  data.shsn = C;
+		  
+		  if(checkbx == 'CEREAL_CONS'){
+		  $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/<%- form2%>/post',						
+                            success: function(data) {
+							
+							if(data.TIME_START != ''){
+							return false;
+							}
+							else {
+							var m = new Date();
+							var dateString =	m.getFullYear() + "-" + ("0" + (m.getMonth()+1)).slice(-2) + "-" + ("0" + m.getDate()).slice(-2) + " " + ("0" + m.getHours()).slice(-2) + ":" + ("0" + m.getMinutes()).slice(-2) + ":" + ("0" + m.getSeconds()).slice(-2);
+							data.TIME_START = dateString;
+								$.ajax({
+								type: 'POST',
+								data: JSON.stringify(data),
+									contentType: 'application/json',
+											url: '/time_<%- form%>',						
+											success: function(data) {
+											}
+										});
+							}
+						}
+			});
+		  }
+	 
+   });
+	
+$(document).on('change', '#INTERVIEW_STATUS', function() {
+	
+	var data = {};
+	data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+    data.INTERVIEW_STATUS = $('#INTERVIEW_STATUS').val();   
+	data.INTERVIEW_TIME = ($('#minutes').text()*60)+($('#seconds').text()*1);
+	data.RES_NAME = $('#RES_NAME').val();
+	$('input[type=hidden]').each(function(){ // or $('input').each(function(){
+                var exec = "data."+$(this).attr('name')+" = $('input[type=hidden][name="+$(this).attr('name')+"]').val();"; //get id of each input
+                eval(exec);
+            });
+			
+			$('input[type=text]').each(function(){ // or $('input').each(function(){
+                var exec2 = "data."+$(this).attr('name')+" = $('[name="+$(this).attr('name')+"]').val();"; //get id of each input
+                eval(exec2);
+    });
+	
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form14/post',						
+                            success: function(data) {
+                            }
+                        }); 
+
+});
+
+function update(length)
+    {
+          var data = {};
+
+            data.RES_NAME = $('[name=RES_NAME]').val();
+            data.CEREAL_CONS = $('[name=CEREAL_CONS]').val();
+            data.CEREAL_ACTUAL = $('[name=CEREAL_ACTUAL]').val();
+            data.CEREAL_SERVE = $('[name=CEREAL_SERVE]').val();
+            data.CEREAL_SOURCE = $('[name=CEREAL_SOURCE]').val();
+            data.VITAMINA_CONS = $('[name=VITAMINA_CONS]').val();
+            data.VITAMINA_ACTUAL = $('[name=VITAMINA_ACTUAL]').val();
+            data.VITAMINA_SERVE = $('[name=VITAMINA_SERVE]').val();
+            data.VITAMINA_SOURCE = $('[name=VITAMINA_SOURCE]').val();
+            data.WHITETUBERS_CONS = $('[name=WHITETUBERS_CONS]').val();
+            data.WHITETUBERS_ACTUAL = $('[name=WHITETUBERS_ACTUAL]').val();
+            data.WHITETUBERS_SERVE = $('[name=WHITETUBERS_SERVE]').val();
+            data.WHITETUBERS_SOURCE = $('[name=WHITETUBERS_SOURCE]').val();
+            data.DARKLEAFY_CONS = $('[name=DARKLEAFY_CONS]').val();
+            data.DARKLEAFY_ACTUAL = $('[name=DARKLEAFY_ACTUAL]').val();
+            data.DARKLEAFY_SERVE = $('[name=DARKLEAFY_SERVE]').val();
+            data.DARKLEAFY_SOURCE = $('[name=DARKLEAFY_SOURCE]').val();
+            data.OTHVEG_CONS = $('[name=OTHVEG_CONS]').val();
+            data.OTHVEG_ACTUAL = $('[name=OTHVEG_ACTUAL]').val();
+            data.OTHVEG_SERVE = $('[name=OTHVEG_SERVE]').val();
+            data.OTHVEG_SOURCE = $('[name=OTHVEG_SOURCE]').val();
+            data.VITAMARICH_CONS = $('[name=VITAMARICH_CONS]').val();
+            data.VITAMARICH_ACTUAL = $('[name=VITAMARICH_ACTUAL]').val();
+            data.VITAMARICH_SERVE = $('[name=VITAMARICH_SERVE]').val();
+            data.VITAMARICH_SOURCE = $('[name=VITAMARICH_SOURCE]').val();
+            data.OTHERFRUITS_CONS = $('[name=OTHERFRUITS_CONS]').val();
+            data.OTHERFRUITS_ACTUAL = $('[name=OTHERFRUITS_ACTUAL]').val();
+            data.OTHERFRUITS_SERVE = $('[name=OTHERFRUITS_SERVE]').val();
+            data.OTHERFRUITS_SOURCE = $('[name=OTHERFRUITS_SOURCE]').val();
+            data.MEAT_CONS = $('[name=MEAT_CONS]').val();
+            data.MEAT_ACTUAL = $('[name=MEAT_ACTUAL]').val();
+            data.MEAT_SERVE = $('[name=MEAT_SERVE]').val();
+            data.MEAT_SOURCE = $('[name=MEAT_SOURCE]').val();
+            data.ORGANMEATS_CONS = $('[name=ORGANMEATS_CONS]').val();
+            data.ORGANMEATS_ACTUAL = $('[name=ORGANMEATS_ACTUAL]').val();
+            data.ORGANMEATS_SERVE = $('[name=ORGANMEATS_SERVE]').val();
+            data.ORGANMEATS_SOURCE = $('[name=ORGANMEATS_SOURCE]').val();
+            data.EGGS_CONS = $('[name=EGGS_CONS]').val();
+            data.EGGS_ACTUAL = $('[name=EGGS_ACTUAL]').val();
+            data.EGGS_SERVE = $('[name=EGGS_SERVE]').val();
+            data.EGGS_SOURCE = $('[name=EGGS_SOURCE]').val();
+            data.FISH_CONS = $('[name=FISH_CONS]').val();
+            data.FISH_ACTUAL = $('[name=FISH_ACTUAL]').val();
+            data.FISH_SERVE = $('[name=FISH_SERVE]').val();
+            data.FISH_SOURCE = $('[name=FISH_SOURCE]').val();
+            data.LEGUMES_CONS = $('[name=LEGUMES_CONS]').val();
+            data.LEGUMES_ACTUAL = $('[name=LEGUMES_ACTUAL]').val();
+            data.LEGUMES_SERVE = $('[name=LEGUMES_SERVE]').val();
+            data.LEGUMES_SOURCE = $('[name=LEGUMES_SOURCE]').val();
+            data.MILK_CONS = $('[name=MILK_CONS]').val();
+            data.MILK_ACTUAL = $('[name=MILK_ACTUAL]').val();
+            data.MILK_SERVE = $('[name=MILK_SERVE]').val();
+            data.MILK_SOURCE = $('[name=MILK_SOURCE]').val();
+            data.OILS_CONS = $('[name=OILS_CONS]').val();
+            data.OILS_ACTUAL = $('[name=OILS_ACTUAL]').val();
+            data.OILS_SERVE = $('[name=OILS_SERVE]').val();
+            data.OILS_SOURCE = $('[name=OILS_SOURCE]').val();
+            data.SWEETS_CONS = $('[name=SWEETS_CONS]').val();
+            data.SWEETS_ACTUAL = $('[name=SWEETS_ACTUAL]').val();
+            data.SWEETS_SERVE = $('[name=SWEETS_SERVE]').val();
+            data.SWEETS_SOURCE = $('[name=SWEETS_SOURCE]').val();
+            data.SPICES_CONS = $('[name=SPICES_CONS]').val();
+            data.SPICES_ACTUAL = $('[name=SPICES_ACTUAL]').val();
+            data.SPICES_SERVE = $('[name=SPICES_SERVE]').val();
+            data.SPICES_SOURCE = $('[name=SPICES_SOURCE]').val();
+            data.record_type = $('[name=record_type]').val();
+			data.OTH_1 = $('[name=OTH_1]').val();
+			data.OTH_2 = $('[name=OTH_2]').val();
+			data.OTH_3 = $('[name=OTH_3]').val();
+			data.OTH_4 = $('[name=OTH_4]').val();
+			data.OTH_5 = $('[name=OTH_5]').val();
+			data.OTH_6 = $('[name=OTH_6]').val();
+			data.OTH_7 = $('[name=OTH_7]').val();
+			data.OTH_8 = $('[name=OTH_8]').val();
+			data.OTH_9 = $('[name=OTH_9]').val();
+			data.OTH_10 = $('[name=OTH_10]').val();
+			data.OTH_11 = $('[name=OTH_11]').val();
+			data.OTH_12 = $('[name=OTH_12]').val();
+			data.OTH_13 = $('[name=OTH_13]').val();
+			data.OTH_14 = $('[name=OTH_14]').val();
+			data.OTH_15 = $('[name=OTH_15]').val();
+			data.OTH_16 = $('[name=OTH_16]').val();
+            data.eacode = $('[name=eacode]').val();   
+		    data.DATE_EDIT = $('[name=DATE_EDIT]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.house_url = $('[name=house_url]').val();
+            data.memkey = $('[name=memkey]').val();
+            data.INTERVIEW_TIME = ($('#minutes').text()*60)+($('#seconds').text()*1);
+			data.RES_NAME = $('#RES_NAME').val();
+			if(data.RES_NAME == null || data.RES_NAME == '') 
+			{
+			BootstrapDialog.show({
+                type:BootstrapDialog.TYPE_DANGER, 
+                title: 'Incomplete input',
+                message: 'Please fill up the Respondent Name.' 
+            });
+			return false }
+			else {
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form14',						
+                            success: function(data) {
+                                
+                               
+                                
+                   
+                            }
+                        });
+						
+			$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/<%- form2%>/post',						
+                            success: function(data) {
+							if(data.TIME_END != ''){
+							return false;
+							}
+							else {
+							var m = new Date();
+							var dateString =	m.getFullYear() + "-" + ("0" + (m.getMonth()+1)).slice(-2) + "-" + ("0" + m.getDate()).slice(-2) + " " + ("0" + m.getHours()).slice(-2) + ":" + ("0" + m.getMinutes()).slice(-2) + ":" + ("0" + m.getSeconds()).slice(-2);
+							data.TIME_END = dateString;
+								$.ajax({
+								type: 'POST',
+								data: JSON.stringify(data),
+									contentType: 'application/json',
+											url: '/time_<%- form%>',						
+											success: function(data) {
+											}
+										});
+							}
+						}
+			});
+                        
+$('#recap').modal("show");
+  
+var data= {};
+    
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+	
+		 
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form14/post',						
+                            success: function(data) {
+
+                              
+                               var input = JSON.parse(JSON.stringify(data));
+							   var i=0;
+							   $('.tim').append(" ("+data.INTERVIEW_TIME+" secs)");
+							   $('.page').each(function(){
+							   i++;
+							   var qs = $(this).find('td:first').text();
+							   $('#listAnswers').append('<br><div id="answers'+i+'" style="display:inline-block">'+qs+': </div><div class="valid" style="display:inline-block"></div>');
+							   
+							   $(this).find('input[type!=text]').first().each(function(){
+							 
+							   var val =$(this).val();
+							   var id = $(this).attr('id');
+								
+							   if($(this).val() == '' || $(this).val() == null){
+							   $('#answers'+i+'').next('div').append('<div class="novalid" style="display:inline-block" onclick="jump('+i+','+length+')"><b><font color="red">[NO ANSWER]</font><b> </div>'); }
+							   else{
+							   $('#answers'+i+'').next('div').append('<div class="novalid" style="display:inline-block"><b><font color="green">[ANSWERED]</font><b> </div>');
+								}
+							  
+							   });
+							   });
+                          }
+                        }); 
+					  
+                    //   window.location.href='/legone/survey/surveyform/form11/'+data.eacode+data.hcn+data.shsn;
+$('#listAnswers').empty();
+}
+}
+</script>      </div>
+    </div>
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

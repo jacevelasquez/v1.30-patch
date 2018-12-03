@@ -1,0 +1,28 @@
+.mainP { margin-top: 75px; }
+
+.linksholder ul { list-style-type: none; }
+
+.linksholder li { font-size: 16px; line-height: 1.5em;}
+
+.linksholder li .fa { margin-right: 5px; }
+
+.linksholder a { color : black; }
+
+.linksholder .fa { color: green;}
+
+.dataTables_filter label { float: left; font-weight:normal; position: middle; top : 10px; right: 5px; }
+
+.dataTables_info { margin-top: 10px; background: ghostwhite; }
+
+.up { margin-left: 20px; border:solid 1px black; cursor:pointer; width:100px; padding-left: 10px; padding-right:10px; }
+
+tr { margin-bottom: 5px }
+html,body
+
+{
+	background : rgba(152, 219, 198, 1);
+color: #FAF9F4;
+font-family: 'Roboto', 'Ebrima';
+font-size: 15px;
+color: black!important;
+}

@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links_d.ejs %>
+
+  </head>
+  
+  <style>
+  
+.linkc{
+    color: white !important;
+}
+
+
+  </style>
+
+  <body class="main-menu">
+	
+    <% include ../views/header_d.ejs %>
+
+    <div class="container">
+        <div class="row">
+		<span class="pull-right"><button class="btn btn-warning" style="display:inline-block;" onclick="households()"> Households</button>
+		</span>
+		
+		<h1> Members </h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>MNO</th>
+					<th>SURNAME</th>
+					<th>FIRSTNAME</th>
+					<th>AGE (yrs)</th>
+					<th>SEX</th>
+					<th>PSC</th>
+					<th>foodrecall (lines)</th>
+					<th>C.P.</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% rows.forEach(function(row){
+				%>
+				<tr id="status">
+					<td class="mem"><%= row.MEMBER_CODE%></td>
+					<td><%= row.SURNAME%></td>
+					<td><%= row.GIVENNAME%></td>
+					<td><%= row.AGE%></td>
+					<td><%= row.SEX%></td>
+					<td><%= row.PSC%></td>
+					<td>
+					<a href="/foodrecall/<%= row.eacode%><%= row.hcn%><%= row.shsn%><%= row.MEMBER_CODE%>/1">Day 1</a>&nbsp;<label id="lines1_<%= row.eacode%><%= row.hcn%><%= row.shsn%><%= row.MEMBER_CODE%>">(0)</label> 
+					&nbsp; | &nbsp; 
+					<a href="/foodrecall/<%= row.eacode%><%= row.hcn%><%= row.shsn%><%= row.MEMBER_CODE%>/2">Day 2</a>&nbsp;<label id="lines2_<%= row.eacode%><%= row.hcn%><%= row.shsn%><%= row.MEMBER_CODE%>">(0)</label></td>
+					<td id="cp_color_<%= row.eacode%><%= row.hcn%><%= row.shsn%><%= row.MEMBER_CODE%>" style="background-color:red"><a class="linkc" href="/cpr/<%= row.eacode%><%= row.hcn%><%= row.shsn%><%= row.MEMBER_CODE%>">Edit</a></td>
+
+				</tr>
+				<% });%>
+			</tbody>
+		</table>
+		
+
+		</div>
+    </div>
+  
+  
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  <script type="text/javascript" src="/jquery/script_dietary.js"></script>
+  <script type="text/javascript">
+ 
+  $(document).ready(function (){
+  
+  
+	var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+  
+  $('.mem').each(function() {
+  
+	
+	var data= {};
+    
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+	data.MEMBER_CODE = $(this).text();
+
+		$.ajax({
+						type: 'POST',
+						//dataType: 'json',
+						data: JSON.stringify(data),
+							contentType: 'application/json',
+									url: '/memberstatus_d',						
+									success: function(data) {
+
+									for(var i=0;i<data.length;i++) {
+									if(data[i].INTERVIEW_STATUS != 1) {
+									$('#cp_color_'+data[i].eacode+data[i].hcn+data[i].shsn+data[i].MEMBER_CODE+'').css('background-color','orange');
+									}
+									if(data[i].INTERVIEW_STATUS == 1) {	
+									$('#cp_color_'+data[i].eacode+data[i].hcn+data[i].shsn+data[i].MEMBER_CODE+'').css('background-color','green');
+									}
+									}
+									}
+			
+		});
+			
+		$.ajax({
+						type: 'POST',
+						//dataType: 'json',
+						data: JSON.stringify(data),
+							contentType: 'application/json',
+									url: '/memberlines',						
+									success: function(data) {
+
+									for(var i=0;i<data['rows1'].length;i++) {		
+									$('#lines1_'+data['rows1'][i].eacode+data['rows1'][i].hcn+data['rows1'][i].shsn+data['rows1'][i].MEMBER_CODE+'').text('('+data['rows1'].length+')');
+									}
+									for(var i=0;i<data['rows2'].length;i++) {		
+									$('#lines2_'+data['rows2'][i].eacode+data['rows2'][i].hcn+data['rows2'][i].shsn+data['rows2'][i].MEMBER_CODE+'').text('('+data['rows2'].length+')');
+									}
+									
+									}
+			
+		});
+
+  
+	  });
+	  
+	  });
+  
+  </script>
+
+  </body>
+</html>

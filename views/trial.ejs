@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links.ejs %>
+  </head>
+  <style>
+
+  </style>
+
+  <body class="login-page">
+	<div style="display:inline-block;">
+	
+	<table>
+	<thead>
+	<tr>
+		<th>eacode</th>
+		<th>latitude</th>
+		<th>longitude</th>
+	</tr>
+	</thead>
+	<tbody class="sub">
+
+	<% for(var i=0;i<rows.length;i++){	%>
+    
+            <tr id="<%- ""+rows[i].eacode+"" %>">
+			<td class="ea"><%- ""+rows[i].eacode+"" %></td>
+			<td><%- ""+rows[i].latitude+"" %></td>
+            <td><%- ""+rows[i].longitude+"" %></td>
+			</tr>
+	<%}%> 
+	</tbody>
+	</table>
+	</div>
+	<div style="display:inline-block;">
+	<input type="button" value="execute" onclick="execute();">
+	<!------------------------------------------------->
+	<table>
+	<thead>
+	<tr>
+		<th>eacode</th>
+		<th>latitude</th>
+		<th>longitude</th>
+	</tr>
+	</thead>
+	<tbody>
+	<% for(var i=0;i<rows2.length;i++){	%>
+    
+            <tr>
+			<td><%- ""+rows2[i].eacode+"" %></td>
+			<td><%- ""+rows2[i].latitude+"" %></td>
+			<td><%- ""+rows2[i].longitude+"" %></td>
+			</tr>
+            
+	<%}%>  
+	</tbody>
+	</table>
+	</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://10.10.125.43/legone/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap-typeahead.js"></script>
+<script type="text/javascript" src="/jquery/global.js"></script>
+<!-- <script type="text/javascript" src="/jquery/settings.js"></script> -->
+  </body>
+</html>
+
+
+<script language="javascript">
+$(document).ready(function() {
+
+
+});
+
+function execute() {
+
+$('.ea').each(function() {
+
+var data = {};
+data.eacode = $(this).text();
+data.latitude = $(this).next().text();
+data.longitude = $(this).next().next().text();
+
+$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/trial',						
+                            success: function(data) {
+							console.log(data);
+						}
+			});
+
+
+});
+
+
+
+};
+
+</script>

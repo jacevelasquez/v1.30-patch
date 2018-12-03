@@ -1,0 +1,2550 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links.ejs %>
+
+  </head>
+<style>
+a {
+color :#b79c33;
+}
+#backup_searcharea {
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+div.col-md-8, div.col-md-2 {
+padding: 0px 0px 0px 0px;
+}
+
+#myUL {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#myUL li a {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+
+#myUL li a.header {
+    background-color: #e2e2e2; /* Add a darker background color for headers */
+    cursor: default; /* Change cursor style */
+}
+
+
+
+  table { 
+    width: 750px; 
+    border-collapse: collapse; 
+  table-layout:fixed;
+
+ 
+    }
+	
+	
+th { 
+    background: #173e43; 
+	color : white;
+    font-weight: bold; 
+    }
+td, th { 
+    padding: 10px; 
+	width:20px;
+    border: 1px solid #ccc; 
+    text-align: left; 
+    font-size: 14px;
+	min-width: 100px;
+	text-align: center;
+    }
+	
+  	.hoverTable{
+		width:100%; 
+		border-collapse:collapse; 
+	}
+	.hoverTable td{ 
+		padding:7px; border:#4e95f4 1px solid;
+	}
+	/* Define the default color for all the table rows */
+	.hoverTable tr{
+		background: #b8d1f3;
+	}
+	/* Define the hover highlight color for the table row */
+    tr:hover td{
+         color: white;
+		 background:black;
+    }
+
+
+	
+</style>
+  
+  
+  <body>
+
+    <% include ../views/header.ejs %>
+
+      <div class="container">
+      
+  
+       <br />
+	   <br />
+       <br />
+	   <br />
+      <div class="list-group">
+	  <!-- <div class="col-md-2"> -->
+	  <!-- </div> -->
+	  <input type="text" id="backup_searcharea" placeholder="Search for areacode..">
+
+		<li id="backuplist" class="list-group-item clearfix autocomplete" style="background-color:white">
+		</li>
+		<h3 class="justify"> * CLICK THE NUMBER IF YOU WANT TO VIEW THE DETAILS FOR EACH INFORMATION * </h2>	
+		
+		<br />
+	  <div class="col-md-6">
+	  
+        <li class="list-group-item clearfix">
+		<h2>TL data</h2>
+		<% array3.forEach(function(row){ %>
+				<%= row.eacode %> - <%= row.areaname%> 
+				<br>
+		<%});%>
+			Total number of COVERED households	:	<strong><a data-target="#cover_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array.length)%> </a></strong><br>
+			Total number of NON-COVERED households	: <strong><a data-target="#ncover_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array5.length)%></strong> </a><br>
+			Total number of individuals	:	<a data-target="#f11_<%=array3[0].eacode%>" data-toggle="modal"><strong><%=JSON.stringify(array2.length)%></a></strong><br>		
+        </li>
+  
+	
+	
+	<table id="myTable" class="table table-striped">
+	<tr><th>Form 1.2</th>
+	<td align="center"><a data-target="#f12_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array12.length)%></a></td>
+	</tr><tr><th>Form 1.3</th>
+	<td align="center"><a data-target="#f13_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array13.length)%></a></td>
+	</tr><tr><th>Form 1.4</th>
+	<td align="center"><a data-target="#f14_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array14.length)%></a></td>
+	</tr><tr><th><del>Form 1.5 </del></th>
+	<td align="center"><del><%=JSON.stringify(array15.length)%></del></td>
+	</tr><tr><th>Form 1.6</th>
+	<td align="center"><a data-target="#f16_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array16.length)%></a></td>
+	</tr><tr><th>Form 1.7</th>
+	<td align="center"><a data-target="#f17_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array17.length)%></a></td>
+	</tr><tr><th>Form 2.1</th>
+	<td align="center"><a data-target="#f21_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array21.length)%></a></td>
+	</tr><tr><th>Form 3.1</th>
+	<td align="center"><a data-target="#f31_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array31.length)%></td>
+	</tr><tr><th>Form 3.2</th>
+	<td align="center"><a data-target="#f32_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array32.length)%></td>
+	</tr><tr><th>Form 4.1</th>
+	<td align="center"><a data-target="#f41_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array41.length)%></td>
+	</tr><tr><th>Form 4.2</th>
+	<td align="center"><a data-target="#f42_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array42.length)%></td>
+	</tr><tr><th>Form 4.3</th>
+	<td align="center"><a data-target="#f43_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array43.length)%></td>
+	</tr><tr><th>Form 4.4</th>
+	<td align="center"><a data-target="#f44_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array44.length)%></td>
+	</tr><tr><th>Form 4.5</th>
+	<td align="center"><a data-target="#f45_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array45.length)%></td>
+	</tr><tr><th>Form 4.6</th>
+	<td align="center"><a data-target="#f46_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array46.length)%></td>
+	</tr><tr><th>Form 4.7</th>
+	<td align="center"><a data-target="#f47_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array47.length)%></td>
+	</tr><tr><th>Form 4.8</th>
+	<td align="center"><a data-target="#f48_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array48.length)%></td>
+	</tr><tr><th><del>Form 4.9</del></th>
+	<td align="center"><del><%=JSON.stringify(array49.length)%></del></td>
+	</tr><tr><th>Form 4.10</th>
+	<td align="center"><a data-target="#f410_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array410.length)%></td>
+	</tr><tr><th>Form 4.11</th>
+	<td align="center"><a data-target="#f411_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array411.length)%></td>
+	</tr><tr><th>Form 5.2</th>
+	<td align="center"><a data-target="#f52_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array52.length)%></td>
+	</tr><tr><th>Form 5.3</th>
+	<td align="center"><a data-target="#f53_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array53.length)%></td>
+	</tr><tr><th>Form 5.4</th>
+	<td align="center"><a data-target="#f54_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array54.length)%></td>
+	</tr><tr><th>Form 5.5</th>
+	<td align="center"><a data-target="#f55_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array55.length)%></td>
+	</tr><tr><th>Form 5.6</th>
+	<td align="center"><a data-target="#f56_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array56.length)%></td>
+	</tr><tr><th>Form 5.7</th>
+	<td align="center"><a data-target="#f57_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array57.length)%></td>
+	</tr><tr><th>Form 5.8</th>
+	<td align="center"><a data-target="#f58_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array58.length)%></td>
+	</tr><tr><th>Form 5.9</th>
+	<td align="center"><a data-target="#f59_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array59.length)%></td>
+	</tr><tr><th>Form 7.3</th>
+	<td align="center"><a data-target="#f73_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array73.length)%></td>
+	</tr><tr><th>Form 8.3</th>
+	<td align="center"><a data-target="#f82_<%=array3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(array82.length)%></td>
+	</tr>
+	
+	</table>
+		</div>
+		
+		
+	<div class="col-md-6">
+        <li class="list-group-item clearfix">
+		<h2>AR data </h2>
+		<% arrayA3.forEach(function(row){ %>
+				<%= row.eacode %> - <%= row.areaname%> 
+				<br>
+		<%});%>
+			Total number of COVERED households	:	<strong><a data-target="#Acover_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA.length)%> </a></strong><br>
+			Total number of NON-COVERED households	: <strong><a data-target="#Ancover_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA5.length)%></strong> </a><br>
+			Total number of individuals	:	<a data-target="#Af11_<%=arrayA3[0].eacode%>" data-toggle="modal"><strong><%=JSON.stringify(arrayA2.length)%></a></strong><br>		
+        </li>
+  
+	
+	
+	<table id="myTable" class="table table-striped">
+	<tr><th>Form 1.2</th>
+	<td align="center"><a data-target="#Af12_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA12.length)%></a></td>
+	</tr><tr><th>Form 1.3</th>
+	<td align="center"><a data-target="#Af13_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA13.length)%></a></td>
+	</tr><tr><th>Form 1.4</th>
+	<td align="center"><a data-target="#Af14_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA14.length)%></a></td>
+	</tr><tr><th><del>Form 1.5 </del></th>
+	<td align="center"><del><%=JSON.stringify(arrayA15.length)%></del></td>
+	</tr><tr><th>Form 1.6</th>
+	<td align="center"><a data-target="#Af16_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA16.length)%></a></td>
+	</tr><tr><th>Form 1.7</th>
+	<td align="center"><a data-target="#Af17_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA17.length)%></a></td>
+	</tr><tr><th>Form 2.1</th>
+	<td align="center"><a data-target="#Af21_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA21.length)%></a></td>
+	</tr><tr><th>Form 3.1</th>
+	<td align="center"><a data-target="#Af31_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA31.length)%></td>
+	</tr><tr><th>Form 3.2</th>
+	<td align="center"><a data-target="#Af32_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA32.length)%></td>
+	</tr><tr><th>Form 4.1</th>
+	<td align="center"><a data-target="#Af41_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA41.length)%></td>
+	</tr><tr><th>Form 4.2</th>
+	<td align="center"><a data-target="#Af42_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA42.length)%></td>
+	</tr><tr><th>Form 4.3</th>
+	<td align="center"><a data-target="#Af43_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA43.length)%></td>
+	</tr><tr><th>Form 4.4</th>
+	<td align="center"><a data-target="#Af44_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA44.length)%></td>
+	</tr><tr><th>Form 4.5</th>
+	<td align="center"><a data-target="#Af45_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA45.length)%></td>
+	</tr><tr><th>Form 4.6</th>
+	<td align="center"><a data-target="#Af46_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA46.length)%></td>
+	</tr><tr><th>Form 4.7</th>
+	<td align="center"><a data-target="#Af47_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA47.length)%></td>
+	</tr><tr><th>Form 4.8</th>
+	<td align="center"><a data-target="#Af48_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA48.length)%></td>
+	</tr><tr><th><del>Form 4.9</del></th>
+	<td align="center"><del><%=JSON.stringify(arrayA49.length)%></del></td>
+	</tr><tr><th>Form 4.10</th>
+	<td align="center"><a data-target="#Af410_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA410.length)%></td>
+	</tr><tr><th>Form 4.11</th>
+	<td align="center"><a data-target="#Af411_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA411.length)%></td>
+	</tr><tr><th>Form 5.2</th>
+	<td align="center"><a data-target="#Af52_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA52.length)%></td>
+	</tr><tr><th>Form 5.3</th>
+	<td align="center"><a data-target="#Af53_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA53.length)%></td>
+	</tr><tr><th>Form 5.4</th>
+	<td align="center"><a data-target="#Af54_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA54.length)%></td>
+	</tr><tr><th>Form 5.5</th>
+	<td align="center"><a data-target="#Af55_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA55.length)%></td>
+	</tr><tr><th>Form 5.6</th>
+	<td align="center"><a data-target="#Af56_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA56.length)%></td>
+	</tr><tr><th>Form 5.7</th>
+	<td align="center"><a data-target="#Af57_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA57.length)%></td>
+	</tr><tr><th>Form 5.8</th>
+	<td align="center"><a data-target="#Af58_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA58.length)%></td>
+	</tr><tr><th>Form 5.9</th>
+	<td align="center"><a data-target="#Af59_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA59.length)%></td>	
+	</tr><tr><th>Form 7.3</th>
+	<td align="center"><a data-target="#Af73_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA73.length)%></td>
+	</tr><tr><th>Form 8.3</th>
+	<td align="center"><a data-target="#Af82_<%=arrayA3[0].eacode%>" data-toggle="modal"><%=JSON.stringify(arrayA82.length)%></td>
+	</tr>
+	
+	</table>
+		</div>
+ 
+</div>
+</div>
+<script type="text/javascript">
+
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+$( "#backup_searcharea" ).keyup(function() {
+       var data = {};
+     
+       data.areaname = $('#backup_searcharea').val();
+        
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/dblookup/listareas',						
+                        success: function(data) { 
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#backuplist').append('<a class="list-group-item" href="/checktrans/'+data[i].eacode+'"><span>'+data[i].eacode+' - '+data[i].areaname+'</span></a>');
+                              }
+							  
+                        }
+                     }
+                  });
+        
+  
+});
+$(document).ready(function(){
+
+$(".membersTLC").each(function() {
+var data= {};
+data.eacode=$(this).find("td:eq(2)").text();
+data.hcn=$(this).find("td:eq(3)").text();
+data.shsn=$(this).find("td:eq(4)").text();
+
+$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/membersTL',						
+                        success: function(data) {
+						$('#membersTLC_'+data[0].eacode+data[0].hcn+data[0].shsn).append(data.length);
+                     }
+                });
+
+});
+
+$(".membersTLN").each(function() {
+var data= {};
+data.eacode=$(this).find("td:eq(2)").text();
+data.hcn=$(this).find("td:eq(3)").text();
+data.shsn=$(this).find("td:eq(4)").text();
+
+$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/membersTL',						
+                        success: function(data) {
+						$('#membersTLN_'+data[0].eacode+data[0].hcn+data[0].shsn).append(data.length);
+                     }
+                });
+
+});
+
+$(".is4").each(function(){
+	if($(this).text() == '1')	{
+	$(this).text('1- Completed');
+	}
+	else if($(this).text() == '2') {
+	$(this).text('2 - Partly Completed');
+	}
+	else if($(this).text() == '3') {
+	$(this).text('3 - Refused');
+	}
+	else if($(this).text() == '4') {
+	$(this).text('4 - No Household Member at Home or no Competent Respondent on Home');
+	}
+	else if($(this).text() == '5') {
+	$(this).text('5 - Entire Household Absent for Extended Period of Time');
+	}
+	else if($(this).text() == '6') {
+	$(this).text('6 - Vacant Housing Unit');
+	}
+	else if($(this).text() == '7') {
+	$(this).text('7 - Housing Unit Destroyed/Demolished');
+	}
+	else if($(this).text() == '8') {
+	$(this).text('8 - Address not a Housing Unit');
+	}
+	else if($(this).text() == '9') {
+	$(this).text('9 - Housing Unit not Found');
+	}
+	else if($(this).text() == '10') {
+	$(this).text('10 - Critical/Flooded Area');
+	}
+	else if($(this).text() == '11') {
+	$(this).text('11 - Others');
+	}
+	
+});
+
+$(".is1").each(function(){
+
+	if($(this).text() == '1')	{
+	$(this).text('1 - Completed');
+	}
+	else if($(this).text() == '2') {
+	$(this).text('2 - Partly Completed');
+	}
+	else if($(this).text() == '3') {
+	$(this).text('3 - Respondent Incapacitated');
+	}
+	else if($(this).text() == '4') {
+	$(this).text('4 - Refused');
+	}
+	else if($(this).text() == '5') {
+	$(this).text('5 - Not at Home (Away during the Survey Period)');
+	}
+	else if($(this).text() == '6') {
+	$(this).text('6 - Away from an Extended Period of time working/Schooling (LOCAL)');
+	}
+	else if($(this).text() == '7') {
+	$(this).text('7 - Away from an Extended Period of time working/Schooling (ABROAD)');
+	}
+	else if($(this).text() == '8') {
+	$(this).text('8 - Others');
+	}
+	
+});
+
+$('.f11T').click(function() { 
+
+var data = {};
+
+data.eacode = $(this).attr('id').substring(11,23);
+data.hcn = $(this).attr('id').substring(23,27);
+data.shsn = $(this).attr('id').substring(27,31);
+$('#cover_<%=array3[0].eacode%>').modal('hide');
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/f11T',						
+                        success: function(data) {
+						$('#f11T').modal("show");
+						$('#append_f11').append("<tr><th>membercode</th><th>SURNAME</th><th>FIRST NAME</th><th>INTERVIEW STATUS</th></tr>");
+						for(var i=0;i<data.length;i++){
+						$('#append_f11').append("<tr><td>"+data[i].MEMBER_CODE+"</td><td> "+data[i].SURNAME+"</td><td> "+data[i].GIVENNAME+"</td><td class='is1'> "+data[i].INTERVIEW_STATUS+"</td></tr>");
+						}
+						$('#append_f11').append("</table>");
+                     }
+                });
+$('#append_f11').empty();
+});
+
+$('.f11A').click(function() { 
+
+var data = {};
+
+data.eacode = $(this).attr('id').substring(11,23);
+data.hcn = $(this).attr('id').substring(23,27);
+data.shsn = $(this).attr('id').substring(27,31);
+$('#Acover_<%=array3[0].eacode%>').modal('hide');
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/f11A',						
+                        success: function(data) {
+						$('#f11A').modal("show");
+						$('#append_f11A').append("<tr><th>membercode</th><th>SURNAME</th><th>FIRST NAME</th><th>INTERVIEW STATUS</th></tr>");
+						for(var i=0;i<data.length;i++){
+						$('#append_f11A').append("<tr><td>"+data[i].MEMBER_CODE+"</td><td> "+data[i].SURNAME+"</td><td> "+data[i].GIVENNAME+"</td><td class='is1'> "+data[i].INTERVIEW_STATUS+"</td></tr>");
+						}
+						$('#append_f11A').append("</table>");
+                     }
+                });
+$('#append_f11A').empty();
+});
+
+$('#bhh').click(function() { 
+
+$(this).modal('hide');
+$('#cover_<%=array3[0].eacode%>').modal('show');
+
+});
+
+$('#bhhA').click(function() { 
+
+$(this).modal('hide');
+$('#Acover_<%=arrayA3[0].eacode%>').modal('show');
+
+});
+
+$('#nbhh').click(function() { 
+
+$(this).modal('hide');
+$('#ncover_<%=array3[0].eacode%>').modal('show');
+
+});
+
+$('#nbhhA').click(function() { 
+
+$(this).modal('hide');
+$('#nAcover_<%=arrayA3[0].eacode%>').modal('show');
+
+});
+
+});
+</script>
+
+	<% array.forEach(function(row){ %>
+	<div class="modal" id="f11T">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<table class="table" id="append_f11">
+
+					</table>	
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="bhh">Back</button>
+					<button type="button" id="backForm" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div> 
+	<%});%>
+	
+	<% arrayA.forEach(function(row){ %>
+	<div class="modal" id="f11A">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<table class="table" id="append_f11A">
+
+					</table>	
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="bhhA">Back</button>
+					<button type="button" id="backForm" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div> 
+	<%});%>
+
+	<div class="modal" id="cover_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th>
+						<th>HH HEAD</th>
+						<th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> Members </th>
+						<th> Replacement </th>
+						<% var i=1; array.forEach(function(row){ %>
+						<tr class="membersTLC">
+						<td><a id='f11_inside_<%= row.eacode %><%= row.hcn %><%= row.shsn %>' class='f11T'><%= i++%></a></td>
+						<td><%= row.hhead %></td>
+						<td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class="is4"><%= row.INTERVIEW_STATUS4%></td>
+						<td id="membersTLC_<%= row.eacode %><%= row.hcn %><%= row.shsn %>"></td>
+						<td><%= row.DATE_EDIT %></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div> 
+	
+	<div class="modal" id="ncover_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th>
+						<th>HH HEAD</th>
+						<th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> f12 </th>
+						<th> Members </th>
+						<th> Replacement </th>
+						<% var i=1;  array5.forEach(function(row){ %>
+						<tr class="membersTLN">
+						<td><a id='f11_inside_<%= row.eacode %><%= row.hcn %><%= row.shsn %>' class='f11T'><%= i++%></a></td>
+						<td><%= row.hhead %></td>
+						<td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class="is4"><%= row.INTERVIEW_STATUS4%></td>
+						<td> <%= row.f12_03_01 %>-<%= row.f12_04_01 %>-<%= row.f12_05_01 %></td>
+						<td id="membersTLN_<%= row.eacode %><%= row.hcn %><%= row.shsn %>"></td>
+						<td><%= row.DATE_EDIT %></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div> 
+	
+	<div class="modal" id="Acover_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th>
+						<th>HH HEAD</th>
+						<th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<% var i=1; arrayA.forEach(function(row){ %>
+						<tr>
+						<td><a id='f11_inside_<%= row.eacode %><%= row.hcn %><%= row.shsn %>' class='f11A'><%= i++%></td>
+						<td><%= row.hhead %></td>
+						<td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td><%= row.INTERVIEW_STATUS4%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div> 
+
+	<div class="modal" id="Ancover_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th>
+						<th>HH HEAD</th>
+						<th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<% var i=1;  arrayA5.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td>
+						<td><%= row.hhead %></td>
+						<td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td><%= row.INTERVIEW_STATUS4%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div> 
+	
+	<div class="modal" id="f11_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th> #</th>
+						<th> EACODE</th>
+						<th> HCN </th>
+						<th> SHSN </th> 
+						<th> MEMBER_CODE </th> 
+						<th> SURNAME </th> 
+						<th> FIRSTNAME </th> 
+						<th> IS </th>
+						<th> Forms </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array2.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td><%= row.MEMBER_CODE %></td>
+						<td><%= row.SURNAME %></td>
+						<td><%= row.GIVENNAME %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td class='is1'><%= row.INTERVIEW_STATUSF%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    <div class="modal" id="f12_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array12.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div> 
+	
+	<div class="modal" id="f13_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array13.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f14_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array14.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	
+	<div class="modal" id="f16_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array16.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f17_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array17.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f21_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array21.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS_meas%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f31_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array31.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f32_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array32.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f41_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array41.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f42_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array42.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f43_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array43.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f44_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array44.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f45_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array45.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f46_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array46.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f47_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array47.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f48_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array48.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f410_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array410.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="f411_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array411.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f52_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array52.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f53_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array53.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f54_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array54.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f55_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array55.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f56_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array56.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f57_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array57.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f58_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array58.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="f59_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array59.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f73_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  array73.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="f82_<%=array3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1; array82.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+  <!------- AR ------------>
+	
+	<div class="modal" id="Af11_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th> #</th>
+						<th> EACODE</th>
+						<th> HCN </th>
+						<th> SHSN </th> 
+						<th> MEMBER_CODE </th> 
+						<th> SURNAME </th> 
+						<th> FIRSTNAME </th> 
+						<th> IS </th>
+						<th> Forms </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA2.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td><%= row.MEMBER_CODE %></td>
+						<td><%= row.SURNAME %></td>
+						<td><%= row.GIVENNAME %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td class='is1'><%= row.INTERVIEW_STATUSF%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    <div class="modal" id="Af12_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA12.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div> 
+	
+	<div class="modal" id="Af13_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA13.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af14_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA14.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	
+	<div class="modal" id="Af16_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA16.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af17_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA17.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af21_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA21.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td><%= row.INTERVIEW_STATUS_meas%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af31_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA31.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af32_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA32.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af41_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA41.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af42_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA42.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af43_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA43.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af44_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA44.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af45_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA45.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af46_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA46.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af47_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA47.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af48_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA48.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af410_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA410.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="Af411_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA411.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af52_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA52.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af53_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA53.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af54_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA54.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af55_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA55.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af56_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA56.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af57_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA57.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af58_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA58.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="Af59_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA59.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af73_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1;  arrayA73.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<div class="modal" id="Af82_<%=arrayA3[0].eacode%>">
+		<div class="modal-dialog-summ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="list-group">
+					<table class="table">
+						<th>#</th><th>EACODE</th>
+						<th> HCN </th>
+						<th>SHSN </th> 
+						<th> MEMBER_CODE </th>
+						<th> IS </th>
+						<th> RESEARCHER </th>
+						<% var i=1; arrayA82.forEach(function(row){ %>
+						<tr>
+						<td><%= i++%></td><td><%= row.eacode %></td>
+						<td><%= row.hcn %></td>
+						<td><%= row.shsn %></td>
+						<td> <%= row.MEMBER_CODE %> </td>
+						<td class='is1'><%= row.INTERVIEW_STATUS%></td>
+						<td><%= row.username%></td>
+						</tr>
+						<%});%>
+					</table>	
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+    </div>
+
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

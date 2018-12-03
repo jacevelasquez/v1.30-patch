@@ -1,0 +1,1296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+<% include ../views/links_d.ejs %>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>jQuery UI Autocomplete - Default functionality</title>
+ <link rel="stylesheet" href="\bootstrap-3.3.7-dist\css\autocomplete.css">
+ </head>
+ 
+ <style>
+
+body {
+  font-size: 12px;
+} 
+
+table {
+  background: #EAEAEA;
+  overflow-x: scroll;
+}
+
+td {
+	background: 	#f7f7f7;
+	border : 1px solid 		#f7f7f7;
+}
+th {
+	background : 	#3b5998;
+	color: white;
+	border: 0px !important
+}
+ 
+.rec>thead>tr {
+	margin-top: 10px;
+}
+
+input:focus, select:focus { 
+  background-color: rgb(255, 255, 128);
+	color: black;
+	border: 1px solid black;
+	
+}
+
+hr.hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid black;
+  margin: 1em 0;
+  padding: 0;
+	width: 85%;
+}
+ </style>
+
+ <body class="main-menu">
+	
+  <% include ../views/header_d.ejs %>
+
+<div class="container">
+ <!-- <a href="#/list/{{eacode}}" class="btn btn-danger">Household list</a> -->
+<div class="row">
+<div class="col-md-2">
+ <h4>EACODE: <label id="eacode"> </label></h4>
+</div>
+<div class="col-md-1">
+<h4>HCN: <label id="hcn"> </label></h4>
+</div>
+<div class="col-md-1">
+ <h4>SHSN: <label id="shsn"> </label></h4>
+</div>
+<div class="col-md-1">
+ <h4>MEMNO: <label id="MEMBER_CODE"> </label></h4>
+</div>
+<div class="col-md-2">
+ <h4>SUBJECT: <label id="SUBJECT"> </label></h4>
+</div>
+
+<div class="col-md-3">
+ <label>RESPONDENT:</label>
+<select id="RES_NAME">
+	<option value ="">Select One.. </option>
+	</select>
+</div>
+
+<div class="col-md-1">
+<br>
+ <button class="btn btn-danger" style="display:inline-block;" onclick="members()"> Members</button><br>
+</div>
+<div class="col-md-1">
+<br>
+ <button class="btn btn-warning" style="display:inline-block;" onclick="households()"> Households</button>
+</div>
+<br><br><br>
+</div>
+
+  <h2>Form 7.4 - Consumption Practices, 15 Years old and above</h2>
+	<br><h4>
+	 <u><i> “This questionnaire is about your usual consumption practices at home and outside the home.”
+		“Ang questionnaire na ito ay tungkol sa mga nakagawian mo tungkol sa pagkain sa bahay at labas ng bahay.” 
+		</u></i>
+	<br>
+	<ul class="nav nav-tabs">
+							 <li class=""><a href="#tabA" data-toggle="tab" aria-expanded="false">A</a></li>
+							 <li class=""><a href="#tabB" data-toggle="tab" aria-expanded="false">B</a></li>
+							 <li class=""><a href="#tabC" data-toggle="tab" aria-expanded="false">C</a></li>
+							 <li class=""><a href="#tabD" data-toggle="tab" aria-expanded="false">D</a></li>
+							 <li class=""><a href="#tabE" data-toggle="tab" aria-expanded="false">E</a></li>
+							 <li class=""><a href="#tabF" data-toggle="tab" aria-expanded="false">F</a></li>
+							 
+	</ul>
+	<div id="myTabContent" class="tab-content">
+	<div class="tab-pane active in" id="tabA" name="page1" >
+	A.	Eating Home-cooked Foods at Home (Pagkain ng lutong bahay sa bahay)<br><i>
+	<h4><input type="checkbox" style="width: 20px; height: 20px;" id="tick_A" name="tick_A">
+		<input type='hidden' name='tick_A' id='tick_A_' />
+		Tick this box if there is at least one CP code – 1 from the first and second day food recall. Read the introduction and proceed to asking the question below. If none, proceed to Q2.<br><br>
+	“The first question is about your consumption of home-cooked/prepared foods at home. Home-cooked foods are foods cooked or prepared at home by you or anyone in the household and home-cooked foods given to you including rice, viands, home-made sandwich spreads, salads, among others. Bought ready-to-eat food items like breads, biscuits, cereals, ready-to-drink beverages, and other foods that do not need additional cooking or preparation are not included.”<br><br>
+
+	“Ang unang katanungan ay tungkol sa pagkain mo sa bahay ng lutong bahay. Ang tinutukoy kong mga lutong bahay ay mga pagkaing niluto o inihanda sa bahay tulad ng kanin, ulam, mga home-made na palaman at ensalada at iba pa ikaw man o ibang tao ang nagluto nito o di kaya’y lutong bahay na ibinigay sa’yo. Hindi kasama ang mga biniling ready-to-eat na tinapay, biskwit, cereals, ready-to-drink na inumin at iba pang pagkain na hindi na kailangan ng dagdag na preparasyon o pagluluto.”<br><br>
+	</h4></i>
+  <table class="table table-bordered table-striped tabA">
+   <tr>
+    <th>Meals</th>
+	  <th colspan="2">1.	How often do you usually eat home-cooked/prepared food at home for breakfast? For lunch? For supper?<br><br>“Gaano ka kadalas kumain sa bahay ng lutong bahay para sa almusal? Sa tanghalian? Sa hapunan?</th>
+	  
+	  
+   </tr>
+    <tr>
+     <td>Breakfast</td>
+   <td>
+    <select name="BF_1" id="BF_1">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom / rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not cooking and eating meals at home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text"placeholder="no. of times" name="BF_1_OTH" id="BF_1_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td> 
+   </tr>
+	 
+    <tr>
+     <td>Lunch</td>
+   <td>
+    <select name="LU_1" id="LU_1">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom / rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not cooking and eating meals at home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="LU_1_OTH" id="LU_1_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+   </tr>
+   <tr>
+    <td>Supper</td>
+  <td>
+   <select name="SU_1" id="SU_1">
+    <option value="">Select one</option>
+    <option value="1">1 - Daily</option>
+    <option value="2">2 - Weekly</option>
+    <option value="3">3 - Monthly</option>
+    <option value="4">4 - Seldom / rarely (at least once a year)</option>
+    <option value="99">99 - N/A (not cooking and eating meals at home)</option>
+   </select>
+  </td>
+  <td>
+    <input type="text" placeholder="no. of times" name="SU_1_OTH" id="SU_1_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+  </tr>
+  </table>
+  </div>
+
+  <div class="tab-pane" id="tabB" name="page2" >	
+  <h4>B. Bringing Packed Home-cooked Foods (Pagbabaon ng lutong bahay)<br><br><i>
+  <input type="checkbox" style="width: 20px; height: 20px;" id="tick_B" name="tick_B">
+  <input type='hidden' name='tick_B' id='tick_B_' />
+  Tick this box if there is at least one CP code – 2 
+  from the first and second day food recall. Read the introduction and proceed to  asking the question below. If none, proceed to Q4.<br><br>
+
+	“The next set of questions are about your practice of bringing packed home-cooked foods in school or in workplace.”<br>
+	“Ang sumusunod na katanungan ay tungkol sa pagbabaon mo ng lutong bahay sa paaralan o pinagtatrabahuhan .” 
+
+	</h4></i>
+  <table class="table table-bordered table-striped tabB">
+   <tr>
+    <th>Meals</th>
+	  <!-- <th>2.	Do you bring home-cooked/prepared food to your school/workplace for breakfast? For lunch? For supper?<br><br>“Nagbabaon ka ba ng pagkaing lutong bahay sa eskwelahan/pinagtatrabahuhan para sa almusal? Sa tanghalian? Sa hapunan?</th> -->
+	  <th colspan="2">2.	How often do you bring home-cooked/prepared food to your school/workplace for breakfast? For lunch? For supper?<br><br> “Gaano kadalas ka magbaon ng lutong bahay sa eskwelahan/ pinagtatrabahuhan para sa almusal? Sa tanghalian? Sa hapunan?”</th>
+   </tr>
+    <tr>
+     <td>Breakfast</td>
+   <td>
+    <select name="BF_2" id="BF_2">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food) </option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="BF_2_OTH" id="BF_2_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+   </tr>
+
+
+    <tr>
+     <td>Lunch</td>
+   <td>
+    <select name="LU_2" id="LU_2">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="LU_2_OTH" id="LU_2_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+   </tr>
+	 
+   <tr>
+    <td>Supper</td>
+  <td>
+   <select name="SU_2" id="SU_2">
+    <option value="">Select one</option>
+    <option value="1">1 - Daily</option>
+    <option value="2">2 - Weekly</option>
+    <option value="3">3 - Monthly</option>
+    <option value="4">4 - Seldom/rarely (at least once a year)</option>
+    <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+   </select>
+  </td>
+  <td>
+    <input type="text" placeholder="no. of times" name="SU_2_OTH" id="SU_2_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+  </tr>
+  </table>
+  
+  
+<table class="table table-striped table-bordered tabB">
+ <tr>
+  <th colspan="4">3.	What is/are your reason(s) for bringing packed food cooked/prepared from home to our school/workplace?<br><br>“Bakit ka nagbabaon ng lutong bahay sa eskwelahan o pinagtratrabahuhan?” 
+	<br><br>(Multiple answers; do not enumerate choices.)
+</th>
+ </tr>
+ <tr>
+ <td>Reasons</td>
+ <td>Code</td>
+ </tr>
+ 
+	<tr>
+	<td>Time and convenience</td>
+	<td>
+	<select name="time_3" id="time_3">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Cost/Budget</td>
+	<td>
+	<select name="cost_3" id="cost_3">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Lack of / limited food establishments</td>
+	<td>
+	<select name="lack_3" id="lack_3">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Variety of food options</td>
+	<td>
+	<select name="vary_3" id="vary_3">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Health reasons</td>
+	<td>
+	<select name="health_3" id="health_3">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Food safety</td>
+	<td>
+	<select name="safe_3" id="safe_3">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Quality of food</td>
+	<td>
+	<select name="qual_3" id="qual_3">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Utilize leftover home-cooked food</td>
+	<td>
+	<select name="util_3" id="util_3">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not bringing home-cooked/prepared food)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Others specify</td>
+	<td>
+	 <input type="text" name="oth_3" id="oth_3" placeholder="Specify.."/>
+	</td>
+	</tr>
+
+</table>
+	</div>
+	<div class="tab-pane" id="tabC" name="page3" >
+  <h4>C.	Eating Bought Foods at Home (Pagkain sa bahay ng mga biniling lutong pagkain)<br><br><i>
+		<input type="checkbox" style="width: 20px; height: 20px;" id="tick_C" name="tick_C">
+		<input type='hidden' name='tick_C' id='tick_C_' />
+		Tick this box if there is at least one CP code – 3 from the first and second day food recall. Read the introduction and proceed to asking the questions below. If none, proceed to Q8.<br>
+		“Now, I will ask you about your consumption of bought foods at home. Bought foods are cooked or prepared outside home, bought by you or anyone else, including rice, viands, sandwiches, salads, etc.”<br><br>
+
+		“Ngayon naman tatanungin kita tungkol sa pagkain mo sa bahay ng mga biniling lutong pagkain. Ang tinutukoy dito na biniling lutong pagkain ay ang mga niluto o inihandang pagkain na binili sa labas, ikaw man o ibang tao ang bumili nito. Kasama dito ang mga pagkaing niluluto o inihahanda tulad ng kanin, ulam, sandwiches at ensalada at iba pa.”<br><br>
+
+	</h4></i>
+  <table class="table table-bordered table-striped tabC">
+   <tr>
+    <th>Meals</th>
+	  <th colspan="2">4.	How often do you eat bought food at home for breakfast? For lunch? For supper?<br><br>“Gaano ka kadalas kumain sa bahay ng biniling lutong pagkain para sa almusal? Sa tanghalian? Sa hapunan?” </th>
+   </tr>
+    <tr>
+     <td>Breakfast</td>
+   <td>
+    <select name="BF_4" id="BF_4">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="BF_4_OTH" id="BF_4_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+   </tr>
+  <tr>
+     <td>Lunch</td>
+   <td>
+    <select name="LU_4" id="LU_4">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+    </select>
+   </td>
+	<td>
+    <input type="text" placeholder="no. of times" name="LU_4_OTH" id="LU_4_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+	</td>
+   </tr>
+   <tr>
+    <td>Supper</td>
+
+  <td>
+   <select name="SU_4" id="SU_4">
+    <option value="">Select one</option>
+    <option value="1">1 - Daily</option>
+    <option value="2">2 - Weekly</option>
+    <option value="3">3 - Monthly</option>
+    <option value="4">4 - Seldom/rarely (at least once a year)</option>
+    <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+   </select>
+  </td>
+  <td>
+    <input type="text" placeholder="no. of times" name="SU_4_OTH" id="SU_4_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+  </td>
+  </tr>
+  </table>
+
+<table class="table table-striped table-bordered tabC">
+ <tr>
+  <th colspan="4">5.	What is/are your reason(s) for eating bought food? (Multiple answers. Do not enumerate choices.)<br><br>
+					 “Ano ang (mga) dahilan kung bakit ka kumakain sa bahay ng biniling lutong pagkain?”<br><br>
+</th>
+ </tr>
+ <tr>
+ <td>Reasons</td>
+ <td>Code</td>
+ </tr>
+ 
+	<tr>
+	<td>Time and convenience</td>
+	<td>
+	<select name="time_5" id="time_5">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Cost/Budget</td>
+	<td>
+	<select name="cost_5" id="cost_5">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Availability of food Establishments</td>
+	<td>
+	<select name="lack_5" id="lack_5">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Variety of food options</td>
+	<td>
+	<select name="vary_5" id="vary_5">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Quality of food</td>
+	<td>
+	<select name="health_5" id="health_5">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Limit leftover home-cooked food</td>
+	<td>
+	<select name="safe_5" id="safe_5">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Can't cook</td>
+	<td>
+	<select name="qual_5" id="qual_5">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not buying cooked/prepared food to eat at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Others specify</td>
+	<td>
+	 <input type="text" name="oth_5" id="oth_5" placeholder="Specify.." />
+	</td>
+	</tr>
+
+</table>
+	</div>
+	<div class="tab-pane" id="tabD" name="page4" >
+  <h4>D.	Eating Away from Home (Pagkain ng biniling lutong pagkain sa labas ng bahay) <br><br><i>
+		<input type="checkbox" style="width: 20px; height: 20px;" id="tick_D" name="tick_D">
+		<input type='hidden' name='tick_D' id='tick_D_' />
+		Tick this box if there is at least one CP code – 4 from the first and second day food recall. Read the introduction and proceed to asking the questions below. If none, proceed to Q11. <br>
+		“I will ask you about your consumption of bought foods away from home.” <br><br>
+
+		“Tatanungin naman kita tungkol sa pagkain mo sa labas o pagkain mo ng mga biniling lutong pagkain sa labas ng bahay.” <br><br>
+		</h4></i>
+  <table class="table table-bordered table-striped tabD">
+   <tr>
+    <th>Meals</th>
+		<th colspan="2">6.	How often do you eat away from home for breakfast? For lunch? For supper?<br><br>“Gaano ka kadalas kumain sa labas para sa almusal? Sa tanghalian? Sa hapunan?”</th>
+		<th colspan="2">7.	Where do you most frequently eat the bought food for breakfast? For lunch? For supper?<br><br>“Saan ka madalas kumakain sa labas para sa almusal? Sa tanghalian? Sa hapunan?” </th>
+
+   </tr>
+    <tr>
+     <td>Breakfast</td>
+   <td>
+    <select name="BF_6" id="BF_6">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="BF_6_OTH" id="BF_6_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+	 <td>
+	 <select name="BF_7" id="BF_7">
+     <option value="">Select one</option>
+     <option value="1">1 - Food Establishment</option>
+     <option value="2">2 - Office/Workplace</option>
+     <option value="3">3 - School</option>
+		 <option value="4">4 - Others, specify..</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+    </select>
+		</td>
+	 <td>
+	  <input type="text" name="BF_7_OTH" id="BF_7_OTH" placeholder="Others, specify" />
+	 </td> 
+   </tr>
+    <tr>
+     <td>Lunch</td>
+   <td>
+    <select name="LU_6" id="LU_6">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="LU_6_OTH" id="LU_6_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+	 <td>
+	 <select name="LU_7" id="LU_7">
+     <option value="">Select one</option>
+     <option value="1">1 - Food Establishment</option>
+     <option value="2">2 - Office/Workplace</option>
+     <option value="3">3 - School</option>
+		 <option value="4">4 - Others, specify..</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+    </select>
+		</td>
+	 <td>
+	  <input type="text" name="LU_7_OTH" id="LU_7_OTH" placeholder="Others, specify" />
+	 </td>	 
+   </tr>
+   <tr>
+    <td>Supper</td>
+  <td>
+   <select name="SU_6" id="SU_6">
+    <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+   </select>
+  </td>
+	<td>
+    <input type="text" placeholder="no. of times" name="SU_6_OTH" id="SU_6_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+	<td>
+	 <select name="SU_7" id="SU_7">
+     <option value="">Select one</option>
+     <option value="1">1 - Food Establishment</option>
+     <option value="2">2 - Office/Workplace</option>
+     <option value="3">3 - School</option>
+		 <option value="4">4 - Others, specify..</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+    </select>
+		</td>
+	 <td>
+	  <input type="text" name="SU_7_OTH" id="SU_7_OTH" placeholder="Others, specify" />
+	 </td> 
+  </tr>
+	
+  </table>
+	
+<table class="table table-striped table-bordered tabD">
+ <tr>
+  <th colspan="4">8.	What is/are your reason(s) for eating away from home? (Multiple answers. Do not enumerate choices.)<br><br>
+		  “Ano ang (mga) dahilan kung bakit ka kumakain sa labas?” <br><br>
+
+	</th>
+ </tr>
+ <tr>
+ <td>Reasons</td>
+ <td>Code</td>
+ </tr>
+ 
+	<tr>
+	<td>Time and convenience</td>
+	<td>
+	<select name="time_8" id="time_8">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Cost/Budget</td>
+	<td>
+	<select name="cost_8" id="cost_8">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Availability of food establishments</td>
+	<td>
+	<select name="lack_8" id="lack_8">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Variety of food options</td>
+	<td>
+	<select name="vary_8" id="vary_8">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Quality of food</td>
+	<td>
+	<select name="qual_8" id="qual_8">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Limit leftover home-cooked food</td>
+	<td>
+	<select name="health_8" id="health_8">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Can't cook</td>
+	<td>
+	<select name="safe_8" id="safe_8">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating food away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Others specify</td>
+	<td>
+	 <input type="text" name="oth_8" id="oth_8" placeholder="Specify.." />
+	</td>
+	</tr>
+
+</table>
+	</div>
+	<div class="tab-pane" id="tabE" name="page5" >
+  <h4>E.	Eating Ready-to-eat Foods at Home (Pagkain sa bahay ng mga ready-to-eat na pagkain)<br><br><i>
+		<input type="checkbox" style="width: 20px; height: 20px;" id="tick_E" name="tick_E">
+		<input type='hidden' name='tick_E' id='tick_E_' />
+		Tick this box if there is at least one CP code – 5 from the first and second day food recall. Read the introduction and proceed to asking the questions below. If none, proceed to Q13. <br>
+		“Now, I will ask you about your consumption of ready-to-eat foods at home. Ready-to-eat foods are food items that do not need additional cooking or preparation before consumption like breads, biscuits, and ready-to-drink beverages, etc.” <br><br>
+
+		 “Ngayon naman tatanungin kita tungkol sa pagkain mo sa bahay ng mga ready-to-eat na pagkain. Ang tinutukoy dito na ready-to-eat na pagkain ay ang mga pagkain na hindi na kailangan pa ng dagdag na pagluluto o preparasyon tulad ng ready-to-eat na tinapay, biskwit, at mga ready-to-drink na inumin. <br><br>
+		</h4></i>
+  <table class="table table-bordered table-striped tabE">
+   <tr>
+    <th>Meals</th>
+		<th colspan="2">9.	How often do you eat ready-to-eat food at home for breakfast? For lunch? For supper?<br><br>“Gaano ka kadalas kumain sa bahay ng ready-to-eat na pagkain para sa almusal? Sa tanghalian? Sa hapunan?”</th>
+   </tr>
+    <tr>
+     <td>Breakfast</td>
+   <td>
+    <select name="BF_9" id="BF_9">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods at home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="BF_9_OTH" id="BF_9_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td> 
+   </tr>
+    <tr>
+     <td>Lunch</td>
+   <td>
+    <select name="LU_9" id="LU_9">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods at home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="LU_9_OTH" id="LU_9_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td> 
+   </tr>
+   <tr>
+    <td>Supper</td>
+  <td>
+   <select name="SU_9" id="SU_9">
+    <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods at home)</option>
+   </select>
+  </td>
+	<td>
+    <input type="text" placeholder="no. of times" name="SU_9_OTH" id="SU_9_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+  </tr>
+	
+  </table>
+	
+<table class="table table-striped table-bordered tabE">
+ <tr>
+  <th colspan="4">10.	What is/are your reason(s) for eating ready-to-eat food at home? (Multiple answers. Do not enumerate choices.)<br><br>
+		  “Ano ang (mga) dahilan kung bakit ka kumakain sa bahay ng ready-to-eat na pagkain?” <br><br>
+
+	</th>
+ </tr>
+ <tr>
+ <td>Reasons</td>
+ <td>Code</td>
+ </tr>
+ 
+	<tr>
+	<td>Time and convenience</td>
+	<td>
+	<select name="time_10" id="time_10">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat food at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Cost/Budget</td>
+	<td>
+	<select name="cost_10" id="cost_10">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat food at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Availability of food establishments</td>
+	<td>
+	<select name="lack_10" id="lack_10">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat food at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Variety of food options</td>
+	<td>
+	<select name="vary_10" id="vary_10">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat food at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Quality of food</td>
+	<td>
+	<select name="qual_10" id="qual_10">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat food at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Can't cook</td>
+	<td>
+	<select name="safe_10" id="safe_10">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat food at home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Others specify</td>
+	<td>
+	 <input type="text" name="oth_10" id="oth_10" placeholder="Specify.."/>
+	</td>
+	</tr>
+
+</table>
+	</div>
+	<div class="tab-pane" id="tabF" name="page6" >
+	<h4>F. Eating Ready-to-eat Foods Away from Home (Pagkain ng ready-to-eat na pagkain sa labas ng bahay) <br><br><i>
+		<input type="checkbox" style="width: 20px; height: 20px;" id="tick_F" name="tick_F">
+		<input type='hidden' name='tick_F' id='tick_F_' />
+		Tick this box if there is at least one CP code – 6 from the first and second day food recall. Read the introduction and proceed to asking the questions below. If none, end the interview.<br>
+		“Lastly, I will ask you about your consumption of ready-to-eat foods away from home.” <br><br>
+
+		 “Ang huli kong mga katanungan ay tungkol sa pagkain mo sa labas ng mga ready-to-eat na pagkain .” <br><br>
+		</h4></i>
+  <table class="table table-bordered table-striped tabF">
+   <tr>
+    <th>Meals</th>
+		<th colspan="2">11.	How often do you eat ready-to-eat foods away from home for breakfast? For lunch? For supper?<br>“Gaano ka kadalas kumain sa labas ng mga ready-to-eat na pagkain para sa almusal? Sa tanghalian? Sa hapunan?”</th>
+		<th colspan="2">12.	Where do you most frequently eat the ready-to-eat food for breakfast? For lunch? For supper?<br><br>“Saan ka madalas kumakain sa labas ng ready-to-eat na pagkain para sa almusal? Sa tanghalian? Sa hapunan?” </th>
+
+   </tr>
+    <tr>
+     <td>Breakfast</td>
+   <td>
+    <select name="BF_11" id="BF_11">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" name="BF_11_OTH" id="BF_11_OTH" placeholder="no. of times" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+	 <td>
+	 <select name="BF_12" id="BF_12">
+     <option value="">Select one</option>
+     <option value="1">1 - Food Establishment</option>
+     <option value="2">2 - Office/Workplace</option>
+     <option value="3">3 - School</option>
+		 <option value="4">4 - Others, specify..</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+    </select>
+		</td>
+	 <td>
+	  <input type="text" name="BF_12_OTH" id="BF_12_OTH" placeholder="Others, specify" />
+	 </td> 
+   </tr>
+    <tr>
+     <td>Lunch</td>
+   <td>
+    <select name="LU_11" id="LU_11">
+     <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+    </select>
+   </td>
+	 <td>
+    <input type="text" placeholder="no. of times" name="LU_11_OTH" id="LU_11_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+	 <td>
+	 <select name="LU_12" id="LU_12">
+     <option value="">Select one</option>
+     <option value="1">1 - Food Establishment</option>
+     <option value="2">2 - Office/Workplace</option>
+     <option value="3">3 - School</option>
+		 <option value="4">4 - Others, specify..</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+    </select>
+		</td>
+	 <td>
+	  <input type="text" name="LU_12_OTH" id="LU_12_OTH" placeholder="Others, specify" />
+	 </td>	 
+   </tr>
+   <tr>
+    <td>Supper</td>
+  <td>
+   <select name="SU_11" id="SU_11">
+    <option value="">Select one</option>
+     <option value="1">1 - Daily</option>
+     <option value="2">2 - Weekly</option>
+     <option value="3">3 - Monthly</option>
+     <option value="4">4 - Seldom/rarely (at least once a year)</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+   </select>
+  </td>
+	<td>
+    <input type="text" placeholder="no. of times" name="SU_11_OTH" id="SU_11_OTH" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+   </td>
+	<td>
+	 <select name="SU_12" id="SU_12">
+     <option value="">Select one</option>
+     <option value="1">1 - Food Establishment</option>
+     <option value="2">2 - Office/Workplace</option>
+     <option value="3">3 - School</option>
+		 <option value="4">4 - Others, specify..</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+    </select>
+		</td>
+	 <td>
+	  <input type="text" name="SU_12_OTH" id="SU_12_OTH" placeholder="Others, specify" />
+	 </td> 
+  </tr>
+	
+  </table>
+	
+<table class="table table-striped table-bordered tabF">
+ <tr>
+  <th colspan="4">13.	What is/are your reason(s) for eating ready-to-eat foods away from home? (Multiple answers. Do not enumerate choices.)<br><br>
+		  “Ano ang (mga) dahilan kung baki t ka kumakain sa labas?” <br><br>
+
+	</th>
+ </tr>
+ <tr>
+ <td>Reasons</td>
+ <td>Code</td>
+ </tr>
+ 
+	<tr>
+	<td>Time and convenience</td>
+	<td>
+	<select name="time_13" id="time_13">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Cost/Budget</td>
+	<td>
+	<select name="cost_13" id="cost_13">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Availability of food establishments</td>
+	<td>
+	<select name="lack_13" id="lack_13">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Variety of food options</td>
+	<td>
+	<select name="vary_13" id="vary_13">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Quality of food</td>
+	<td>
+	<select name="qual_13" id="qual_13">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Can't cook</td>
+	<td>
+	<select name="safe_13" id="safe_13">
+     <option value="">Select one</option>
+     <option value="0">0 - No</option>
+     <option value="1">1 - Yes</option>
+     <option value="99">99 - N/A (not eating ready-to-eat foods away from home)</option>
+  </select>
+	</td>
+	</tr>
+	<tr>
+	<td>Others specify</td>
+	<td>
+	 <input type="text" name="oth_13" id="oth_13" placeholder="Specify.." />
+	</td>
+	</tr>
+
+</table>
+
+
+<div class="col-md-1">
+ <button style="width: 76px; height: 64px; font-size:20px;" type='button' onclick='update()' class='btn btn-lg btn-success' id='updateButton'> Save </button>
+</div>
+<div class="col-md-4">
+<label>INTERVIEW_STATUS :</label>
+<select name="INTERVIEW_STATUS" id="INTERVIEW_STATUS">
+			<option value='' >Select Interview status</option>
+			<optgroup label='Covered'>
+			<option value='1' >1 - Completed</option>
+			<option value='2' >2 - Partly Completed</option>
+			</optgroup>
+			<optgroup label='Not Covered'>
+			<option value='3' >3 - Respondent Incapacitated</option>
+			<option value='4' >4 - Refused</option>
+			<option value='5' >5 - Not at Home (Away during the Survey Period)</option>
+			<option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option>
+			<option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+			<option value='8'>Others</option>
+			</optgroup>
+				</select>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript" src="/jquery/script_dietary.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function (){
+	
+	var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+	var D = bigIdString.substring(20,22);
+	
+	var data = {};
+	data.eacode = A;
+	data.hcn = B;
+	data.shsn = C;
+	data.MEMBER_CODE = D;
+	
+	$('input[type="text"], select').each(function() {
+	$(this).addClass('form-control');
+	
+	});
+	
+	$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/respondents_f11',						
+                            success: function(data) {
+							for(var i=0;i<data.length;i++){
+							$('#RES_NAME').append("<option value="+data[i].MEMBER_CODE+">"+data[i].GIVENNAME+" "+data[i].SURNAME+"</option>");
+							}
+		
+							}
+			
+	});
+	
+	$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/cpr',						
+                            success: function(data) {
+
+							$('#RES_NAME').val(data.RES_NAME);
+						
+							var input = JSON.parse(JSON.stringify(data));
+                               Object.keys(input).forEach(function(key) {
+                               var val = input[key];
+                               var view = "$('#"+key+"').val(data."+key+");";
+							   
+                               eval(view);
+								
+                                });
+								
+							$( "input[type=hidden]" ).each(function() {
+                                var name = $(this).attr('name');
+                                var id = $(this).attr('id');
+                                var val = $(this).val();
+
+                                if($('input[name='+name+']').val() == '1') {
+                                $('input[name='+name+']').prop('checked',true); }
+                                });
+								
+								
+								
+		
+							}
+			
+	});
+	
+	$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/call_f11',						
+                            success: function(data) {
+							$('#eacode').text(data[0].eacode);
+							$('#hcn').text(data[0].hcn);
+							$('#shsn').text(data[0].shsn);
+							$('#MEMBER_CODE').text(data[0].MEMBER_CODE);
+							$('#SUBJECT').text(data[0].GIVENNAME+" "+data[0].SURNAME);
+		
+							}
+			
+	});
+	
+	document.onkeydown = checkKey;
+
+	function checkKey(e) {
+		e = e || window.event;
+		if (e.keyCode == '37') {
+		var old_num = $('#myTabContent').find('.active').attr('name').substring(4,5);
+		var new_num = parseInt(old_num);
+		var new2 = new_num-1;
+		if(new2 >=1) {
+		$('[name="page'+old_num+'"]').removeClass('active');
+		$('[name="page'+old_num+'"]').removeClass('in');
+		$('[name="page'+new2+'"]').addClass('active');
+		$('[name="page'+new2+'"]').addClass('in');
+		}
+		}
+		else if (e.keyCode == '39') {
+		var old_num = $('#myTabContent').find('.active').attr('name').substring(4,5);
+		var new_num = parseInt(old_num);
+		var new2 = new_num+1;
+		if(new2 <=6) {
+		$('[name="page'+old_num+'"]').removeClass('active');
+		$('[name="page'+old_num+'"]').removeClass('in');
+		$('[name="page'+new2+'"]').addClass('active');
+		$('[name="page'+new2+'"]').addClass('in');
+		}
+		}
+	}
+	
+
+		$("input:checkbox").change(function(){
+		var checkbx  = $(this).attr("id");
+       
+	   	var cat = ['A','B','C','D','E','F'];
+		
+		if ($(this).is(':checked')) {
+          $('#'+checkbx + "_").val(1);
+		    
+		 
+		for(var i=0;i<cat.length;i++) { 
+			if($(this).attr("id") == 'tick_'+cat[i]+'') {
+			$(".tab"+cat[i]+" :input").val('99').prop('disabled',true);
+			}
+		}
+		  
+		  
+          }
+      
+		else{
+		$('#'+checkbx + "_").val(0);
+	   
+		for(var i=0;i<cat.length;i++) { 
+			if($(this).attr("id") == 'tick_'+cat[i]+'') {
+			$(".tab"+cat[i]+" :input").val('').prop('disabled',false);
+			}
+		}
+
+		}
+	 
+	 
+	});
+	
+	
+});	//document ready
+	
+	function update() {
+
+	 var data = {};
+	 data.eacode = $('#eacode').text();
+	 data.hcn = $('#hcn').text();
+	 data.shsn = $('#shsn').text();
+	 data.MEMBER_CODE = $('#MEMBER_CODE').text();
+	 data.RES_NAME = $('#RES_NAME').val();
+	 
+	    
+		if('!input[type=hidden]') {
+		$('input,select').each(function(){ // or $('input').each(function(){
+                var exec = "data."+$(this).attr('name')+" = $('[name="+$(this).attr('name')+"]').val();"; //get id of each input
+                eval(exec);
+            });
+		}
+		
+		$('input[type=hidden]').each(function(){ // or $('input').each(function(){
+                var exec = "data."+$(this).attr('name')+" = $('input[type=hidden][id="+$(this).attr('name')+"_]').val();"; //get id of each input
+                eval(exec);
+				console.log($('input[type=hidden][name=tick_A]').val());
+			
+		});
+	
+	$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/insertcpr',						
+                            success: function(data) {
+							
+							window.location.href = '/cpr/'+$('#eacode').text()+$('#hcn').text()+$('#shsn').text()+$('#MEMBER_CODE').text();
+		
+							}
+			
+	});
+	
+	}
+
+</script>
+
+ </body>
+</html>
+

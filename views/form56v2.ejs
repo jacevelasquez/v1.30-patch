@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="icon" href="/FNRI.png">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>NNS2018</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+
+  <select class ='form-control btn btn-primary' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS' style='width:200px;'>
+			<option value='' >Select Interview status</option>
+			<optgroup label='Covered'>
+			<option value='1' >1 - Completed</option>
+			<option value='2' >2 - Partly Completed</option>
+			</optgroup>
+			<optgroup label='Not Covered'>
+			<option value='3' >3 - Respondent Incapacitated</option>
+			<option value='4' >4 - Refused</option>
+			<option value='5' >5 - Not at Home (Away during the Survey Period)</option>
+			<option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option>
+			<option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+			<option value='8'>Others</option>
+			</optgroup>
+			</select>
+
+<div class="page container">
+
+	<form class="form-horizontal">
+		<table class="questions">
+			<tr>
+				<th colspan="3">
+					<h3>Butil o Cereals and Grains (rice, wheat, oats, corn)</h3>
+				</th>
+			</tr>
+			<!-- F01-F03 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">1. Kanin, sinaing</div>
+				</td>
+				<td>
+					<div class="qnum">2. Kanin, brown (pinawa o unpolished)</div>
+				</td>
+				<td>
+					<div class="qnum">3. Tinapay, plain (tasty, monay, pandesal)</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F01 -->
+				<td>
+					<div class="parent">
+						<!-- F011 -->
+						<div class="image">
+							<img src="/images/01-sinaing.PNG">
+							<br>
+							<p>Sinaing (Boiled)</p>
+						</div>
+						<div class="row">
+							Frequency Code:  <div class="fcode" name="f56_001"></div> </p>
+						</div>
+						<!-- F012 -->
+						<div class="image">
+							<img src="/images/01-sinangag.PNG">
+							<br>
+							<p>Sinangang (Garlic o Fried Rice)</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_002"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F02 -->
+				<td>
+					<div class="parent">
+						<!-- F021 -->
+						<div class="image">
+							<img src="/images/02-kanin-brown.PNG" style="height: 45%; width: 45%;">
+							<br><br>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_003"></div> </p>
+						</div>
+						<!-- F022 -->
+						<div class="image">
+							<p>Pigmented (black rice, red rice, pink rice, etc.)</p>
+							<img src="/images/02-pigmented.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_004"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F03 -->
+				<td>
+					<div class="parent">
+						<!-- F031 -->
+						<div class="image">
+							<img src="/images/03-tinapay-plain.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_005"></div> </p>
+						</div>
+						<!-- F032 -->
+						<div class="image">
+							<img src="/images/03-may-asukal.PNG">
+							<br>
+							<p><span>May asukal o matamis na filling</span><span>(ensaymada, Spanish bread)</span></p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_006"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<!-- F04-F06 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">4. Mais, nilaga (buo o bits)</div>
+				</td>
+				<td>
+					<div class="qnum">5. Lugaw o Arroz Caldo</div>
+				</td>
+				<td>
+						<div class="qnum">6. Bibingka / Kakanin / Biko <b>at iba pa</b></div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F04 -->
+				<td>
+					<div class="parent">
+						<!-- F041 -->
+						<div class="image">
+							<img src="/images/04-mais-nilaga.PNG">
+							<p>Walang mantikilya o margarine</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_007"></div> </p>
+
+						</div>
+						<!-- F042 -->
+						<div class="image">
+							<img src="/images/04-mais-margarine.PNG" style="height: 45%; width: 45%;">
+							<br>
+							<p>May mantikilya o margarine</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_008"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F05 -->
+				<td>
+					<div class="parent">
+						<!-- F051 -->
+						<div class="image">
+							<img src="/images/05-lugaw.PNG">
+							<p>Lutong-bahay</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_009"></div> </p>
+						</div>
+						<!-- F052 -->
+						<div class="image">
+							<img src="/images/05-lugaw-instant.PNG" style="height: 45%; width: 45%;">
+							<p>(No cook / Instant / Just add hot water)</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_010"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F06 -->
+				<td>
+					<div class="parent">
+						<!-- F061 -->
+						<div class="image">
+							<img src="/images/06-bibingka.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_011"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<!-- F07-F09 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">7. Ampaw [Puffed Rice o Rice Crispies]</div>
+				</td>
+				<td>
+					<div class="qnum">8. Oatmeal or cereal drink</div>
+				</td>
+				<td>
+						<div class="qnum">9. Binatog</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F07 -->
+				<td>
+					<div class="parent">
+						<!-- F071 -->
+						<div class="image">
+							<img src="/images/07-ampaw.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_012"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F08 -->
+				<td>
+					<div class="parent">
+						<!-- F081 -->
+						<div class="image">
+							<img src="/images/08-oatmeal.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_013"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F09 -->
+				<td>
+					<div class="parent">
+						<!-- F091 -->
+						<div class="image">
+							<img src="/images/09-binatog.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_014"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<!-- F10-F12 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">10. Pancit Bihon / Canton</div>
+				</td>
+				<td>
+					<div class="qnum">11. Lomi o Mami</div>
+				</td>
+				<td>
+						<div class="qnum">12. Spaghetti, Macaroni o Pasta</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F10 -->
+				<td>
+					<div class="parent">
+						<!-- F101 -->
+						<div class="image">
+							<img src="/images/10-pansit-bihon.PNG"  style="height: 70%; width: 70%;">
+							<p>Lutong-bahay</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_015"></div> </p>
+						</div>
+						<!-- F102 -->
+						<div class="image">
+							<img src="/images/10-pansit-instant.PNG">
+							<p>Instant</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_016"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F11 -->
+				<td>
+					<div class="parent">
+						<!-- F111 -->
+						<div class="image">
+							<img src="/images/11-lomi.PNG">
+							<p>Lutong-bahay</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_017"></div> </p>
+						</div>
+						<!-- F112 -->
+						<div class="image">
+							<img src="/images/11-lomi-instant.PNG ">
+							<p>Instant</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_018"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F12 -->
+				<td>
+					<div class="parent">
+						<!-- F121 -->
+						<div class="image">
+							<img src="/images/12-spaghetti.PNG">
+							<p>Lutong-bahay</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_019"></div> </p>
+						</div>
+						<!-- F122 -->
+						<div class="image">
+							<img src="/images/12-spaghetti-instant.PNG"  style="height: 45%; width: 45%;">
+							<p>Instant</p>
+							</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_020"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<!-- F13-F15 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">13. Popcorn</div>
+				</td>
+				<td>
+					<div class="qnum">14. Snack chips, curls or cheese curls, potato chips</div>
+				</td>
+				<td>
+						<div class="qnum">15. Burger</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F13 -->
+				<td>
+					<div class="parent">
+						<!-- F131 -->
+						<div class="image">
+							<img src="/images/13-popcorn-plain.PNG">
+							<p>Plain</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_021"></div> </p>
+						</div>
+						<!-- F132 -->
+						<div class="image">
+							<img src="/images/13-popcorn-flavor.PNG">
+							<p>May flavor (buttered, caramelized, atbp.)</p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_022"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F14 -->
+				<td>
+					<div class="parent">
+						<!-- F141 -->
+						<div class="image">
+							<img src="/images/14-snacks.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_023"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F15 -->
+				<td>
+					<div class="parent">
+						<!-- F151 -->
+						<div class="image">
+							<img src="/images/15-burger.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_024"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<!-- F16-F18 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">16. Pizza</div>
+				</td>
+				<td>
+					<div class="qnum">17. Cake</div>
+				</td>
+				<td>
+						<div class="qnum">18. Pancakes o Crepes</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F16 -->
+				<td>
+					<div class="parent">
+						<!-- F161 -->
+						<div class="image">
+							<img src="/images/16-pizza.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_025"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F17 -->
+				<td>
+					<div class="parent">
+						<!-- F171 -->
+						<div class="image">
+							<img src="/images/17-cake.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_026"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F18 -->
+				<td>
+					<div class="parent">
+						<!-- F181 -->
+						<div class="image">
+							<img src="/images/18-pancake.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_027"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<!-- F19-F21 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">19. Cookies</div>
+				</td>
+				<td>
+					<div class="qnum">20. Biscuits o crackers</div>
+				</td>
+				<td>
+						<div class="qnum">21. Corn flakes</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F19 -->
+				<td>
+					<div class="parent">
+						<!-- F191 -->
+						<div class="image">
+							<img src="/images/19-cookies.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_028"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F20 -->
+				<td>
+					<div class="parent">
+						<!-- F201 -->
+						<div class="image">
+							<img src="/images/20-biscuits.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_029"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F21 -->
+				<td>
+					<div class="parent">
+						<!-- F211 -->
+						<div class="image">
+							<img src="/images/21-cornflakes.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_030"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<!-- F22-F23 -->
+		<table class="questions">
+			<tr class="tr-notop">
+				<td style="width: 55%;">
+					<div class="qnum">22. Fishball, Squidball, Kikiam, <b>at iba pa</b></div>
+				</td>
+				<td>
+					<div class="qnum">23.	Ginataang halo-halo / bilo-bilo</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/22-fishball.PNG" style="height: 80%;width: 80%;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_031"></div> </p>
+							<p><b>Gaano kadalas ito kainin ng nakaprito?</b></p>
+							<p>Frequency Code:  <div class="fcode" name="f56_032"></div> </p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/23-bilo-bilo.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_033"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<!-- F24 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Maberde at madahong gulay</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">24. Talbos ng kamote, talbos ng kamoteng-kahoy, kangkong, malunggay, kasama ang pako at iba pang maberde at madahong gulay</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/24-talbos.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_034"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- 25 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Mga Gulay at Tubers na mayaman sa Bitamina A</h3>
+				</th>
+			</tr>
+				<tr class="tr-nobot">
+				<td>
+					<div class="qnum">25. Carrots, kalabasa, dilaw na kamote</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<!-- F221 -->
+						<div class="image">
+							<img src="/images/25-carrots.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_035"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- 26 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Iba pang mga Gulay</h3>
+				</th>
+			</tr>
+			</tr>
+				<tr class="tr-nobot">
+				<td>
+					<div class="qnum">26. Talong, sitaw, Ampalaya, sayote, upo, langka, kasama ang labong at iba pang gulay (Sariwa) </div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/26-talong.PNG" style="height: 90%; width: 90%;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_036"></div> </p>
+						</div>
+						<br>
+						<div class="image">
+							<p><b>Kumakain ba kayo ng pritong talong? Gaano kadalas?</b></p>
+							<img src="/images/26-talong-prito.PNG" style="height: 180px; width: 220px;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_037"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F27-F28 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Canned, Packed o Pickled na mga Gulay</h3>
+				</th>
+				<th>
+					<h3>Prutas na may syrup</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">27. Kahit anong gulay na inasnan, inatsara, binuro o de lata </div>
+				</td>
+				<td>
+					<div class="qnum">28. Prutas na nasa fruit cup, de-lata, naka-bote, fruit salad, at iba pa </div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/27-delata.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_038"></div> </p>
+							<p>Tukuyin kung anu-ano ito: <input type="text" class="fcode2" name="f56_110"> </p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/28-prutas-syrup.PNG">
+						</div>
+						<div class="row">
+							<br>
+							<p>Frequency Code:  <div class="fcode" name="f56_039"></div> </p>
+							<p>Tukuyin kung anu-ano ito: <input type="text" class="fcode2" name="f56_119"> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F29 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Prutas na mayaman sa Bitamina A</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">29. <b>Hinog</b> na mangga, papaya, bayabas, melon, passion fruit, dragon fruit at iba pang prutas na mayaman sa Bitamina A </div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/29-prutas-bitamina.PNG" style="height: 90%; width: 90%;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_040"></div> </p>
+							<p>Tukuyin kung anu-ano ang pinakamadalas kainin: <input type="text" class="fcode2" name="f56_111"> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F30 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Iba pang mga Prutas</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">30. Saging/Saba, Guyabano, Kaimito, Chico, Atis, Santol, Bignay, Sapinit <b>at iba pang prutas </b> </div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/30-prutas.PNG" style="height: 90%; width: 90%;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_041"></div> </p>
+						</div>
+						<br>
+						<div class="image">
+							<p><b>Kumakain ba kayo ng Turon, Pritong Saba, Banana Cue? Gaano kadalas ito kainin ng nakaprito?</b></p>
+							<img src="/images/30-turon.PNG" style="height: 45%; width: 45%;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_042"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table> 
+
+		<br>
+
+		<!-- F31-F34 -->
+		<table class="questions">
+			<tr>
+				<th colspan="2">
+					<h3>Tubers at Roots</h3>
+				</th>
+			</tr>
+			<!-- F31 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">31. Patatas, kamoteng-kahoy, yacon, tugi, puting kamote (nilaga)</div>
+				</td>
+				<td>
+					<div class="qnum">32. French Fries</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/31-tubers.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_043"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F32 -->
+				<td>
+					<div class="parent">
+						<!-- F221 -->
+						<div class="image">
+							<img src="/images/32-french-fries.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_044"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<!-- F33 -->
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">33. Camote cue, fries, chips</div>
+				</td>
+				<td>
+					<div class="qnum">34. Cassava cake, pitsi-pitsi, nilupak, at iba pa</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/33-camote.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_045"></div> </p>
+						</div>
+					</div>
+				</td>
+				<!-- F34 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/34-cassava.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_046"></div> </p>
+							<p>Tukuyin kung anu-ano ito: <input type="text" class="fcode2" name="f56_120"> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F35 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Karne</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">35. Karne ng baka, baboy, manok, kambing, pato, at iba pang karne (hindi processed)</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="parent left">
+							<div class="image">
+								<img src="/images/35-karne.PNG">
+							</div>
+							<div class="row">
+								<br>
+								<p><b>Walang Taba (Nilaga/Sinigang o Ginisa)</b></p>
+								<p>Frequency Code:  <div class="fcode" name="f56_047"></div> </p>
+								<p><b>Gaano kadalas ito kainin ng nakaprito?</b></p>
+								<p>Frequency Code:  <div class="fcode" name="f56_048"></div> </p>
+								<p><b>Gaano kadalas ito kainin ng inihaw?</b></p>
+								<p>Frequency Code:  <div class="fcode" name="f56_049"></div> </p>
+							</div>
+						</div>
+						<div class="parent right">
+							<div class="image">
+								<img src="/images/35-karne-taba.PNG">
+							</div>
+							<div class="row">
+								<p><b>May Taba o Balat (ng manok) (Nilaga/Sinigang/Tinola, Ginisa)</b></p>
+								<p>Frequency Code:  <div class="fcode" name="f56_050"></div> </p>
+								<p><span><b>Gaano kadalas ito kainin ng nakaprito?</b></span><span>(Kasama ang Pork Chop, Liempo, Tapa, Lechon Kawali, Bagnet)</span></p>
+
+								<p>Frequency Code:  <div class="fcode" name="f56_051"></div> </p>
+								<p><b>Gaano kadalas ito kainin ng inihaw?</b></p>
+								<p>Frequency Code:  <div class="fcode" name="f56_052"></div> </p>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table> 
+
+		<br>
+		<!-- F36 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Lamang-loob (organ meats)</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">36. Atay, bato, puso, dugo, lapay, isaw at putaheng mula dito tulad ng dinuguan, bopis, papaitan, sisig <b>at iba pa</b></div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/36-lamang-loob.PNG">
+						</div>
+						<div class="row">
+							<br>
+							<p>Frequency Code:  <div class="fcode" name="f56_100"></div>(nilaga/sinigang o ginisa) </p>
+							<p>Tukuyin kung anu-ano ang pinakamadalas kainin:<input type="text" class="fcode2" name="f56_112"> </p>
+							<p><b>Gaano kadalas ito kainin ng nakaprito?</b></p>
+							<p>Frequency Code:  <div class="fcode" name="f56_101"></div> </p>
+							<p><b>Gaano kadalas ito kainin ng inihaw?</b></p>
+							<p>Frequency Code:  <div class="fcode" name="f56_102"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table> 
+
+		<br>
+		<!-- F37 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Naprosesong Karne (Processed Meat)</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">37. Hotdog, ham, salami, bologna, bacon, luncheon meat, corned beef, sausage, chorizo, tocino, longganisa, liver spread, chicharon, <b>at iba pang naprosesong karne</b></div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/37-hotdog.PNG" style="height: 90%; width: 90%;">
+						</div>
+						<div class="row">
+							<br>
+							<p>Frequency Code:  <div class="fcode" name="f56_103"></div>	</p>
+							<p>Tukuyin kung anu-ano ang pinakamadalas kainin:<input type="text" class="fcode2" name="f56_113"> </p>
+							<p><b>Gaano kadalas ito kainin ng nakaprito?</b></p>
+							<p>Frequency Code:  <div class="fcode" name="f56_104"></div> </p>
+							<p><b>Gaano kadalas ito kainin ng inihaw?</b></p>
+							<p>Frequency Code:  <div class="fcode" name="f56_105"></div> </p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F38-F39 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Itlog (hindi na-proseso)</h3>
+				</th>
+				<th>
+					<h3>Itlog (na-proseso)</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">38. Itlog ng manok, pato, pugo, at iba pa </div>
+				</td>
+				<td>
+					<div class="qnum">39. Itlog na maalat, Balut o Penoy </div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/38-itlog.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_053"></div> </p>
+							<p>
+								<span><b>Gaano kadalas ito kainin ng nakaprito?</b></span>
+								<span>Frequency Code:  <div class="fcode" name="f56_106"></div> </span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/39-itlog.PNG">
+						</div>
+						<div class="row">
+							<br>
+							<p>Frequency Code:  <div class="fcode" name="f56_054"></div> </p>
+							<br>
+							<br>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<!-- F40-F41 -->
+		<table class="questions">
+			<tr>
+				<th colspan="2">
+					<h3>Isda at Lamang-dagat</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">40. Isda</div>
+				</td>
+				<td>
+					<div class="qnum">41. Lamang-dagat, (tahong, alimango, pusit, atbp.)</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/40-isda.PNG">
+						</div>
+						<div class="row">
+							<br>
+							<p>Frequency Code:  <div class="fcode" name="f56_055"></div> </p>
+							<p>
+								<span><b>Gaano kadalas ito kainin ng nakaprito?</b></span>
+								<span>Frequency Code:  <div class="fcode" name="f56_107"></div> </span>
+							</p>
+							<br>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/41-lamang-dagat.PNG">
+						</div>
+						<div class="row">
+							<br>
+							<p>
+								<span>Frequency Code:  <div class="fcode" name="f56_056"></div> </span>
+								<span>Tukuyin kung ano ang pinakamadalas kainin:<input type="text" class="fcode2" name="f56_114"></span>
+							</p>
+							<p>
+								<span><b>Gaano kadalas ito kainin ng nakaprito?</b></span>
+								<span>Frequency Code:  <div class="fcode" name="f56_108"></div> </span>
+							</p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F42 -->
+		<table class="questions">
+			<tr>
+				<th>
+					<h3>Na-prosesong Isda at Lamang-dagat</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">42. Tuyo, Tinapa, Binurong Isda, mga isda at lamang-dagat na de lata o nakabote</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/42-tuyo.PNG" style="height: 75%; width: 75%;">
+						</div>
+						<div class="row">
+							<br>
+							<p>
+								<span>Frequency Code:  <div class="fcode" name="f56_057"></div> </span>
+								<span>Tukuyin kung anu-ano ang pinakamadalas kainin:<input type="text" class="fcode2" name="f56_115"></span>
+							</p>
+							<p>
+								<span><b>Gaano kadalas ito kainin ng nakaprito?</b></span>
+								<span>Frequency Code:  <div class="fcode" name="f56_109"></div> </span>
+							</p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F43-F44 -->
+		<table class="questions">
+			<tr>
+				<th colspan="2">
+					<h3>Beans, Nuts at Seeds</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">43. Beans, peas, peanuts, seeds</div>
+				</td>
+				<td>
+					<div class="qnum">44. Beans, peas, lentils, peanut, seeds (de lata, nakabote o pakete)</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/43-beans.PNG" style="height: 95%; width: 95%;">
+						</div>
+						<div class="row">
+							<p>
+								<span>Frequency Code:  <div class="fcode" name="f56_058"></div> </span>
+								<span>Tukuyin kung ano ang pinakamadalas kainin:<input type="text" class="fcode2" name="f56_116"></span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/44-beans.PNG" style="height: 35%; width: 35%;">
+							<img src="/images/44-taho.jpg" style="height: 35%; width: 35%;">
+						</div>
+						<div class="row">
+							<p>
+								<span>Frequency Code:  <div class="fcode" name="f56_059"></div> </span>
+								<span>Tukuyin kung ano ang pinakamadalas kainin:<input type="text" class="fcode2" name="f56_118" ></span>
+							</p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F45-F49 -->
+		<table class="questions">
+			<tr>
+				<th colspan="5">
+					<h3>Gatas, mga produkto galing dito at iba pang inumin</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">45. Milk (powdered, ready to drink, evaporated)</div>
+				</td>
+				<td>
+					<div class="qnum">46. Ice cream</div>
+				</td>
+				<td>
+					<div class="qnum">47. Cheese, Cheese Spread</div>
+				</td>
+				<td>
+					<div class="qnum">48. Leche Flan</div>
+				</td>
+				<td>
+					<div class="qnum">49. Probiotic drink / Yogurt</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/45-milk.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_060"></div></p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/46-ice-cream.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_061"></div></p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/47-cheese.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_062"></div></p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/48-leche.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_063"></div></p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/49-yakult.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_064"></div></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F50-F55 -->
+		<table class="questions">
+			<tr>
+				<th colspan="3">
+					<h3>Mantika, Taba, Palaman, atbp.</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">50. Mantika (bilang ulam)</div>
+				</td>
+				<td>
+					<div class="qnum">51. Porkfat/drippings</div>
+				</td>
+				<td>
+					<div class="qnum">52. Gata ng niyog (sa ulam)</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F50 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/50-mantika.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_065"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F51 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/51-drippings.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_066"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F52 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/52-gata.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_067"></div></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">53. Chicken oil </div>
+				</td>
+				<td>
+					<div class="qnum">54. Mantikilya/Butter</div>
+				</td>
+				<td>
+					<div class="qnum">55. Margarina</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F53 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/53-chicken-oil.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_068"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F54 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/54-butter.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_069"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F55 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/55-margarina.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_070"></div></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<!-- F56-F59 -->
+		<table class="questions">
+			<tr class="tr-nobot tr-notop">
+				<td>
+					<div class="qnum">56. Salad Dressings, Mayonnaise, Sandwich Spread</div>
+				</td>
+				<td>
+					<div class="qnum">57. Peanut Butter</div>
+				</td>
+				<td>
+					<div class="qnum">58. Gravy</div>
+				</td>
+				<td>
+					<div class="qnum">59. Creamer</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F56 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/56-salad.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_071"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F57 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/57-peanut.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_072"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F58 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/58-gravy.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_073"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F59 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<br>
+							<img src="/images/59-creamer.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_074"></div></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F60-F63 -->
+		<table class="questions">
+			<tr>
+				<th colspan="2">
+					<h3 id="smhead">Asukal at matatamis na pagkain</h3>
+				</th>
+				<th colspan="2">
+					<h3>Instant Soups</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot tr-notop">
+				<td>
+					<div class="qnum">60. Asukal, kendi, honey, chocolates</div>
+					<br><br>
+				</td>
+				<td>
+					<div class="qnum">61. Halo-halo</div>
+					<br><br>
+				</td>
+				<td>
+					<div class="qnum">62. Instant na soups (de lata o powdered) (hal. Knorr, Campbell, Crab and Corn, Nido Soup)</div>
+				</td>
+				<td>
+					<div class="qnum">63. Soup sa mga fastfood restaurants</div>
+					<br><br>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F60 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/60-asukal.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_075"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F61 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/61-halo-halo.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_076"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F62 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/62-knor.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_077"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F63 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/63-soup.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_078"></div></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F64-F66 -->
+		<table class="questions">
+			<tr>
+				<th colspan="3">
+					<h3>Spices at Condiments (sawsawan)</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">64. Asin</div>
+				</td>
+				<td>
+					<div class="qnum">65. Patis</div>
+				</td>
+				<td>
+					<div class="qnum">66. Toyo</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F64 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/64-asin.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_079"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F65 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/65-patis.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_080"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F66 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/66-toyo.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_081"></div></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<!-- F67-F70 -->
+		<table class="questions">
+			<tr class="tr-nobot tr-notop">
+				<td>
+					<div class="qnum">67. Chili sauce</div>
+				</td>
+				<td>
+					<div class="qnum">68. Ketchup</div>
+				</td>
+				<td>
+					<div class="qnum">69. Suka</div>
+				</td>
+				<td>
+					<div class="qnum">70. Bagoong (isda, ginamos, padas, alamang)</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F67 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/67-chili.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_082"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F68 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/68-ketchup.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_083"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F69 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/69-suka.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_084"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F70 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/70-bagoong.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_085"></div></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F71-F75 -->
+		<table class="questions">
+			<tr>
+				<th colspan="5">
+					<h3>Alcoholic Drinks</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">71. Beer, alcomix</div>
+					<br>
+				</td>
+				<td>
+					<div class="qnum">72. Distilled Liqueurs (brandy, gin, rum, whisky, tequila)</div>
+				</td>
+				<td>
+					<div class="qnum">73. Wine</div>
+					<br>
+				</td>
+				<td>
+					<div class="qnum">74. Cocktails</div>
+					<br>
+				</td>
+				<td>
+					<div class="qnum">75. Home brewed alcohol(tuba, lambanog,basi,laksoy, <b>at iba pa</b>)</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F71 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/71-beer.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_086"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F72 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/72-whisky.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_087"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F73 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/73-wine.PNG" style="height: 45%; width: 45%;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_088"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F74 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/74-cocktails.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_089"></div></p>
+						</div>
+					</div>
+				</td>
+				<!-- F75 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/75-lambanog.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_090"></div></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F76-F79 -->
+		<table class="questions">
+			<tr>
+				<th colspan="4">
+					<h3>Mga beverages o inumin</h3>
+				</th>
+			</tr>
+			<tr class="tr-nobot">
+				<td>
+					<div class="qnum">76. Kape, instant o brewed</div>
+				</td>
+				<td>
+					<div class="qnum">77. Tsaa (Tea)</div>
+				</td>
+				<td>
+					<div class="qnum">78. Softdrinks</div>
+				</td>
+				<td>
+					<div class="qnum">79. Juice</div>
+				</td>
+			</tr>
+			<tr class="tr-notop">
+				<!-- F76 -->
+				<td>
+					<div class="parent">
+						<div>
+							<div class="image">
+								<img src="/images/76-kape.PNG" style="height: 35%; width: 35%;">
+							</div>
+							<div class="row">
+								<p>Frequency Code:  <div class="fcode" name="f56_091"></div></p>
+							</div>
+						</div>
+						<div>
+							<div class="image">
+								<p style="margin-bottom: 0;">Kape, 3 in 1</p>
+								<img src="/images/76-kape-3n1.PNG" style="height: 45%; width: 45%;">
+							</div>
+							<div class="row">
+								<p>Frequency Code:  <div class="fcode" name="f56_092"></div></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="image">
+								<img src="/images/76-frap.PNG" style="height: 45%; width: 45%;">
+							</div>
+							<div class="row">
+								<span>
+									<b>Gaano kadalas mo ito inumin
+									<br> na sweetened? (Frappuccino)</b>
+									<br>Frequency Code:  <div class="fcode" name="f56_093"></div>
+								</span>
+							</div>
+						</div>
+					</div>
+					<br>
+				</td>
+				<!-- F77 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/77-tea.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_094"></div></p>
+							<br>
+						</div>
+						<div class="image">
+							<b>Gaano kadalas mo ito inuminna sweetened? (Milk tea, C2)</b>
+							<img src="/images/77-c2.PNG" style="height: 45%; width: 45%;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_095"></div></p>
+							<br>
+						</div>
+					</div>
+				</td>
+				<!-- F78 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/78-softdrinks.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_096"></div></p>
+						</div>
+						<div class="image">
+							<b>Gaano kadalas mo ito inumin 
+							<br>ng low-calorie? 
+							<br>(Coke Zero, Diet o Light, atbp)</b>
+							<img src="/images/78-coke-zero.PNG" style="height: 45%; width: 45%;">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_097"></div></p>
+							<br>
+						</div>
+					</div>
+				</td>
+				<!-- F79 -->
+				<td>
+					<div class="parent">
+						<div class="image">
+							<img src="/images/79-juice.PNG">
+							<p><b>Mula sa sariwang prutas o gulay</b></p>
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_098"></div></p>
+						</div>
+						<div class="image">
+							<b>Juice na powder, de lata, nakabote</b>
+							<img src="/images/79-juice-powder.PNG">
+						</div>
+						<div class="row">
+							<p>Frequency Code:  <div class="fcode" name="f56_099"></div></p>
+							<br>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<!-- F80 -->
+		<!-- <table class=""> -->
+			<!-- <tr> -->
+				<!-- <th colspan="3"> -->
+					<!-- <h3>TASTE PREFERENCE OF 18 YEARS OLD AND ABOVE and WRA</h3> -->
+				<!-- </th> -->
+			<!-- </tr> -->
+			<!-- <tr> -->
+				
+				<!-- <td class="col-md-5"> -->
+						<!-- <div class="qnum "> -->
+							<!-- 80. How would you describe your taste preference? -->
+							<!-- <br> -->
+							<!-- <br> -->
+							<!-- <br> -->
+						<!-- </div> -->
+						<!-- <div class="parent"> -->
+							<!-- <p><em>“Ano ang inyong preference o kagustuhan sa lasa ng pagkain o putahe?”</em></p> -->
+						<!-- </div> -->
+					<!-- </td> -->
+					<!-- <td class="col-md-2"> -->
+						<!-- <div class="parent"> -->
+							<!-- <p>TASTE_REF</p> -->
+						<!-- </div> -->
+					<!-- </div> -->
+				<!-- </td> -->
+				<!-- <td class="col-md-5"> -->
+					<!-- <div class="radio"> -->
+					  <!-- <label><input type="radio" name="taste">Sweet (matamis)</label> -->
+					<!-- </div> -->
+					<!-- <div class="radio"> -->
+					  <!-- <label><input type="radio" name="taste">Just/Moderate (katamtaman)</label> -->
+					<!-- </div> -->
+					<!-- <div class="radio"> -->
+					  <!-- <label><input type="radio" name="taste">Salt (maalat)</label> -->
+					<!-- </div> -->
+					<!-- <div class="radio"> -->
+					  <!-- <label><input type="radio" name="taste">Bland (matabang)</label> -->
+					<!-- </div> -->
+					<!-- <div class="radio"> -->
+					  <!-- <label><input type="radio" name="taste">Sweet and Salty (matamis at maalat)</label> -->
+					<!-- </div> -->
+					<!-- <div class="radio"> -->
+					  <!-- <label><input type="radio" name="taste">Sour (maasim)</label> -->
+					<!-- </div> -->
+					<!-- <div class="radio"> -->
+					  <!-- <label><input type="radio" name="taste">Other, specify: <input type="text" class="fcode2" name="f56_117"></label> -->
+					<!-- </div> -->
+					<!-- <br> -->
+
+				<!-- </td> -->
+			<!-- </tr> -->
+		<!-- </table> -->
+
+	</form>	 
+</div>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script defer src="/jquery/material.min.js"></script>
+	
+    <script src="/assets/data.js"></script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+	
+      // disable Enter key
+      $("html").bind("keypress", function(e) {
+          if(e.keyCode == 13) {
+            return false;
+			}
+			if (event.keyCode === 39 || event.keyCode === 34 || event.keyCode === 96 ) { // apostrophe, double quote, tilde
+        // prevent the keypress
+        return false;
+    }
+      });
+	  
+	  
+	 $('.fcode').each(function() {
+	  
+	  $(this).append(' <select class="mdl-textfield__input" type="text" id="'+$(this).attr('name')+'" name="'+$(this).attr('name')+'" readonly>' +
+						'<option class="mdl-menu__item" value="" >Frequency Code:</option>'+
+                        '<option class="mdl-menu__item" value="0" selected="selected" >Never</option>'+
+                        '<option class="mdl-menu__item" value="1" >1 - 1x a day</option>'+
+                        '<option class="mdl-menu__item" value="2" >2 - 2x a day</option>'+
+                        '<option class="mdl-menu__item" value="3" >3 - 3x a day</option>'+
+                        '<option class="mdl-menu__item" value="4" >4 - 1x a week</option>'+
+                        '<option class="mdl-menu__item" value="5" >5 - 2x a week</option>'+
+                        '<option class="mdl-menu__item" value="6" >6 - 3x a week</option>'+
+                        '<option class="mdl-menu__item" value="7" >7 - 4x a week</option>'+
+                        '<option class="mdl-menu__item" value="8" >8 - 5x a week</option>'+
+                        '<option class="mdl-menu__item" value="9" >9 - 6x a week</option>'+
+                        '<option class="mdl-menu__item" value="10" >10 - 1x a month</option>'+
+                        '<option class="mdl-menu__item" value="11" >11 - 2x a month</option>'+
+                        '<option class="mdl-menu__item" value="12" >12 - 3x a month</option>'+
+						'</select> ');
+	  
+	  });
+	 $("input[type='checkbox']").css('display','none');
+	 $("input[type='checkbox']").css('background-color','green');
+	 
+	 alert("NOTICE:THIS FORM SAVES AUTOMATICALLY DUE TO MANY ITEMS PRESENT");
+
+    });
+
+    </script>
+
+	<div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+	
+</body>
+</html>

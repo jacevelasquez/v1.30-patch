@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links_d.ejs %>
+
+  </head>
+  
+  <style>
+  .loading {
+  display:none;
+  }
+  
+  .reminders {
+    line-height: 1.6;
+}
+
+.nav-tabs>li>a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border-top: 1px solid #658c9b;
+	border-left: 1px solid #658c9b;
+	border-right: 1px solid #658c9b;
+    border-radius: 4px 4px 0 0;
+}
+
+
+
+  </style>
+
+  <body class="main-menu">
+	
+    <% include ../views/header_d.ejs %>
+
+    <div class="container">
+        <div class="row">
+		
+		<ul class="nav nav-tabs">
+							  <li class=""><a href="#forms" data-toggle="tab" aria-expanded="false">Forms</a></li>
+							  <li class=""><a href="#upload11" data-toggle="tab" aria-expanded="false">Upload f1.1</a></li>
+							  <li class=""><a href="#conso" data-toggle="tab" aria-expanded="true">Consolidate</a></li>
+							  <li class=""><a href="#trans" data-toggle="tab" aria-expanded="true">Transmission</a></li>
+		</ul>
+		
+		<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active in" id="forms">
+		<div class="container">
+		<br>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>EACODE</th>
+					<th>AREA NAME</th>
+					<th>ACTION</th>
+					<th></th>
+					<th>BACK-UP</th>
+					<th>TRANSMISSION</th>
+					<th>TRANS DATA</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% rows.forEach(function(row){
+				%>
+				<tr>
+					<td><%= row.eacode%></td>
+					<td><%= row.areaname%></td>
+					<td><a href="/dietaryhh/<%= row.eacode%>"><button class="btn btn-danger">SELECT</button></a></td>
+					<td></td>
+					<td><a href="/exportd/<%= row.eacode%>" onclick="if (!confirm('Are you sure you want to backup?')) return false;"><span style="font-size: 35px; color: blue" class="glyphicon glyphicon-cloud-download"></span></a></td>
+					<td><a href="/transmission/{{value.eacode}}" onclick="if (!confirm('Are you sure you want to transmit data?')) return false;"><span style="font-size: 35px; color: green" class="glyphicon glyphicon-cloud-upload"></span></a></td>
+					<td><a href="/checktransD/<%= row.eacode%>"><button class="btn btn-danger">VIEW</button></a></td>
+
+				</tr>
+				<% });%>
+				<tr>
+					<td><input type="text" class="form-control" placeholder="Enter eacode.." id="newea"></td>
+					<td><button class="btn btn-info" id="save_newea">Add</button></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		</div>
+		
+		<div class="tab-pane fade" id="upload11">
+		<div class="container">
+		<br>
+		<form id="upload-form" action="/uploadf11" method="post" enctype="multipart/form-data">
+        <fieldset>
+			
+            <legend>Upload Data</legend>
+			
+            <div>
+                <!-- The name here is important, and will be used later to reference the data -->
+                <input type="file" name="csvdata" accept="text/cvs">
+            </div>
+            <div style="margin-top:10px;margin-bottom:10px;">
+                <input type="submit" value="Submit" class="btn btn-success"/>
+            </div>
+        </fieldset>
+
+		</form>
+
+		</div>
+		</div>
+		
+				
+		<div class="tab-pane fade" id="conso">
+			<div class="container">
+				<br>
+				<div>
+					<legend>Consolidate Data</legend>
+				</div>
+				
+				<form id="upload-form" action="/upload_d" method="post" enctype="multipart/form-data">		
+					<fieldset>
+						<div>
+							<input type="file" name="csvdata_cons" class="upload_cons_d" >
+						</div>
+						<div style="margin-top:10px;margin-bottom:10px;">
+							<input type="submit" value="Consolidate" class="btn btn-danger" id="sub" />
+							
+						</div>
+					</fieldset>
+				</form>   
+	
+				  <div>
+				<h5 class="reminders">
+				<b>Reminders:</b> <br>
+				1. If the consolidated file is incomplete, reconsolidate again <br>
+				2. If it is still incomplete, check your AR's data if he/she has callback of your missing household listings
+				</h5>
+				</div>
+			</div>
+		</div>
+		
+		<div class="tab-pane fade" id="trans">
+			<div class="container">
+				<br>
+				<div>
+					<legend>Transmit Data</legend>
+				</div>
+				
+				<form id="upload-form" action="/trans_d" method="post" enctype="multipart/form-data">		
+					<fieldset>
+						<div>
+							<input type="file" name="csvdata_trans" class="upload_trans_d" >
+						</div>
+						<div style="margin-top:10px;margin-bottom:10px;">
+							<input type="submit" value="Transmit" class="btn btn-danger" />
+							
+						</div>
+					</fieldset>
+				</form>   
+	
+				  <div>
+				<h5 class="reminders">
+				<b>Reminders:</b> <br>
+				1. If the consolidated file is incomplete, reconsolidate again <br>
+				2. If it is still incomplete, check your AR's data if he/she has callback of your missing household listings
+				</h5>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		</div>
+    </div>
+  
+  
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+  
+	<script type="text/javascript">
+	
+	$(document).on('change','.upload_cons_d',function(){
+
+		var data = {};
+		var fileUpload = $('.upload_cons_d')[0].files[0];
+		var formData = new FormData();
+		formData.append('userfile',fileUpload);
+				 $.ajax({
+							type: 'POST',
+							data: formData,
+							contentType: false,
+							processData: false,
+							url: '/upload_cons_d',						
+							success: function(data) { 
+							
+							}
+				  
+					  });
+					  
+	});
+	
+	$(document).on('change','.upload_trans_d',function(){
+
+		var data = {};
+		var fileUpload = $('.upload_trans_d')[0].files[0];
+		var formData = new FormData();
+		formData.append('userfile',fileUpload);
+				 $.ajax({
+							type: 'POST',
+							data: formData,
+							contentType: false,
+							processData: false,
+							url: '/upload_trans_d',						
+							success: function(data) { 
+							
+							}
+				  
+					  });
+					  
+	});
+	
+	$(document).on('click','#save_newea',function(){
+
+		var data = {};
+		data.eacode = $('#newea').val();
+
+		$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/save_newea',						
+                            success: function(data) {
+							if(data == 'error') {
+							alert('EACODE not exisiting. please check');
+							}
+							if(data == 'ok') {
+							window.location.href = '/dietaryhome/';
+							}
+							
+							}
+	
+		});
+					  
+	});
+
+	</script>
+  
+  
+</html>

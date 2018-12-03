@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links.ejs %>
+  </head>
+  <style>
+  * {
+		box-sizing: border-box;
+		}
+
+		*:focus {
+			outline: none;
+		}
+
+		.login {
+		margin: 20px auto;
+		width: 300px;
+		}
+		.login-screen {
+		background-color: #FFF;
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: 2px 4px 20px -2px black;
+		}
+
+		.app-title {
+		text-align: center;
+		color: #777;
+		}
+
+		.login-form {
+		text-align: center;
+		}
+		.control-group {
+		margin-bottom: 10px;
+		}
+
+		input {
+		text-align: center;
+		background-color: #ECF0F1;
+		border: 2px solid transparent;
+		border-radius: 3px;
+		font-size: 16px;
+		font-weight: 200;
+		padding: 10px 0;
+		width: 250px;
+		transition: border .5s;
+		}
+
+		input:focus {
+		border: 2px solid #3498DB;
+		box-shadow: none;
+		}
+
+		.btn {
+		  border: 2px solid transparent;
+		  background: #3498DB;
+		  color: #ffffff;
+		  font-size: 16px;
+		  line-height: 25px;
+		  padding: 10px 0;
+		  text-decoration: none;
+		  text-shadow: none;
+		  border-radius: 3px;
+		  box-shadow: none;
+		  transition: 0.25s;
+		  display: block;
+		  width: 250px;
+		  margin: 0 auto;
+		}
+
+		.btn:hover {
+		  background-color: #2980B9;
+		}
+
+		.login-link {
+		  font-size: 12px;
+		  color: #444;
+		  display: block;
+			margin-top: 12px;
+		}
+  </style>
+
+  <body class="login-page">
+
+    
+	
+	<br><br><br><br>
+	<div class="login">
+		<form class="form-horizontal" action="/login" method="post">
+		<fieldset>
+		<div class="login-screen">
+			<div class="app-title">
+				<h1><img height="40" width="40"src="/FNRI.png">&nbsp;e-DCS</h1>
+			</div>
+
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" placeholder="username" name="username" id="username" onclick="/backup_all">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="password" class="login-field" placeholder="password" name="pword" id="pword" placeholder="Password">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<button class="btn btn-primary btn-large btn-block" type="submit" name="submit" onclick="javascript:location.href='/backup_all/'">Login</button>
+				<br>
+				<span class="pull-right">
+				<a  data-target="#changelog" data-toggle="modal">view changelog</a>
+				</span>
+				<br>
+			</div>
+		</div>
+		</fieldset>
+		</form>
+	</div>
+	
+  <div class="modal" id="changelog">
+  <div class="modal-dialog-summ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">e-DCS changelog</h4>
+      </div>
+      <div class="modal-body">
+		<b>v1.09</b> : After Training <br>
+		<b>v1.10</b> : Household access <br>
+		<b>v1.11</b> : TEST IT<br>
+		<b>v1.12</b> : TEST TL <br>
+		<b>v1.13</b> : Before NNS2018 <br>
+		<b>v1.14</b> : NNS2018 <br>
+		<b>v1.15</b> : Filtered form 5.8 for dietary households <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Removed questions 11 to 34 on form 5.8 <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Fixed bug on form 5.6 (FFQ) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Skipping on MUAC form 2.1 <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Updated Inteview Status on Individual Forms <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added accounts for CHR <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Ignored Specific special characters <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Fixed bug on form 5.3 <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Exporting backup changed from per eacode to per brgy. <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Viewing of transmitted data changed from per eacode to per brgy. <br>
+		<b>v1.16</b> : Removed form 1.5 (FIES) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Mother of 0-36 months checkbox will show on Member edit  <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Removed Summary button on household listings (REASON: Reduce errors on program operation)  <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Viewing of Summary on Main Menu changed from per eacode to per brgy.  <br>
+		<b>v1.17</b> : Improved Data Transmission Monitoring <br>
+		<b>v1.18</b> : Data Transmission of AR now viewable (Check/View Transmitted data)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added Skipping on form 3.1 (see instructions on Q20) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added Skipping on form 3.2 (see instructions on Q21) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Viewing of age on form 1.1 page changed from 2 decimal places to 4 decimal places <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added MIL on viewing of summary on form 2.1 <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <u>For backup-ing data, users dont need to create members (name: 'FOR DELETION') anymore when the brgy has all non-coverage Interview Status</u><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Arrow keys now working on Anthropometric measurements<br>
+		<b>v1.19</b> : Replaced Household now viewable on household listings<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added checkbox and textbox on replaced households (ADD HOUSEHOLD BUTTON)  <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added Transmission option for <b>DIETARY</b> on Main Menu. (REASON: If the transmission on dietary program doesn't work) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added viewing of transmitted data on dietary (per eacode only)  <br>
+		<b>v1.20</b> : Fixed bug on summary page (can input apostrophe ['] ) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Improved User-Interface <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Updated User input on specific text box (only accepts numbers) on form 3.1, form 1.2 and form 5.3  <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added code choices of non-covered household for form 1.2   <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Pre-test of e-DCS version 2.0 <br>
+		<b>v1.30</b> : Added new individual form (Form 4.11) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added new individual form (Form 5.9) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added/Updated accounts for NNS2019  <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added encoding for Latitude and Longitude for households <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Replacement households can now be edited (autosave) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added new option on main menu - Send data to IT (Upload backup if doesn't work in transmission) <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Removed dietary encoding <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Added log file for easy tracing <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Address of households can now be edited (pin button) <br>
+		
+		
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  
+  <!-- <div class="container"> -->
+    <!-- <div class="row" style="padding-top: 80px"> -->
+         <!-- <div class="col-lg-3"> -->
+         <!-- </div> -->
+          <!-- <div class="col-lg-6"> -->
+            <!-- <div class="well bs-component"> -->
+              <!-- <form class="form-horizontal" action="/login" method="post"> -->
+                <!-- <fieldset> -->
+                  <!-- <legend>Log-in</legend> -->
+                  <!-- <div class="form-group"> -->
+                    <!-- <label for="inputEmail" class="col-lg-2 control-label">User name</label> -->
+                    <!-- <div class="col-lg-10"> -->
+                      <!-- <input type="text" class="form-control" name="username" id="username" placeholder="User name"> -->
+                    <!-- </div> -->
+                  <!-- </div> -->
+                  <!-- <div class="form-group"> -->
+                    <!-- <label for="inputPassword" class="col-lg-2 control-label">Password</label> -->
+                    <!-- <div class="col-lg-10"> -->
+                      <!-- <input type="password" name="pword" class="form-control" id="pword" placeholder="Password"> -->
+                    <!-- </div> -->
+                  <!-- </div> -->
+                  <!-- <div class="form-group"> -->
+                    <!-- <div class="col-lg-10 col-lg-offset-2"> -->
+						<!-- <button type="submit" name="submit" class="btn btn-primary right">Login</button> -->
+						
+						<!-- <div style="clear: both"></div> -->
+                    <!-- </div> -->
+					
+                  <!-- </div> -->
+                <!-- </fieldset> -->
+              <!-- </form> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="col-lg-3"> -->
+          <!-- </div> -->
+    <!-- </div> -->
+  <!-- </div> -->
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row centered">
+    </div><!-- /row -->
+    <hr>
+    <center><p class="center" id="version">Copyright&copy;2017 &nbsp; Food and Nutrition Research Institute. Department of Science and Technology.</p></center>
+  </div><!-- /container -->
+  
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://10.10.125.43/legone/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap-typeahead.js"></script>
+<script type="text/javascript" src="/jquery/global.js"></script>
+<!-- <script type="text/javascript" src="/jquery/settings.js"></script> -->
+  </body>
+</html>
+
+
+<script language="javascript">
+</script>

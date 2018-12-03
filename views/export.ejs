@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<% include ../views/links.ejs %>
+
+  </head>
+<style>
+#myInput {
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+div.col-md-8, div.col-md-2 {
+padding: 0px 0px 0px 0px;
+}
+
+#myUL {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#myUL li a {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+	
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+
+<!-- #myUL li a.header { -->
+    <!-- background-color: #e2e2e2; /* Add a darker background color for headers */ -->
+    <!-- cursor: default; /* Change cursor style */ -->
+<!-- } -->
+
+<!-- #myUL li a:hover:not(.header) { -->
+    <!-- background-color: #eee; /* Add a hover effect to all links, except for headers */ -->
+<!-- } -->
+
+.hh_color {
+	background-color : rgb(255, 137, 240, 0.5);
+}
+
+.indiv_color {
+	background-color : rgb(49, 232, 124, 0.5);
+}
+
+.f11 {
+    border-color:black;
+    background-color: #89e2fb;
+    height:300px;
+    width:500px;
+    cursor:pointer;
+	color:black;
+	margin-right: 20px;
+	margin-left: 80px;
+}
+
+
+
+</style>
+  
+  
+  <body>
+
+    <!-- Fixed navbar -->
+        <% include ../views/header.ejs %>
+
+      <div class="container">
+        <div class="row">
+        <div class="container">
+
+    <div class="row">
+      <br />
+      <br />
+      <br />
+      <div class="list-group">
+	  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for areacode..">
+	<div class="compress">
+	<ul id="myUL">
+	 <% array.forEach(function(row){ %>
+	<li>
+	<div class="row" style="background-color: white; border-color:black;">
+	<div class="col-md-6">
+	<h5><%=row.eacode%> - <%=row.areaname%></font></h5>
+	</div>
+	<div class="col-md-2">
+	<a href="/exportf11/<%=row.eacode%>" style="background-color: #e8e00e; color:black;" class="f11m qq" onclick="alert('Download Sucessful!')"><font size="3">DIETARY</font></a>
+    </div>
+    <div class="col-md-2">
+    <a href="/exportbio/<%=row.eacode%>" style="background-color: #59186f; color:white;" class="f11m qq" onclick="alert('Download Sucessful!')"><font size="3">BIOCHEM</font></a>
+    </div>
+	<div class="col-md-2">
+	<a href="/exportall/<%=row.eacode%>" style="background-color: #b61818; color:white;" class="validateIS allm qq" id="<%=row.eacode%>"><font size="3">BACKUP</font></a>
+	</div>
+	</div>
+	</li>
+   <%});%>
+    </ul> 
+</div>    
+      </div>  
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h5")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+$( "#backup_searcharea" ).keyup(function() {
+       var data = {};
+     
+       data.areaname = $('#backup_searcharea').val();
+        
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/dblookup/listareas',						
+                        success: function(data) { 
+                       //console.log(data);
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#backuplist').append('<a class="list-group-item" href="/legone/survey/surveyform/backup/'+data[i].eacode+'"><span>'+data[i].eacode+' - '+data[i].areaname+'</span></a>');
+                              }          
+                        }
+                     }
+                  });
+        
+  
+});
+
+$( ".validateIS" ).click(function() {
+       var data = {};
+	   data.eacode = $(this).attr('id');
+	   console.log(data.eacode);
+		$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/validateIS',						
+                        success: function(data) {
+						var obj = [];
+						var objh = [];
+							for(var i in data['f11']) {
+							if(data['f11'][i].INTERVIEW_STATUSF == '' || data['f11'][i].INTERVIEW_STATUSF == null){
+							obj.push("<table class='table table-striped'><tr><td class='indiv_color'>eacode: "+data['f11'][i].eacode+" "+
+									 "</td><td class='indiv_color'>hcn :" +data['f11'][i].hcn+" " +
+									 "</td><td class='indiv_color'>shsn : "+data['f11'][i].shsn+" "+ 
+									 "</td><td class='indiv_color'>MEMBER_CODE : "+data['f11'][i].MEMBER_CODE+" " +
+									 "</td><td class='indiv_color'> "+data['f11'][i].username+" " +
+									 "</td><td class='indiv_color'>Final IS: <b>*NO DATA*</b></td><td> <a href='/legone/survey/surveyform/summary/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"'>edit</a></td></tr>");
+							}
+							}
+							for(var i in data['hh']) {
+							if(data['hh'][i].INTERVIEW_STATUS4 == '99'){
+							obj.push("<table class='table table-striped'><tr><td class='hh_color'>eacode: "+data['hh'][i].eacode+" "+
+									 "</td><td class='hh_color'>hcn :" +data['hh'][i].hcn+" " +
+									 "</td><td class='hh_color'>shsn : "+data['hh'][i].shsn+" "+ 
+									 "</td><td class='hh_color'>Final IS: <b>*NO DATA*</b></td><td> <a href='/legone/survey/surveyform/households/"+data['f11'][i].eacode+"'>edit</a></td></tr>");
+							}
+							}
+						
+							if(obj != '') {
+							BootstrapDialog.show({
+								type:BootstrapDialog.TYPE_DANGER, 
+								title: '<font size="5">Incomplete Final Interview Status</font><span class="pull-right">'+
+									   '<label style="display:inline-block; background-color:rgb(255, 137, 240, 0.5); color:rgb(255, 0, 223);"> <font size="5">&nbsp; HOUSEHOLD  &nbsp; </font></label>'+
+									   '<label style="display:inline-block; background-color:rgb(49, 232, 124, 0.5); color:rgb(56, 109, 77);"> <font size="5">&nbsp; INDIVIDUAL  &nbsp; </font></label></span>',
+								message: obj 
+							});
+							}
+                     }
+                  });
+
+});
+
+
+</script>
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

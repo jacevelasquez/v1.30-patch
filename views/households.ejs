@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links.ejs %>
+
+  </head>
+<style>
+.list-group-item {
+margin-left:-5%;
+width:110%;
+}
+body .modal {
+    width: 1500px;
+
+}
+
+.coord {
+	width: 50%;
+}
+.updateReplacement {
+	width: 40%;
+	}
+
+</style>
+  <body>
+
+    <% include ../views/header.ejs %>
+
+      
+	<div class="container" style="width:75%">
+		<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/awesome-bootstrap-checkbox.css" />
+
+		<div id="household-form" class="row" style="padding-top: 80px;">
+			<div class="list-group">
+			<li class="list-group-item active main"><a href="#" style="color:white;font-weight:bold;"></a>
+			<span class="pull-right"><button class="btn btn-primary" onclick="quickbackup('<%= array4[0].eacode %>')"> quick backup</button></span>
+				<% array4.forEach(function(row){
+				
+				%>
+				<%= row.eacode %> - <%= row.areaname%> 
+				<br>
+				<%});%>
+				<center><h4><label id="total"><%= array.length%></label> households • 
+							<label id="cover"><%= arrayC.length%></label>  covered • 
+							<label id="ncover"><%= arrayN.length%></label> not covered </h4> </center>
+			</li>
+
+			<% array.forEach(function(row){
+			var all = ""+row.eacode+row.hcn+row.shsn+"";
+			%>
+			<li class="list-group-item"> <%=row.eacode.substring(9,12)%> &nbsp;
+				<a class="hhead" id="<%= all%>" href="/legone/survey/surveyform/form11/<%=row.eacode.substring(0,9)%><%=row.eacode.substring(9,12)%><%=row.hcn%><%=row.shsn%>" > <%=row.hcn%> | <%=row.shsn%></a>&nbsp;&nbsp;
+				<input type="text" value='<%=row.hhead%>' name="<%=row.hhead%>" id="hhead_<%= all%>" class="form-control" style="display:inline-block; width:175px" onkeyup="hhead('<%= all%>')" />       
+				
+			 
+			  <button type="button" class="btn btn-danger" style="margin: 0;" data-toggle="collapse" data-target="#demo<%= all%>"><span class="glyphicon glyphicon-calendar"></span> CALLBACK</button>
+				&nbsp;&nbsp;
+				<button type="button" id="map_<%= all%>" class="btn" data-toggle="modal" data-target="#maps_<%= all%>"><span class="glyphicon glyphicon-map-marker"></span></button>
+				&nbsp;&nbsp;
+			  		<div id="indivnumlist_<%= all%>" style="display: inline-block; vertical-align: middle;"> </div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<div class="checkbox checkbox-info replace_cb" id="replacement_show_<%= all%>" style="display: inline-block;">
+					<input type="checkbox" name="replacement_<%= all%>" id="replacement_<%= all%>">
+					<label>Replaced:</label>
+					<input type='hidden' value='' name='replacement_<%= all%>' id='replacement_<%= all%>_' />
+					
+					<input type="text" id="replace_<%= all%>" class="updateReplacement" style="display: inline-block; vertical-align: middle;" onkeyup="updateReplacement('<%= all%>')">
+					</div>
+					
+				<div class="modal" id="maps_<%= all%>">
+				  <div class="modal-dialog modal-sm coord">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"> Coordinates </h4>
+					  </div>
+					  <div class="modal-body">
+						<div class="row">
+						<div class="col-md-6">
+						Longitude : <input type="text" id="long_<%= all%>" class="form-control" onchange='map("<%= all%>")'> 
+						</div>
+						<div class="col-md-6">
+						Latitude : <input type="text" id="lati_<%= all%>" class="form-control" onchange='map("<%= all%>")'> 
+						</div>
+						<hr>
+						<div class="col-md-12">
+							Address : <input type="text" id="addr_<%= all%>" class="form-control" onchange='map("<%= all%>")'> 
+						</div>
+						</div>
+						
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick='saveCoords("<%= all%>")'>SAVE</button>
+					  </div>
+					</div>
+
+				  </div>
+				</div>
+					
+				<div class="modal" id="f12_<%= all%>">
+				  <div class="modal-dialog-summ">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">FORM 1.2 Household and other Demographic information (for <b> NOT COVERED </b> households only) </h4>
+					  </div>
+					  <div class="modal-body">
+						<div class="list-group">
+						<div class="row">
+						<div class="col-md-6">
+						<b>3.) What is the type of dwelling unit of the household (observation)<br></b>
+						<i>Uri ng bahay na inyong tinitirahan</i>
+						<br>
+						<select name='f12_03_01' id='f12_03_01_<%= all%>' class="form-control" onchange='update_f12("<%= all%>")' />
+						<option value = ''>Please Select</option>
+						<option value = '1'>1 - Single house </option> 
+						<option value = '2'>2 - Duplex </option> 
+						<option value = '3'>3 - Multi-unit residential (three units or more) </option> 
+						<option value = '4'>4 - Commercial/industrial/agricultural (office, factory and others) </option> 
+						<option value = '5'>5 - Institutional living quarter (fhotel, hospital, and others) </option> 
+						<option value = '6'>6 - Other housing units (boat, cave and others) </option> 
+						</select>
+						<b>4.) Main roofing material of the household’s dwelling unit (observation)<br></b>
+						<i>Pangunahing uri ng bubong ng inyong bahay</i>
+						<br>
+						<select name='f12_04_01' id='f12_04_01_<%= all%>' class='form-control' onchange='update_f12("<%= all%>")' />
+						<option value = ''>Please Select</option>
+						<option value = '1'>1 - Salvaged/makeshift materials </option> 
+						<option value = '2'>2 - Mixed but predominantly salvaged materials  </option> 
+						<option value = '3'>3 - Light materials (cogon, nipa, anahaw) </option> 
+						<option value = '4'>4 - Mixed but predominantly light materials </option> 
+						<option value = '5'>5 - Mixed but predominantly strong materials </option> 
+						<option value = '6'>6 - Strong Materials (galvanized iron, all) </option>
+						</select>
+						</div>
+						<div class="col-md-6">
+						<b>5.) Main material used for the wall of the household’s dwelling unit (observation)<br></b>
+						<i>Pangunahing uri ng dingding ng inyong bahay</i>
+						<br>
+						<select name='f12_05_01' id='f12_05_01_<%= all%>' class="form-control" onkeyup='update_f12("<%= all%>")' />
+						<option value = ''>Please Select</option>
+						<option value = '1'>1 - Salvaged/makeshift materials </option> 
+						<option value = '2'>2 - Mixed but predominantly salvaged materials  </option> 
+						<option value = '3'>3 - Light materials (bamboo,sawali,cogon,nipa) </option> 
+						<option value = '4'>4 - Mixed but predominantly light materials </option> 
+						<option value = '5'>5 - Mixed but predominantly strong materials </option> 
+						<option value = '6'>6 - Strong Materials (concrete/brick/stone) </option> 
+						</select>
+
+						</div>
+						</div>
+						</div>
+					  </div>
+					  <div class="modal-footer"><b><i><u>NOTE: This is auto-saved. </u></i></b> 
+						<button type="button"  data-dismiss="modal">SAVE</button>
+					  </div>
+					</div>
+
+				  </div>
+				</div>
+
+			  <span class="pull-right"><div class="checkbox checkbox-success" style="margin: 5px;">
+					<input type="checkbox"  class="diebio" name="diebio_<%= all%>" id="diebio_<%= all%>">
+						<label> Dietary/Biochem </label>
+					<input type='hidden' value='' name='diebio_<%= all%>' id='diebio_<%= all%>_' />
+	
+					<button class="btn btn-primary trash" id="edithouse-btn"  data-toggle="modal" data-target="#edithousehold_dialog" onclick="view('<%= all%>')"><span class="glyphicon glyphicon-pencil"></span></button>
+					<button type="button" class="btn btn-warning trash" data-toggle="collapse" onclick="remove('<%= all%>')"> <span class="glyphicon glyphicon-trash"></span></button>
+					
+			  </div></span>
+			  <span class="pull-right">
+				<input type="text" placeholder="Others.." name="INTERVIEW_STATUS_OTH" id="INTERVIEW_STATUS_OTH_<%= all%>" class="form-control" style="display:inline-block; width:200px;" onchange="is4('<%= all%>')">
+				<button type="button" id="form12_<%= all%>" class="btn btn-warning" style="display:inline-block;width:70px;margin-right: 5px;" data-toggle="modal" data-target="#f12_<%= all%>"><span class="glyphicon glyphicon-home"></span> F1.2 </button>
+				<select name='INTERVIEW_STATUS4' style="display:inline-block;width:175px;margin-right: 5px;" id='INTERVIEW_STATUS4_<%= all%>' class='form-control inter' onchange="is4('<%= all%>')">
+				<option value=''>Select Interview Status</option>
+				<option value='99' style="color: red;">*START INTERVIEW AND DATA COLLECTON*</option>
+				<optgroup label="Covered"><option value='1'>1 - Covered Household</option>
+				<option value='2'>2 - Partly Completed</option>
+				</optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				<option value='11'>11 - Others</option>
+				</optgroup>
+				</select>
+				
+			  </span>
+			  <div id="demo<%= all%>" class="collapse">
+			  
+			  <input type="date" class="form-control" placeholder="Visit 1 date" style="display:inline-block; width:330px" name="visit1_<%= all%>"  id="visit1_<%= all%>" onkeyup="visit1('<%= all%>')" />
+		  
+				<select name='INTERVIEW_STATUS1' style="display:inline-block; width:330px" id='INTERVIEW_STATUS1_<%= all%>' class='form-control' onchange="is1('<%= all%>')">
+				<option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Covered Household</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup>
+				</select>
+				<br>
+				<input type="date" class="form-control" placeholder="Visit 2 date" style="display:inline-block; width:330px" name="visit2_<%= all%>"  id="visit2_<%= all%>" onkeyup="visit2('<%= all%>')" />
+				<select name='INTERVIEW_STATUS2' style="display:inline-block; width:330px" id='INTERVIEW_STATUS2_<%= all%>' class='form-control' onchange="is2('<%= all%>')">
+				<option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Covered Household</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup>
+				</select>
+				<br>
+				<input type="date" class="form-control" placeholder="Visit 3 date" style="display:inline-block; width:330px" name="visit3_<%= all%>"  id="visit3_<%= all%>" onkeyup="visit3('<%= all%>')" />
+				<select name='INTERVIEW_STATUS3' style="display:inline-block; width:330px" id='INTERVIEW_STATUS3_<%= all%>' class='form-control' onchange="is3('<%= all%>')">
+				<option value=''>Select Interview status</option>
+				<optgroup label="Covered"><option value='1'>1 - Covered Household</option></optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				
+				<option value='11'>11 - Others</option>
+				</optgroup>
+				</select>
+				
+				
+				
+				</div>
+			 <input type="hidden" name="hcn" id="hcn_" value="<%=row.hcn%>" />
+			 <input type="hidden" name="shsn" id="shsn_" value="<%=row.shsn%>" />
+			 
+			  
+			</li>
+				  <%});%>
+			<br />
+			<button class="btn btn-success" id="addhouse-btn"  data-toggle="modal" data-target="#addhousehold_dialog"><i class="glyphicon glyphicon-home">&nbsp;</i>Add household</button>
+			  </span>
+			  </li>
+			  </div>  
+		  </div>  
+    
+
+<div class="modal fade" id="addhousehold_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>New Household</strong></h4>
+      </div>
+      <div class="modal-body">
+
+    <!-- <form> -->
+	<div class="row">
+		<div class="form-group col-md-3">
+          <label>EACODE:</label>
+          <input type="text" name="eacode" id="eacode2" value="" class="form-control" placeholder="Please double check..">
+        </div>
+       <div class="form-group col-md-3">
+          <label>HCN:</label>
+          <input type="text" name="hcn" id="hcn" value="" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <label>SHSN:</label>
+          <input type="text" name="shsn" id="shsn" value="" class="form-control">
+        </div>
+		<div class="form-group col-md-3">
+          
+          <input type="checkbox" style="width: 35px;  height: 35px;" name="diebio" id="diebio">
+		  <label>Dietary/Biochem:</label>
+		  <input type='hidden' value='' name='diebio' id='diebio_' />
+        </div>
+	</div>
+	<div class="row">
+      <div class="form-group col-md-3">
+          <label>Household head:</label>
+          <input type="text" name="househead" id="househead" value="" class="form-control">
+       </div>
+        <div class="form-group col-md-3">
+          <label>Address:</label>
+          <textarea name="address" id="address" value="" class="form-control" style="margin: 0px -1px 0px 0px; height: 54px; width: 100%;"></textarea>
+
+     </div>
+        <div class="form-group col-md-3">
+          <label>Respondent:</label>
+          <input type="text" name="respondent" id="respondent" value="" class="form-control">
+       </div>
+	</div>
+	
+       
+		<div class="form-group col-md-3">
+          
+          <input type="checkbox" style="width: 35px;  height: 35px;" name="REF_DATE" id="REF_DATE">
+		  <label>Replacement Household</label>
+		  <input type='hidden' value='' name='REF_DATE' id='REF_DATE_' />
+		  
+        </div>
+		<div class="col-md-3" id="replacement_text">
+		<label>Enter replaced household (Please follow the format: HCN/SHSN) </label>
+		<input type='text' name='DATE_EDIT' id='DATE_EDIT' class="form-control" placeholder="HCN/SHSN" />
+		</div>
+          <input type="hidden" name="eacode" id="eacode" value="">
+		<br>
+		 <div class="form-group col-md-6">
+          <span class="pull-right"><button type="button" id="savehousehold_btn" class="btn btn-primary">Save household</button></span>
+        </div>
+  <div style="clear: both"></div>
+<!-- </form> -->
+      </div>
+
+    </div>
+  </div>
+</div> 
+
+<div class="modal fade" id="edithousehold_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>Edit Household</strong><div class="row_id"></div></h4>
+      </div>
+      <div class="modal-body">
+
+    <!-- <form> -->
+	<div class="row">
+		<div class="form-group col-md-3">
+          <label>EACODE:</label>
+          <input type="text" name="eacode" id="eacode-e" value="" class="form-control" placeholder="Please double check..">
+        </div>
+       <div class="form-group col-md-3">
+          <label>HCN:</label>
+          <input type="text" name="hcn" id="hcn-e" value="" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <label>SHSN:</label>
+          <input type="text" name="shsn" id="shsn-e" value="" class="form-control">
+        </div>
+	</div>
+
+        <div class="form-group col-md-9">
+		  <span class="pull-right"><button type="button" id="savehousehold_btn-e" class="btn btn-primary">Update household</button></span>
+		  <input type="hidden" name="eacode" id="eacode-e" value="">
+       </div>
+
+  <div style="clear: both"></div>
+<!-- </form> -->
+      </div>
+
+    </div>
+  </div>
+</div> 
+
+<script type="text/javascript">
+  $(document).ready(function(){
+ 
+  
+    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+	var act = bigIdString.substring(12,13);
+	document.getElementById('eacode').value = A;
+	
+	$('.sum').hide();
+	$('.replace_cb').hide();
+	$('#replacement_text').hide();
+	
+	var username = '<%= session.username %>';
+	if(username != 'ADMIN'){
+	$('.trash').css('display','none');
+	}
+	else {
+	$('.trash').show();
+	}
+	
+	$("html").bind("keypress", function(e) {
+          if(e.keyCode == 13) {
+            return false;
+			}
+			if (event.keyCode === 39 || event.keyCode === 34 || event.keyCode === 96 ) { // apostrophe, double quote, tilde
+        // prevent the keypress
+        return false;
+    }
+      });
+	  
+	
+
+    var data= {};
+    data.eacode = A;
+	data.act = act;
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/households/post',						
+                            success: function(data) {
+							
+                               var input = JSON.parse(JSON.stringify(data));
+                               Object.keys(input).forEach(function(key) {
+                               var val = input[key];
+                               var view ="$('[name="+key+"]').val(data."+key+");";
+                               
+                               $('[name=hhead]').val(data.hhead); 
+							   
+							  
+                                }); 
+								
+                                for(var i=0;i<data.length;i++)
+                                { 
+								var all = ''+data[i].eacode+data[i].hcn+data[i].shsn+'';
+								$('[name=visit1_'+all+']').val(data[i].visit1); 
+								$('[name=visit2_'+all+']').val(data[i].visit2); 
+								$('[name=visit3_'+all+']').val(data[i].visit3); 
+                                $('#INTERVIEW_STATUS1_'+all+'').val(data[i].INTERVIEW_STATUS1);
+								$('#INTERVIEW_STATUS2_'+all+'').val(data[i].INTERVIEW_STATUS2);
+								$('#INTERVIEW_STATUS3_'+all+'').val(data[i].INTERVIEW_STATUS3);
+								$('#INTERVIEW_STATUS4_'+all+'').val(data[i].INTERVIEW_STATUS4);
+								$('#INTERVIEW_STATUS_OTH_'+all+'').val(data[i].INTERVIEW_STATUS_OTH);
+								$('#f12_03_01_'+all+'').val(data[i].f12_03_01);
+								$('#f12_04_01_'+all+'').val(data[i].f12_04_01);
+								$('#f12_05_01_'+all+'').val(data[i].f12_05_01);
+								$('#f12_06_01_'+all+'').val(data[i].f12_06_01);
+								$('#long_'+all+'').val(data[i].longitude);
+								$('#lati_'+all+'').val(data[i].latitude);
+								$('#addr_'+all+'').val(data[i].address);
+								$('#diebio_'+all+'_').val(data[i].diebio);
+								$('#replacement_'+all+'_').val(data[i].REF_DATE);
+								
+								if($('#long_'+all+'').val() > 0 && $('#lati_'+all+'').val() > 0) {
+								$('#map_'+all+'').addClass('btn-primary');
+								}
+								else {
+								$('#map_'+all+'').addClass('btn-warning');
+								}
+							
+								if($('#INTERVIEW_STATUS3_'+all+'').val() >0 || $('#INTERVIEW_STATUS2_'+all+'').val() >0 || $('#INTERVIEW_STATUS1_'+all+'').val() >0)
+								{
+								$('#INTERVIEW_STATUS4_'+all+'').show();
+								$('#INTERVIEW_STATUS_OTH_'+all+'').show();
+								}
+								else {
+								$('#INTERVIEW_STATUS4_'+all+'').hide();
+								$('#INTERVIEW_STATUS4_OTH_'+all+'').hide();
+								}
+								
+								if($('#INTERVIEW_STATUS4_'+all+'').val() == 3 || $('#INTERVIEW_STATUS4_'+all+'').val() == 4 || $('#INTERVIEW_STATUS4_'+all+'').val() == 5 || $('#INTERVIEW_STATUS4_'+all+'').val() == 6) {
+								$('#form12_'+all+'').show(); 
+								}
+								else {
+								$('#form12_'+all+'').hide();
+								}
+								
+								if($('#INTERVIEW_STATUS4_'+all+'').val() ==11) {
+								$('#INTERVIEW_STATUS_OTH_'+all+'').show(); 
+								}
+								else {
+								$('#INTERVIEW_STATUS_OTH_'+all+'').hide();
+								}
+								
+								if($('#INTERVIEW_STATUS4_'+all+'').val() == 1 || $('#INTERVIEW_STATUS4_'+all+'').val() == 2) {
+								$('#summary_'+all+'').show(); 
+								}
+								else {
+								$('#summary_'+all+'').hide();
+								}
+								
+								if($('#replacement_'+all+'_').val() == 1){
+								$('#replacement_show_'+all+'').show();
+								$('#replacement_'+all+'').prop('checked',true); }
+								
+								if($('#diebio_'+all+'_').val() == 1){
+								$('#diebio_'+all+'').prop('checked',true) }
+                                }
+								
+								$( "input[type=hidden]" ).each(function() {
+                                var name = $(this).attr('name');
+                                var id = $(this).attr('id');
+                                var val = $(this).val();
+                                
+                                
+                                $('li[id=chk_'+name.substring(0,9)+'_'+val+']').addClass('active');
+                                if($('input[name='+name+']').val() == '1') {
+                                $('input[name='+name+']').prop('checked',true); }
+                                });
+                          }
+                        }); 
+						
+  $('.hhead').each(function() {
+
+		
+	    var data = {};
+		data.eacode = $(this).attr('id').substring(0,12);
+		data.hcn = $(this).attr('id').substring(12,16);
+		data.shsn = $(this).attr('id').substring(16,20);
+
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/indivnum',						
+                        success: function(data) {
+						if(data == 'none') {
+						$('#indivnumlist_'+data[0].eacode+data[0].hcn+data[0].shsn+'').append("<span class='pull-right'>0 individual(s)</span>");
+						}
+						else{
+						$('#indivnumlist_'+data[0].eacode+data[0].hcn+data[0].shsn+'').append("<span class='pull-right'>"+data.length+" individual(s)</span>");
+						}
+                        }
+                    });   
+		$('#indivnumlist_'+data.eacode+data.hcn+data.shsn+'').empty();	
+		
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/replacement',						
+                        success: function(data) {
+						if(data == 'none') {
+						$('#replace_'+data[0].eacode+data[0].hcn+data[0].shsn+'').val("0 individual(s)");
+						}
+						else{
+						$('#replace_'+data[0].eacode+data[0].hcn+data[0].shsn+'').val(data[0].DATE_EDIT);
+						}
+                        }
+                    });   
+		$('#replace_'+data.eacode+data.hcn+data.shsn+'').empty();	
+		
+		
+
+	});  
+	
+	
+			
+
+  $(document).on('keypress', '#hcn, #shsn', function(e){
+    return e.metaKey || // cmd/ctrl
+      e.which <= 0 || // arrow keys
+      e.which == 8 || // delete key
+      /[0-9]/.test(String.fromCharCode(e.which)); // numbers
+  });
+
+      $(".hhead").click(function(event){
+         event.preventDefault();
+		
+        var IS1= $("#INTERVIEW_STATUS1_" + $(this).attr("id")).val();
+		var IS2= $("#INTERVIEW_STATUS2_" + $(this).attr("id")).val();
+		var IS3= $("#INTERVIEW_STATUS3_" + $(this).attr("id")).val();
+		var IS4= $("#INTERVIEW_STATUS4_" + $(this).attr("id")).val();
+		
+
+        <!-- if(IS4=="" ){ -->
+          <!-- alert("To start collection, please set value for interview status.") -->
+        <!-- } -->
+        <!-- else if(IS1 > 0){ -->
+
+              <!-- BootstrapDialog.show({ -->
+                 <!-- type:BootstrapDialog.TYPE_WARNING,  -->
+                <!-- title: 'Interview status', -->
+                <!-- message: 'Cannot collect data. Interview status (first visit) is set to ' + $("#INTERVIEW_STATUS1_" + $(this).attr("id") + " option[value='"  + IS1 +"']").text() -->
+            <!-- }); -->
+
+        <!-- } -->
+        <!-- else if(IS2 > 0){ -->
+
+              <!-- BootstrapDialog.show({ -->
+                 <!-- type:BootstrapDialog.TYPE_WARNING,  -->
+                <!-- title: 'Interview status', -->
+                <!-- message: 'Cannot collect data. Interview status (second visit) is set to ' + $("#INTERVIEW_STATUS2_" + $(this).attr("id") + " option[value='"  + IS2 +"']").text() -->
+            <!-- }); -->
+
+        <!-- } -->
+        <!-- else if(IS3 > 0){ -->
+
+              <!-- BootstrapDialog.show({ -->
+                 <!-- type:BootstrapDialog.TYPE_WARNING,  -->
+                <!-- title: 'Interview status', -->
+                <!-- message: 'Cannot collect data. Interview status (third/last visit) is set to ' + $("#INTERVIEW_STATUS3_" + $(this).attr("id") + " option[value='"  + IS3 +"']").text() -->
+            <!-- }); -->
+
+        <!-- } -->
+        <!-- else -->
+		
+		if(IS1 == ''){
+
+              BootstrapDialog.show({
+                 type:BootstrapDialog.TYPE_WARNING, 
+                title: 'Interview status',
+                message: 'Cannot collect data. No callback'
+            });
+        }	
+		else if(IS4 != 2 && IS4 != '99'){
+
+              BootstrapDialog.show({
+                 type:BootstrapDialog.TYPE_WARNING, 
+                title: 'Interview status',
+                message: 'Cannot collect data. Interview status FINAL is not set to Partly Completed or Start interview'
+            });
+        }
+		else{
+          window.location.href = $(this).attr("href");
+        }
+
+      });
+	  
+
+
+
+$("input[name^='hhead']").change(function(){
+        var elem = $(this).attr("id");
+          start = elem.lastIndexOf("_");
+          row_id = elem.substring(start+1);
+          hh = $('#hhead_' + row_id).val();
+          
+           $.post(base_url + 'survey/surveyform/hhupdate/',{id:row_id,value:hh}, 
+            function(data){
+            
+            if(data=='ok'){
+                BootstrapDialog.show({
+                 type:BootstrapDialog.TYPE_INFO, 
+                title: 'Message',
+                message: 'Household head was changed.'
+            });
+              
+            }
+            else{
+                BootstrapDialog.show({
+                  type:BootstrapDialog.TYPE_DANGER,   
+                title: 'Message',
+                message: data
+            });
+               
+              }
+        
+          });
+
+  });
+
+$( "#savehousehold_btn" ).click(function() {
+
+    var eacode =  $('#eacode2').val();
+    var hcn =  $('#hcn').val();
+    var shsn =  $('#shsn').val();
+    var hhead =  $('#househead').val();
+    var address =  $('#address').val();
+    var respondent =  $('#respondent').val();
+	var diebio = $('#diebio_').val();
+	var REF_DATE = $('#REF_DATE_').val();
+	var DATE_EDIT = $('#DATE_EDIT').val();
+	
+    
+      if( hcn.length == 4 && shsn.length == 4 && eacode.length == 12)
+      {
+      
+      $.post("/legone/survey/surveyform/households_check",{eacode:eacode,hcn:hcn,shsn:shsn,address:address,respondent:respondent,hhead:hhead,diebio:diebio,REF_DATE,DATE_EDIT},function(data){
+        if(data=="existing")
+         { 
+            alert('The household already exist.'); 
+         }
+        else{
+               $.post("/legone/survey/surveyform/households",{eacode:eacode,hcn:hcn,shsn:shsn,address:address,respondent:respondent,hhead:hhead,diebio:diebio,REF_DATE,DATE_EDIT},function(data){
+             window.location.href='/legone/survey/surveyform/households/'+eacode+'';})
+
+        }
+      });
+    }else{
+        BootstrapDialog.show({
+          type:BootstrapDialog.TYPE_DANGER,   
+            title: 'Error!',
+            message: 'Make sure to fill-up all required fields correctly.'
+        });
+    }
+  //window.location.href='/legone/survey/surveyform/households/'+eacode+'';   
+
+});
+
+$( "#savehousehold_btn-e" ).click(function() {
+
+    var eacode =  $('#eacode-e').val();
+    var hcn =  $('#hcn-e').val();
+    var shsn =  $('#shsn-e').val();
+	var row_id =  $('.row_id').text();
+	
+	
+    if( hcn.length == 4 && shsn.length == 4 && eacode.length == 12)
+      {
+      
+      $.post("/legone/survey/surveyform/households_check",{eacode:eacode,hcn:hcn,shsn:shsn,row_id:row_id},function(data){
+        if(data=="existing")
+         { 
+            alert('The household already exist.'); 
+         }
+        else{
+               $.post("/legone/survey/surveyform/householdsedit",{eacode:eacode,hcn:hcn,shsn:shsn,row_id:row_id},function(data){
+             window.location.href='/legone/survey/surveyform/households/'+eacode+'';})
+        }
+      });
+    }else{
+        BootstrapDialog.show({
+          type:BootstrapDialog.TYPE_DANGER,   
+            title: 'Error!',
+            message: 'Make sure to fill-up all required fields correctly.'
+        });
+    }
+
+});
+
+  });
+
+  
+$('.hhead').click(function(){
+    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+
+var data = {};
+data.eacode = $(this).attr('id').substring(0,12);
+data.hcn = $(this).text().substring(1,5);
+data.shsn = $(this).text().substring(8,12);
+data.username = '<%= session.username %>';
+
+$.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/inserthousehold',						
+                            success: function(data) {
+                                
+                            }
+                        });
+
+
+});
+  
+function is4(id) {
+
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+
+data.INTERVIEW_STATUS4 = $('#INTERVIEW_STATUS4_'+id+'').closest('li').find('#INTERVIEW_STATUS4_'+id+'').val();
+data.INTERVIEW_STATUS_OTH = $('#INTERVIEW_STATUS_OTH_'+id+'').closest('li').find('#INTERVIEW_STATUS_OTH_'+id+'').val();
+
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/isupdate4',						
+                            success: function(data) {
+                                
+                            }
+                        });
+						
+			$.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/households_display',						
+                            success: function(data) {
+                                console.log(data);
+								$('#total').text(data['total']);
+								$('#cover').text(data['cover']);
+								$('#ncover').text(data['ncover']);
+                            }
+                        });			
+						
+if(data.INTERVIEW_STATUS4 == 3 || data.INTERVIEW_STATUS4 == 4 || data.INTERVIEW_STATUS4 == 5 || data.INTERVIEW_STATUS4 == 6){
+$('#form12_'+id+'').show();
+} 
+else {
+$('#form12_'+id+'').hide();
+}
+
+if(data.INTERVIEW_STATUS4 == 11){
+$('#INTERVIEW_STATUS_OTH_'+id+'').show();
+} 
+else {
+$('#INTERVIEW_STATUS_OTH_'+id+'').hide();
+}
+
+if(data.INTERVIEW_STATUS4 == 1 || data.INTERVIEW_STATUS4 == 2){
+$('#summary_'+id+'').show();
+} 
+else {
+$('#summary_'+id+'').hide();
+}
+
+}  
+
+function remove(id) {
+
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+var x = confirm('Are you sure you want to remove HCN:'+data.hcn+' and SHSN:'+data.shsn+'');
+if(x == true){
+	$.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+                url: '/removehh',						
+                success: function(data) {
+                
+				
+       }
+    });
+	
+	window.location.href='/legone/survey/surveyform/households/'+data.eacode+'';
+}
+	else { 
+	return false }
+}
+  
+function view(id) {
+
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+$('.row_id').text(id);
+	$.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+                url: '/legone/survey/surveyform/households/postedit',						
+                success: function(data) {
+                
+				$('#eacode-e').val(data[0].eacode);
+				$('#hcn-e').val(data[0].hcn);
+				$('#shsn-e').val(data[0].shsn);
+				$('#househead-e').val(data[0].hhead);
+				$('#address-e').val(data[0].address);
+				$('#respondent-e').val(data[0].respondent);
+				
+       }
+    });
+
+} 
+
+function quickbackup(eacode) {
+
+window.location.href='/exportall/'+eacode;
+
+} 
+ 
+  
+function hhead(id) {
+
+	var data = {};
+	data.id = id;
+	data.hhead = $('#hhead_'+id+'').val();
+    $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+                url: '/legone/survey/surveyform/hhead',						
+                success: function(data) {
+                
+
+       }
+    });
+	
+}  
+  
+function visit1(id) {
+
+	var data = {};
+	data.id = id;
+	data.visit1 = $('#visit1_'+id+'').val();
+
+    $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+                url: '/legone/survey/surveyform/visit1',						
+                success: function(data) {
+                
+
+       }
+    });
+	
+}
+
+function is1(id) {
+
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+
+data.INTERVIEW_STATUS1 = $('#INTERVIEW_STATUS1_'+id+'').closest('li').find('#INTERVIEW_STATUS1_'+id+'').val();
+
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/isupdate1',						
+                            success: function(data) {
+                                
+                            }
+                        });
+if(data.INTERVIEW_STATUS1 == 1) {
+	$('#INTERVIEW_STATUS4_'+id+'').show();
+	$('#INTERVIEW_STATUS2_'+id+'').hide();
+	$('#INTERVIEW_STATUS3_'+id+'').hide();
+	$('#visit2_'+id+'').hide();
+	$('#visit3_'+id+'').hide();
+}
+else {
+	$('#INTERVIEW_STATUS4_'+id+'').hide();
+	$('#INTERVIEW_STATUS2_'+id+'').show();
+	$('#INTERVIEW_STATUS3_'+id+'').show();
+	$('#visit2_'+id+'').show();
+	$('#visit3_'+id+'').show();
+	}
+
+}
+
+function visit2(id) {
+
+	var data = {};
+	data.id = id;
+	
+	data.visit2 = $('#visit2_'+id+'').val();
+
+    $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+                url: '/legone/survey/surveyform/visit2',						
+                success: function(data) {
+                
+
+       }
+    });
+	
+}
+
+function is2(id) {
+
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+data.INTERVIEW_STATUS2 = $('#INTERVIEW_STATUS2_'+id+'').closest('li').find('#INTERVIEW_STATUS2_'+id+'').val();
+
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/isupdate2',						
+                            success: function(data) {
+                                
+                            }
+                        });
+if(data.INTERVIEW_STATUS2 == 1) {
+	$('#INTERVIEW_STATUS4_'+id+'').show();
+	$('#INTERVIEW_STATUS3_'+id+'').hide();
+	$('#visit3_'+id+'').hide();
+}
+else {
+	$('#INTERVIEW_STATUS4_'+id+'').hide();
+	$('#INTERVIEW_STATUS3_'+id+'').show();
+	$('#visit3_'+id+'').show();
+}
+
+}
+function visit3(id) {
+	
+	var data = {};
+	data.id = id;
+
+	data.visit3 = $('#visit3_'+id+'').val();
+
+    $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+                url: '/legone/survey/surveyform/visit3',						
+                success: function(data) {
+                
+
+       }
+    });
+	
+}
+
+function is3(id) {
+
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+
+data.INTERVIEW_STATUS3 = $('#INTERVIEW_STATUS3_'+id+'').closest('li').find('#INTERVIEW_STATUS3_'+id+'').val();
+
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/isupdate3',						
+                            success: function(data) {
+                                
+                            }
+                        });
+						
+if(data.INTERVIEW_STATUS3 == 1) {
+	$('#INTERVIEW_STATUS4_'+id+'').show();
+}
+else {
+	$('#INTERVIEW_STATUS4_'+id+'').hide();
+}
+}
+
+
+   $("input:checkbox").change(function(){
+     var checkbx  = $(this).attr("id");
+          checkbx = checkbx.substring(0,checkbx.length);
+       
+      if ($(this).is(':checked')) {
+          $('#'+checkbx + "_").val(1);
+      }
+      else{
+       $('#'+checkbx + "_").val(0);
+       <!--  -->
+     }
+	 
+	 if($('#REF_DATE').is(':checked')) {
+		$('#replacement_text').show();
+	 } else {
+		$('#replacement_text').hide();
+	 }
+	 
+	 var data = {};
+	 data.id = $(this).attr("id").substring(7);
+	 data.diebio = $('input[type=hidden][name='+checkbx + "]").val();
+	 var con = confirm("THIS ITEM IS CHECKED. PLEASE DOUBLE CHECK");
+	 if (con==true)
+		{
+	            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/diebio',						
+                            success: function(data) {
+                            }
+                        });
+		}
+	else {
+	return false;
+	}
+   });
+   
+   
+$('.radio-choice').click(function(){
+	  var radio = $(this);
+      var selected_id = $(this).attr("id");
+      var  ulist = $(this).parent();
+      var lis = ulist.children();
+      lis.each(function(index, c){
+        list_id = $(c).attr("id");
+        if(list_id==selected_id && $(c).hasClass("disabled")==false){
+          ids = selected_id.split("_");
+          $(c).toggleClass("active");
+          idx = selected_id.lastIndexOf("_");
+          hidden_id = selected_id.substring(4,idx) + '_';
+          $('#' + hidden_id ).val($(c).hasClass('active') ? ids[ids.length-1] : "");
+		  var data = {};
+		  data.answer_qkey = radio.closest('div.panel').attr('name');
+		  data.answer_value = radio.closest('ul').find('input[type=hidden]:last').val();
+		
+			}
+      else{
+        $(c).removeClass("active")
+      }
+      });
+	  
+});   
+   
+ 
+function close(id) {
+	$('#demo'+id+'').modal('toggle');
+}
+
+function update_f12(id) {
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+data.f12_03_01 = $('#f12_03_01_'+data.eacode+data.hcn+data.shsn+'').val();
+data.f12_04_01 = $('#f12_04_01_'+data.eacode+data.hcn+data.shsn+'').val();
+data.f12_05_01 = $('#f12_05_01_'+data.eacode+data.hcn+data.shsn+'').val();
+data.f12_06_01 = $('#f12_06_01_'+data.eacode+data.hcn+data.shsn+'').val();
+
+$.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/f12_listings',						
+                            success: function(data) {
+                            }
+                        });
+						
+//	window.location.href='/legone/survey/surveyform/households/'+data.eacode+'';
+
+}  
+
+function map(id) {
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+data.longitude = $('#long_'+data.eacode+data.hcn+data.shsn+'').val();
+data.latitude = $('#lati_'+data.eacode+data.hcn+data.shsn+'').val();
+data.address = $('#addr_'+data.eacode+data.hcn+data.shsn+'').val();
+console.log(data.longitude);
+$.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/map_listings',						
+                            success: function(data) {
+                            }
+                        });
+
+} 
+
+function updateReplacement(id) {
+var data = {};
+data.eacode = id.substring(0,12);
+data.hcn = id.substring(12,16);
+data.shsn = id.substring(16,20);
+data.DATE_EDIT = $('#replace_'+data.eacode+data.hcn+data.shsn+'').val();
+$.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/updateReplacement',						
+                            success: function(data) {
+                            }
+                        });
+
+} 
+
+function saveCoords(id) {
+ window.location.href='/legone/survey/surveyform/households/'+id.substring(0,12)+'';
+} 
+
+
+</script>
+
+ 
+
+      </div>
+    </div>
+  
+  
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

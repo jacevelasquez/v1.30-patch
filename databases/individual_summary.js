@@ -1,0 +1,32 @@
+var fs = require('fs');
+var path = require('path');
+var sqlite3 = require('sqlite3').verbose();
+db2 = new sqlite3.Database('nns2019.db');
+var http = require('http');
+
+
+exports.post = function(req, res){
+	var obj = {};
+	
+	
+	var eacode = req.body.eacode;
+	var hcn = req.body.hcn;
+	var shsn = req.body.shsn;
+	var MEMBER_CODE = req.body.MEMBER_CODE;
+	
+	
+		db2.all("SELECT * FROM f21 WHERE eacode = ? and  hcn= ? and shsn= ? and MEMBER_CODE = ?",[eacode, hcn, shsn, MEMBER_CODE], function(err,rows2){
+		  
+		if (err) {
+				console.log("Error Selecting : %s ",err );
+		}
+		else 	{
+			
+			obj.f21 = rows2;
+			
+		}
+		
+		res.send(obj);
+	});
+	
+};

@@ -1,0 +1,279 @@
+delete from f11;    
+delete from sqlite_sequence where name='f11';
+delete from f12;    
+delete from sqlite_sequence where name='f12';
+delete from f13;    
+delete from sqlite_sequence where name='f13';
+delete from f14;    
+delete from sqlite_sequence where name='f14';
+delete from f15;    
+delete from sqlite_sequence where name='f15';
+delete from f16;    
+delete from sqlite_sequence where name='f16';
+delete from f17;    
+delete from sqlite_sequence where name='f17';
+delete from f21;    
+delete from sqlite_sequence where name='f21';
+delete from f31;    
+delete from sqlite_sequence where name='f31';
+delete from f32;    
+delete from sqlite_sequence where name='f32';
+delete from f41;    
+delete from sqlite_sequence where name='f41';
+delete from f42;    
+delete from sqlite_sequence where name='f42';
+delete from f43;    
+delete from sqlite_sequence where name='f43';
+delete from f44;    
+delete from sqlite_sequence where name='f44';
+delete from f45;    
+delete from sqlite_sequence where name='f45';
+delete from f46;    
+delete from sqlite_sequence where name='f46';
+delete from f47;    
+delete from sqlite_sequence where name='f47';
+delete from f48;    
+delete from sqlite_sequence where name='f48';
+delete from f49;    
+delete from sqlite_sequence where name='f49';
+delete from f410;    
+delete from sqlite_sequence where name='f410';
+delete from f411;    
+delete from sqlite_sequence where name='f411';
+delete from f52;    
+delete from sqlite_sequence where name='f52';
+delete from f53;    
+delete from sqlite_sequence where name='f53';
+delete from f54;    
+delete from sqlite_sequence where name='f54';
+delete from f55;    
+delete from sqlite_sequence where name='f55';
+delete from f56;    
+delete from sqlite_sequence where name='f56';
+delete from f57;    
+delete from sqlite_sequence where name='f57';
+delete from f58;    
+delete from sqlite_sequence where name='f58';
+delete from f59;    
+delete from sqlite_sequence where name='f59';
+delete from f73;    
+delete from sqlite_sequence where name='f73';
+delete from f82;    
+delete from sqlite_sequence where name='f82';
+delete from localarea_listings;    
+delete from sqlite_sequence where name='localarea_listings';
+
+var input = JSON.parse(JSON.stringify(req.body));
+
+		Object.keys(input).forEach(function(key) {
+		if(key != 'dependent_id' || key!= 'eacode' || key!= 'hcn' || key!= 'shsn' || key!= 'MEMBER_CODE' )
+		{
+		  val += key+'=?,';
+		}
+		});
+
+
+
+UPDATE localarea_listings SET hhead = REPLACE(hhead, "'", "");
+UPDATE localarea_listings SET address = REPLACE(address, "'", "");
+
+UPDATE answers SET answer_text = REPLACE(answer_text, '\n', '<br>');
+UPDATE questions SET question = REPLACE(question, '\n', '<br>');
+UPDATE questions SET others= REPLACE(others, '\n', '<br>');
+UPDATE questions SET alt_question = REPLACE(alt_question, '\n', '<br>');
+UPDATE questions SET title = REPLACE(title, '\n', '<br>');
+UPDATE questions SET note = REPLACE(note, '\n', '<br>');
+
+UPDATE answers SET answer_text = REPLACE(answer_text, '<br><br><br>', '<br><br>');
+UPDATE questions SET question = REPLACE(question, '<br><br><br>', '<br><br>');
+UPDATE questions SET others= REPLACE(others, '<br><br><br>', '<br><br>');
+UPDATE questions SET alt_question = REPLACE(alt_question, '<br><br><br>', '<br><br>');
+UPDATE questions SET title = REPLACE(title, '<br><br><br>', '<br><br>');
+UPDATE questions SET note = REPLACE(note, '<br><br><br>', '<br><br>');
+
+UPDATE answers SET answer_text = REPLACE(answer_text, '<br><br>', '<br>');
+UPDATE questions SET question = REPLACE(question, '<br><br>', '<br>');
+UPDATE questions SET others= REPLACE(others, '<br><br>', '<br>');
+UPDATE questions SET alt_question = REPLACE(alt_question, '<br><br>', '<br>');
+UPDATE questions SET title = REPLACE(title, '<br><br>', '<br>');
+UPDATE questions SET note = REPLACE(note, '<br><br>', '<br>');
+
+
+
+DELETE FROM `f11` WHERE 1;
+DELETE FROM `f12` WHERE 1;
+DELETE FROM `f13` WHERE 1;
+DELETE FROM `f14` WHERE 1;
+DELETE FROM `f15` WHERE 1;
+DELETE FROM `f16` WHERE 1;
+DELETE FROM `f17` WHERE 1;
+DELETE FROM `f21` WHERE 1;
+DELETE FROM `f31` WHERE 1;
+DELETE FROM `f32` WHERE 1;
+DELETE FROM `f41` WHERE 1;
+DELETE FROM `f42` WHERE 1;
+DELETE FROM `f43` WHERE 1;
+DELETE FROM `f44` WHERE 1;
+DELETE FROM `f45` WHERE 1;
+DELETE FROM `f46` WHERE 1;
+DELETE FROM `f47` WHERE 1;
+DELETE FROM `f48` WHERE 1;
+DELETE FROM `f49` WHERE 1;
+DELETE FROM `f410` WHERE 1;
+DELETE FROM `f411` WHERE 1;
+DELETE FROM `f52` WHERE 1;
+DELETE FROM `f53` WHERE 1;
+DELETE FROM `f54` WHERE 1;
+DELETE FROM `f55` WHERE 1;
+DELETE FROM `f56` WHERE 1;
+DELETE FROM `f57` WHERE 1;
+DELETE FROM `f58` WHERE 1;
+DELETE FROM `f59` WHERE 1;
+DELETE FROM `f73` WHERE 1;
+DELETE FROM `f83` WHERE 1;
+
+//////////////////////////////////
+
+DELETE FROM `f11_ar` WHERE 1;
+DELETE FROM `f12_ar` WHERE 1;
+DELETE FROM `f13_ar` WHERE 1;
+DELETE FROM `f14_ar` WHERE 1;
+DELETE FROM `f15_ar` WHERE 1;
+DELETE FROM `f16_ar` WHERE 1;
+DELETE FROM `f17_ar` WHERE 1;
+DELETE FROM `f21_ar` WHERE 1;
+DELETE FROM `f31_ar` WHERE 1;
+DELETE FROM `f32_ar` WHERE 1;
+DELETE FROM `f41_ar` WHERE 1;
+DELETE FROM `f42_ar` WHERE 1;
+DELETE FROM `f43_ar` WHERE 1;
+DELETE FROM `f44_ar` WHERE 1;
+DELETE FROM `f45_ar` WHERE 1;
+DELETE FROM `f46_ar` WHERE 1;
+DELETE FROM `f47_ar` WHERE 1;
+DELETE FROM `f48_ar` WHERE 1;
+DELETE FROM `f49_ar` WHERE 1;
+DELETE FROM `f410_ar` WHERE 1;
+DELETE FROM `f411_ar` WHERE 1;
+DELETE FROM `f52_ar` WHERE 1;
+DELETE FROM `f53_ar` WHERE 1;
+DELETE FROM `f54_ar` WHERE 1;
+DELETE FROM `f55_ar` WHERE 1;
+DELETE FROM `f56_ar` WHERE 1;
+DELETE FROM `f57_ar` WHERE 1;
+DELETE FROM `f58_ar` WHERE 1;
+DELETE FROM `f59_ar` WHERE 1;
+DELETE FROM `f73_ar` WHERE 1;
+DELETE FROM `f82_ar` WHERE 1;
+
+//////////////////////////////////
+
+DELETE FROM `f11_tl` WHERE 1;
+DELETE FROM `f12_tl` WHERE 1;
+DELETE FROM `f13_tl` WHERE 1;
+DELETE FROM `f14_tl` WHERE 1;
+DELETE FROM `f15_tl` WHERE 1;
+DELETE FROM `f16_tl` WHERE 1;
+DELETE FROM `f17_tl` WHERE 1;
+DELETE FROM `f21_tl` WHERE 1;
+DELETE FROM `f31_tl` WHERE 1;
+DELETE FROM `f32_tl` WHERE 1;
+DELETE FROM `f41_tl` WHERE 1;
+DELETE FROM `f42_tl` WHERE 1;
+DELETE FROM `f43_tl` WHERE 1;
+DELETE FROM `f44_tl` WHERE 1;
+DELETE FROM `f45_tl` WHERE 1;
+DELETE FROM `f46_tl` WHERE 1;
+DELETE FROM `f47_tl` WHERE 1;
+DELETE FROM `f48_tl` WHERE 1;
+DELETE FROM `f49_tl` WHERE 1;
+DELETE FROM `f410_tl` WHERE 1;
+DELETE FROM `f411_tl` WHERE 1;
+DELETE FROM `f52_tl` WHERE 1;
+DELETE FROM `f53_tl` WHERE 1;
+DELETE FROM `f54_tl` WHERE 1;
+DELETE FROM `f55_tl` WHERE 1;
+DELETE FROM `f56_tl` WHERE 1;
+DELETE FROM `f57_tl` WHERE 1;
+DELETE FROM `f58_tl` WHERE 1;
+DELETE FROM `f59_tl` WHERE 1;
+DELETE FROM `f73_tl` WHERE 1;
+DELETE FROM `f82_tl` WHERE 1;
+
+//////////////////////////////////
+
+
+DELETE FROM `d_f11` WHERE 1;
+DELETE FROM `d_f60` WHERE 1;
+DELETE FROM `d_f61` WHERE 1;
+DELETE FROM `d_f63` WHERE 1;
+DELETE FROM `d_f64` WHERE 1;
+DELETE FROM `d_f71` WHERE 1;
+DELETE FROM `d_f76` WHERE 1;
+
+//////////////////////////////
+
+delete from f11 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f11';
+delete from f12 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f12';
+delete from f13 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f13';
+delete from f14 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f14';
+delete from f15 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f15';
+delete from f16 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f16';
+delete from f17 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f17';
+delete from f21 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f21';
+delete from f31 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f31';
+delete from f32 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f32';
+delete from f41 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f41';
+delete from f42 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f42';
+delete from f43 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f43';
+delete from f44 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f44';
+delete from f45 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f45';
+delete from f46 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f46';
+delete from f47 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f47';
+delete from f48 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f48';
+delete from f49 where eacode like '%137607015%'; 
+delete from sqlite_sequence where name='f49';
+delete from f410 where eacode like '%137607015%'; 
+delete from sqlite_sequence where name='f410';
+delete from f411 where eacode like '%137607015%'; 
+delete from sqlite_sequence where name='f411';
+delete from f52 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f52';
+delete from f53 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f53';
+delete from f54 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f54';
+delete from f55 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f55';
+delete from f56 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f56';
+delete from f57 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f57';
+delete from f58 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f58';
+delete from f59 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f59';
+delete from f73 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f73';
+delete from f82 where eacode like '%137607015%';    
+delete from sqlite_sequence where name='f82';
+delete from localarea_listings where eacode like '%137607015%';    
+delete from sqlite_sequence where name='localarea_listings';

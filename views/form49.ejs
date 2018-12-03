@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links.ejs %>
+
+  </head>
+
+  <body>
+
+    <% include ../views/header.ejs %>
+
+      <div class="container">
+        <div class="row">
+        <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/awesome-bootstrap-checkbox.css" />
+<br />
+<br />
+<br />
+      <ul class="list-group">
+         <li class="list-group-item clearfix">
+            <strong style="font-size:1.1em;">&nbsp;&nbsp;&nbsp;EACODE : <%=array[0].eacode%>&nbsp;&nbsp;&nbsp;HCN : <%=array[0].hcn%>&nbsp;&nbsp;&nbsp;SHSN : <%=array[0].shsn%>  MEMNO : <%=array[0].MEMBER_CODE%> - <%=array[0].GIVENNAME%> <%=array[0].SURNAME%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=array[0].AGE%> years old.</strong>
+            <span class="pull-left">
+            <div class="dropdown-left">
+    <a href="#" alt="Household forms" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+         <span class="glyphicon glyphicon-home"></span>
+         <b class="caret"></b>
+    </a>
+      <ul class="dropdown-menu">      
+        <li id="f12"><a href="/legone/survey/surveyform/form12/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.2 - Household and Other Demographic Information </a></li>  
+        <li id="f13"><a href="/legone/survey/surveyform/form13/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.3 - Household Food Security (HFIAS) </a></li>   
+        <li id="f14"><a href="/legone/survey/surveyform/form14/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.4 - Household Food Frequency </a></li>   
+        <li id="f15"><a href="/legone/survey/surveyform/form15/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.5 - Household Food Security (FIES)</a></li>
+		<li id="f16"><a href="/legone/survey/surveyform/form16/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.6 - Household Government Program Participation</a></li>
+		<li id="f17"><a href="/legone/survey/surveyform/form17/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.7 - Household Awareness and Usage of Iodized Salt</a></li>
+      </ul>
+
+    </div>
+            </span>
+     <span class="pull-right" style="font-family:'Arial';"><a href="/legone/survey/surveyform/form11/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>"><i class="glyphicon glyphicon-user"></i>&nbsp;Membership</a>&nbsp; <a href="/legone/survey/surveyform/households/<%=array[0].eacode%>"><i class="glyphicon glyphicon-th-list"></i>&nbsp;Listings</a></span>
+             
+             
+          </li>
+      </ul>
+	  
+	  
+	  
+<div class="container">
+  <div class="row">
+  <h3><span class="pull-right"><label id="minutes">00</label><label id="quot">:</label><label id="seconds">00</label><label id="ext"></label></span></h3>
+  <div class="form-group col-lg-4">
+    <form action="/legone/survey/surveyform/save/f49" method="post">
+    
+                  <h4>Respondent's name (Copy from Form 1.1)</h4>
+    <!--  -->
+	    <select name="RES_NAME" id="RES_NAME" class="form-control">
+		<option value=''>Please select..</option>
+        </select>
+    
+   </div>
+   </div>
+    <div class="row">
+      
+       <h3><%=array5[0].form_name%></h3>
+      
+
+                            <% 
+		 for(var i=0;i<array3.length;i++)
+		 { %>
+        <div class="page" id="page<%= i+1 %>">
+        <div class="panel panel-default list-group-item" id="<%=array3[i].qkey%>">
+		<h5><center>Question <%= i+1 %> out of <%= array3.length%></center></h5>
+        <h4><b><u><%- ""+array3[i].title+"" %></u></b></h4>
+        <h5 class="justify"><%- ""+array3[i].note+"" %></b></h5>
+        <div class="panel-heading">
+        <h4> <%= i+1 %>.) <%- ""+array3[i].question+"" %><span class="pull-right"></span></h4>
+        </div>
+        <div class="panel-body">
+            <h4><i><%- ""+ array3[i].alt_question+"" %></i></h4>
+            
+			<ul class="list-group checked-list-box">        
+				<% 
+				for(var j=0;j<array4.length;j++)
+				{
+				if(array4[j].qkey == array3[i].qkey)
+				{
+				if(array4[j].input_type == "radio" )
+				{	
+				%>
+				<li class="list-group-item radio-choice" id="chk_<%=array4[j].variable_name%>_<%=array4[j].answer_value%>" value=""><%- ""+array4[j].answer_text+"" %> </li> 
+				<input type='hidden' value='' name='<%=array4[j].variable_name%>' id='<%=array4[j].variable_name%>_' /> 
+				<%
+				var name = array4[j].variable_name;
+				var typ = "radio";
+				}%>
+				<% if(array4[j].input_type == "checkbox" )	{ %>
+				
+				<div class="checkbox checkbox-success">
+                    <input type="checkbox"  name="<%=array4[j].variable_name%>" id="<%=array4[j].variable_name%>" value="" style="display:inline">
+                        <label for ="<%=array4[j].variable_name%>">
+                            <%- ""+array4[j].answer_text+"" %>
+                        </label>
+						<input type='hidden' value='' name='<%=array4[j].variable_name%>' id='<%=array4[j].variable_name%>_' />
+                </div>
+				<%
+				var typ = "checkbox";				
+				}%>
+				<% if(array4[j].input_type == "text" )	{ %>
+				<div class="form-group">    
+                                <%- ""+array4[j].answer_text+"" %>  
+                    <input type="text" name="<%=array4[j].variable_name%>" class="form-control" id="<%=array4[j].variable_name%>" value="" >
+                            </div>  
+				<%
+				var typ = "text";
+				}%>
+				<% if(array4[j].input_type == "header" )	{ %>
+				</ul>
+				<ul class="list-group checked-list-box">
+				<div class="form-group">
+                            <label>
+                                <%- ""+array4[j].answer_text+"" %>
+                            </label>
+                            </div>  
+				<%
+				var typ = "header";
+				}%>
+				<% if(array4[j].class == "others" )	{ %>
+
+				<div class="form-group">
+                    <input type="text" name="<%=array4[j].variable_name%>_OTH" class="form-control" id="<%=array4[j].variable_name%>_OTH" value="" >
+                            </div>
+				<%}%>
+			    <%}}%>
+				<% if(typ == "radio" ) { %>
+				<input type='hidden' value='' name='<%=name%>' id='<%=name%>_' /> 
+				<%}%>
+				
+			   </ul>
+          </div>
+          </div>
+		  </div>
+	 	 
+	<%}%>
+
+
+      <input type="hidden" name="id" value="" />        <input type="hidden" name="house_url" value="" />
+        <input type="hidden" name="record_type" value="" />
+        <input type="hidden" id="eacode" name="eacode" value=""/ />
+            <input type="hidden" id="hcn" name="hcn" value=""/ />
+            <input type="hidden" id="shsn" name="shsn" value=""/>
+            <input type="hidden" id="memkey" name="memkey" value=""/>
+
+            <input type='hidden' id='MEMBER_CODE' name='MEMBER_CODE' value='' />            
+        <!--    <button type="submit"  class="btn btn-lg btn-warning btn-save">
+              Save
+            </button> //-->
+            
+    </form>
+    </div>
+  </div>
+</div> 
+
+<div class="pull-right" id="btn_all">
+<div class="form-group">
+	<input  class="btn" type="button" id="prevbtn" value="«">
+	<input  class="btn" type="button" id="nextbtn" value="»">
+               
+    <label>
+        Last Date edited:
+    </label>
+             <input type="text" class="form-control" id="DATE_EDIT" name="DATE_EDIT" value="" readonly />
+    </div>
+	
+	<ul class="btn-group pagination" id="btn-group">
+	<button class="btn butt" type="button" id="btn_start"  value="1"> &#9665&#9665</button>
+	
+	<button class="btn butt active-btn buttonL" type="button" id="btn_page1"  value="1"> 1 </button>
+	<% 
+	var y = array3.length;
+	var form = "f49";
+	var form2 = "form49";
+	for(x=2;x<=y;x++)  { %>
+		<button class="btn butt buttonL" type="button" id="btn_page<%=x%>"  value="<%=x%>"> <%=x%> </button> 
+	<% } %>
+	
+		
+		<button class="btn butt" type="button" id="btn_end"  value="<%- y%>"> &#9655&#9655 </button>
+	<input type="text" id="jump" maxlength="2" class="form-control" style="max-width:30%; display:inline-block; max-length:100%;" placeholder="Go to.." >
+	</ul>
+	
+</div>
+
+<div class="modal" id="recap">
+  <div class="modal-dialog-summ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Saved Successfully : Re-cap of Answers</h4>
+      </div>
+      <div class="modal-body">
+        <div class="list-group" id="listAnswers">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+	  
+		<select class ='form-control btn btn-primary' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS' style='width:200px;'>
+			<option value='' >Select Interview status</option>
+			<optgroup label='Covered'>
+			<option value='1' >1 - Completed</option>
+			<option value='2' >2 - Partly Completed</option>
+			</optgroup>
+			<optgroup label='Not Covered'>
+			<option value='3' >3 - Respondent Incapacitated</option>
+			<option value='4' >4 - Refused</option>
+			<option value='5' >5 - Not at Home (Away during the Survey Period)</option>
+			<option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option>
+			<option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+			<option value='8'>Others</option>
+			</optgroup>
+			</select>
+        <button type="button" id="backForm" class="btn btn-default" data-dismiss="modal">Back to form</button>
+        <button type="button" id="closeModal" class="btn btn-default" onclick='close()'>Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/jquery/respondents.js"></script>
+<!-- <script type="text/javascript" src="/jquery/f49.js"></script> -->
+<script type="text/javascript">
+  $(document).ready(function (){
+  
+    var duration = 0;
+    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = bigIdString.substring(20,22);
+    var E = bigIdString.substring(22,66);
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+    document.getElementById('MEMBER_CODE').value = D;
+    document.getElementById('memkey').value = E;
+ 
+var data= {};
+    
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+    data.MEMBER_CODE = D;
+ 
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form49/post',						
+                            success: function(data) {
+                               
+                               
+                              
+                               var input = JSON.parse(JSON.stringify(data));
+                               Object.keys(input).forEach(function(key) {
+                               var val = input[key];
+                               var view ="$('[name="+key+"]').val(data."+key+");";
+                               var view2 ="$('#"+key+"').val(data."+key+");";
+                               eval(view);
+                               eval(view2);
+                                }); 
+								
+								if(data.INTERVIEW_TIME > 0)
+								{
+								$('#minutes').text(Math.floor(data.INTERVIEW_TIME/60));
+								$('#quot').text(" mins &  ");
+								$('#seconds').text(data.INTERVIEW_TIME%60);
+								$('#ext').text(" secs");
+								}
+								else {
+								var minutesLabel = document.getElementById("minutes");
+								var secondsLabel = document.getElementById("seconds");
+								var totalSeconds = 0;
+								setInterval(setTime, 1000);
+								
+								function setTime()
+								{
+									++totalSeconds;
+									secondsLabel.innerHTML = pad(totalSeconds%60);
+									minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+									
+								}
+
+								function pad(val)
+								{
+									var valString = val + "";
+									if(valString.length < 2)
+									{
+										return "0" + valString;
+									}
+									else
+									{
+										return valString;
+									}
+								}
+								}
+								
+                                 $( "input[value*='999999']" ).parent().parent().find('li, input[type!=hidden],select').prop('disabled',true).addClass('disabled');
+                                 $("input[value!='999999']").parent().find("input[value!='999999'],select").prop('disabled',false).removeClass('disabled');
+                             
+                                 $('ul.list-group').each(function(){
+                                if($(this).find('li:first').hasClass('disabled') || $(this).find('input:first').hasClass('disabled') ){
+                                
+                                var skipQ = $(this).closest('div').parent().attr('id');
+                                $('#'+skipQ).hide();
+                                var skipP = $('#'+skipQ).parent().attr('id');
+                       
+                                $('#btn_'+skipP).prop('disabled',true);
+                                $('#btn_'+skipP).removeClass('butt');
+                                }
+                                else
+                                {
+                                var skipQ = $(this).closest('div').parent().attr('id');
+                                $('#'+skipQ).show();
+                                var skipP = $('#'+skipQ).parent().attr('id');
+                       
+                                $('#btn_'+skipP).prop('disabled',false);
+                                $('#btn_'+skipP).addClass('butt');
+                                }
+                                });
+								
+                                 
+                                $( "input[type=hidden]" ).each(function() {
+                                var name = $(this).attr('name');
+                                var id = $(this).attr('id');
+                                var val = $(this).val();
+
+                                $('li[id=chk_'+name+'_'+val+']').addClass('active');
+                                if($('input[name='+name+']').val() == '1') {
+                                $('input[name='+name+']').prop('checked',true); }
+                                });
+                          }
+                        }); 
+
+			 $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form11/post',						
+                            success: function(data) {
+                               
+
+							   
+							   
+								if(data.PSC >0 && data.PSC <13 && data.AGE >=12 && data.SEX ==2)
+								{
+									$("#f49_13, #f49_14").each(function(){
+									$(this).find('li, input[type!=hidden], select').prop('disabled',false).removeClass('disabled');
+									find_input(this, '');
+									$('#btn_page13, #btn_page14').addClass('butt');
+									$(this).show();
+								});
+								$('#btn_page13, #btn_page14').removeClass('disabled').prop('disabled',false);
+								}
+								else {
+									$("#f49_13, #f49_14").each(function(){
+									$(this).find('li, input[type!=hidden], select').prop('disabled',true).addClass('disabled');
+									find_input(this, 999999);
+									$('#btn_page13, #btn_page14').removeClass('butt');
+									$(this).hide();
+								});
+								$('#btn_page13, #btn_page14').addClass('disabled').prop('disabled',true);
+								}
+                          }
+                        });
+						
+                        
+$('#page<%- y %>').append("<button type='button' onclick='update()' class='btn btn-lg btn-warning' id='updateButton'> Save or Update </button>");
+                 
+for(x=6;x<=<%- y%>;x++){
+$('#btn_page'+x+'').hide(); 
+}  
+	
+
+
+$('.radio-choice').click(function(){
+	  var radio = $(this);
+      var selected_id = $(this).attr("id");
+      var  ulist = $(this).parent();
+      var lis = ulist.children();
+      lis.each(function(index, c){
+        list_id = $(c).attr("id");
+        if(list_id==selected_id && $(c).hasClass("disabled")==false){
+          ids = selected_id.split("_");
+          $(c).toggleClass("active");
+          idx = selected_id.lastIndexOf("_");
+          hidden_id = selected_id.substring(4,idx) + '_';
+          $('#' + hidden_id ).val($(c).hasClass('active') ? ids[ids.length-1] : "");
+		  var data = {};
+		  
+		  data.eacode = A;
+		  data.hcn = B;
+		  data.shsn = C;
+		  data.MEMBER_CODE = D;
+		  
+		  if(selected_id.substring(4,idx) == '<%- form%>_01_01'){
+		  $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/<%- form2%>/post',						
+                            success: function(data) {
+							if(data.TIME_START != ''){
+							return false;
+							}
+							else {
+							var m = new Date();
+							var dateString =	m.getFullYear() + "-" + ("0" + (m.getMonth()+1)).slice(-2) + "-" + ("0" + m.getDate()).slice(-2) + " " + ("0" + m.getHours()).slice(-2) + ":" + ("0" + m.getMinutes()).slice(-2) + ":" + ("0" + m.getSeconds()).slice(-2);
+							data.TIME_START = dateString;
+								$.ajax({
+								type: 'POST',
+								data: JSON.stringify(data),
+									contentType: 'application/json',
+											url: '/time_<%- form%>',						
+											success: function(data) {
+											}
+										});
+							}
+						}
+			});
+		  }
+		  
+		  data.answer_qkey = radio.closest('div.panel').attr('id');
+		  data.answer_value = radio.closest('ul').find('input[type=hidden]:last').val();
+		  		  $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/skipping/form49',						
+                            success: function(skip_arr) {
+                               			   
+			for(var i in skip_arr)
+			{
+					if(radio.closest('div.panel').attr('id') == skip_arr[i].answer_qkey){
+					var page_num = $('.panel').index($('#'+skip_arr[i].hide_qkey))+1;
+						$('#'+skip_arr[i].hide_qkey).find('li, input[type!=hidden], select').prop('disabled',false).removeClass('disabled');
+						find_input(this, '');
+						$('#'+skip_arr[i].hide_qkey).find('input[type=hidden]').val('');
+						$('#'+skip_arr[i].hide_qkey).find('input[type=text]').val('');
+						$('#btn_page'+page_num).addClass('butt');
+						$('#btn_page'+page_num).prop('disabled',false).removeClass('disabled');
+						$('#f49_'+page_num+'').show();
+						$('#f49_0'+page_num+'').show();
+					}
+			}
+			for(var i in skip_arr)
+			{
+				var page_num = $('.panel').index($('#'+skip_arr[i].hide_qkey))+1;
+				if(radio.closest('div.panel').attr('id') == skip_arr[i].answer_qkey){
+					if(radio.closest('ul').find('input[type=hidden]').val() == skip_arr[i].answer_value){
+						$('#'+skip_arr[i].hide_qkey).find('li, input[type!=hidden], select').prop('disabled',true).addClass('disabled');
+						$('#'+skip_arr[i].hide_qkey).find('input[type=hidden]').val(999999);
+						$('#'+skip_arr[i].hide_qkey).find('input[type=text]').val(999999);
+						$('#btn_page'+page_num).removeClass('butt');
+						find_input(this, 999999);
+						$('#btn_page'+page_num).prop('disabled',true).addClass('disabled');
+						$('#f49_'+page_num+'').hide();
+						$('#f49_0'+page_num+'').hide();
+					}
+				}
+			}
+        }
+    });
+}
+      else{
+        $(c).removeClass("active")
+      }
+      });
+	  
+});
+
+
+   $("input:checkbox").change(function(){
+     var checkbx  = $(this).attr("id");
+          checkbx = checkbx.substring(0,checkbx.length);
+       
+      if ($(this).is(':checked')) {
+          $('#'+checkbx + "_").val(1);
+      }
+      else{
+
+       $('#'+checkbx + "_").val(0);
+       
+     }
+   });
+
+
+    
+	
+
+  }); //document ready
+
+
+$('#closeModal').click(function (){
+	
+    var data= {};
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+	data.MEMBER_CODE = D;
+ 
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form49/post',						
+                            success: function(data) {
+							if(data.INTERVIEW_STATUS > 0 ) {
+							window.location.href='/legone/survey/surveyform/form11/'+data.eacode+data.hcn+data.shsn;
+							}
+							else {
+							alert("Please set INTERVIEW_STATUS");
+							}
+							
+							}
+					});
+	
+	});
+  
+	
+	function find_input(key, myval){
+		$(key).find('input[type!="checkbox"]').each(function(){
+			$(this).val( myval );
+		});
+	}
+	
+	    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = bigIdString.substring(20,22);
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+    document.getElementById('MEMBER_CODE').value = D;
+	
+$(document).on('change', '#INTERVIEW_STATUS', function() {
+	
+	var data = {};
+	data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+    data.MEMBER_CODE = D;
+    data.INTERVIEW_STATUS = $('#INTERVIEW_STATUS').val();   
+	data.INTERVIEW_TIME = ($('#minutes').text()*60)+($('#seconds').text()*1);
+	data.RES_NAME = $('#RES_NAME').val();
+	$('input[type=hidden]').each(function(){ // or $('input').each(function(){
+                var exec = "data."+$(this).attr('name')+" = $('input[type=hidden][name="+$(this).attr('name')+"]').val();"; //get id of each input
+                eval(exec);
+            });
+			
+			$('input[type=text]').each(function(){ // or $('input').each(function(){
+                var exec2 = "data."+$(this).attr('name')+" = $('[name="+$(this).attr('name')+"]').val();"; //get id of each input
+                eval(exec2);
+    });
+	
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form49/post',						
+                            success: function(data) {
+                            }
+                        }); 
+
+});
+  
+    function update(length)
+    {
+	
+			$('input[type=checkbox]').click(); 
+			$('input[type=checkbox]').click();
+	
+          var data = {};
+
+		    $('input[type=hidden]').each(function(){ // or $('input').each(function(){
+                var exec = "data."+$(this).attr('name')+" = $('input[type=hidden][name="+$(this).attr('name')+"]').val();"; //get id of each input
+                eval(exec);
+            });
+			
+			$('input[type=text]').each(function(){ // or $('input').each(function(){
+                var exec2 = "data."+$(this).attr('name')+" = $('[name="+$(this).attr('name')+"]').val();"; //get id of each input
+                eval(exec2);
+            });
+			
+			data.INTERVIEW_TIME = ($('#minutes').text()*60)+($('#seconds').text()*1);
+			data.RES_NAME = $('#RES_NAME').val();
+			
+			if(data.RES_NAME == null || data.RES_NAME == '') 
+			{
+			BootstrapDialog.show({
+                type:BootstrapDialog.TYPE_DANGER, 
+                title: 'Incomplete input',
+                message: 'Please fill up the Respondent Name.' 
+            });
+			return false }
+			else {
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/save/f49',						
+                            success: function(data) {
+                                
+                                
+                               
+                   
+                            }
+                        });
+						
+			$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/<%- form2%>/post',						
+                            success: function(data) {
+							if(data.TIME_END != ''){
+							return false;
+							}
+							else {
+							var m = new Date();
+							var dateString =	m.getFullYear() + "-" + ("0" + (m.getMonth()+1)).slice(-2) + "-" + ("0" + m.getDate()).slice(-2) + " " + ("0" + m.getHours()).slice(-2) + ":" + ("0" + m.getMinutes()).slice(-2) + ":" + ("0" + m.getSeconds()).slice(-2);
+							data.TIME_END = dateString;
+								$.ajax({
+								type: 'POST',
+								data: JSON.stringify(data),
+									contentType: 'application/json',
+											url: '/time_<%- form%>',						
+											success: function(data) {
+											}
+										});
+							}
+						}
+			});
+                        
+$('#recap').modal("show");
+  
+var data= {};
+    
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+    data.MEMBER_CODE = D;
+	
+		 
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form49/post',						
+                            success: function(data) {
+                               
+                               
+                              
+                               var input = JSON.parse(JSON.stringify(data));
+							   var i=0;
+							   $('.tim').append(" ("+data.INTERVIEW_TIME+" secs)");
+							   $('.page').each(function(){
+							   i++;
+							   var qs = $(this).find('div.panel-heading').text();
+							   $('#listAnswers').append('<br><div id="answers'+i+'" style="display:inline-block">'+qs+': </div><div class="valid" style="display:inline-block"></div>');
+							   
+							   $(this).find('input[type!=text]').first().each(function(){
+							 
+							   var val =$(this).val();
+							   var id = $(this).attr('id');
+								
+							   if($(this).val() == '' || $(this).val() == null){
+							   $('#answers'+i+'').next('div').append('<div class="novalid" style="display:inline-block" onclick="jump('+i+','+length+')"><b><font color="red">[NO ANSWER]</font><b> </div>'); }
+							   else{
+							   $('#answers'+i+'').next('div').append('<div class="novalid" style="display:inline-block"><b><font color="green">[ANSWERED]</font><b> </div>');
+								}
+							  
+							   });
+							   });
+                          }
+                        }); 
+					  
+                    //   window.location.href='/legone/survey/surveyform/form11/'+data.eacode+data.hcn+data.shsn;
+$('#listAnswers').empty();
+}
+}
+</script>      </div>
+    </div>
+  
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

@@ -1,0 +1,999 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links.ejs %>
+
+  </head>
+  
+  <style>
+  .loading {
+  display:none;
+  }
+  
+  .reminders {
+    line-height: 1.6;
+}
+
+  </style>
+
+  <body class="main-menu">
+	
+    <% include ../views/header.ejs %>
+
+      <div class="container">
+        <div class="row">
+        <style type="text/css">
+  .icon-geo {
+    background-image: url("http://10.10.125.43/legone/assets/img/geo.png");
+    background-position: center center;
+    height: 16px;
+    line-height: 16px;
+    width: 16px;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+ </style>
+<div class="page-header">
+    <!--<h3>Set household information.</h3>-->
+</div>
+
+<!-- Satisfaction Survey - START -->
+<div class="container" id="cnt1">
+    <div class="col-md-3">
+    </div>
+
+    <div class="col-md-6" id="panel1">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color:#DFDCE3">
+             <h4 class="panel-title">
+                    <span class="fa fa-question-circle"></span><strong>MAIN MENU</strong></h4>
+            </div>
+            <div class="panel-body two-col">
+                <div class="row">
+                    <div class="col-md-12">
+                            <div class="list-group">
+                               <a href="#" class="list-group-item" data-toggle="modal" data-target="#addnewEA" id="newEA"><strong>New enumeration area (EA)</strong>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                 </span>
+                              </a>
+
+                              <a href="#" class="list-group-item" data-toggle="modal" data-target="#addhouseholddialog"><strong>Households</strong>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-home"></span>
+                                    
+                                </span>
+                              </a>
+
+                              <!-- <a href="#" class="list-group-item" data-toggle="modal" data-target="#backupdialog"><strong>Backup</strong> -->
+                                <!-- <span class="pull-right"> -->
+                                    <!-- <span class="glyphicon glyphicon-oil"></span> -->
+                                    
+                                <!-- </span> -->
+                              <!-- </a>  -->
+                              
+                              <!-- <a href="/fileBrowse" class="list-group-item"><strong>File Manager</strong> -->
+                                <!-- <span class="pull-right"> -->
+                                    <!-- <span class="glyphicon glyphicon-cog"></span> -->
+                                    
+                                <!-- </span> -->
+                              <!-- </a> -->
+                                                   
+                               <a href="/areas" class="list-group-item"><strong>Export/Backup data</strong>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-export"></span>
+                                </span>
+                              </a> 
+                              <a href="#" class="list-group-item" data-toggle="modal" data-target="#consolidateData"><strong>Upload researcher's data via Consolidation</strong>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-link"></span>
+                                </span>
+                              </a> 
+							  <a href="#" class="list-group-item" data-toggle="modal" data-target="#transmitData"><strong>Upload researcher's data via Transmission (ANTHROP)</strong>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-import"></span>
+                                </span>
+                              </a>  
+							  <a href="#" class="list-group-item" data-toggle="modal" data-target="#transmitDietary"><strong>Upload researcher's data via Transmission (DIETARY)</strong>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-cutlery"></span>
+                                </span>
+                              </a>  
+                <a href="#" class="list-group-item checkConnection" data-toggle="modal" data-target="#"><strong>Send Data to IT</strong>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-send"></span>
+                                </span>
+                              </a> 
+							  <!-- <a href="#" class="list-group-item" data-toggle="modal" data-target="#transdirect"><strong>Direct Data Transmission</strong> -->
+                                <!-- <span class="pull-right"> -->
+                                    <!-- <span class="glyphicon glyphicon-send"></span> -->
+                                <!-- </span> -->
+                              <!-- </a>  -->
+							  <!-- <span style="font-size: 12px;">*Direct Data Transmission is same as Upload Data Transmission, the only difference is you dont need to upload the data in Direct; you will just click the TRANSMIT button.</span> -->
+							
+							  <br>
+							 
+								<a href="#" class="list-group-item" data-toggle="modal" data-target="#householdsummary"><strong>Summary of households</strong>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    
+                                </span>
+                              </a>
+								<a href="#" class="list-group-item" data-toggle="modal" data-target="#transsummary"><strong>Check/View Transmitted data</strong>
+                                <span class="pull-right">
+                                    <span class="g	glyphicon glyphicon-eye-open"></span>
+                                    
+                                </span>
+                              </a>	
+							  <br>
+							  <a href="#" class="list-group-item" data-toggle="modal" data-target="#adminmode"><strong>Administrator Mode</strong>
+                                <span class="pull-right">
+                                    <span class="g	glyphicon glyphicon-ban-circle"></span>
+                                    
+                                </span>
+                              </a>	
+							  
+                            
+							</div>
+                    </div>
+                 
+                </div>
+          
+                <hr />
+          
+
+            </div>
+      
+        </div>
+    </div>
+</div>
+
+
+
+    
+
+<div class="modal fade" id="addhouseholddialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>Search area</strong></h4>
+      </div>
+      <div class="modal-body">
+
+  
+        <form role="form">
+  
+       <!-- <div class="form-group"> -->
+        <!-- <label>Province :</label> -->
+            <!-- <select id="province" class="form-control"> -->
+                   <!-- <option value="">Select province</option> -->
+                       <!-- <option value='01'>ABRA</option><option value='02'>AGUSAN DEL NORTE</option><option value='03'>AGUSAN DEL SUR</option><option value='04'>AKLAN</option><option value='05'>ALBAY</option><option value='06'>ANTIQUE</option><option value='07'>BASILAN</option><option value='08'>BATAAN</option><option value='09'>BATANES</option><option value='10'>BATANGAS</option><option value='11'>BENGUET</option><option value='12'>BOHOL</option><option value='13'>BUKIDNON</option><option value='14'>BULACAN</option><option value='15'>CAGAYAN</option><option value='16'>CAMARINES NORTE</option><option value='17'>CAMARINES SUR</option><option value='18'>CAMIGUIN</option><option value='19'>CAPIZ</option><option value='20'>CATANDUANES</option><option value='21'>CAVITE</option><option value='22'>CEBU</option><option value='23'>DAVAO DEL NORTE</option><option value='24'>DAVAO DEL SUR</option><option value='25'>DAVAO ORIENTAL</option><option value='26'>EASTERN SAMAR</option><option value='27'>IFUGAO</option><option value='28'>ILOCOS NORTE</option><option value='29'>ILOCOS SUR</option><option value='30'>ILOILO</option><option value='31'>ISABELA</option><option value='32'>KALINGA</option><option value='33'>LA UNION</option><option value='34'>LAGUNA</option><option value='35'>LANAO DEL NORTE</option><option value='36'>LANAO DEL SUR</option><option value='37'>LEYTE</option><option value='38'>MAGUINDANAO</option><option value='39'>NCR,  FIRST DISTRICT (CITY OF MANILA)</option><option value='40'>MARINDUQUE</option><option value='41'>MASBATE</option><option value='42'>MISAMIS OCCIDENTAL</option><option value='43'>MISAMIS ORIENTAL</option><option value='44'>MOUNTAIN PROVINCE</option><option value='45'>NEGROS OCCIDENTAL</option><option value='46'>NEGROS ORIENTAL</option><option value='47'>COTABATO (NORTH COTABATO)</option><option value='48'>NORTHERN SAMAR</option><option value='49'>NUEVA ECIJA</option><option value='50'>NUEVA VIZCAYA</option><option value='51'>OCCIDENTAL MINDORO</option><option value='52'>ORIENTAL MINDORO</option><option value='53'>PALAWAN</option><option value='54'>PAMPANGA</option><option value='55'>PANGASINAN</option><option value='56'>QUEZON</option><option value='57'>QUIRINO</option><option value='58'>RIZAL</option><option value='59'>ROMBLON</option><option value='60'>SAMAR (WESTERN SAMAR)</option><option value='61'>SIQUIJOR</option><option value='62'>SORSOGON</option><option value='63'>SOUTH COTABATO</option><option value='64'>SOUTHERN LEYTE</option><option value='65'>SULTAN KUDARAT</option><option value='66'>SULU</option><option value='67'>SURIGAO DEL NORTE</option><option value='68'>SURIGAO DEL SUR</option><option value='69'>TARLAC</option><option value='70'>TAWI-TAWI</option><option value='71'>ZAMBALES</option><option value='72'>ZAMBOANGA DEL NORTE</option><option value='73'>ZAMBOANGA DEL SUR</option><option value='74'>NCR, SECOND DISTRICT</option><option value='75'>NCR, THIRD DISTRICT</option><option value='76'>NCR, FOURTH DISTRICT</option><option value='77'>AURORA</option><option value='78'>BILIRAN</option><option value='79'>GUIMARAS</option><option value='80'>SARANGANI</option><option value='81'>APAYAO</option><option value='82'>COMPOSTELA VALLEY</option><option value='83'>ZAMBOANGA SIBUGAY</option><option value='85'>DINAGAT ISLANDS</option><option value='86'>DAVAO OCCIDENTAL</option>      -->
+                 <!-- </select> -->
+    <!-- </div>        -->
+        <div class="form-group right-inner-addon">
+      <input class="form-control" id="searcharea" type="text" autocomplete="off" placeholder="Type area keyword..." />
+    </div>
+
+              <div id="arealist" class="list-group autocomplete">
+                                 
+              </div>
+
+ 
+
+
+        </form>      
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!------------------------- backup ------------------------------>
+
+<div class="modal fade" id="backupdata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>Back-up data</strong></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+		
+      
+        <div class="form-group right-inner-addon">
+      <input class="form-control" id="searcharea_backup" type="text" autocomplete="off" placeholder="Type area keyword..." />
+    </div>
+
+              <div id="backup_list" class="list-group autocomplete">
+                                 
+              </div>
+
+        </form>      
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!------------------------- summary ------------------------------>
+
+<div class="modal fade" id="householdsummary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>Search area for Household Summary</strong></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+		
+      
+        <div class="form-group right-inner-addon">
+      <input class="form-control" id="searcharea_summary" type="text" autocomplete="off" placeholder="Type area keyword..." />
+    </div>
+
+              <div id="summary_list" class="list-group autocomplete">
+                                 
+              </div>
+
+        </form>      
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!------------------------- adminmode ------------------------------>
+
+<div class="modal fade" id="adminmode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>Administrator Mode</strong></h4>
+      </div>
+      <div class="modal-body">
+      
+      
+		<div class="form-group right-inner-addon">
+		  <input class="form-control" id="admin_text" type="password" autocomplete="off" placeholder="Enter Password" />
+		</div>
+		
+		<button id="admin_button"  class="btn btn-lg btn-danger btn-save"> Go </button>
+    
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!------------------------- transmitted ------------------------------>
+
+<div class="modal fade" id="transsummary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>Search area to view Transmitted data on Server</strong></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+		
+      
+        <div class="form-group right-inner-addon">
+		<label> Anthrop : </label>
+      <input class="form-control" id="searcharea_trans" type="text" autocomplete="off" placeholder="Type area keyword..." />
+    </div>
+		
+              <div id="summary_trans" class="list-group autocomplete">
+                                 
+              </div>
+		 <div class="form-group right-inner-addon">
+		 <label> Dietary : </label>
+      <input class="form-control" id="searcharea_trans_dietary" type="text" autocomplete="off" placeholder="Type area keyword..." />
+    </div>
+		
+              <div id="summary_trans_dietary" class="list-group autocomplete">
+                                 
+              </div>
+
+        </form>      
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!------------------------- transmitted (DIRECT)------------------------------>
+
+<div class="modal fade" id="transdirect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>Search area to view Transmitted data on Server (DIRECT)</strong></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+		
+      
+        <div class="form-group right-inner-addon">
+      <input class="form-control" id="searcharea_transD" type="text" autocomplete="off" placeholder="Type area keyword..." />
+    </div>
+
+              <div id="summary_transD" class="list-group autocomplete">
+                                 
+              </div>
+
+        </form>      
+      </div>
+    </div>
+  </div>
+</div> 
+
+ 
+
+<!-- new EA -->
+
+<div class="modal fade" id="addnewEA" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>New Enumeration Area (EA)</strong></h4>
+      </div>
+      <div class="modal-body">
+      <form role="form" action="/legone/survey/surveyform"> 
+       <div class="form-group">
+        <label>Province :</label>
+            <select id="province_newEA" name="province_newEA" class="form-control">
+                   <option value="">Select province</option>
+                       <option value='01'>ABRA</option><option value='02'>AGUSAN DEL NORTE</option><option value='03'>AGUSAN DEL SUR</option><option value='04'>AKLAN</option><option value='05'>ALBAY</option><option value='06'>ANTIQUE</option><option value='07'>BASILAN</option><option value='08'>BATAAN</option><option value='09'>BATANES</option><option value='10'>BATANGAS</option><option value='11'>BENGUET</option><option value='12'>BOHOL</option><option value='13'>BUKIDNON</option><option value='14'>BULACAN</option><option value='15'>CAGAYAN</option><option value='16'>CAMARINES NORTE</option><option value='17'>CAMARINES SUR</option><option value='18'>CAMIGUIN</option><option value='19'>CAPIZ</option><option value='20'>CATANDUANES</option><option value='21'>CAVITE</option><option value='22'>CEBU</option><option value='23'>DAVAO DEL NORTE</option><option value='24'>DAVAO DEL SUR</option><option value='25'>DAVAO ORIENTAL</option><option value='26'>EASTERN SAMAR</option><option value='27'>IFUGAO</option><option value='28'>ILOCOS NORTE</option><option value='29'>ILOCOS SUR</option><option value='30'>ILOILO</option><option value='31'>ISABELA</option><option value='32'>KALINGA</option><option value='33'>LA UNION</option><option value='34'>LAGUNA</option><option value='35'>LANAO DEL NORTE</option><option value='36'>LANAO DEL SUR</option><option value='37'>LEYTE</option><option value='38'>MAGUINDANAO</option><option value='39'>NCR,  FIRST DISTRICT (CITY OF MANILA)</option><option value='40'>MARINDUQUE</option><option value='41'>MASBATE</option><option value='42'>MISAMIS OCCIDENTAL</option><option value='43'>MISAMIS ORIENTAL</option><option value='44'>MOUNTAIN PROVINCE</option><option value='45'>NEGROS OCCIDENTAL</option><option value='46'>NEGROS ORIENTAL</option><option value='47'>COTABATO (NORTH COTABATO)</option><option value='48'>NORTHERN SAMAR</option><option value='49'>NUEVA ECIJA</option><option value='50'>NUEVA VIZCAYA</option><option value='51'>OCCIDENTAL MINDORO</option><option value='52'>ORIENTAL MINDORO</option><option value='53'>PALAWAN</option><option value='54'>PAMPANGA</option><option value='55'>PANGASINAN</option><option value='56'>QUEZON</option><option value='57'>QUIRINO</option><option value='58'>RIZAL</option><option value='59'>ROMBLON</option><option value='60'>SAMAR (WESTERN SAMAR)</option><option value='61'>SIQUIJOR</option><option value='62'>SORSOGON</option><option value='63'>SOUTH COTABATO</option><option value='64'>SOUTHERN LEYTE</option><option value='65'>SULTAN KUDARAT</option><option value='66'>SULU</option><option value='67'>SURIGAO DEL NORTE</option><option value='68'>SURIGAO DEL SUR</option><option value='69'>TARLAC</option><option value='70'>TAWI-TAWI</option><option value='71'>ZAMBALES</option><option value='72'>ZAMBOANGA DEL NORTE</option><option value='73'>ZAMBOANGA DEL SUR</option><option value='74'>NCR, SECOND DISTRICT</option><option value='75'>NCR, THIRD DISTRICT</option><option value='76'>NCR, FOURTH DISTRICT</option><option value='77'>AURORA</option><option value='78'>BILIRAN</option><option value='79'>GUIMARAS</option><option value='80'>SARANGANI</option><option value='81'>APAYAO</option><option value='82'>COMPOSTELA VALLEY</option><option value='83'>ZAMBOANGA SIBUGAY</option><option value='85'>DINAGAT ISLANDS</option><option value='86'>DAVAO OCCIDENTAL</option>     
+                 </select>
+        </div>   
+       <div class="form-group">
+        <label>Municipality :</label>
+            <select id="municipality" name="municipality" class="form-control">
+                   <option value="">Select municipality</option>
+                      
+                 </select>
+        </div>     
+        <div class="form-group">
+        <label>Barangay :</label>
+            <select id="barangay" name="barangay" class="form-control">
+                   <option value="">Select barangay</option>
+                      
+                 </select>
+        </div>  
+
+        <div class="form-group">
+			<label>Enumeration area code :</label>
+			<input type="text" name="ea" id="ea" class="form-control"/>
+		</div>
+        
+          
+          <input type="hidden" value="" id="regcode" name="regcode" />
+
+          <div class="form-group">
+            <button class="btn btn-primary right" id="CreateEA_btn">Create EA</button>
+			<div style="clear: both"></div>          
+          </div>
+
+       </form>      
+      </div>
+
+    </div>
+  </div>
+</div> 
+
+
+<!-- create backup -->
+<div class="modal fade" id="backupdialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calcLabel"><strong>Search area to backup</strong></h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group right-inner-addon">
+            <input class="form-control" id="backup_searcharea" type="text" autocomplete="off" placeholder="Type area keyword..." />
+          </div>
+          <div id="backuplist" class="list-group autocomplete">
+          </div>
+        </form>      
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!-- Transmit data anthrop--> 
+
+<div class="modal fade" id="transmitData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="calcLabel"><strong>Transmit <b>Anthrop</b> Data to Server </strong></h4>	
+		</div>
+		<div class="modal-body">
+		    <form id="upload-form2" action="/trans" method="post" enctype="multipart/form-data">
+			<fieldset>
+				<div>
+					<input type="file" name="csvdata_trans" class="upload_trans">
+				</div>
+				<div style="margin-top:10px;margin-bottom:10px;">
+					<input type="submit" value="Submit" class="btn btn-success right"/>
+					<!-- <button onclick="/upload_email">Submit email</button> -->
+					<div style="clear: both"></div>
+				</div>
+			</fieldset>
+		</form>   
+    </div>
+	<div class="modal-header">
+	<h4 class="reminders">
+	<b>Reminders:</b> <br>
+	1. Check if you have a strong/speed internet connection (Recommended speed : 4G/LTE) <br>
+	2. Check if you can access any webiste (google.com, yahoo.com, etc.) <br>
+	3. Make sure your file you are transmitting is on Downloads folder (C:\Users\ENCODER\Downloads\<b>FILE_TO_BE_TRANSMITTED</b>) <br>
+	4. Check the e-DCS command prompt if it is transmitting <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>O</b> - If it appends "INSERTED RECORD" repeatedly <br> 
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>X</b> - Displays error messages, Query error or Fatal error <br>
+	5. If it displays Error messages while transmitting, close the e-DCS command prompt and open again. And transmit again <br>
+	6. If the data is incomplete, retransmit again
+	</h5>
+	</div>
+  </div>
+</div> 
+</div>
+
+
+<!-- Transmit data dietary--> 
+
+<div class="modal fade" id="transmitDietary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="calcLabel"><strong>Transmit <b>Dietary</b> Data to Server </strong></h4>	
+		</div>
+		<div class="modal-body">
+		    <form id="upload-form3" action="/transD" method="post" enctype="multipart/form-data">
+			<fieldset>
+				<div>
+					<input type="file" name="csvdata_transD" class="upload_transD">
+				</div>
+				<div style="margin-top:10px;margin-bottom:10px;">
+					<input type="submit" value="Submit" class="btn btn-success right"/>
+					<!-- <button onclick="/upload_email">Submit email</button> -->
+					<div style="clear: both"></div>
+				</div>
+			</fieldset>
+		</form>   
+    </div>
+	<div class="modal-header">
+	<h4 class="reminders">
+	<b>Reminders:</b> <br>
+	1. You can get the file at the Dietary program (foodconsumption), just click backup button (corresponding brgy) <br>
+	2. Check if you have a strong/speed internet connection (Recommended speed : 4G/LTE) <br>
+	3. Check if you can access any webiste (google.com, yahoo.com, etc.) <br>
+	4. Make sure your file you are transmitting is on Downloads folder (C:\Users\ENCODER\Downloads\<b>FILE_TO_BE_TRANSMITTED</b>) <br>
+	5. Check the e-DCS command prompt if it is transmitting <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>O</b> - If it appends "INSERTED RECORD" repeatedly <br> 
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>X</b> - Displays error messages, Query error or Fatal error <br>
+	6. If it displays Error messages while transmitting, close the e-DCS command prompt and open again. And transmit again <br>
+	7. If the data is incomplete, retransmit again
+	</h5>
+	</div>
+  </div>
+</div> 
+</div>
+
+<!--Consolidation -->
+
+<div class="modal fade" id="consolidateData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="calcLabel"><strong>Upload Data Consolidation</strong></h4>
+		</div>
+		
+		<div class="modal-body">
+		<form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">		
+			<fieldset>
+				<div>
+					<input type="file" name="csvdata_cons" class="upload_cons" >
+					<div class="loading">
+		<img src="/gif/ajax-loader.gif"> Please wait . . .
+	</div>
+				</div>
+				<div style="margin-top:10px;margin-bottom:10px;">
+					<input type="submit" value="Submit" class="btn btn-success right" id="sub" />
+					<div style="clear: both"></div>
+				</div>
+			</fieldset>
+		</form>   
+    </div>
+		  <div class="modal-header">
+		<h4 class="reminders">
+		<b>Reminders:</b> <br>
+		1. If the consolidated file is incomplete, reconsolidate again <br>
+		2. If it is still incomplete, check your AR's data if he/she has callback of your missing household listings
+		</h5>
+		</div>
+  </div>
+</div> 
+</div>
+
+
+
+<script type="text/javascript">
+
+
+ var areaname;
+ var backup_areaname;
+
+function pasuser(form) {
+if (form.username.value=="admin" && form.pword.value=="admin")  
+{              
+window.location.href = '/legone/survey/surveyform';
+} 
+else if (form.username.value=="admin1" && form.pword.value=="admin1")
+{
+window.location.href = '';
+}  
+else {  alert("Invalid Password") }
+}
+
+$(document).on('click','.checkConnection',function(){
+
+var x = confirm("Please Check your internet connection");
+if(x){
+    if(navigator.onLine == true) {
+     window.location.href = '/report';
+        return true;
+    } else {
+        alert('Internet connection is lost');
+        return false; 
+    }
+}
+else {
+    return false;
+} 
+
+
+});
+
+$(document).on('change','.upload_cons',function(){
+
+	var data = {};
+	var fileUpload = $('.upload_cons')[0].files[0];
+	var formData = new FormData();
+	formData.append('userfile',fileUpload);
+             $.ajax({
+						type: 'POST',
+						data: formData,
+				        contentType: false,
+						processData: false,
+                        url: '/upload_cons',						
+                        success: function(data) { 
+						
+                        }
+              
+                  });
+				  
+});
+
+
+$(document).on('change','.upload_trans',function(){
+
+	
+	var fileUpload = $('.upload_trans')[0].files[0];
+	var formData = new FormData();
+	formData.append('userfile',fileUpload);
+             $.ajax({
+						type: 'POST',
+						data: formData,
+				        contentType: false,
+						processData: false,
+                        url: '/upload_trans',						
+                        success: function(data) { 
+                          if(data == 'error'){
+                            alert('Error on backup file. Please contact NSIS IT Staffs for assistance. Thank you');
+                            window.location.href='/legone/survey/surveyform';
+                          }
+                        }
+                  });
+			 $.ajax({
+						type: 'POST',
+						data: formData,
+				        contentType: false,
+						processData: false,
+                        url: '/upload_email',						
+                        success: function(data) { 
+                        }
+                  });
+});
+
+$(document).on('change','.upload_transD',function(){
+
+	
+	var fileUpload = $('.upload_transD')[0].files[0];
+	var formData = new FormData();
+	formData.append('userfile',fileUpload);
+             $.ajax({
+						type: 'POST',
+						data: formData,
+				        contentType: false,
+						processData: false,
+                        url: '/upload_transD',						
+                        success: function(data) { 
+                        }
+                  });
+			 $.ajax({
+						type: 'POST',
+						data: formData,
+				        contentType: false,
+						processData: false,
+                        url: '/upload_email',						
+                        success: function(data) { 
+                        }
+                  });
+});
+
+
+ 
+$( "#searcharea" ).keyup(function() {
+       var data = {};
+     
+       
+       data.areaname = $('#searcharea').val();
+
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/dblookup/listareas',						
+                        success: function(data) { 
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#arealist').append('<a class="list-group-item" href="/legone/survey/surveyform/households/'+data[i].eacode+'"><span>'+data[i].eacode+' - '+data[i].areaname+'</span></a>');
+                              }          
+                        }
+                     }
+                  });
+        
+  
+});
+
+$( "#searcharea_backup" ).keyup(function() {
+       var data = {};
+     
+       data.areaname = $('#searcharea_backup').val();
+        
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/dblookup/listareas',						
+                        success: function(data) { 
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#backup_list').append('<a class="list-group-item" href="/areas/'+data[i].eacode+'"><span>'+data[i].eacode+' - '+data[i].areaname+'</span></a>');
+                              }          
+                        }
+                     }
+                  });
+       
+  
+});
+
+
+$( "#searcharea_summary" ).keyup(function() {
+       var data = {};
+     
+       data.areaname = $('#searcharea_summary').val();
+        
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/dblookup/listareas',						
+                        success: function(data) { 
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#summary_list').append('<a class="list-group-item" href="/summarylist/'+data[i].eacode+'"><span>'+data[i].eacode+' - '+data[i].areaname+'</span></a>');
+                              }          
+                        }
+                     }
+                  });
+       
+  
+});
+
+
+$( "#searcharea_transD" ).keyup(function() {
+       var data = {};
+     
+       data.areaname = $('#searcharea_transD').val();
+        
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/dblookup/listareas',						
+                        success: function(data) { 
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                                  $('#summary_transD').append(data[i].eacode+" - "+data[i].areaname+" <button onclick=direct_trans('"+data[i].eacode+"')>TRANSMIT</button><br>");         
+                        }
+                     }
+                  });
+       
+  
+});
+
+
+function direct_trans(eacode){
+
+var data = {};
+
+data.eacode = eacode;
+
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/transmission_direct',						
+                        success: function(data) { 
+	
+							window.location.href='/checktrans/'+eacode;
+							alert('Proceed to view data on server');
+						
+                     }
+                  });
+				  
+		window.location.href='/checktrans/'+eacode;		  
+
+};
+
+$('#admin_button').click(function() {
+
+	if($('#admin_text').val() == 'NLPZJNWF') {
+	window.location.href = '/adminMode';
+	}
+	else {
+	alert('Wrong Password');
+	return false;
+	}
+
+});
+
+$( "#searcharea_trans" ).keyup(function() {
+       var data = {};
+     
+       data.areaname = $('#searcharea_trans').val();
+        
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/dblookup/listareas',						
+                        success: function(data) { 
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#summary_trans').append('<a class="list-group-item" href="/checktrans/'+data[i].eacode+'"><span>'+data[i].eacode+' - '+data[i].areaname+'</span></a>');
+                              }          
+                        }
+                     }
+                  });
+       
+  
+});
+
+$( "#searcharea_trans_dietary" ).keyup(function() {
+       var data = {};
+     
+       data.areaname = $('#searcharea_trans_dietary').val();
+        
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/dblookup/listareas',						
+                        success: function(data) { 
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#summary_trans_dietary').append('<a class="list-group-item" href="/checktransD/'+data[i].eacode+'"><span>'+data[i].eacode+' - '+data[i].areaname+'</span></a>');
+                              }          
+                        }
+                     }
+                  });
+       
+  
+});
+
+
+/*
+
+$('#backuplist').btsListFilter('#backup_searcharea', {
+  sourceTmpl: '<a class="list-group-item eacode" href="' + base_url + 'survey/surveybackup/backup/{eacode}"><span>{area}</span></a>',
+  sourceData: function(text, callback) {
+       
+       var province = $('#backup_province').val();
+       var keyword = $('#backup_searcharea').val();
+        
+    return  $.getJSON(base_url + "survey/dblookup/listareas", {provcode:province,keyword:keyword},
+        function ( jsonData )
+        {
+           callback(jsonData);
+        } );
+  }
+});
+
+*/
+
+
+
+$(document).ready(function(){
+
+  if($('#account').text().substring(0,1) == 'T'){
+        $('#newEA').show();
+  }
+  else {
+        $('#newEA').hide();
+  }
+  
+
+
+   $('#province_newEA').change(function(){
+    var data = {};
+     data.province = $('#province_newEA').val();
+     
+
+     	
+				$.ajax({
+					url: "/legone/survey/dblookup/municipality",
+					type: "POST",
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					 success: function(data)
+					{ 
+						$('#municipality').empty();
+						$('#regcode').val(data.array[0].Region);
+          
+						for (var i in data.array) 
+						{
+				
+								$("#municipality").append('<option value="' + data.array[i].Municipality + '">' + data.array[i].MunicipalityName + '</option>');
+						}
+						
+					}
+					});
+					
+     
+});
+
+
+
+
+   $('#municipality').change(function(){
+    var data = {};
+     data.region = $('#regcode').val();
+     data.province = $('#province_newEA').val();
+     data.municipality = $('#municipality').val();
+     	
+				$.ajax({
+					url: "/legone/survey/dblookup/barangay",
+					type: "POST",
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					 success: function(data)
+					{ 
+						 $('#barangay').empty();
+						for (var i in data.array) 
+						{
+				
+								$("#barangay").append('<option value="' + data.array[i].barangay + '">' + data.array[i].barangayname + '</option>');
+                
+						}
+						
+					}
+					});
+					
+     
+});
+
+
+
+
+  $('#CreateEA_btn').click(function(){
+
+      var regcode = $('#regcode').val();
+      var provcode = $('#province_newEA').val();
+      var muncode = $('#municipality').val();
+      var munname = $('#municipality  option:selected').text();
+      var brgycode = $('#barangay').val();
+      var brgyname = $('#barangay option:selected').text();
+      var ea = $('#ea').val();
+      var eacode = regcode +  provcode + muncode + brgycode + ea;
+      var areaname = munname + "-" + brgyname;
+      if( eacode != '' && eacode.length == 12){
+        $.post("/legone/survey/dblookup/check",{regcode:regcode,provcode:provcode,muncode:muncode,munname:munname,brgycode:brgycode,brgyname:brgyname,ea:ea,eacode:eacode,areaname:areaname},function(data){
+          if(data=="ok") { 
+          alert('New EA created.');
+          $.post("/legone/survey/surveyform",{regcode:regcode,provcode:provcode,muncode:muncode,munname:munname,brgycode:brgycode,brgyname:brgyname,ea:ea,eacode:eacode,areaname:areaname})
+          }
+          if(data=="existing") { alert('The EA already exist.');}
+        });
+      }else{
+        BootstrapDialog.show({
+          type:BootstrapDialog.TYPE_DANGER,   
+            title: 'Error!',
+            message: 'Make sure to fill-up all required fields.'
+        });
+      }
+      
+  });
+  
+
+});
+    
+ </script>      </div>
+    </div>
+  
+  
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

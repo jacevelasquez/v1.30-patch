@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links_d.ejs %>
+
+  </head>
+  
+  <style>
+
+
+  </style>
+
+  <body class="main-menu">
+	
+    <% include ../views/header_d.ejs %>
+
+    <div class="container">
+        <div class="row">
+		
+		Households 
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>eacode</th>
+					<th>hcn</th>
+					<th>shsn</th>
+					<th>food record</th>
+					<th>food recall</th>
+					<th>perception</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<% rows.forEach(function(row){
+				%>
+				<tr>
+					<td><%= row.eacode%></td>
+					<td><%= row.hcn%></td>
+					<td><%= row.shsn%></td>
+					<td><a href="#">edit</a></td>
+					<td><a href="#">edit</a></td>
+					<td><a href="#">edit</a></td>
+
+				</tr>
+				<% });%>
+			</tbody>
+		</table>
+		
+
+		</div>
+    </div>
+  
+  
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Food Frequency App</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <base href="/">
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-pink.min.css" />
+    <link rel="stylesheet" href="/jquery/style.css">
+
+    <!--<style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
+	-->
+  </head>
+
+  <body ng-app="" ng-cloak>
+
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+          <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+              <!-- Title -->
+              <span class="mdl-layout-title">Food Frequency App</span>
+              <!-- Add spacer, to align navigation to the right -->
+              <div class="mdl-layout-spacer"></div>
+              <!-- Navigation. We hide it in small screens. -->
+              <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link" ng-href="/home">Home</a>
+                <a class="mdl-navigation__link" ng-href="/about">About</a>
+                <a class="mdl-navigation__link" ng-href="/taste-preference">Taste Preference</a>
+              </nav> -->
+            </div>
+          </header>
+          <!-- <div class="mdl-layout__drawer" id="sidenav">
+            <span class="mdl-layout-title">Food Groups</span>
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" ng-href="grains">Cereals and Grains</a>
+              <a class="mdl-navigation__link" ng-href="processed-grains">Processed Cereals and Grains</a>
+              <a class="mdl-navigation__link" ng-href="roots-and-tubers">Roots and Tubers</a>
+              <a class="mdl-navigation__link" ng-href="processed-roots-and-tubers">Processed Roots and Tubers</a>
+              <a class="mdl-navigation__link" ng-href="vegetables">Vegetables</a>
+              <a class="mdl-navigation__link" ng-href="processed-vegetables">Processed Vegetables</a>
+              <a class="mdl-navigation__link" ng-href="fruits">Fruits</a>
+              <a class="mdl-navigation__link" ng-href="seeds">Seeds</a>
+              <a class="mdl-navigation__link" ng-href="processed-seeds">Processed Seeds</a>
+              <a class="mdl-navigation__link" ng-href="meats">Meat and Poultry</a>
+              <a class="mdl-navigation__link" ng-href="processed-meats">Processed Meat and Poultry</a>
+              <a class="mdl-navigation__link" ng-href="eggs">Eggs</a>
+              <a class="mdl-navigation__link" ng-href="processed-eggs">Processed Eggs</a>
+              <a class="mdl-navigation__link" ng-href="seafood">Seafood</a>
+              <a class="mdl-navigation__link" ng-href="processed-seafood">Processed Seafood</a>
+              <a class="mdl-navigation__link" ng-href="fats-and-oils">Fats and Oils</a>
+              <a class="mdl-navigation__link" ng-href="fried-foods">Fried Foods</a>
+              <a class="mdl-navigation__link" ng-href="milk-and-dairy">Milk and Dairy</a>
+              <a class="mdl-navigation__link" ng-href="drinks">Beverages</a>
+              <a class="mdl-navigation__link" ng-href="alcoholic-drinks">Alcoholic Drinks</a>
+              <a class="mdl-navigation__link" ng-href="sweetened-drinks">Sweetened Drinks</a>
+              <a class="mdl-navigation__link" ng-href="sugar-and-sweets">Sugar and Sweets</a>
+              <a class="mdl-navigation__link" ng-href="spices-and-condiments">Spices and Condiments</a>
+              <a class="mdl-navigation__link" ng-href="soups">Soups</a>
+            </nav>
+          </div> -->
+          <main class="mdl-layout__content">
+
+          <div >
+
+            <form action="/saveall" method="post">
+              <% for(var i in array2) { %>
+                <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                  <div class="mdl-card__title mdl-card--expaTitlend">
+                    <h2 class="mdl-card__title-text"><%= array2[i].question %></h2>
+                  </div>
+                  <div class="mdl-card__supporting-text">
+                    <p><%= array2[i].alt_question %></p>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
+                      <select class="mdl-textfield__input" type="text" id="frequency_<%=i%>" name="<%=array2[i].qkey%>" value="" readonly >
+                        <ul for="frequency_<%=i%>" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                          <option class="mdl-menu__item" value=""></li>
+                          <option class="mdl-menu__item" value="0">Never</li>
+                          <option class="mdl-menu__item" value="1">1x a day</li>
+                          <option class="mdl-menu__item" value="2">2x a day</li>
+                          <option class="mdl-menu__item" value="3">3x a day</li>
+                          <option class="mdl-menu__item" value="4">1x a week</li>
+                          <option class="mdl-menu__item" value="5">2x a week</li>
+                          <option class="mdl-menu__item" value="6">3x a week</li>
+                          <option class="mdl-menu__item" value="7">4x a week</li>
+                          <option class="mdl-menu__item" value="8">5x a week</li>
+                          <option class="mdl-menu__item" value="9">6x a week</li>
+                          <option class="mdl-menu__item" value="10">1x a month</li>
+                          <option class="mdl-menu__item" value="11">2x a month</li>
+                          <option class="mdl-menu__item" value="12">3x a month</li>
+                        </ul>
+                      </select>
+                      <label for="frequency_<%=i%>" class="mdl-textfield__label">Select a Frequency</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="other_<%=i%>" name="<%=array2[i].qkey%>_OTH">
+                      <label class="mdl-textfield__label" for="other_<%=i%>">Other</label>
+                    </div>
+                  </div>
+                </div>
+              <% } %>
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" type="submit" id="submit">
+                <i class="material-icons">add</i>
+              </button>
+            </form>
+
+          </div>
+
+            <!-- <div class="page-content" ui-view></div> -->
+
+          </main>
+        </div>
+
+
+        <!-- <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">Title</div>
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="#">Help</a></li>
+            </ul>
+          </div>
+        </footer> -->
+
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+
+        $('html').bind('keypress', function(e) {
+            if(e.keyCode == 13)
+              return false;
+        });
+
+      });
+
+    </script>
+
+  </body>
+</html>

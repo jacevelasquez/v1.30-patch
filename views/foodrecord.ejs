@@ -1,0 +1,1153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links_d.ejs %>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="\bootstrap-3.3.7-dist\css\autocomplete.css">
+  </head>
+  
+  <style>
+
+body {
+    font-size: 12px;
+}
+
+table {
+    background: #EAEAEA;
+    overflow-x: scroll;
+}
+
+thead tr {
+    display: block;
+    width: 100%;
+}
+th.mediumw, th.smallw, th.largew, td { 
+	min-width: 50px !important;
+    padding-bottom: 0px !important;
+	 padding-top: 0px !important;
+	padding-left: 6px !important;
+	padding-right: 6px !important;
+	
+ }
+
+td {
+	background: 	#f7f7f7;
+	border : 1px solid 		#f7f7f7;
+}
+th {
+	background : 	#3b5998;
+	color: white;
+	border: 0px !important
+}
+ 
+.rec>thead>tr {
+	margin-top: 10px;
+}
+
+tbody {
+  
+    height: 500px;
+    overflow-y: auto;
+
+    display: block;
+}
+
+.adj {
+    overflow-x: auto;
+    width: 99%;
+
+}
+
+.grpTextBox {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	    margin-top: 5px;
+		
+margin-bottom: 5px;
+    
+}
+.highlight_row td {
+            background-color:#8b9dc3; 
+        }
+
+
+		
+input:focus, select:focus { 
+    background-color: rgb(255, 255, 128);
+	color: black;
+	border: 1px solid black;
+	
+}
+
+.savebtn {
+	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f));
+	background:-moz-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+	background:-webkit-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+	background:-o-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+	background:-ms-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f',GradientType=0);
+	background-color:#f24537;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.savebtn:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537));
+	background:-moz-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+	background:-webkit-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+	background:-o-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+	background:-ms-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537',GradientType=0);
+	background-color:#c62d1f;
+}
+.savebtn:active {
+	position:relative;
+	top:1px;
+}
+
+.updatebtn {
+	-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+	box-shadow:inset 0px 1px 0px 0px #caefab;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811));
+	background:-moz-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+	background:-webkit-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+	background:-o-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+	background:-ms-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+	background:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811',GradientType=0);
+	background-color:#77d42a;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #268a16;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #aade7c;
+}
+.updatebtn:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a));
+	background:-moz-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+	background:-webkit-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+	background:-o-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+	background:-ms-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+	background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a',GradientType=0);
+	background-color:#5cb811;
+}
+.updatebtn:active {
+	position:relative;
+	top:1px;
+}
+
+.fit {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.smallw {
+ width:50px !important;
+}
+.mediumw {
+ width:80px !important;
+}
+.largew {
+ width:180px !important;
+}
+.smallt {
+ width:63px !important;
+ text-align: center;
+}
+.mediumt {
+ width:93px !important;
+ text-align: center;
+}
+.larget {
+ width:193px !important;
+ text-align: center;
+}
+
+hr.hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid black;
+    margin: 1em 0;
+    padding: 0;
+	width: 99%;
+}
+
+  </style>
+
+  <body class="main-menu">
+	
+    <% include ../views/header_d.ejs %>
+
+    <div class="container-fluid wrapper">
+
+		<span class="pull-right">		
+		<button class="btn btn-warning" style="display:inline-block;" onclick="households()"> Households</button>
+		</span>
+		<h2>Form 6.3 - Household Food Record</h2> 
+		<hr class="hr">
+		<div class="col-md-4">	
+		<h4>EACODE : <label id='eacode'></label>
+		</div>
+		<div class="col-md-4">	
+		<h4>HCN : <label id='hcn'></label>
+		</div>
+		<div class="col-md-4">	
+		<h4>SHSN : <label id='shsn'></label>
+		</div>
+
+
+		<div class="row">
+		<div class="col-md-2">	
+		Reference Day :  <select class="form-control f60" name ="REFDAY" id="REFDAY">
+			<option value='' >Select Reference Day</option>
+			<option value='1' >1 - Sunday</option>
+			<option value='2' >2 - Monday</option>
+			<option value='3' >3 - Tuesday</option>
+			<option value='4' >4 - Wednesday</option>
+			<option value='5' >5 - Thursday</option>
+			<option value='6' >6 - Friday</option>
+			<option value='7' >7 - Saturday</option>
+			  </select>
+		</div>
+		<div class="col-md-4">	
+		Reference Date : 
+			<div>
+			<div class="col-md-3 fit">	
+			<select class="form-control f60" name ="monthref" id="monthref">
+				<option value='' >Month</option>
+				<option value='1' >1 - January</option>
+				<option value='2' >2 - February</option>
+				<option value='3' >3 - March</option>
+				<option value='4' >4 - April</option>
+				<option value='5' >5 - May</option>
+				<option value='6' >6 - June</option>
+				<option value='7' >7 - July</option>
+				<option value='8' >8 - August</option>
+				<option value='9' >9 - September</option>
+				<option value='10' >10 - October</option>
+				<option value='11' >11 - November</option>
+				<option value='12' >12 - December</option>
+			</select>	
+			</div> 
+			<div class="col-md-2 fit">	
+			<select class="form-control f60" name ="dayref" id="dayref">
+				<option value='' >Day</option>
+				<option value='1' >1</option>
+				<option value='2' >2</option>
+				<option value='3' >3</option>
+				<option value='4' >4</option>
+				<option value='5' >5</option>
+				<option value='6' >6</option>
+				<option value='7' >7</option>
+				<option value='8' >8</option>
+				<option value='9' >9</option>
+				<option value='10' >10</option>
+				<option value='11' >11</option>
+				<option value='12' >12</option>
+				<option value='13' >13</option>
+				<option value='14' >14</option>
+				<option value='15' >15</option>
+				<option value='16' >16</option>
+				<option value='17' >17</option>
+				<option value='18' >18</option>
+				<option value='19' >19</option>
+				<option value='20' >20</option>
+				<option value='21' >21</option>
+				<option value='22' >22</option>
+				<option value='23' >23</option>
+				<option value='24' >24</option>
+				<option value='25' >25</option>
+				<option value='26' >26</option>
+				<option value='27' >27</option>
+				<option value='28' >28</option>
+				<option value='29' >29</option>
+				<option value='30' >30</option>
+				<option value='31' >31</option>
+			</select>
+			</div> 
+			<div class="col-md-2 fit">	
+			<select class="form-control f60" name ="yearref" id="yearref">
+				<option value='' >Year</option>
+				<option value='2017' >2017</option>
+				<option value='2018' >2018</option>
+				<option value='2019' >2019</option>
+				<option value='2020' >2020</option>
+				<option value='2021' >2021</option>
+				<option value='2022' >2022</option>
+				<option value='2023' >2023</option>
+				<option value='2024' >2024</option>
+				<option value='2025' >2025</option>
+				<option value='2026' >2026</option>
+				<option value='2027' >2027</option>
+				<option value='2028' >2028</option>
+				<option value='2029' >2029</option>
+				<option value='2030' >2030</option>
+				<option value='2031' >2031</option>
+				<option value='2032' >2032</option>
+				<option value='2033' >2033</option>
+				<option value='2034' >2034</option>
+				<option value='2035' >2035</option>
+				<option value='2036' >2036</option>
+				<option value='2037' >2037</option>
+				<option value='2038' >2038</option>
+				<option value='2039' >2039</option>
+				<option value='2040' >2040</option>
+				<option value='2041' >2041</option>
+				<option value='2042' >2042</option>
+				<option value='2043' >2043</option>
+				<option value='2044' >2044</option>
+				<option value='2045' >2045</option>
+				<option value='2046' >2046</option>
+				<option value='2047' >2047</option>
+				<option value='2048' >2048</option>
+				<option value='2049' >2049</option>
+				<option value='2050' >2050</option>
+			</select>
+			</div> 
+			</div> 
+		</div>
+		<div class="col-md-2">	
+		Interview Status : <select class="form-control f60" name ="INTERVIEW_STATUS" id="INTERVIEW_STATUS" />
+			<option value=''>Select Interview status / Start Interview</option>
+				<optgroup label="Covered"><option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Partly Completed</option>
+				</optgroup>
+				<optgroup label="Not Covered">
+				<option value='3'>3 - Refused</option>
+				<option value='4'>4 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='5'>5 - Entire Household Absent for Extended Period of Time</option>
+				<option value='6'>6 - Vacant Housing Unit</option>
+				<option value='7'>7 - Housing Unit Destroyed/Demolished</option>
+				<option value='8'>8 - Address not a Housing Unit</option>
+				<option value='9'>9 - Housing Unit not Found</option>
+				<option value='10'>10 - Critical/Flooded Area</option>
+				<option value='11'>11 - Postponed</option>
+				<option value='12'>12 - Others</option>
+				</optgroup>
+			  </select>
+		</div>
+		<div class="col-md-1">	
+		
+		Pets : <input type="text" class="form-control f60" name ="PETS" id="PETS" />
+		</div>
+		<div class="col-md-1">	
+		Meal Pattern : <input type="text" class="form-control f60" name ="MEALPATTERN" id="MEALPATTERN" />
+		</div>
+		</div>
+		
+		<div class="adj">
+		<table class="table table-striped" id="rec">
+			<thead class="fixedHeader">
+				<tr>
+            <th class="smallt">LNO</th>
+			<th class="larget">FOOD ITEM</th>
+			<th class="larget">DESC</th>
+			<th class="mediumt">BRAND</th>
+			<th class="mediumt">MAIN<br> INGREDIENT</th>
+            <th class="mediumt">BRAND CODE</th>
+            <th class="mediumt">MEAL</th>
+            <th class="mediumt">WR</th>
+            <th class="mediumt">RF</th>
+			<th class="mediumt">FOODEX</th>
+			<th class="larget">FIC</th>
+            <th class="mediumt">WEIGHT</th>
+            <th class="mediumt">RCC</th>
+            <th class="mediumt">CMC</th>
+            <th class="mediumt">SUP</th>
+            <th class="mediumt">SRC</th>
+			<th class="mediumt">OTH<br>SRC</th>
+            <th class="mediumt">PW<br>WGT</th>
+            <th class="mediumt">PW<br>RCC</th>
+            <th class="mediumt">PW<br>CMC</th>
+            <th class="mediumt">PC</th>
+            <th class="mediumt">GO<br>WGT</th>
+            <th class="mediumt">GO<br>RCC</th>
+            <th class="mediumt">GO<br>CMC</th>
+            <th class="mediumt">LO<br>WGT</th>
+            <th class="mediumt">LO<br>RCC</th>
+            <th class="mediumt">LO<br>CMC</th>
+            <th class="mediumt">UNIT<br>COST</th>
+            <th class="smallt">UNIT<br>WGT</th>
+			<th class="smallt">UNIT</th>
+            <!-- <th width="3.70%">STATUS</th> -->
+            <th class="mediumt">Action</th>
+        </tr>
+			</thead>
+			<tbody class="scrollContent">
+				
+				<tr>
+					<td><input type="text" class="form-control newval smallw" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="LINENO_" id="LINENO_" /></td>
+					<td><input type="text" class="form-control newval largew" name="FOODITEM_" id="FOODITEM_" /></td>
+					<td><input type="text" class="form-control newval largew" name="DESCRIPTION_" id="DESCRIPTION_" /></td>
+					<td><input type="text" class="form-control newval mediumw" name="BRANDNAME_" id="BRANDNAME_" /></td>
+					<td><input type="text" class="form-control newval mediumw" name="MAINIGNT_" id="MAINIGNT_" /></td>
+					<td><input type="text" class="form-control newval mediumw" name="BRANDCODE_" id="BRANDCODE_" /></td>
+					<td>
+						<select  class="form-control newval mediumw" name="MEALCD_" id="MEALCD_" />
+							<option value="1">1 - Breakfast</option>
+							<option value="2">2 - AM Snack </option>
+							<option value="3">3 - Lunch </option>
+							<option value="4">4 - PM Snack </option>
+							<option value="5">5 - Supper </option>
+							<option value="6">6 - Late PM Snack </option>
+						</select>
+					</td>
+					<td>
+						<select  class="form-control newval mediumw"  name="WRCODE_" id="WRCODE_" />
+							<option value="1">1 - Weighed</option>
+							<option value="2">2 - Recalled </option>
+						</select>
+					</td>
+					<td>
+						<select  class="form-control newval mediumw"  name="RFCODE_" id="RFCODE_" />
+							<option value="1">1 - Single Food Item</option>
+							<option value="2">2 - Mixed Dish</option>
+							<option value="3">3 - Composite Ingridient</option>
+						</select>
+					</td>
+					<td><input type="text" class="form-control newval mediumw" name="FOODEX_" id="FOODEX_" ></td>
+					<td><input type="text" class="form-control newval ficauto largew" autocomplete="off" placeholder="Type area keyword..." name="FOODDESC_" id="FOODDESC_" >
+					</td>
+					<td><input type="text" class="form-control newval mediumw" name="FOODWEIGHT_" id="FOODWEIGHT_"/></td>
+					<td>
+						<select  class="form-control newval mediumw"  name="RCC_" id="RCC_" />
+							<option value="1">1 - Raw as purchased</option>
+							<option value="2">2 - Raw edible portion </option>
+							<option value="3">3 - Cooked as purchased </option>
+							<option value="4">4 - Cooked edible portion </option>
+							<option value="5">5 - Cleaned and Drawn fresh fish </option>
+							<option value="6">6 - Cleaned and Drawn cooked fish </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="form-control newval mediumw"  name="CMC_" id="CMC_">
+							<option value="1">1 - Boiled</option>
+							<option value="2">2 - Fried</option>
+							<option value="3">3 - Sauteed</option>
+							<option value="4">4 - Broiled</option>
+							<option value="5">5 - Scambled</option>
+							<option value="6">6 - Raw</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="form-control newval mediumw"  name="SUPCODE_" id="SUPCODE_" />
+							<option value="1">1 - Bought</option>
+							<option value="2">2 - Barter</option>
+							<option value="3">3 - Given</option>
+							<option value="4">4 - Own Produced</option>
+							<option value="9">9 - NA </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select  class="form-control newval mediumw"  name="SRCCODE_" id="SRCCODE_" />
+							<option value="1">1 - Fastfood</option>
+							<option value="2">2 - Carinderia / Turo-turo</option>
+							<option value="3">3 - Canteen/Cafeteria</option>
+							<option value="4">4 - Restaurant</option>
+							<option value="5">5 - Market / Talipapa</option>
+							<option value="6">6 - Sari-sari Store</option>
+							<option value="7">7 - Supermarket</option>
+							<option value="8">8 - Grocery</option>
+							<option value="9">9 - Convenience Store</option>
+							<option value="10">10 - Mobile Vendor</option>
+							<option value="11">11 - Specialty Store</option>
+							<option value="12">12 - Home prepared</option>
+							<option value="13">13 - Food Aid</option>
+							<option value="14">14 - Homeyard garden, livestock, fishpen</option>
+							<option value="15">15 - Farm garden, farmstock, fishpen</option>
+							<option value="16">16 - Water from deepwell, rainfall and spring</option>
+							<option value="17">17 - Water from waterworks like NAWASA and Maynilad</option>
+							<option value="18">18 - Pharmacy / Clinic</option>
+							<option value="19">19 - Others, specify</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td><input type="text" class="form-control newval mediumw"  name="OTH_SRC_" id="OTH_SRC_" /></td>
+					<td><input type="text" class="form-control newval mediumw"  name="PW_WGT_" id="PW_WGT_" /></td>
+					<td>
+						<select class="form-control newval  mediumw"  name="PW_RCC_" id="PW_RCC_" />
+							<option value="1">1 - Raw as purchased</option>
+							<option value="2">2 - Raw edible portion </option>
+							<option value="3">3 - Cooked as purchased </option>
+							<option value="4">4 - Cooked edible portion </option>
+							<option value="5">5 - Cleaned and Drawn fresh fish </option>
+							<option value="6">6 - Cleaned and Drawn cooked fish </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="form-control newval mediumw"  name="PW_CMC" id="PW_CMC" />
+							<option value="1">1 - Boiled</option>
+							<option value="2">2 - Fried</option>
+							<option value="3">3 - Sauteed</option>
+							<option value="4">4 - Broiled</option>
+							<option value="5">5 - Scambled</option>
+							<option value="6">6 - Raw</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select  class="form-control newval  mediumw"  name="PURCODE_" id="PURCODE_" />
+							<option value="1">1 - Fed to pets</option>
+							<option value="2">2 - Discarded </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td><input type="text" class="form-control newval  mediumw" name="GO_WGT_" id="GO_WGT_" /></td>
+					<td>
+						<select class="form-control newval  mediumw" name="GO_RCC_" id="GO_RCC_" />
+							<option value="1">1 - Raw as purchased</option>
+							<option value="2">2 - Raw edible portion </option>
+							<option value="3">3 - Cooked as purchased </option>
+							<option value="4">4 - Cooked edible portion </option>
+							<option value="5">5 - Cleaned and Drawn fresh fish </option>
+							<option value="6">6 - Cleaned and Drawn cooked fish </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="form-control newval  mediumw"  name="GO_CMC_" id="GO_CMC_" />
+							<option value="1">1 - Boiled</option>
+							<option value="2">2 - Fried</option>
+							<option value="3">3 - Sauteed</option>
+							<option value="4">4 - Broiled</option>
+							<option value="5">5 - Scambled</option>
+							<option value="6">6 - Raw</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td><input type="text" class="form-control newval  mediumw"  name="LO_WGT_" id="LO_WGT_" /></td>
+					<td>
+						<select class="form-control newval  mediumw"  name="LO_RCC_" id="LO_RCC_" />
+							<option value="1">1 - Raw as purchased</option>
+							<option value="2">2 - Raw edible portion </option>
+							<option value="3">3 - Cooked as purchased </option>
+							<option value="4">4 - Cooked edible portion </option>
+							<option value="5">5 - Cleaned and Drawn fresh fish </option>
+							<option value="6">6 - Cleaned and Drawn cooked fish </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="form-control newval  mediumw"  name="LO_CMC_" id="LO_CMC_" />
+							<option value="1">1 - Boiled</option>
+							<option value="2">2 - Fried</option>
+							<option value="3">3 - Sauteed</option>
+							<option value="4">4 - Broiled</option>
+							<option value="5">5 - Scambled</option>
+							<option value="6">6 - Raw</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td><input type="text" class="form-control newval  mediumw"  name="UNITCOST_" id="UNITCOST_" /></td>
+					<td><input type="text" class="form-control newval  smallw"  name="UNITWGT_" id="UNITWGT_"></td>
+					<td><input type="text" class="form-control newval  smallw"  name="UNIT_" id="UNIT_"/></td>
+					<td><button class="savebtn mediumw" id="savefoodrecord">
+					Save </button>
+					</td>
+
+				</tr>
+				
+				<% rows.forEach(function(row){
+				
+				var addon = "_"+row.eacode+row.hcn+row.shsn+"__"+row.LINENO;
+				%>
+				<tr class="rec">
+					<td><input type="text" class="grpTextBox smallw lno" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="LINENO_<%= addon%>" id="LINENO_<%= addon%>" /></td>
+					<td><input type="text" class="grpTextBox largew" name="FOODITEM_<%= addon%>" id="FOODITEM_<%= addon%>" /></td>
+					<td><input type="text" class="grpTextBox largew" name="DESCRIPTION_<%= addon%>" id="DESCRIPTION_<%= addon%>" /></td>
+					<td><input type="text" class="grpTextBox mediumw" name="BRANDNAME_<%= addon%>" id="BRANDNAME_<%= addon%>" /></td>
+					<td><input type="text" class="grpTextBox mediumw" name="MAINIGNT_<%= addon%>" id="MAINIGNT_<%= addon%>" /></td>
+					<td><input type="text" class="grpTextBox mediumw" name="BRANDCODE_<%= addon%>" id="BRANDCODE_<%= addon%>" /></td>
+					<td>
+						<select  class="grpTextBox mediumw" name="MEALCD_<%= addon%>" id="MEALCD_<%= addon%>" />
+							<option value="1">1 - Breakfast</option>
+							<option value="2">2 - AM Snack </option>
+							<option value="3">3 - Lunch </option>
+							<option value="4">4 - PM Snack </option>
+							<option value="5">5 - Supper </option>
+							<option value="6">6 - Late PM Snack </option>
+						</select>
+					</td>
+					<td>
+						<select  class="grpTextBox mediumw"  name="WRCODE_<%= addon%>" id="WRCODE_<%= addon%>" />
+							<option value="1">1 - Weighed</option>
+							<option value="2">2 - Recalled </option>
+						</select>
+					</td>
+					<td>
+						<select  class="grpTextBox mediumw"  name="RFCODE_<%= addon%>" id="RFCODE_<%= addon%>" />
+							<option value="1">1 - Single Food Item</option>
+							<option value="2">2 - Mixed Dish</option>
+							<option value="3">3 - Composite Ingridient</option>
+						</select>
+					</td>
+					<td><input type="text" class="grpTextBox mediumw" name="FOODEX_<%= addon%>" id="FOODEX_<%= addon%>" ></td>
+					<td><input type="text" class="grpTextBox ficauto largew" autocomplete="off" placeholder="Type area keyword..." name="FOODDESC_<%= addon%>" id="FOODDESC_<%= addon%>" >
+					</td>
+					<td><input type="text" class="grpTextBox mediumw" name="FOODWEIGHT_<%= addon%>" id="FOODWEIGHT_<%= addon%>"/></td>
+					<td>
+						<select  class="grpTextBox mediumw"  name="RCC_<%= addon%>" id="RCC_<%= addon%>" />
+							<option value="1">1 - Raw as purchased</option>
+							<option value="2">2 - Raw edible portion </option>
+							<option value="3">3 - Cooked as purchased </option>
+							<option value="4">4 - Cooked edible portion </option>
+							<option value="5">5 - Cleaned and Drawn fresh fish </option>
+							<option value="6">6 - Cleaned and Drawn cooked fish </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="grpTextBox mediumw"  name="CMC_<%= addon%>" id="CMC_<%= addon%>">
+							<option value="1">1 - Boiled</option>
+							<option value="2">2 - Fried</option>
+							<option value="3">3 - Sauteed</option>
+							<option value="4">4 - Broiled</option>
+							<option value="5">5 - Scambled</option>
+							<option value="6">6 - Raw</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="grpTextBox mediumw"  name="SUPCODE_<%= addon%>" id="SUPCODE_<%= addon%>" />
+							<option value="1">1 - Bought</option>
+							<option value="2">2 - Barter</option>
+							<option value="3">3 - Given</option>
+							<option value="4">4 - Own Produced</option>
+							<option value="9">9 - NA </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select  class="grpTextBox mediumw"  name="SRCCODE_<%= addon%>" id="SRCCODE_<%= addon%>" />
+							<option value="1">1 - Fastfood</option>
+							<option value="2">2 - Carinderia / Turo-turo</option>
+							<option value="3">3 - Canteen/Cafeteria</option>
+							<option value="4">4 - Restaurant</option>
+							<option value="5">5 - Market / Talipapa</option>
+							<option value="6">6 - Sari-sari Store</option>
+							<option value="7">7 - Supermarket</option>
+							<option value="8">8 - Grocery</option>
+							<option value="9">9 - Convenience Store</option>
+							<option value="10">10 - Mobile Vendor</option>
+							<option value="11">11 - Specialty Store</option>
+							<option value="12">12 - Home prepared</option>
+							<option value="13">13 - Food Aid</option>
+							<option value="14">14 - Homeyard garden, livestock, fishpen</option>
+							<option value="15">15 - Farm garden, farmstock, fishpen</option>
+							<option value="16">16 - Water from deepwell, rainfall and spring</option>
+							<option value="17">17 - Water from waterworks like NAWASA and Maynilad</option>
+							<option value="18">18 - Pharmacy / Clinic</option>
+							<option value="19">19 - Others, specify</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td><input type="text" class="grpTextBox mediumw"  name="OTH_SRC_<%= addon%>" id="OTH_SRC_<%= addon%>" /></td>
+					<td><input type="text" class="grpTextBox mediumw"  name="PW_WGT_<%= addon%>" id="PW_WGT_<%= addon%>" /></td>
+					<td>
+						<select class="grpTextBox mediumw"  name="PW_RCC_<%= addon%>" id="PW_RCC_<%= addon%>" />
+							<option value="1">1 - Raw as purchased</option>
+							<option value="2">2 - Raw edible portion </option>
+							<option value="3">3 - Cooked as purchased </option>
+							<option value="4">4 - Cooked edible portion </option>
+							<option value="5">5 - Cleaned and Drawn fresh fish </option>
+							<option value="6">6 - Cleaned and Drawn cooked fish </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="grpTextBox mediumw"  name="PW_CMC<%= addon%>" id="PW_CMC<%= addon%>" />
+							<option value="1">1 - Boiled</option>
+							<option value="2">2 - Fried</option>
+							<option value="3">3 - Sauteed</option>
+							<option value="4">4 - Broiled</option>
+							<option value="5">5 - Scambled</option>
+							<option value="6">6 - Raw</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select  class="grpTextBox mediumw"  name="PURCODE_<%= addon%>" id="PURCODE_<%= addon%>" />
+							<option value="1">1 - Fed to pets</option>
+							<option value="2">2 - Discarded </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td><input type="text" class="grpTextBox mediumw" name="GO_WGT_<%= addon%>" id="GO_WGT_<%= addon%>" /></td>
+					<td>
+						<select class="grpTextBox mediumw" name="GO_RCC_<%= addon%>" id="GO_RCC_<%= addon%>" />
+							<option value="1">1 - Raw as purchased</option>
+							<option value="2">2 - Raw edible portion </option>
+							<option value="3">3 - Cooked as purchased </option>
+							<option value="4">4 - Cooked edible portion </option>
+							<option value="5">5 - Cleaned and Drawn fresh fish </option>
+							<option value="6">6 - Cleaned and Drawn cooked fish </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="grpTextBox mediumw"  name="GO_CMC_<%= addon%>" id="GO_CMC_<%= addon%>" />
+							<option value="1">1 - Boiled</option>
+							<option value="2">2 - Fried</option>
+							<option value="3">3 - Sauteed</option>
+							<option value="4">4 - Broiled</option>
+							<option value="5">5 - Scambled</option>
+							<option value="6">6 - Raw</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td><input type="text" class="grpTextBox mediumw"  name="LO_WGT_<%= addon%>" id="LO_WGT_<%= addon%>" /></td>
+					<td>
+						<select class="grpTextBox mediumw"  name="LO_RCC_<%= addon%>" id="LO_RCC_<%= addon%>" />
+							<option value="1">1 - Raw as purchased</option>
+							<option value="2">2 - Raw edible portion </option>
+							<option value="3">3 - Cooked as purchased </option>
+							<option value="4">4 - Cooked edible portion </option>
+							<option value="5">5 - Cleaned and Drawn fresh fish </option>
+							<option value="6">6 - Cleaned and Drawn cooked fish </option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td>
+						<select class="grpTextBox mediumw"  name="LO_CMC_<%= addon%>" id="LO_CMC_<%= addon%>" />
+							<option value="1">1 - Boiled</option>
+							<option value="2">2 - Fried</option>
+							<option value="3">3 - Sauteed</option>
+							<option value="4">4 - Broiled</option>
+							<option value="5">5 - Scambled</option>
+							<option value="6">6 - Raw</option>
+							<option value="-"> - </option>
+						</select>
+					</td>
+					<td><input type="text" class="grpTextBox mediumw"  name="UNITCOST_<%= addon%>" id="UNITCOST_<%= addon%>" /></td>
+					<td><input type="text" class="grpTextBox smallw"  name="UNITWGT_<%= addon%>" id="UNITWGT_<%= addon%>"></td>
+					<td><input type="text" class="grpTextBox smallw"  name="UNIT_<%= addon%>" id="UNIT_<%= addon%>"/></td>
+					<td> <button class="updatebtn mediumw" id="updatefoodrecord" onclick="update('<%= addon%>')">
+					Update </button>
+					</td >
+					<input type="hidden"  name="id_<%= addon%>" id="id_<%= addon%>"/>
+				</tr>
+				<% });%>
+			</tbody>
+		</table>
+		</div>
+		
+
+    </div>
+  
+  
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+  <script src="/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/jquery/script_dietary.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+	
+	$(document).ready(function (){
+	
+	var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+	
+	var data= {};
+    
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+	
+	$('#eacode').text(A);
+	$('#hcn').text(B);
+	$('#shsn').text(C);
+	
+	$("html").bind("keypress", function(e) {
+          if(e.keyCode == 13) {
+            return false;
+			}
+			if (event.keyCode === 39 || event.keyCode === 34 || event.keyCode === 96 ) { // apostrophe, double quote, tilde
+        // prevent the keypress
+        return false;
+    }
+      });
+	  
+	$('#LINENO_').focus()
+    $('#LINENO_').select()
+	
+	
+		$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/foodrecord',						
+                            success: function(data) {
+						
+							<!-- var input = JSON.parse(JSON.stringify(data)); -->
+                               <!-- Object.keys(input).forEach(function(key) { -->
+                               <!-- var val = input[key]; -->
+                               <!-- var view = ""+key+" = '+req.body."+key+"+' , "; -->
+                               <!-- console.log(view); -->
+                             
+                                <!-- }); -->
+								
+							for(var i=0;i<data.length;i++)
+                                { 
+									 $('[name=id__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].id);
+									 $('[name=LINENO__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].LINENO);
+									 $('[name=MEALCD__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].MEALCD);
+									 $('[name=WRCODE__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].WRCODE);
+									 $('[name=RFCODE__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].RFCODE);
+									 $('[name=FOODCODE__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].FOODCODE);
+									 $('[name=FOODEX__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].FOODEX);
+									 $('[name=FOODDESC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].FOODDESC);
+									 $('[name=FOODWEIGHT__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].FOODWEIGHT);
+									 $('[name=RCC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].RCC);
+									 $('[name=CMC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].CMC);
+									 $('[name=SUPCODE__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].SUPCODE);
+									 $('[name=SRCCODE__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].SRCCODE);
+									 $('[name=OTH_SRC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].OTH_SRC);
+									 $('[name=PW_WGT__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].PW_WGT);
+									 $('[name=PW_RCC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].PW_RCC);
+									 $('[name=PW_CMC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].PW_CMC);
+									 $('[name=PURCODE__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].PURCODE);
+									 $('[name=GO_WGT__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].GO_WGT);
+									 $('[name=GO_RCC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].GO_RCC);
+									 $('[name=GO_CMC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].GO_CMC);
+									 $('[name=LO_WGT__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].LO_WGT);
+									 $('[name=LO_RCC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].LO_RCC);
+									 $('[name=LO_CMC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].LO_CMC);
+									 $('[name=UNITCOST__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].UNITCOST);
+									 $('[name=UNITWGT__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].UNITWGT);
+									 $('[name=CLEAN__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].CLEAN);
+									 $('[name=DATEENC__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].DATEENC);
+									 $('[name=status__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].status);
+									 $('[name=BRANDNAME__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].BRANDNAME);
+									 $('[name=MAINIGNT__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].MAINIGNT);
+									 $('[name=BRANDCODE__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].BRANDCODE);
+									 $('[name=FOOD_ITEM__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].FOOD_ITEM);
+									 $('[name=FOODITEM__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].FOODITEM);
+									 $('[name=DESCRIPTION__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].DESCRIPTION);
+									 $('[name=DATE_EDIT__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].DATE_EDIT);
+									 $('[name=UNIT__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].UNIT);
+									 $('[name=FOOITEM__'+data[i].eacode+data[i].hcn+data[i].shsn+'__'+data[i].LINENO+']').val(data[i].FOOITEM);
+	
+								}
+		
+							}
+							
+							
+		});
+		
+		
+		$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/statusfoodrecord',						
+                            success: function(data) {
+							console.log(data[0]);
+							$('#REFDAY').val(data[0].REFDAY);
+							$('#monthref').val(data[0].monthref);
+							$('#dayref').val(data[0].dayref);
+							$('#yearref').val(data[0].yearref);
+							$('#INTERVIEW_STATUS').val(data[0].INTERVIEW_STATUS);
+							$('#PETS').val(data[0].PETS);
+							$('#MEALPATTERN').val(data[0].MEALPATTERN);
+		
+							}
+							
+							
+		});
+	
+	   $('input, button, select').keyup(function (e) {
+		if (e.shiftKey) {
+				if (e.which == 39)
+					$(this).closest('td').next().find('input, button, select').focus();
+				else if (e.which == 37)
+					$(this).closest('td').prev().find('input, button, select').focus();
+				else if (e.which == 40)
+					$(this).closest('tr').next().find('td:eq(' + $(this).closest('td').index() + ')').find('input, button, select').focus();
+				else if (e.which == 38)
+					$(this).closest('tr').prev().find('td:eq(' + $(this).closest('td').index() + ')').find('input, button, select').focus();
+			}
+		});
+
+
+	  $(document).on('keyup', 'input[type=text]', function() {
+		
+		var data = {};
+		data.fic = $(this).val();
+
+		$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/fic_foodrecordget',						
+                        success: function(data) { 
+						
+						var dat = [];
+						for(i=0;i<data.length;i++) {
+						dat.push(data[i].foodcode+" - "+data[i].fooddesc);
+						}
+
+						$('.ficauto').autocomplete({
+							source: dat
+						});
+						
+						
+                     }
+                  });
+		
+		
+		
+
+	  });
+	  
+	  $(document).on('change', '.f60', function() {
+		var data = {};
+		data.name = $(this).attr('id');
+		data.val = $(this).val();
+		data.eacode = A;
+		data.hcn = B;
+		data.shsn = C;
+	
+
+		$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/updatestatusfoodrecord',						
+                            success: function(data) {
+						
+							}
+	
+		});
+		});
+		
+	  $(document).on('keyup', '.f60', function() {
+		var data = {};
+		data.name = $(this).attr('id');
+		data.val = $(this).val();
+		data.eacode = A;
+		data.hcn = B;
+		data.shsn = C;
+
+		$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/updatestatusfoodrecord',						
+                            success: function(data) {
+							}
+	
+		});
+		});
+		
+	  
+	     $(document).on('click', '#savefoodrecord', function() {
+		var data = {};
+		data.eacode = A;
+		data.hcn = B;
+		data.shsn = C;
+		data.LINENO = $('#LINENO_').val();
+		data.MEALCD = $('#MEALCD_').val();
+		data.WRCODE = $('#WRCODE_').val();
+		data.RFCODE = $('#RFCODE_').val();
+		data.FOODCODE = $('#FOODCODE_').val();
+		data.FOODEX = $('#FOODEX_').val();
+		data.FOODDESC = $('#FOODDESC_').val();
+		data.FOODWEIGHT = $('#FOODWEIGHT_').val();
+		data.RCC = $('#RCC_').val();
+		data.CMC = $('#CMC_').val();
+		data.SUPCODE = $('#SUPCODE_').val();
+		data.SRCCODE = $('#SRCCODE_').val();
+		data.OTH_SRC = $('#OTH_SRC_').val();
+		data.PW_WGT = $('#PW_WGT_').val();
+		data.PW_RCC = $('#PW_RCC_').val();
+		data.PW_CMC = $('#PW_CMC_').val();
+		data.PURCODE = $('#PURCODE_').val();
+		data.GO_WGT = $('#GO_WGT_').val();
+		data.GO_RCC = $('#GO_RCC_').val();
+		data.GO_CMC = $('#GO_CMC_').val();
+		data.LO_WGT = $('#LO_WGT_').val();
+		data.LO_RCC = $('#LO_RCC_').val();
+		data.LO_CMC = $('#LO_CMC_').val();
+		data.UNITCOST = $('#UNITCOST_').val();
+		data.UNITWGT = $('#UNITWGT_').val();
+		data.CLEAN = $('#CLEAN_').val();
+		data.DATEENC = $('#DATEENC_').val();
+		data.status = $('#status_').val();
+		data.BRANDNAME = $('#BRANDNAME_').val();
+		data.MAINIGNT = $('#MAINIGNT_').val();
+		data.BRANDCODE = $('#BRANDCODE_').val();
+		data.FOOD_ITEM = $('#FOOD_ITEM_').val();
+		data.FOODITEM = $('#FOODITEM_').val();
+		data.DESCRIPTION = $('#DESCRIPTION_').val();
+		data.DATE_EDIT = $('#DATE_EDIT_').val();
+		data.UNIT = $('#UNIT_').val();
+		data.FOOITEM = $('#FOOITEM_').val();
+		
+		if(data.LINENO.length < 2) {
+		alert('Line number must be two characters\nexample: 05, 19, 18');
+		}
+		else {
+		$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/insertfoodrecord',						
+                            success: function(data) {
+							
+							if(data == 'err') {
+							alert('same line #, pls check');
+							return false;
+							<!-- window.location.href = '/foodrecord/'+A+B+C; -->
+							}
+							else {
+							 window.location.href = '/foodrecord/'+A+B+C;
+							}
+							
+							}
+	
+		});
+		}
+		 
+		});
+	  
+	});
+	
+	function update(addon) {
+		var data = {};
+		data.eacode = addon.substring(1,13);
+		data.hcn = addon.substring(13,17);
+		data.shsn = addon.substring(17,21);
+		var A = addon.substring(1,13);
+		var B = addon.substring(13,17);
+		var C = addon.substring(17,21);
+		data.id = $('#id_'+addon).val();
+		alert(data.id);
+		data.LINENO = $('#LINENO_'+addon).val();
+		data.MEALCD = $('#MEALCD_'+addon).val();
+		data.WRCODE = $('#WRCODE_'+addon).val();
+		data.RFCODE = $('#RFCODE_'+addon).val();
+		data.FOODCODE = $('#FOODCODE_'+addon).val();
+		data.FOODEX = $('#FOODEX_'+addon).val();
+		data.FOODDESC = $('#FOODDESC_'+addon).val();
+		data.FOODWEIGHT = $('#FOODWEIGHT_'+addon).val();
+		data.RCC = $('#RCC_'+addon).val();
+		data.CMC = $('#CMC_'+addon).val();
+		data.SUPCODE = $('#SUPCODE_'+addon).val();
+		data.SRCCODE = $('#SRCCODE_'+addon).val();
+		data.OTH_SRC = $('#OTH_SRC_'+addon).val();
+		data.PW_WGT = $('#PW_WGT_'+addon).val();
+		data.PW_RCC = $('#PW_RCC_'+addon).val();
+		data.PW_CMC = $('#PW_CMC_'+addon).val();
+		data.PURCODE = $('#PURCODE_'+addon).val();
+		data.GO_WGT = $('#GO_WGT_'+addon).val();
+		data.GO_RCC = $('#GO_RCC_'+addon).val();
+		data.GO_CMC = $('#GO_CMC_'+addon).val();
+		data.LO_WGT = $('#LO_WGT_'+addon).val();
+		data.LO_RCC = $('#LO_RCC_'+addon).val();
+		data.LO_CMC = $('#LO_CMC_'+addon).val();
+		data.UNITCOST = $('#UNITCOST_'+addon).val();
+		data.UNITWGT = $('#UNITWGT_'+addon).val();
+		data.CLEAN = $('#CLEAN_'+addon).val();
+		data.DATEENC = $('#DATEENC_'+addon).val();
+		data.status = $('#status_'+addon).val();
+		data.BRANDNAME = $('#BRANDNAME_'+addon).val();
+		data.MAINIGNT = $('#MAINIGNT_'+addon).val();
+		data.BRANDCODE = $('#BRANDCODE_'+addon).val();
+		data.FOOD_ITEM = $('#FOOD_ITEM_'+addon).val();
+		data.FOODITEM = $('#FOODITEM_'+addon).val();
+		data.DESCRIPTION = $('#DESCRIPTION_'+addon).val();
+		data.DATE_EDIT = $('#DATE_EDIT_'+addon).val();
+		data.UNIT = $('#UNIT_'+addon).val();
+		data.FOOITEM = $('#FOOITEM_'+addon).val();
+	   
+		$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/updatefoodrecord',						
+                            success: function(data) {
+						
+							if(data == 'err') {
+							alert('same line #, pls check');
+							window.location.href = '/foodrecord/'+A+B+C;
+							}
+							}
+	
+		});
+		
+		  window.location.href = '/foodrecord/'+data.eacode+data.hcn+data.shsn;
+		};
+		
+		$('.grpTextBox').focus(function() {
+        $(this).closest('tr').addClass('highlight_row');
+			});
+			$('.grpTextBox').blur(function() {
+				$(this).closest('tr').removeClass('highlight_row');
+			});
+		
+	
+	
+	
+	</script>
+
+  </body>
+</html>

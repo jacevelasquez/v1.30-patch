@@ -1,0 +1,3725 @@
+﻿	
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link rel="icon" href="/FNRI.png">
+    <meta charset="utf-8">
+
+
+<link rel="stylesheet" href="/fonts/font.css" />
+<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/lavish-bootstrap.css" />
+<link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />   <link href="/bootstrap-3.3.7-dist/css/color.css" rel="stylesheet" />
+<link href="/bootstrap-3.3.7-dist/css/color.css" rel="stylesheet" />
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>NNS2018</title>
+
+<script type="text/javascript" src="/jquery/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap-typeahead.js"></script>
+<script type="text/javascript" src="/jquery/global.js"></script>
+
+<script src="/jquery/bootstrap-dialog.min.js"></script>
+
+  </head>
+
+  <body class="form-1-1">
+	
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container home">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b>National Nutrition Survey 2018</b></a>
+
+        </div>
+	
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/legone/survey/surveyform"><span class="glyphicon glyphicon-list-alt"></span>&nbsp; Main menu</a></li>
+            <li>               
+               <a href="/"><%= session.username %>&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>            </li>
+          </ul>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+	
+ <div class="container" style="padding-top: 70px; margin-bottom: 10px;">
+      <ul class="list-group">
+
+         <li class="list-group-item clearfix">
+            <strong style="font-size:1.1em;">&nbsp;&nbsp;&nbsp;EACODE : <%=array[0].eacode%> &nbsp;&nbsp;&nbsp;HCN : <%=array[0].hcn%>&nbsp;&nbsp;&nbsp;SHSN : <%=array[0].shsn%> </strong> &nbsp;&nbsp;&nbsp;&nbsp; 
+			<!-- <button class="btn btn-md btn-danger" style="font-size:1.25em; margin:0;"  data-toggle="tooltip" title="P : Pregnant&nbsp;&nbsp;&nbsp; L : Lactating &nbsp;&nbsp; M : Male Member &nbsp;&nbsp; NP : Female Non-pregnant"> -->
+          <!-- <span class="glyphicon glyphicon-question-sign"></span> -->
+			<!-- </button></a> -->
+			
+            <span class="pull-left">
+            <div class="dropdown-left">
+    <a href="#" id="hhdd" alt="Household forms" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+         <span class="glyphicon glyphicon-home"></span>
+         <b class="caret"></b>
+    </a>
+      <ul class="dropdown-menu">      
+        <li id="f12"><a href="/legone/survey/surveyform/form12/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.2 - Household and Other Demographic Information </a></li>  
+        <li id="f13"><a href="/legone/survey/surveyform/form13/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.3 - Household Food Security (HFIAS) </a></li>   
+        <li id="f14"><a href="/legone/survey/surveyform/form14/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.4 - Household Food Frequency </a></li>   
+        <li id="f15"><a href="/legone/survey/surveyform/form15/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.5 - Household Food Security (FIES)</a></li>
+		<li id="f16"><a href="/legone/survey/surveyform/form16/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.6 - Household Government Program Participation</a></li>
+		<li id="f17"><a href="/legone/survey/surveyform/form17/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>">Form 1.7 - Household Awareness and Usage of Iodized Salt</a></li>
+      </ul>
+    </div>
+            </span>
+            <span class="pull-right">
+			<a href="/legone/survey/surveyform/summary/<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Summary / Update Interview Status</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/legone/survey/surveyform/households/<%=array[0].eacode%>"><i class="glyphicon glyphicon-home"></i>&nbsp;Listings</a>
+			</span>
+          </li>
+      </ul>
+</div>
+<div class="container">
+<div id="loading">
+	<img src="/f14/load.gif" class="centere" height="150" width="150" />
+	</div>
+<div class="row">
+	<div class="col-md-6">
+      <div class="list-group viewhh">
+        <a href="#" style="font-size:1.1em;" class="list-group-item active clearfix main" style="font-size:1.1em;"><strong><%=array3[0].form_name%></strong><span class="pull-right">
+          <button class="btn btn-md btn-info" style="font-size:0.8em;" id="newhhd" data-toggle="modal" data-target="#memberinfodialog">
+          <span class="glyphicon glyphicon-user"></span>&nbsp; Add member
+        </button></span></a>
+	
+		<div class="listhh">
+        <% 
+	
+		array2.forEach(function(row){ 
+		
+         if(row.RHC == "1")  {   var RHC = "Household Head";   }
+         if(row.RHC == "2")  {   var RHC = "Husband/Wife";    }
+         if(row.RHC == "3")  {   var RHC = "Son";              }
+         if(row.RHC == "4")  {   var RHC = "Daugther";         }
+         if(row.RHC == "5")  {   var RHC = "Stepson";          }
+         if(row.RHC == "6")  {   var RHC = "Stepdaugther";     }
+         if(row.RHC == "7")  {   var RHC = "Son-in-law";       }
+         if(row.RHC == "8")  {   var RHC = "Daugther-in-law";  }
+         if(row.RHC == "9")  {   var RHC = "Grandson";         }
+         if(row.RHC == "10")  {   var RHC = "Granddaugther";   }
+         if(row.RHC == "11")  {   var RHC = "Father";          }
+         if(row.RHC == "12")  {   var RHC = "Mother";          }
+         if(row.RHC == "13")  {   var RHC = "Brother";         }
+         if(row.RHC == "14")  {   var RHC = "Sister";          }
+         if(row.RHC == "15")  {   var RHC = "Uncle";           }
+         if(row.RHC == "16")  {   var RHC = "Aunt";            }
+         if(row.RHC == "17")  {   var RHC = "Nephew";          }
+         if(row.RHC == "18")  {   var RHC = "Niece";           }
+         if(row.RHC == "19")  {   var RHC = "Other Relative";  }
+         if(row.RHC == "20")  {   var RHC = "Non-Relative";    }
+         if(row.RHC == "21")  {   var RHC = "Boarder";         }
+         if(row.RHC == "22")  {   var RHC = "Domestic Helper"; }
+         
+         if(row.SEX == "1")  {   var SEX = "M";             }
+         if(row.SEX == "2")  {   var SEX = "F";           }
+         
+         if(row.CSC == "1")  {   var CSC = "Single";                  }
+         if(row.CSC == "2")  {   var CSC = "Married";                 }
+         if(row.CSC == "3")  {   var CSC = "Widowed";                 }
+         if(row.CSC == "4")  {   var CSC = "Separated";               }
+         if(row.CSC == "5")  {   var CSC = "Common-in-law/Live-in";   }
+         if(row.CSC == "6")  {   var CSC = "Unknown";                 }
+         
+         if(row.PSC == "00")  {   var PSC = "NP";   }
+         if(row.PSC == "01")  {   var PSC = "P";   }
+         if(row.PSC == "02")  {   var PSC = "P";   }
+         if(row.PSC == "03")  {   var PSC = "P";   }
+         if(row.PSC == "04")  {   var PSC = "P";   }
+         if(row.PSC == "05")  {   var PSC = "P";   }
+         if(row.PSC == "06")  {   var PSC = "P";   }
+         if(row.PSC == "07")  {   var PSC = "P";   }
+         if(row.PSC == "08")  {   var PSC = "P";   }
+         if(row.PSC == "09")  {   var PSC = "P";   }
+         if(row.PSC == "10")  {   var PSC = "L";   }
+         if(row.PSC == "11")  {   var PSC = "L";          }
+         if(row.PSC == "12")  {   var PSC = "L";          }
+         if(row.PSC == "99")  {   var PSC = "M";   }
+        %>
+        
+        <input type="hidden" id="<%=row.id%>" name="id"/>
+
+        <li class="list-group-item members">
+		
+		<a id="<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" onclick="edit('<%=row.eacode%>','<%=row.hcn%>','<%=row.shsn%>','<%=row.MEMBER_CODE%>','<%=row.id%>')" style="color:#333333" href="#" class="member button-mem" data-toggle="modal" data-target="#memberinfodialog"><%=row.MEMBER_CODE%> | <b> <%=row.SURNAME%>, <%=row.GIVENNAME%> </b> </a>&nbsp;
+
+		
+		<span class="pull-right">
+        <a href="#" title="Individual forms" id="<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" onclick="indivview('<%=row.eacode%>','<%=row.hcn%>','<%=row.shsn%>','<%=row.MEMBER_CODE%>')" class="indivforms"></i><i class="glyphicon glyphicon-book"></i></a>&nbsp;<a href="#" id=""><!--<i class="glyphicon glyphicon-remove delmember"></i>--></a>
+		<!-- <a href="/legone/survey/surveyform/summary_indiv/<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>" id="<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>"><i class="glyphicon glyphicon-cog" style="color:#337ab7"></i></a>		 -->
+		</span>
+		
+		<span class="pull-right">
+		&nbsp;<%= row.AGE.toFixed(4);%>y.o. &nbsp;(<%= PSC %>)
+		<a href='#' itemid='' itemprop='' id='<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>' name='' data-toggle='modal'  data-backdrop="static" data-keyboard="false" data-target='#anthropdialog' class='anthrop' title='' onclick="editAnthrop('<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>','<%=row.AGE%>','<%=row.SEX%>')"><div class="validateAnt" id="scale_<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>">
+		&nbsp;&nbsp;</div></a>&nbsp;&nbsp;
+		</span>
+		
+		</li>
+        <%});%>
+		</div>
+         
+	</div>
+    </div>
+
+<div class="col-md-6 f11_info">
+<!-- <div class="modal" id="memberinfodialog" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+  <!-- <div class="modal-dialog"> -->
+    <!-- <div class="modal-content"> -->
+      <!-- <div class="modal-header"> -->
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+		<div class="list-group-item viewinfo">
+		
+		<ul class="btn-group pagination" id="btn-group">
+		<button class="btn butt hideall" type="button" id="btn_start"  value="1"> &#9665&#9665 </button>
+		<input  class="btn hideall" type="button" id="prevbtn"  style="background-color:#fae596" value="&#9665">
+		<button class="btn butt active-btn" type="button" id="btn_page1"  value="1"> Name </button>
+
+		<% var y = 7; %>
+			<button class="btn butt" type="button" id="btn_page2"  value="2"> Age </button>
+			<button class="btn butt" type="button" id="btn_page3"  value="3"> Sex / CivilStatus </button>
+			<button class="btn butt" type="button" id="btn_page4"  value="4"> Parents</button>
+			<button class="btn butt" type="button" id="btn_page5"  value="5"> Education </button>
+			<button class="btn butt" type="button" id="btn_page6"  value="6"> Occupation </button>
+			<button class="btn butt" type="button" id="btn_page7"  value="7"> Interview Status </button>
+				
+			<input  class="btn hideall" type="button" style="background-color:#fae596"  id="nextbtn" value="&#9655">
+			<button class="btn butt hideall" type="button" id="btn_end"  value="<%- y%>"> &#9655&#9655 </button>
+		</ul>
+		
+        <h4 class="modal-title-edit"><div class="append-title"></div> </h4>
+		
+      <div class="modal-body" id="f11_edit">
+        <div class="row">
+     
+          <form role="form" name="members_form" id="members_form" action="/legone/survey/surveyform/form11" onsubmit="return validateForm()" method="post">
+		  <div class="page" id="page1">
+			<div class="form-wrapper">
+			<center>Question 1 out of 7</center>
+            <div class="form-group">
+              <label for="LASTNAME">
+               Last name of household member
+              </label>
+              <input type="text" class="form-control" id="SURNAME" name="SURNAME">
+            </div>
+			<div class="form-group">  
+              <label for="FIRSTMAME">
+               First name of household member
+              </label>
+              <input type="text" class="form-control" id="GIVENNAME" name="GIVENNAME">
+              <input type="hidden" class="form-control" id="memkey" name="memkey">
+            </div>
+			<div class="form-group">
+              <label for="NBI">
+                Did <strong name="memname">[NAME]</strong> usually live here? 
+              </label>
+              <select name="NBI" id="NBI" class="form-control">
+                <option value="">Select answer</option>
+                <option value="0">0 - No</option>
+                <option value="1">1 - Yes</option>
+              </select>
+            </div>
+			</div>
+			</div>
+			<div class="page" id="page2">
+			<div class="form-wrapper">
+			<center>Question 2 out of 7</center>
+            <div class="form-group">
+               
+              <label for="exampleInputPassword1">
+                When is <strong name="memname">[name]</strong>'s<u> Date of Birth? </u>
+              </label>
+              <input type="date" class="form-control" id="DBIRTH" name="DBIRTH" max="9999-01-02">
+            </div>
+            <div class="checkbox">
+              <label>
+                
+                <input type="checkbox" name="ES_DBI" id="ES_DBI" value="" data-style="btn-group-justified" > Date of birth is estimated.
+              </label>
+            </div>
+
+             <div class="form-group">
+              <label for="exampleInputPassword1">
+                 Reference date            </label>
+               <input type="date" class="form-control"  id="REFDATE" name="REFDATE" value="">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">
+                  <strong name="memname">[NAME]</strong>'s age
+              </label>
+              <input type="text" name="AGE" id="AGE" readonly class="form-control"  />   
+            </div>
+
+			</div>
+			</div>
+			<div class="page" id="page3">
+			<div class="form-wrapper">
+			<center>Question 3 out of 7</center>
+           <div class="form-group">
+               
+              <label for="exampleInputPassword1">
+                is <strong name="memname">[NAME]</strong> male or female?
+              </label>
+            <select name="SEX" id="SEX" class="form-control">
+                <option value=''>Select Gender</option>
+				<option value='1'>1 - Male</option>
+				<option value='2'>2 - Female</option>
+			</select> 
+            </div>
+			
+			<div class="form-group">
+              <label for="exampleInputPassword1">
+                What is the relationship of <strong name="memname">[name]</strong> to the household head?
+              </label>
+              <select name="RHC" id="RHC" class="form-control">
+                <option value=''>Select RHC</option>
+				<option value='1'>1 - Household Head</option>
+				<option value='2'>2 - Husband/Wife</option>
+				<option value='3'>3 - Son</option>
+				<option value='4'>4 - Daughter</option>
+				<option value='5'>5 - Stepson</option>
+				<option value='6'>6 - Stepdaughter</option>
+				<option value='7'>7 - Son-in-law</option>
+				<option value='8'>8 - Daughter-in-law</option>
+				<option value='9'>9 - Grandson</option>
+				<option value='10'>10 - Granddaughter</option>
+				<option value='11'>11 - Father</option>
+				<option value='12'>12 - Mother</option>
+				<option value='13'>13 - Brother</option>
+				<option value='14'>14 - Sister</option>
+				<option value='15'>15 - Uncle</option>
+				<option value='16'>16 - Aunt</option>
+				<option value='17'>17 - Nephew</option>
+				<option value='18'>18 - Niece</option>
+				<option value='19'>19 - Other Relative</option>
+				<option value='20'>20 - Non relative</option>
+				<option value='21'>21 - Boarder</option>
+				<option value='22'>22 - Domestic Helper</option>
+               </select> 
+            </div>
+			
+            <div class="form-group">
+             
+              <label for="exampleInputPassword1">
+               What is <strong name="memname">[NAME]</strong>'s civil status?
+              </label>
+              <select name="CSC" id="CSC" class="form-control">
+                <option value=''>Select CSC</option>
+				<option value='1'>1 - Single</option>
+				<option value='2'>2 - Married</option>
+				<option value='3'>3 - Widowed</option>
+				<option value='4'>4 - Separated</option>
+				<option value='5'>5 - Common-Law/Live-in</option>
+				<option value='6'>6 - Unknown</option>
+               </select> 
+            </div>
+
+            
+			</div>
+			</div>
+			<div class="page" id="page4">
+            <div class="form-wrapper">
+			<center>Question 4 out of 7</center>
+			<div class="form-group">
+               
+              <label for="PSC">
+                What is <strong name="memname">[NAME]</strong>'s Physiological Code?
+              </label>
+              <select name="PSC" id="PSC" class="form-control">
+                <option value=''>Select PSC</option>
+				<option value='00'>0 - Non-pregnant/Non-lactating female members</option>
+				<option value='01'>1 - Pregnant, 1 month</option>
+				<option value='02'>2 - Pregnant, 2 months</option>
+				<option value='03'>3 - Pregnant, 3 months</option>
+				<option value='04'>4 - Pregnant, 4 months</option>
+				<option value='05'>5 - Pregnant, 5 months</option>
+				<option value='06'>6 - Pregnant, 6 months</option>
+				<option value='07'>7 - Pregnant, 7 months</option>
+				<option value='08'>8 - Pregnant, 8 months</option>
+				<option value='09'>9 - Pregnant, 9 months</option>
+				<option value='10'>10 - Lactating, 0-6 months</option>
+				<option value='11'>11 - Lactating, 7-12 months</option>
+				<option value='12'>12 - Lactating, over 1 year</option>
+				<option value='99'>99 - Male Member</option>
+               </select> 
+			   
+            </div>
+		
+            <div class="checkbox checkbox-success" id="MATERNAL_DISP">
+              <label>
+                <input type="checkbox" name="MATERNAL" id="MATERNAL"> <b style="color:red">Check if member is a Mother of 36 month old below. </b>
+              </label>
+			  <input type="hidden" id="MATERNAL_" name="MATERNAL2" value="" />
+            </div>
+           <div class="form-group">
+              <label for="exampleInputEmail1">
+               What is the name of <strong name="memname">[NAME]</strong>'s Mother?
+              </label>
+			  
+			  <select name="MOM" id="MOM" class="form-control mother">
+			  <option value=''>Please select..</option>
+				</select>
+			  
+			  <!-- <input type="text" class="form-control" id="MOM" name="MOM"> -->
+			  <!--
+                  <select class="form-control" id="MOM" name="MOM">
+                               
+                </select> -->
+            </div>       
+               <div class="checkbox">
+              <label>
+                <input type="checkbox" name="BIOMOM" id="BIOMOM"> Please check if she is the biological mother.
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">
+               What is the name of <strong name="memname">[NAME]</strong>'s Father?
+              </label>
+			  <select name="DAD" id="DAD" class="form-control">
+			  <option value=''>Please select..</option>
+				</select>
+			  <!-- <input type="text" class="form-control" id="DAD" name="DAD"> -->
+			  <!--
+                  <select class="form-control" id="DAD" name="DAD">
+                               
+                </select> -->
+            </div> 
+			<div class="checkbox">
+              <label>
+                <input type="checkbox" name="BIODAD" id="BIODAD"> Please check if he is the biological father.
+              </label>
+            </div>
+<!--              <div class="checkbox">
+              <label>
+                <input type="checkbox" name="BIODAD"> check if <b>NOT</b> biological father.
+              </label>
+            </div> -->
+        	</div>
+			</div>
+			<div class="page" id="page5">
+			<div class="form-wrapper">
+              <center>Question 5 out of 7</center>
+              <div class="alert alert-danger" role="alert"><h4><u>FOR 3 YEARS OLD AND ABOVE</u></h4></div>
+            <div class="form-group">
+              <label for="EDUC">
+                Education 
+              </label>
+              <select name="EDUC" id="EDUC" class="form-control">
+                <optgroup label="Elementary">
+                <option value='99'>99 - Not Applicable(<3yo)</option>
+				<option value='77'>77 - Alternative Learning System (ALS)</option>
+				<option value='00'>0 - No Grade Completed</option>
+				<option value='01'>1 - Nursery/Daycare</option>
+				<option value='02'>2 - Kinder</option>
+				<option value='03'>3 - Preparatory Elementary</option>
+				<option value='11'>11 - Grade I</option>
+				<option value='12'>12 - Grade II</option>
+				<option value='13'>13 - Grade III</option>
+				<option value='14'>14 - Grade IV</option>
+				<option value='15'>15 - Grade V</option>
+				<option value='16'>16 - Grade VI (if w/ VII)</option>
+				<option value='17'>17 - Graduate</option>
+                 </optgroup> 
+
+                <optgroup label="High School">
+                <option value='21'>21 - 1st Year HS/Grade 7</option>
+				<option value='22'>22 - 2nd Year HS/Grade 8</option>
+				<option value='23'>23 - 3rd Year HS/Grade 9</option>
+				<option value='24'>24 - 4th Year HS/Grade 10</option>
+				<option value='25'>25 - Grade 11</option>
+				<option value='26'>26 - Grade 12</option>
+				<option value='27'>27 - High School Graduate</option>
+
+                </optgroup>
+
+                <optgroup label="Post-Secondary Non-Tertiary/Technical Vocational">
+                <option value='41'>41 - 1st Year</option>
+				<option value='42'>42 - 2nd Year/3rd Year</option>
+				<option value='43'>43 - Graduate, specify Course</option>
+                
+                </optgroup>
+                <optgroup label="College">
+                <option value='51'>51 - 1st Year</option>
+				<option value='52'>52 - 2nd Year</option>
+				<option value='53'>53 - 3rd Year</option>
+				<option value='54'>54 - 4th/5th Year</option>
+				<option value='55'>55 - Graduate, specify course</option>
+                
+                </optgroup>
+                <optgroup label="Post graduate">
+                <option value='66'>66 - Master's Graduate, Specify course</option>
+				<option value='67'>67 - PhD Graduate, Specify course</option>
+                
+ 
+                </optgroup>                  
+                <optgroup label="Other education">
+                <option value='71'>71 - SPED</option>
+				<option value='72'>72 - Arabic</option>
+				<option value='73'>73 - Others, specify</option>
+                
+
+                  </optgroup>
+               </select>  
+              <span><input type="text" name="EDUC_OTH" id="EDUC_OTH" class="form-control" /></span>
+            </div>    
+            <div class="form-group">
+              <label for="lastname">
+                Specify course :
+              </label>
+              <input type="text" class="form-control" id="EDUC_COURSE" name="EDUC_COURSE">
+            </div>       
+           
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="SCHOOL" id="SCHOOL"> Is <i><b id="childname"></b></i> currently schooling?
+              </label>
+            </div> 
+			</div>
+			</div>
+			<div class="page" id="page6">
+	        <div class="form-wrapper">
+			<center>Question 6 out of 7</center>
+			
+            <div class="alert alert-success" role="alert"><h4><u>FOR 10 YEARS OLD AND ABOVE</u></h4>   </div>
+
+            <div class="form-group">
+               
+              <label for="  ">
+               Did <strong name="memname">[NAME]</strong> has work or have job or business in the past 6 months?
+              </label>
+              <select name="WORK" id="WORK" class="form-control">
+                <option value="">Select Work Status</option>
+
+                <optgroup label="Without work/business">
+                <option value='00'>0 - No occupation</option>
+				<option value='01'>1 - House keeper</option>
+				<option value='02'>2 - Student</option>
+				<option value='03'>3 - Pensioner</option>
+           
+                 </optgroup> 
+                <optgroup label="With work/business">
+                <option value='11'>11 - With job or business</option>
+				<!-- <option value='12'>12 - With job or business and Student</option> -->
+				<option value='99'>99 - Not applicable (<5y.o.)</option>
+           
+                 </optgroup> 
+                 
+              </select>
+            </div>
+   
+          <div class="form-group">
+            <label>
+              What is the Occupation in the last 6 months
+              </label>
+              <input type="text" class="form-control" id="OCCUPATION" name="OCCUPATION">
+          </div>
+           <div class="form-group">
+            <label>
+               Occupation code
+              </label>
+              <input type="text" class="form-control" id="OCCUPATION_CODE" name="OCCUPATION_CODE"  placeholder="see PSOC list">
+          </div>
+        
+			<div class="form-group">
+               
+              <label for="W_CLASS">
+                Class of worker
+              </label>
+              <select name="W_CLASS" id="W_CLASS" class="form-control">
+                <option value="">Select class of work</option>
+				<option value='1'>1 - Worked for private household</option>
+				<option value='2'>2 - Worked for private establishment</option>
+				<option value='3'>3 - Worked for government/ government corporation</option>
+				<option value='4'>4 - Self-employed w/o any employee</option>
+				<option value='5'>5 - Employer in own family operated farm or business</option>
+				<option value='6'>6 - Worked with pay on own family operated farm or business</option>
+				<option value='7'>7 - Worked without pay in own family operated farm or business</option>
+				<option value='999999'>9 - NA (for housekeepers,  pensioners, students, no occupation)</option>
+             
+               </select> 
+            </div>
+
+           <div class="form-group">
+               
+              <label for="WRKPLACE">
+                Place of work
+              </label>
+              <select name="WRKPLACE" id="WRKPLACE" class="form-control">
+                <option value="">Select workplace</option>
+                <option value='0'>0 - At home</option>
+				<option value='1'>1 - Local, away from home</option>
+				<option value='2'>2 - Abroad</option>
+				<option value='999999'>9 - NA (for housekeepers, pensioners, students, no occupation)</option>
+                
+               </select> 
+            </div>
+       
+           
+			
+			</div>
+			</div>
+			<div class="page" id="page7">
+	        <div class="form-wrapper">
+			<center>Question 7 out of 7</center>
+			
+			<div class="form-group">
+			<label for="RELIGION">
+                RELIGION
+              </label>
+              <select name="RELIGION" id="RELIGION" class="form-control">
+                <option value="">Select Religion</option>
+
+                <option value='00'>None</option>
+				<option value='01'>Aglipay</option>
+				<option value='02'>Alliance of Bible Christian Communities of the Philippines</option>
+				<option value='03'>Assemblies of God</option>
+				<option value='04'>Association of Baptist Churches in Luzon, Visayas, and Mindanao</option>
+				<option value='05'>Association of Fundamental Baptist Churches in the Philippines</option>
+				<option value='06'>Baptist Conference of the Philippines</option>
+				<option value='07'>Bible Baptist Church</option>
+				<option value='08'>Bread of Life Ministries</option>
+				<option value='09'>Buddhist</option>
+				<option value='10'>Cathedral of Praise, Incorporated</option>
+				<option value='11'>Charismatic Full Gospel Ministries</option>
+				<option value='12'>Christ the Living Stone Fellowship</option>
+				<option value='13'>Christian and Missionary Alliance Church of the Philippines</option>
+				<option value='14'>Christian Missions in the Philippines</option>
+				<option value='15'>Church of Christ</option>
+				<option value='16'>Church of God World Mission in the Philippines</option>
+				<option value='17'>Church of Jesus Christ of the Latter Day Saints</option>
+				<option value='18'>Church of the Nazarene</option>
+				<option value='19'>Christian Reformed Church in the Philippines, Incorporated</option>
+				<option value='20'>Conservative of the Philippine Baptist Church</option>
+				<option value='21'>Convention of the Philippine Baptist Church</option>
+				<option value='22'>Crusaders of the Divine Church of Christ, Incorporated</option>
+				<option value='23'>Door of Faith</option>
+				<option value='24'>Evangelical Christian Outreach Foundation</option>
+				<option value='25'>Evangelical Free Church of the Philippines</option>
+				<option value='26'>Evangelical Presbyterian Church</option>
+				<option value='27'>Faith Tabernacle Church (Living Rock Ministries)</option>
+				<option value='28'>Filipino Assemblies of the First Born, Incorporated</option>
+				<option value='29'>Foursquare Gospel Church in the Philippines</option>
+				<option value='30'>Free Believers in Christ Fellowship</option>
+				<option value='31'>Free Methodist Church</option>
+				<option value='32'>Free Mission in the Philippines, Incorporated</option>
+				<option value='33'>General Baptist Churches of the Philippines</option>
+				<option value='34'>Good News Christian Churches</option>
+				<option value='35'>Higher Ground Baptist Mission</option>
+				<option value='36'>IEMELIF Reform Movement</option>
+				<option value='37'>Iglesia Evangelica Unida de Cristo</option>
+				<option value='38'>Iglesia Evangelista Methodista en Las Islas Filipinas (IEMELIF)</option>
+				<option value='39'>Iglesia Filipina Independiente</option>
+				<option value='40'>Iglesia ni Cristo</option>
+				<option value='41'>Iglesia sa Dios Espiritu Santo, Incorporated</option>
+				<option value='42'>Independent Baptist Churches of the Philippines</option>
+				<option value='43'>Independent Baptist Missionary Fellowship</option>
+				<option value='44'>International One Way Outreach</option>
+				<option value='45'>Islam</option>
+				<option value='46'>Jehovah's Witness</option>
+				<option value='47'>Jesus Christ Saves Global Outreach</option>
+				<option value='48'>Jesus is Alive Community, Incorporated</option>
+				<option value='49'>Jesus is Lord Church</option>
+				<option value='50'>Jesus Reigns Ministries</option>
+				<option value='51'>Love of Christ International Ministries</option>
+				<option value='52'>Lutheran Church of the Philippines</option>
+				<option value='53'>Miracle Life Fellowship International</option>
+				<option value='54'>Miracle Revival Church of the Philippines</option>
+				<option value='55'>Missionary Baptist Churches of the Philippines</option>
+				<option value='56'>Pentecostal Church of God Asia Mission</option>
+				<option value='57'>Philippine Benevolent Missionaries Association</option>
+				<option value='58'>Philippine Ecumenical Christian Church</option>
+				<option value='59'>Philippine Episcopal Churche</option>
+				<option value='60'>Philippine Evangelical Mission</option>
+				<option value='61'>Philippine General Council of the Assemblies of God</option>
+				<option value='62'>Philippine Good News Ministries</option>
+				<option value='63'>Philippine Grace Gospel</option>
+				<option value='64'>Philippine Independent Catholic Church</option>
+				<option value='65'>Philippine Missionary Fellowship</option>
+				<option value='66'>Philippine Pentecostal Holiness Church</option>
+				<option value='67'>Potter's House Christian Center</option>
+				<option value='68'>Presbyterian Church in the Philippines</option>
+				<option value='69'>Roman Catholic, including Catholic Charismatic</option>
+				<option value='70'>Salvation Army, Philippines</option>
+				<option value='71'>Seventh Day Adventist</option>
+				<option value='72'>Southern Baptist Church</option>
+				<option value='73'>Take the Nation for Jesus Global Ministries (Corpus Christi)</option>
+				<option value='74'>Things to Come</option>
+				<option value='75'>UNIDA Evangelical Church</option>
+				<option value='76'>United Church of Christ in the Philippines</option>
+				<option value='77'>United Evangelical Church of the Philippines (Chinese)</option>
+				<option value='78'>Union Espiritista Cristiana de Filipinas, Incorporated</option>
+				<option value='79'>United Methodists Church</option>
+				<option value='80'>United Pentecostal Church (Philippines), Incorporated</option>
+				<option value='81'>Universal Pentecostal Church</option>
+				<option value='82'>Victory Chapel Christian Fellowship</option>
+				<option value='83'>Watch Tower Bible and Tract Society of the Philippines, Incorporated (Jehovah's Witnesses)</option>
+				<option value='84'>Way of Salvation</option>
+				<option value='85'>Way of Salvation Church Incorporated, The</option>
+				<option value='86'>Wesleyan Church, The</option>
+				<option value='87'>Word for the World</option>
+				<option value='88'>Word International Ministries, Incorporated</option>
+				<option value='89'>World Missionary Evangelism</option>
+				<option value='90'>Worldwide Church of God</option>
+				<option value='91'>Zion Christian Community Church</option>
+				<option value='92'>Other Baptists</option>
+				<option value='93'>Other Evangelical Churches</option>
+				<option value='94'>Other Methodists</option>
+				<option value='95'>Other Protestants</option>
+				<option value='96'>Tribal religions</option>
+				<option value='97'>Other religious affiliations</option>
+
+             
+               </select> 
+            
+			</div>
+			
+			<div class="form-group">
+              <input type="text" class="form-control" id="OTH_REL" name="OTH_REL"  placeholder="Other Religion, please specify..">
+			</div>
+			
+			<div class="form-group">
+               
+              <label for="REMARKS">
+                Remarks
+              </label>
+             <textarea name="REMARKS" id="REMARKS" class="form-control">NONE</textarea>
+            </div>
+
+            <div class="form-group">
+              
+            <select class ='form-control btn btn-primary is' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS' style='display:inline-block; width:200px;' >
+			<option value='' >Select Interview status</option>
+			<optgroup label='Covered'>
+			<option value='1' >1 - Completed</option>
+			<option value='2' >2 - Partly Completed</option>
+			</optgroup>
+			<optgroup label='Not Covered'>
+			<option value='3' >3 - Respondent Incapacitated</option>
+			<option value='4' >4 - Refused</option>
+			<option value='5' >5 - Not at Home (Away during the Survey Period)</option>
+			<option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option>
+			<option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+			<option value='8' >8 - Others</option>
+			</optgroup>
+			</select>
+			<input type="text" name="INTERVIEW_STATUS_OTH" id="INTERVIEW_STATUS_OTH" class="form-control" placeholder="Others.." style='display:inline-block; width:200px;'>
+
+			
+            </div>
+            
+       <div class="form-group">
+
+              <label for="REMARKS">
+                Last Date edited:
+              </label>
+             <input type="text" class="form-control" id="DATE_EDIT" name="DATE_EDIT" value="" readonly />
+            </div>
+       
+            <input type="hidden" id="id2" name="id2" value=""/>
+            <input type="hidden" id="eacode" name="eacode" value=""/ />
+            <input type="hidden" id="hcn" name="hcn" value=""/ />
+            <input type="hidden" id="shsn" name="shsn" value=""/>
+            <input type="hidden" id="MEMBER_CODE" name="MEMBER_CODE" />
+            <input type="hidden" id="ES_DBI_" name="ES_DBI2" value="" />
+            <input type="hidden" id="BIOMOM_" name="BIOMOM2" value="" />
+			<input type="hidden" id="BIODAD_" name="BIODAD2" value="" />
+			<input type="hidden" id="username" name="username" value="<%- session.username%>" />
+			
+            <input type="hidden" id="SCHOOL_" name="SCHOOL2" value="" />
+            
+          
+            <button type="submit" id="savef11" class="btn btn-lg btn-warning">
+           
+            </button>
+			
+			<br> 
+            <button type="button" onclick="update()" class="btn btn-lg btn-warning" id="updateButton">
+              Update Information
+            </button>
+			
+          </div>
+		  </div>
+          </form>
+        </div>
+	 	
+      </div>
+     </div>
+	 </div>
+	 </div>
+	 </div>
+	 </div>
+      <!-- </div>  -->
+    <!-- </div> -->
+  <!-- </div> -->
+<!-- </div>  -->
+
+<!-- Modal -->
+<div class="modal" id="indivformModal" tabindex="-1"  data-backdrop="static" data-keyboard="false"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Form List
+		<span class="pull-right">
+		<label class="list-group-item-success" style="display:inline-block;"> &nbsp; Complete  &nbsp;</label> &nbsp; 
+		<label class="list-group-item-warning" style="display:inline-block;"> &nbsp; Incomplete  &nbsp;</label> &nbsp; 
+		<label class="list-group-item-danger" style="display:inline-block;"> &nbsp; Empty &nbsp; </label> &nbsp; 
+		<!-- <label class="list-group-item-info" style="display:inline-block;"> &nbsp; Not Covered &nbsp; </label> &nbsp; -->
+		</span>
+		</h4>
+      </div>
+      <div class="modal-body">
+        <div class="list-group" id="indivformslist">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="anthropdialog" role="dialog">
+	  	<ul class="btn-group pagination" id="ant-btn-group">
+		
+		<button class="btn ant-butt ant-active-btn" type="button" id="ant-btn_page1"  value="1"> Disablity/Indigenous People  </button>
+		<% var z = 5; %>
+			<button class="btn ant-butt" type="button" id="ant-btn_page2"  value="2"> Weight/Height </button>
+			<button class="btn ant-butt" type="button" id="ant-btn_page3"  value="3"> Waist/Hip </button>
+			<button class="btn ant-butt" type="button" id="ant-btn_page4"  value="4"> MUAC </button>
+			<button class="btn ant-butt" type="button" id="ant-btn_page5"  value="5"> Blood Pressure </button>
+			
+			
+		</ul>
+       
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Measurements for <label class="getName"></label>&nbsp;<label class="getMC"></label></h4>
+      </div>
+	  
+      <div class="modal-body">
+
+        <form id="anthropform" name="anthropform" onsubmit="return validateFormAnt()" action="/legone/survey/surveyform/form21" method="post">
+		<div class="ant-page form-wrapper" id="ant-page1">
+          <div class="row">
+            <div class="container">
+            <div class="form-group">
+              <h5 id="subjectname" style="font-weight:bold;"></h5>
+             </div> 
+            </div> 
+          </div>  
+
+              <div class="form-group">
+
+                  <label for="DISABILITY">
+                DISABILITY
+              </label>
+              <select name="DISABILITY" id="DISABILITY" class="form-control">
+                <option value='0'>0 - No disability /Normal</option>
+				<option value='1'>1 - With physical disability (amputated upper extremities, lame due to amputated lower extremities, hunchback,  cannot stand straight, with polio)</option>
+				<!-- <option value='2'>2 - Cleft palate</option> -->
+				<!-- <option value='3'>3 - Hydrocephalus</option> -->
+				<!-- <option value='4'>4 - Club foot</option> -->
+				<!-- <option value='5'>5 - Fused Limbs</option> -->
+				<!-- <option value='6'>6 - Polydatyl/Adactyl (Sobra/Kulangangdaliri/Sipit)</option> -->
+				<!-- <option value='7'>7 - Autism/ADHD</option> -->
+				<!-- <option value='8'>8 - Down Syndrome/Mongoloid</option> -->
+				<!-- <option value='9'>9 - Albinism</option> -->
+				<!-- <option value='10'>10 - Cerebral palsy</option> -->
+				<!-- <option value='11'>11 - Blind</option> -->
+				<!-- <option value='12'>12 - Deaf</option> -->
+				<!-- <option value='3'>3 - Dwarfism/Gigantism</option> -->
+				<!-- <option value='14'>14 - Others, specify</option>    -->
+				</select> 
+           
+              </div>
+			  <div class="form-group">
+                  <input type="text" class="form-control"  name="DISABILITY_OTH" id="DISABILITY_OTH" placeholder="Please specify.." />
+              </div>
+			  
+			<div class="form-group">
+
+               <label for="ETH_CODE">
+                INDIGENOUS PEOPLE	<div class="ethtip btn-warning" style="font-size:1.1em; display:inline-block; color:black;"  data-toggle="tooltip" title="Indigenous People refers to a group of people or homogenous societies identified by self-ascription and ascription by others, who have continuously lived as organized community or communally bounded and defined territory, and who have, under claims of ownership since time immemorial, occupied, possessed andutilized such territories sharing common bond of language, customs, traditions and other distinctivecultural traits, or who have through resistance to political, social and cultural inroads of colonization, non-indigenous religions and cultures became historically differentiated from the majority Filipinos. They are likewise peoples who are regarded as indigenous on account of their descent from thepopulation which inhabited the country, at the same time of conquest, of the establishment of presentstate boundaries, who retain some or all of their own social, economic, cultural and political institutions,but who may have been displaced from their traditional domains or who may have resettled outside their ancestral domains.The common Indigenous Peoples in the Philippines are documented by the National Commission on IP.These are classified by region.">
+           (?) 
+			</div>
+              </label>
+			  <select name="ETH_CODE" id="ETH_CODE" class="form-control">
+					<option value=''>Select Indigenous People</option>
+					<option value='0'>0 - Not an IP</option>
+					<!-- <option value='2'>2 - With Foreign Blood</option> -->
+					<option value='1'>1 - Indigenous People</option>
+			  </select>
+              <select name="IP" id="IP" class="form-control" class="IP">
+			    <option value=''>Select IP</option>
+				<option value='1'>Aeta (CAR, Region I)</option>
+				<option value='2'>Aeta-Abiyan (Region V)</option>
+				<option value='3'>Aeta-Remontado (Region IV)</option>
+				<option value='4'>Agta (CAR, Region I, Region IV, Region V)</option>
+				<option value='5'>Alangan-Mangyan (Region IV)</option>
+				<option value='6'>Applai (CAR, Region I, )</option>
+				<option value='7'>Ata/Matigsalog (Region XI)</option>
+				<option value='8'>Ati (Region IV, Region VI, Region VII)</option>
+				<option value='9'>Ati / Bantoanan (Region IV)</option>
+				<option value='10'>Badjao (Region VII, Region IX, ARMM)</option>
+				<option value='11'>Bago (CAR, Region I)</option>
+				<option value='12'>Bagobo (Region XI, Region XII)</option>
+				<option value='13'>Bagobo-Guingan/Clata (Region XI)</option>
+				<option value='14'>Bagobo-Tagabawa (Region XI)</option>
+				<option value='15'>Balangao (CAR)</option>
+				<option value='16'>Balatoc (CAR)</option>
+				<option value='17'>Banac (CAR)</option>
+				<option value='18'>Bantoanan (Region IV)</option>
+				<option value='19'>Batangan-Mangyan (Region IV)</option>
+				<option value='20'>Binongan (CAR)</option>
+				<option value='21'>B'laan (Region XI, Region XII)</option>
+				<option value='22'>Bontok (CAR,  Region I)</option>
+				<option value='23'>Bugkalot (CAR, Region I)</option>
+				<option value='24'>Bukidnon (Region VI, Region VII)</option>
+				<option value='25'>Bukidnon-Higaonon (Region X)</option>
+				<option value='26'>Danao (CAR)</option>
+				<option value='27'>Dumagat (Region I)</option>
+				<option value='28'>Esleaya (Region VII)</option>
+				<option value='29'>Gaddang (CAR, Region I)</option>
+				<option value='30'>Gubang (CAR)</option>
+				<option value='31'>Hanglulo (CAR)</option>
+				<option value='32'>Hanunuo (Region I)</option>
+				<option value='33'>Higaonon (Region XIII)</option>
+				<option value='34'>Ibaloi (CAR, Region I)</option>
+				<option value='35'>Ibanag (CAR, Region I)</option>
+				<option value='36'>Ifugao (CAR, Region I)</option>
+				<option value='37'>Ikalahan (CAR)</option>
+				<option value='38'>Ikaluna (CAR)</option>
+				<option value='39'>Ilianen-Higaonon (Region XII)</option>
+				<option value='40'>Inlaud (CAR)</option>
+				<option value='41'>Iraya (Region I)</option>
+				<option value='42'>Itawes (CAR Region I)</option>
+				<option value='43'>Ivatan (CAR, Region I, Region II)</option>
+				<option value='44'>Kalagan (Region XI, ARMM)</option>
+				<option value='45'>Kalibugan (Region IX, ARMM)</option>
+				<option value='46'>Kalinga (CAR, Region I)</option>
+				<option value='47'>Kankanaey (CAR, Region I)</option>
+				<option value='48'>Karao (CAR)</option>
+				<option value='49'>Mabaca (CAR)</option>
+				<option value='50'>Maeng (CAR)</option>
+				<option value='51'>Magahat (Region VI, Region VII)</option>
+				<option value='52'>Malaueg (CAR)</option>
+				<option value='53'>Mandaya (Region XI, Region XIII)</option>
+				<option value='54'>Manguangan (Region XI)</option>
+				<option value='55'>Mangyan (Region I)</option>
+				<option value='56'>Mangyan (Region IV)</option>
+				<option value='57'>Manobo Biit (Region XI)</option>
+				<option value='58'>Manobo/Ubo (Region XI)</option>
+				<option value='59'>Masadiit (CAR)</option>
+				<option value='60'>Remontado (Region I)</option>
+				<option value='61'>Sama (Region IX)</option>
+				<option value='62'>Samal (Region IX, ARMM)</option>
+				<option value='63'>Sulod (Region VI)</option>
+				<option value='64'>Tabangnon (Region V)</option>
+				<option value='65'>Tagakaolo (Region XI)</option>
+				<option value='66'>Tagbanua (Region I)</option>
+				<option value='67'>T'boli (Region XI)</option>
+				<option value='68'>Tingguian (CAR, Region I)</option>
+				<option value='69'>Tuwali (CAR)</option>
+				<option value='70'>Yakan (Region IX)</option>
+				<option value='71'>Yogad (CAR) </option>
+				<option value='73'>Others Please Specify…</option>
+			  </select> 
+                      <input type="text" class="form-control" name="ETHNICITY" id="ETHNICITY" placeholder="Other Indigenous People" /> 
+
+              </div>
+			  </div>
+			  <div class="ant-page form-wrapper" id="ant-page2">
+			  <div class="row">
+			  <div class="col-sm-6">
+              <div class="form-group">
+
+                  <label>WEIGHT 1 (kg)</label>
+                  <input type="number" class="form-control measurew"  name="WEIGHT1" id="WEIGHT1" onkeypress='validate(event)' maxlength="6" />
+              </div>
+               <div class="form-group">
+                  <label>WEIGHT 2 (kg)</label>
+                  <input type="number"   maxlength="6" class="form-control measurew"  name="WEIGHT2" id="WEIGHT2" onkeypress='validate(event)' maxlength="5" />
+              </div>
+			  </div>
+			  <div class="col-sm-6">
+              <div class="form-group">
+                  <label>HEIGHT 1 (cm)</label>
+                  <input type="number"   maxlength="6" class="form-control measureh"  name="HEIGHT1" id="HEIGHT1" onkeypress='validate(event)' maxlength="5" />
+              </div>
+              <div class="form-group">
+                  <label>HEIGHT 2 (cm)</label>
+                  <input type="number"   maxlength="6" class="form-control measureh"  name="HEIGHT2" id="HEIGHT2" onkeypress='validate(event)'  />
+              </div>
+			  </div>
+			  </div>
+			  <div class="form-group">
+                  <label>Remarks for Extreme Body Measurements:</label>
+				    <select name="HH_REMARKS" id="HH_REMARKS" class="form-control">
+						<option value=''>Select Remarks for Extreme Body Measurement</option>
+						<option value='1'>1 – Very thin</option>
+						<option value='2'>2 – Very small</option>
+						<option value='3'>3 – Very small and thin</option>
+						<option value='4'>4 – Fat</option>
+						<option value='5'>5 – Very fat</option>
+						<option value='6'>6 – Heavy with large bone structure</option>
+						<option value='7'>7 – Tall</option> 
+						<option value='8'>8 – Very tall</option>
+						<option value='9'>9 – Tall and fat</option>
+						<option value='10'>10 – Very tall and grossly fat/obese</option>
+						<option value='11'>11 – Tall and heavy, with large bone structure</option>
+						<option value='12'>12 – With abdominal obesity</option>
+						<option value='13'>13 – Others, Specify: (Other possible combinations of characteristics)</option>
+					</select> 
+              </div>
+			<div class="form-group">
+              <input type="text" class="form-control" id="OTH_REM" name="OTH_REM"  placeholder="Other Remarks, please specify..">
+			</div>
+			  <div class="form-group">
+                  <label>Measurer for Weight and Height (Name/Date)</label>
+                  <input type="text" class="form-control"  name="meas_wehe" id="meas_wehe" />
+              </div>
+			  <div class="form-group">
+                  <label>Recorder for Weight and Height (Name/Date)</label>
+                  <input type="text" class="form-control"  name="rec_wehe" id="rec_wehe" />
+              </div>
+			  </div>
+			  <div class="ant-page form-wrapper" id="ant-page3">
+			  <div class="row">
+			  <div class="col-sm-6">
+              <div class="form-group">
+                  <label>WAIST 1 (cm)</label>
+                  <input type="number" maxlength="6" class="form-control measure waist"  name="WAIST1" id="WAIST1" onkeypress='validate(event)' maxlength="5" />
+              </div>
+              <div class="form-group">
+                  <label>WAIST 2 (cm)</label>
+                  <input type="number"   maxlength="6" class="form-control measure waist"  name="WAIST2" id="WAIST2" onkeypress='validate(event)' maxlength="5" />
+              </div>
+			  <div class="form-group">
+                  <label>WAIST 3 (cm)</label>
+                  <input type="number"   maxlength="6" class="form-control measure waist"  name="WAIST3" id="WAIST3" onkeypress='validate(event)' maxlength="5" />
+              </div>
+			  </div>
+			  <div class="col-sm-6">
+              <div class="form-group">
+                  <label>HIP 1 (cm)</label>
+                  <input type="number"   maxlength="6" class="form-control measure hip"  name="HIP1" id="HIP1" onkeypress='validate(event)'  maxlength="5"/>
+              </div>
+              <div class="form-group">
+                  <label>HIP 2 (cm)</label>
+                  <input type="number"   maxlength="6" class="form-control measure hip"  name="HIP2" id="HIP2" onkeypress='validate(event)' maxlength="5" />
+              </div>
+			                <div class="form-group">
+                  <label>HIP 3 (cm)</label>
+                  <input type="number"   maxlength="6" class="form-control measure hip"  name="HIP3" id="HIP3" onkeypress='validate(event)' maxlength="5" />
+              </div>
+			  </div>
+			  </div>
+               <div class="form-group">
+                  <label>Remarks for Waist and Hip</label>
+                  <textarea name="WHH_REMARKS" id="WHH_REMARKS"  class="form-control waist"></textarea>
+              </div>
+			  <div class="form-group">
+                  <label>Measurer for Waist and Hip (Name/Date)</label>
+                  <input type="text" class="form-control waist"  name="meas_wahi" id="meas_wahi" />
+              </div>
+			  <div class="form-group">
+                  <label>Recorder for Waist and Hip (Name/Date)</label>
+                  <input type="text" class="form-control waist"  name="rec_wahi" id="rec_wahi" />
+              </div>
+			</div>
+			  <div class="ant-page form-wrapper" id="ant-page4">
+			<div class="row">
+			<div class="col-md-4">
+              <div class="form-group muac-disable">
+                  <label>MUAC 1</label>
+                  <input type="number" class="form-control muac"  name="MUAC1" id="MUAC1" onkeypress='validate(event)' />
+              </div>
+			</div>
+			<div class="col-md-4">
+              <div class="form-group muac-disable">
+                  <label>MUAC 2</label>
+                  <input type="number"   maxlength="6" class="form-control  muac"  name="MUAC2" id="MUAC2" onkeypress='validate(event)' />
+              </div>
+			</div>
+			<div class="col-md-4">  
+			  <div class="form-group muac-disable">
+                  <label>MUAC 3</label>
+                  <input type="number"  maxlength="6" class="form-control  muac"  name="MUAC3" id="MUAC3" onkeypress='validate(event)' />
+              </div>
+			 </div>
+			</div>
+			  <div class="form-group">
+                  <label>Measurer for MUAC (Name/Date)</label>
+                  <input type="text" class="form-control"  name="meas_muac" id="meas_muac" />
+              </div>
+			  <div class="form-group">
+                  <label>Recorder for MUAC (Name/Date)</label>
+                  <input type="text" class="form-control"  name="rec_muac" id="rec_muac" />
+              </div>
+               <div class="form-group muac-disable">
+                  <label>Remarks for MUAC</label>
+                  <textarea name="MUAC_REMARKS" id="MUAC_REMARKS"  class="form-control"></textarea>
+              </div>
+
+
+            <div class="form-group">
+             
+              <label for="INTERVIEW_STATUS">
+                Measurement status
+              </label>
+              <select class ='form-control btn btn-primary' name='INTERVIEW_STATUS_meas' id='INTERVIEW_STATUS_meas' style='width:200px;'>
+			<option value='' >Select Interview status</option>
+			<optgroup label='Covered'>
+			<option value='1' >1 - Completed</option>
+			<option value='2' >2 - Partly Completed</option>
+			</optgroup>
+			<optgroup label='Not Covered'>
+			<option value='3' >3 - Respondent Incapacitated</option>
+			<option value='4' >4  - Refused</option>
+			<option value='5' >5 - Not at Home (Away during the Survey Period)</option>
+			<option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option>
+			<option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+			<option value='8'>Others</option>
+			</optgroup>
+			</select>
+            </div>
+			</div>
+			<div class="ant-page form-wrapper" id="ant-page5" style="padding-top: 0px;
+				padding-bottom: 0px;">
+
+			     <h4 style="margin-top: 0px;">BLOOD PRESSURE</h4>
+				
+				 <div class="form-inline">
+				 	<label>Maximum Inflation Level (MIL) &nbsp;&nbsp;</label>
+                  <input type="text" placeholder="Please input.." class="form-control measure" name="MIL" id="MIL" style="display:inline-block" />
+				  </div>
+				  <br>
+			<div class="row">
+			<div class="col-sm-4">
+               <div class="form-group">
+               
+			   
+                  <label>BP1</label>
+                  <input type="number" placeholder="Systolic" class="form-control measure" name="BP1_SYSTOLIC" id="BP1_SYSTOLIC" onkeypress='validate(event)' maxlength="5" />
+              </div>
+               <div class="form-group">
+                  <input type="number"  placeholder="Diastolic" class="form-control measure" name="BP1_DIASTOLIC" id="BP1_DIASTOLIC" maxlength="5" />
+              </div>
+			</div>
+			<div class="col-sm-4">
+               <div class="form-group">
+                  <label>BP2</label>
+                  <input type="number" placeholder="Systolic" class="form-control measure" name="BP2_SYSTOLIC" id="BP2_SYSTOLIC" onkeypress='validate(event)' maxlength="5" />
+              </div>
+               <div class="form-group">
+                  <input type="number"  placeholder="Diastolic" class="form-control measure" name="BP2_DIASTOLIC" id="BP2_DIASTOLIC" maxlength="5" />
+              </div>
+			</div>
+			<div class="col-sm-4">
+               <div class="form-group">
+                  <label>BP3</label>
+                  <input type="number" placeholder="Systolic" class="form-control measure" name="BP3_SYSTOLIC" id="BP3_SYSTOLIC" onkeypress='validate(event)' maxlength="5"/>
+              </div>
+               <div class="form-group">
+                  <input type="number"  placeholder="Diastolic" class="form-control measure" name="BP3_DIASTOLIC" id="BP3_DIASTOLIC" maxlength="5" />
+              </div>
+			</div>
+			</div>
+			
+			  <div class="form-group">
+                  <label>Measurer for Blood Pressure (Name/Date)</label>
+                  <input type="text" class="form-control"  name="meas_bp" id="meas_bp" />
+              </div>
+			  <div class="form-group">
+                  <label>Recorder for Blood Pressure (Name/Date)</label>
+                  <input type="text" class="form-control"  name="rec_bp" id="rec_bp" />
+              </div>
+                <div class="form-group">
+                  <label>Measurement status for BP</label>
+                <select class ='form-control btn btn-primary' name='INTERVIEW_STATUS_BP' id='INTERVIEW_STATUS_BP' style='width:200px;'>
+			<option value='' >Select Interview status</option>
+			<optgroup label='Covered'>
+			<option value='1' >1 - Completed</option>
+			<option value='2' >2 - Partly Completed</option>
+			</optgroup>
+			<optgroup label='Not Covered'>
+			<option value='3' >3 - Respondent Incapacitated</option>
+			<option value='4' >4  - Refused</option>
+			<option value='5' >5 - Not at Home (Away during the Survey Period)</option>
+			<option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option>
+			<option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+			<option value='8'>Others</option>
+			</optgroup>
+			</select>
+            </div>
+		    
+
+             <div class="form-group">
+                  <label>Remarks for BP</label>
+                  <textarea name="BP_REMARKS" id="BP_REMARKS"  class="form-control"></textarea>
+              </div>
+             <div class="form-group">
+               
+              <label for="REMARKS">
+                Last Date edited:
+              </label>
+             <input type="text" class="form-control" id="DATE_EDIT2" name="DATE_EDIT2" value="" readonly />
+            </div>
+			   <button type="button" onclick="updateAnthrop()" class="btn btn-lg btn-warning"> Save or Update </button>
+			   
+<div class="modal" id="recap">
+  <div class="modal-dialog-summ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Saved Successfully </h4>
+      </div>
+      <div class="modal-body">
+        <div class="list-group" id="listAnswers">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn btn-default" onclick='close()'>Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+   
+			</div>
+			
+   
+        <input type="hidden" id="id2" name="id2" value="" />
+        <input type="hidden" id="memkey" name="memkey" value="" />
+        <input type="hidden" id="measure_record" name="measure_record" />
+        <input type="hidden" id="indivinfo" name="indivinfo" />
+        <input type="hidden" id="anthrop_age" name="anthrop_age" />
+        <input type="hidden" id="anthrop_sex" name="anthrop_sex" />
+        <input type="hidden" id="anthrop_url" name="anthrop_url" value=""/>
+        
+
+        <div class="modal-footer">
+          <!--  <button type="submit" class="btn btn-primary">Save</button>-->
+
+       </div>
+       
+       </form>
+      
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<style>
+
+.viewinfo{
+	border-color:#173e43;
+}
+.validateAnt{
+	display: inline-block;
+}
+.form-wrapper{
+  padding:15px;
+}
+.ant-active-btn{
+	color:white;
+}
+	
+.formlinks{
+  font-weight: bold;
+  font-size:15px;
+}
+
+#memberinfodialog .modal-dialog {
+	width: 50%;
+	height: auto;
+	max-height: 90%;
+	overflow: auto;
+	
+}
+
+#indivformModal .modal-dialog {
+  width: 80%;
+}
+#anthropdialog .modal-dialog {
+  width: 60%;
+  
+}
+
+.pagination .btn
+{
+	font-size:13px;
+	line-height:1;
+	width:110px;
+	border-top-color:white;
+	border-bottom-color:white;
+}
+
+
+
+
+   </style>
+   
+   
+<script type="text/javascript" src="/jquery/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript">
+var base_url = "/legone/";
+function roundNumber(rnum, rlength) { // Arguments: number to round, number of decimal places
+  var newnumber = Math.round(rnum*Math.pow(10,rlength))/Math.pow(10,rlength);
+ return newnumber; 
+}
+
+ function ageinyears(){
+    ageyrs = 0;
+     var refdate = new Date($('#REFDATE').val());
+     var birthdate = new Date($('#DBIRTH').val());
+
+     
+      refdate = new Date(refdate);
+      bdate = new Date(birthdate);
+         
+      if(refdate && bdate){
+         if(bdate.getTime()<=refdate.getTime()){
+             var one_month=1000*60*60*24* 30.4375
+             var one_year=1000*60*60*24* 30.4375*12   
+             var one_day=one_month/30.4375
+             ageyrs = roundNumber((refdate.getTime()-bdate.getTime())/one_year ,4)
+          }
+      }
+
+	
+       
+          if(ageyrs<3){
+         
+			$('#EDUC').prop("disabled",true);
+			$('#EDUC_OTH').prop("disabled",true);
+            $('#EDUC_COURSE').val("Not Applicable");
+            $('#EDUC_COURSE').prop("disabled",true);
+			$('#SCHOOL').prop("disabled",true);
+          }
+          else{
+           $('#EDUC').prop("disabled",false); 
+           $('#EDUC_COURSE').prop("disabled",false);
+           $('#EDUC_COURSE').val("");
+		   $('#SCHOOL').prop("disabled",false);
+          }
+
+           if(ageyrs<10){
+
+            $('#WORK').val('99');
+            $('#OCCUPATION').val('999999');
+            $('#OCCUPATION_CODE').val('999999');
+            $('#WRKPLACE').val('9');
+            $('#W_CLASS').val('9');  
+
+            $('#WORK').prop("disabled",true);
+            $('#OCCUPATION').prop("readonly",true);
+            $('#OCCUPATION_CODE').prop("readonly",true);
+            $('#WRKPLACE').prop("disabled",true);
+            $('#W_CLASS').prop("disabled",true);
+         
+          }
+          else{
+            $('#WORK').val('');
+            $('#OCCUPATION').val('');
+            $('#OCCUPATION_CODE').val('');
+            $('#WRKPLACE').val('');
+            $('#W_CLASS').val(''); 
+
+            $('#WORK').prop("disabled",false);
+            $('#OCCUPATION').prop("readonly",false);
+            $('#OCCUPATION_CODE').prop("readonly",false);
+            $('#WRKPLACE').prop("disabled",false);
+            $('#W_CLASS').prop("disabled",false);
+
+        
+          }
+		  
+			<!-- if(ageyrs<9) -->
+		  <!-- { -->
+			<!-- $('#PSC option[value="01"]').remove(); -->
+			<!-- $('#PSC option[value="02"]').remove(); -->
+			<!-- $('#PSC option[value="03"]').remove(); -->
+			<!-- $('#PSC option[value="04"]').remove(); -->
+			<!-- $('#PSC option[value="05"]').remove(); -->
+			<!-- $('#PSC option[value="06"]').remove(); -->
+			<!-- $('#PSC option[value="07"]').remove(); -->
+			<!-- $('#PSC option[value="08"]').remove(); -->
+			<!-- $('#PSC option[value="09"]').remove(); -->
+			<!-- $('#PSC option[value="10"]').remove(); -->
+			<!-- $('#PSC option[value="11"]').remove(); -->
+			<!-- $('#PSC option[value="12"]').remove(); -->
+          <!-- } -->
+
+	 var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);	  
+		  
+	var data= {};
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;	
+	
+	
+	$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/form11/respondents',						
+                            success: function(data) {
+
+							
+							for(var i=0;i<data.length;i++){
+							if(ageyrs < 20 && data[i].SEX == 2 && data[i].AGE > 13){
+							$('#MOM').append("<option value="+data[i].MEMBER_CODE+">"+data[i].GIVENNAME+" "+data[i].SURNAME+"</option>");
+							$('#MOM').attr('disabled',false);
+							}
+							if(ageyrs < 20 && data[i].SEX == 1 && data[i].AGE > 13){
+							$('#DAD').append("<option value="+data[i].MEMBER_CODE+">"+data[i].GIVENNAME+" "+data[i].SURNAME+"</option>");
+							$('#DAD').attr('disabled',false);
+							}
+							}
+							if(ageyrs>20){
+								$('#MOM, #DAD').append("<option value='999999'>999999</option>");
+								$('#MOM, #DAD').prop("disabled",true);
+							  }
+							$('#MOM').append("<option value='None'>NotAvailable</option>");
+							$('#DAD').append("<option value='None'>NotAvailable</option>");
+
+							
+                          }
+						
+                        });
+						 $('#MOM').empty();
+			$('#DAD').empty();
+          
+		   
+
+      return ageyrs;
+
+  }
+ var form_elements;
+ var row_id;
+
+ <!-- function checkSEX(sex){ -->
+ 
+        
+
+ <!-- } -->
+ 
+ 	function validateForm() {
+    var giv = document.forms["members_form"]["GIVENNAME"].value;
+	var sur = document.forms["members_form"]["SURNAME"].value; 
+	var rhc = document.forms["members_form"]["RHC"].value;
+	var nbi = document.forms["members_form"]["NBI"].value;
+	var dbi = document.forms["members_form"]["DBIRTH"].value;
+	var csc = document.forms["members_form"]["CSC"].value;
+	var its = document.forms["members_form"]["INTERVIEW_STATUS"].value;
+	
+    if (giv == "" || sur == "" || rhc == "" || nbi == "" || dbi == "" || csc == "" || its == "") {
+         BootstrapDialog.show({
+                type:BootstrapDialog.TYPE_DANGER, 
+                title: 'Incomplete input',
+                message: 'Please fill up all fields. Penalty of 20seconds' 
+            });
+        return false;
+    }
+}
+
+	function validate(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+ $('#RELIGION').change(function(){
+   if($(this).val()==97){
+		  $('#OTH_REL').prop('readonly',false);
+        }
+        else{
+		 $('#OTH_REL').prop('readonly',true);
+        }
+});
+
+ $('#INTERVIEW_STATUS').change(function(){
+   if($(this).val()==8){
+		  $('#INTERVIEW_STATUS_OTH').prop('readonly',false);
+        }
+        else{
+		  $('#INTERVIEW_STATUS_OTH').prop('readonly',true);
+        }
+});
+
+
+
+	
+	
+ $('#SEX').change(function(){
+   if($(this).val()==2){
+		  $("#PSC option[value='99']").hide();
+		  $("#RHC option[value='3']").hide();
+		  $("#RHC option[value='5']").hide();
+		  $("#RHC option[value='7']").hide();
+		  $("#RHC option[value='9']").hide();
+		  $("#RHC option[value='11']").hide();
+		  $("#RHC option[value='13']").hide();
+		  $("#RHC option[value='15']").hide();
+		  $("#RHC option[value='17']").hide(); 
+		  $("#RHC option[value='4']").show();
+		  $("#RHC option[value='6']").show();
+		  $("#RHC option[value='8']").show();
+		  $("#RHC option[value='10']").show();
+		  $("#RHC option[value='12']").show();
+		  $("#RHC option[value='14']").show();
+		  $("#RHC option[value='16']").show();
+		  $("#RHC option[value='18']").show();  
+        }   
+		
+	 if($(this).val()==1){
+		  $("#RHC option[value='3']").show();
+		  $("#RHC option[value='5']").show();
+		  $("#RHC option[value='7']").show();
+		  $("#RHC option[value='9']").show();
+		  $("#RHC option[value='11']").show();
+		  $("#RHC option[value='13']").show();
+		  $("#RHC option[value='15']").show();
+		  $("#RHC option[value='17']").show();   
+		  $("#RHC option[value='4']").hide();
+		  $("#RHC option[value='6']").hide();
+		  $("#RHC option[value='8']").hide();
+		  $("#RHC option[value='10']").hide();
+		  $("#RHC option[value='12']").hide();
+		  $("#RHC option[value='14']").hide();
+		  $("#RHC option[value='16']").hide();
+		  $("#RHC option[value='18']").hide();  
+        }
+
+	 
+		  
+});
+
+
+ $('#HH_REMARKS').change(function(){
+   if($(this).val()==13){
+		  $('#OTH_REM').show();
+        }
+        else{
+		 $('#OTH_REM').hide();
+        }
+});
+
+$("body").on("click", "a[data-href]", function() {
+    var href = $(this).data("href");
+    if (href) {
+        location.href = href;
+    }
+});
+
+
+ 
+  $(document).ready(function(){
+  
+	document.addEventListener('contextmenu', event => event.preventDefault());
+  
+    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = document.lastModified;
+	var act = bigIdString.substring(20,21);
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+	<!-- $('[data-toggle="tooltip"]').tooltip();   -->
+	
+	$('.hideall').hide();
+	$('#loading').hide();
+	$('#subjectname').html($(this).attr('Title'));
+	
+		$('input[type=text]').on('keypress', function (e) {
+        var ingnore_key_codes = [34, 39];
+        if ($.inArray(e.which, ingnore_key_codes) >= 0) {
+            e.preventDefault();
+        }
+    });
+
+	$('html').bind('keypress', function(e)
+	{
+	   if(e.keyCode == 13)
+	   {
+		  return false;
+	   }
+	});
+	
+	
+	var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+	
+	$("#members_form").submit(function () {
+        $("#savef11").attr("disabled", true);
+		
+	setTimeout(function() {
+        $("#savef11").attr("disabled", false);
+    }, 20000);
+		
+        return true;
+    });
+	
+	$('#DISABILITY_OTH').hide();
+	
+	$('#OTH_REL').prop('readonly',true);
+	$('#INTERVIEW_STATUS_OTH').prop('readonly',true);
+	$('#OTH_REM').hide();
+	$('#IP').hide();
+	$('#ETHNICITY').hide();
+	
+	$('.f11_info').hide();
+	$("#updateButton").hide();
+	$('.page').nextAll().prop('hidden',true);
+	$('.ant-page').nextAll().prop('hidden',true);
+
+    
+    var mem2 = Math.random().toString(36).substring(5);
+    var mem = Math.random().toString(36).substring(5);
+    //alert((Math.random()+1).toString(36).substring(5));
+    document.getElementById('memkey').value = mem+mem2;
+	
+	
+	
+	$('.anthrop').each(function() {
+
+	
+					var data = {};
+					data.id = $(this).attr('id');
+					data.eacode = $(this).attr('id').substring(0,12);
+					data.hcn = $(this).attr('id').substring(12,16);
+					data.shsn = $(this).attr('id').substring(12,20);
+					data.MEMBER_CODE = $(this).attr('id').substring(20,22);
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/surveyform/form21/post',						
+                        success: function(data) {
+
+								function isEmpty(v)
+									{
+										return v === null || v.toString().trim().length === 0;
+									}
+									
+								if(isEmpty(data.DISABILITY) && isEmpty(data.ETH_CODE) && isEmpty(data.WEIGHT1) && isEmpty(data.WEIGHT2) && isEmpty(data.HEIGHT1) && isEmpty(data.HEIGHT2) && isEmpty(data.WAIST1) && isEmpty(data.WAIST2) && isEmpty(data.WAIST3) && isEmpty(data.HIP1) && isEmpty(data.HIP2) && isEmpty(data.HIP3) && isEmpty(data.BP1_SYSTOLIC) && isEmpty(data.BP1_DIASTOLIC) && isEmpty(data.BP2_SYSTOLIC) && isEmpty(data.BP2_DIASTOLIC) && isEmpty(data.BP3_SYSTOLIC) && isEmpty(data.BP3_DIASTOLIC) && isEmpty(data.INTERVIEW_STATUS_BP) && isEmpty(data.meas_wehe) && isEmpty(data.rec_wehe) && isEmpty(data.meas_wahi) && isEmpty(data.rec_wahi)){ 
+								$('#scale_'+data.eacode+data.hcn+data.shsn+data.MEMBER_CODE+'').append("<i class='glyphicon glyphicon-scale' style='color:#ff3333'></i>") }
+								else if(!isEmpty(data.DISABILITY) && !isEmpty(data.ETH_CODE) && !isEmpty(data.WEIGHT1) && !isEmpty(data.WEIGHT2) && !isEmpty(data.HEIGHT1) && !isEmpty(data.HEIGHT2) && !isEmpty(data.WAIST1) && !isEmpty(data.WAIST2) && !isEmpty(data.WAIST3) && !isEmpty(data.HIP1) && !isEmpty(data.HIP2) && !isEmpty(data.HIP3) && !isEmpty(data.BP1_SYSTOLIC) && !isEmpty(data.BP1_DIASTOLIC) && !isEmpty(data.BP2_SYSTOLIC) && !isEmpty(data.BP2_DIASTOLIC) && !isEmpty(data.BP3_SYSTOLIC) && !isEmpty(data.BP3_DIASTOLIC) && !isEmpty(data.INTERVIEW_STATUS_BP) && !isEmpty(data.meas_wehe) && !isEmpty(data.rec_wehe) && !isEmpty(data.meas_wahi) && !isEmpty(data.rec_wahi)) {
+								$('#scale_'+data.eacode+data.hcn+data.shsn+data.MEMBER_CODE+'').append("<i class='glyphicon glyphicon-scale' style='color:green'></i>") }
+								else { $('#scale_'+data.eacode+data.hcn+data.shsn+data.MEMBER_CODE+'').append("<i class='glyphicon glyphicon-scale' style='color:orange'></i>") }
+								
+                        }
+                    });
+					
+
+					
+					
+	
+	});
+	
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+	var duration = 0;
+
+    if (e.keyCode == '37') {
+       // left arrow
+    var old_num = $('#btn-group').find('.active-btn').val();
+	var new_num = $('.active-btn').prevAll('.butt').val();
+	var old_numa = $('#ant-btn-group').find('.ant-active-btn').val();
+	var new_numa = $('.ant-active-btn').prevAll('.ant-butt').val();
+		
+		if(new_num == 0)
+						{
+						e.preventDefault();
+						return false;
+						}	
+		
+		 $('#page'+old_num).toggle('slide', {
+					duration,
+					direction: 'right',
+					complete:function(){
+					$('#btn_page'+old_num).removeClass('active-btn');
+						 $('#page'+old_num).clearQueue();
+						 $('#page'+old_num).removeClass('active-page');
+						
+						 $('#page'+new_num).addClass('active-page');
+						$('#btn_page'+new_num).addClass('active-btn');
+						
+						
+						
+					
+					  $('#page'+new_num).toggle('slide', {
+							 direction: 'left',
+							 duration
+						 });
+					}
+				});
+		
+		if(new_numa == null)
+						{
+						e.preventDefault();
+						return false;
+						}	
+		
+		 $('#ant-page'+old_numa).toggle('slide', {
+					duration,
+					direction: 'right',
+					complete:function(){
+					$('#ant-btn_page'+old_numa).removeClass('ant-active-btn');
+						 $('#ant-page'+old_numa).clearQueue();
+						 $('#ant-page'+old_numa).removeClass('ant-active-page');
+						
+						 $('#ant-page'+new_numa).addClass('ant-active-page');
+						$('#ant-btn_page'+new_numa).addClass('ant-active-btn');
+						
+						
+						
+					
+					  $('#ant-page'+new_numa).toggle('slide', {
+							 direction: 'left',
+							 duration
+						 });
+					}
+				});
+       
+    }
+    else if (e.keyCode == '39') {
+        
+    var old_num = $('#btn-group').find('.active-btn').val();
+	var new_num = $('.active-btn').nextAll('.butt').val();
+	var old_numa = $('#ant-btn-group').find('.ant-active-btn').val();
+	var new_numa = $('.ant-active-btn').nextAll('.ant-butt').val();
+	
+				if(new_num == $('#btn-group input').length+<%- y %>+1)
+						{
+						e.preventDefault();
+    return false;
+						}	
+				else {
+			 $('#page'+old_num).toggle('slide', {
+					duration,direction: 'left',
+					duration,
+					complete:function(){
+					$('#btn_page'+old_num).removeClass('active-btn');
+						 $('#page'+old_num).clearQueue();
+						 $('#page'+old_num).removeClass('active-page');
+						
+						 $('#page'+new_num).addClass('active-page');
+						$('#btn_page'+new_num).addClass('active-btn');
+					
+					
+					
+					  $('#page'+new_num).toggle('slide', {
+							 direction: 'right',
+							 duration
+						 });
+					}
+					
+				});
+				  }
+			
+				if(new_numa == null)
+						{
+						e.preventDefault();
+						return false;
+						}	
+				else {
+			 $('#ant-page'+old_numa).toggle('slide', {
+					duration,direction: 'left',
+					duration,
+					complete:function(){
+					$('#ant-btn_page'+old_numa).removeClass('ant-active-btn');
+						 $('#ant-page'+old_numa).clearQueue();
+						 $('#ant-page'+old_numa).removeClass('ant-active-page');
+						
+						 $('#ant-page'+new_numa).addClass('ant-active-page');
+						$('#ant-btn_page'+new_numa).addClass('ant-active-btn');
+					
+					
+					
+					  $('#ant-page'+new_numa).toggle('slide', {
+							 direction: 'right',
+							 duration
+						 });
+					}
+					
+				});
+				  }
+    }
+
+}  
+	$('#prevbtn').on('click', function() {
+				var old_num = $('#btn-group').find('.active-btn').val();
+			var new_num = +old_num-1;
+			$('#nextbtn').prop('disabled',false);
+			
+			 $('#page'+old_num).toggle('slide', {
+						direction: 'right',
+						complete:function(){
+						$('#btn_page'+old_num).removeClass('active-btn');
+							 $('#page'+old_num).clearQueue();
+							 $('#page'+old_num).removeClass('active-page');
+							
+							 $('#page'+new_num).addClass('active-page');
+							$('#btn_page'+new_num).addClass('active-btn');
+							if(new_num == '1')
+							{
+								$('#nextbtn').prop('disabled',false);
+								$('#prevbtn').prop('disabled',true);
+							}
+						
+						  $('#page'+new_num).toggle('slide', {
+								 direction: 'left'
+							 });
+						}
+					});
+			
+			
+			
+		});
+
+	$('#nextbtn').on('click', function() {
+		duration = 0;	
+		var old_num = $('#btn-group').find('.active-btn').val();
+		var new_num = +old_num+1;
+	
+		$('#prevbtn').prop('disabled',false);
+			
+			 $('#page'+old_num).toggle('slide', {
+					duration,
+					direction: 'left',
+					complete:function(){
+					$('#btn_page'+old_num).removeClass('active-btn');
+						 $('#page'+old_num).clearQueue();
+						 $('#page'+old_num).removeClass('active-page');
+						
+						 $('#page'+new_num).addClass('active-page');
+						$('#btn_page'+new_num).addClass('active-btn');
+						if(new_num == <%= y %>)
+						{
+							$('#nextbtn').prop('disabled',true);
+							$('#prevbtn').prop('disabled',false);
+						}	
+					
+					  $('#page'+new_num).toggle('slide', {
+							 duration,
+							 direction: 'right'
+						 });
+					}
+				});
+		
+		
+		
+		
+	});
+    
+    var mothers ="";
+    var fathers = "";
+	
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    
+    
+    $('#GIVENNAME').change(function(){
+      $('[name=memname]').text($(this).val());
+    });
+	
+	
+    
+     $('#newhhd').click(function(){ 
+	 
+	  $('#prevbtn').prop('disabled',true);
+	  $('.f11_info').show();
+      $('.append-title').text(" (ADD MEMBER)");
+      $('.anthrop').prop('disabled',true);
+	  $('.indivforms').hide();
+	  $('.list-group-item.members').prop('disabled',true).addClass('disabled');
+	  $('.list-group-item.members').css('background-color','#eee');
+	  $('.list-group-item.members').find('a').css('color','black');
+	  $('.list-group-item.members').find('i').css('color','#337ab7');
+      $('#members_form')[0].reset();
+      $('#savef11').text('Save Information');
+      $('#updateButton').hide();
+      $('#savef11').show();
+      $('#REFDATE').val(today);
+      $('#record_type').val('new');
+        newmemno =  $('#newmemno').val();
+      $('#MEMBER_CODE').val(newmemno);
+      
+       lastname =  $('#lastname').val();
+      $('#SURNAME').val(lastname);
+	  
+
+	  
+    });
+	
+	
+	
+
+  
+  
+ $('#EDUC').change(function(){
+    var educ = $(this).val();
+   if(educ==43 || educ==55 || educ==66 || educ==67){
+      $('#EDUC_COURSE').val('');
+      $('#EDUC_COURSE').prop("disabled",false);
+      $('#EDUC_OTH').css('display','none');
+	  $('#EDUC_COURSE').prop("readonly",false);
+   }
+   else{
+ 
+    $('#EDUC_COURSE').prop("readonly",true);
+    $('#EDUC_COURSE').val('Not Applicable');
+    $('#EDUC_OTH').css('display','none');
+   }
+
+ });
+ 
+
+ $('#WORK').change(function(){
+    var work =  $(this).val();
+    if(work>='00' && work <='03'){
+
+      $('#OCCUPATION').val(999999);
+      $('#OCCUPATION').prop('readonly',true);
+      $('#OCCUPATION').prop('disabled',true);
+
+      $('#OCCUPATION_CODE').val(999999);
+      $('#OCCUPATION_CODE').prop('readonly',true);
+      $('#OCCUPATION_CODE').prop('disabled',true);
+
+      $('#WRKPLACE').val(999999);
+      $('#WRKPLACE').prop('readonly',true);
+      $('#WRKPLACE').prop('disabled',true);
+
+      $('#W_CLASS').val(999999);
+      $('#W_CLASS').prop('readonly',true);
+      $('#W_CLASS').prop('disabled',true);
+
+    }
+    else{
+      $('#OCCUPATION').val("");
+      $('#OCCUPATION').prop('readonly',false);
+      $('#OCCUPATION').prop('disabled',false);
+
+      $('#OCCUPATION_CODE').val("");
+      $('#OCCUPATION_CODE').prop('readonly',false);
+      $('#OCCUPATION_CODE').prop('disabled',false);
+
+      $('#WRKPLACE').val("");
+      $('#WRKPLACE').prop('readonly',false);
+      $('#WRKPLACE').prop('disabled',false);
+
+      $('#W_CLASS').val("");
+      $('#W_CLASS').prop('readonly',false);
+      $('#W_CLASS').prop('disabled',false);
+    }
+
+ });
+
+
+   
+
+    $('#REFDATE, #DBIRTH').change(function(){
+      ageyrs = ageinyears();
+      $('#AGE').val(ageyrs);
+    });
+
+    
+    
+    $('[name=ES_DBI]').change(function(){
+
+        if ($(this).prop('checked')) {
+          $('input[type=hidden][name=ES_DBI]').val(1);
+   
+        }
+         else{ 
+          $('input[type=hidden][name=ES_DBI]').val(0);
+          
+        }
+ 
+    }); 
+    
+    $('[name=BIOMOM]').change(function(){
+
+        if ($(this).prop('checked')) {
+          $('input[type=hidden][name=BIOMOM]').val(1);
+   
+        }
+         else{ 
+          $('input[type=hidden][name=BIOMOM]').val(0);
+          
+        }
+ 
+    });  
+	
+	$('[name=BIODAD]').change(function(){
+
+        if ($(this).prop('checked')) {
+          $('input[type=hidden][name=BIODAD]').val(1);
+   
+        }
+         else{ 
+          $('input[type=hidden][name=BIODAD]').val(0);
+          
+        }
+ 
+    });
+	
+	 $("input:checkbox").change(function(){
+     var checkbx  = $(this).attr("id");
+          checkbx = checkbx.substring(0,checkbx.length);
+      if ($(this).is(':checked')) {
+          $('#'+checkbx + "_").val(1);
+      }
+      else{
+       $('#'+checkbx + "_").val(0);
+     }
+   });
+    
+    $('[name=SCHOOL]').change(function(){
+
+        if ($(this).prop('checked')) {
+          $('input[type=hidden][name=SCHOOL]').val(1);
+   
+        }
+         else{ 
+          $('input[type=hidden][name=SCHOOL]').val(0);
+          
+        }
+ 
+    });    
+
+
+    $(".delmember").click(function (){
+        var id = $(this).parent('a').attr("id");
+        var r = confirm("Delete this member?");
+        if(r){
+        $.post(base_url + 'survey/surveyform/delete/f11',{id:id}, function(data){
+            if(data=='ok'){
+              alert('Member deleted')
+            }
+            else 
+              { alert(data)}
+
+        });
+      }
+    });
+
+    $('#savef11').click(function(){
+    
+      $("#WORK").prop("disabled",false);
+      $("#WRKPLACE").prop("disabled",false);
+      $("#W_CLASS").prop("disabled",false);
+      $("#PSC").prop("disabled",false);
+
+       $('input:disabled, select:disabled').each(function () {
+       $(this).removeAttr('disabled');
+    });
+
+    });
+
+    $('#SEX').change(function(){
+	
+	  if($(this).val()==1){
+		 
+              $('#PSC').val('99');
+              $('#PSC').prop("disabled",true);
+			  $('#MATERNAL_DISP').hide();
+          }
+
+          if($(this).val()==2){
+		  
+              $('#PSC').val('00');
+              $('#PSC').prop("disabled",false);
+              $('#MATERNAL_DISP').show();
+          }
+		  
+    
+
+    });
+
+
+$('#ETH_CODE').change(function (){
+
+        if($(this).val()==1){
+          $('#IP').css("display","block");
+        }
+        else{
+         $('#IP').css("display","none");
+        }
+
+
+});
+
+$('#IP').change(function (){
+
+        if($(this).val()==73){
+          $('#ETHNICITY').css("display","block");
+        }
+        else{
+         $('#ETHNICITY').css("display","none");
+        }
+
+
+});
+
+$('#DISABILITY').change(function(){
+   if($(this).val()==14){
+          $('#DISABILITY_OTH').attr('disabled',false);
+		  $('#DISABILITY_OTH').show();
+        }
+        else{
+         $('#DISABILITY_OTH').attr('disabled',true); 
+		 $('#DISABILITY_OTH').hide();
+        }
+});
+
+
+  });
+</script>
+
+      </div>
+    </div>
+  
+  
+
+  <div class="container">
+    
+    <div class="row centered">
+    </div><!-- /row -->
+    <hr>
+    <p class="centered" id="version">&copy; Copyright&nbsp;2017. Food and Nutrition Research Institute. Department of Science and Technology.</p>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>
+<script type="text/javascript" src="/jquery/bootstrap.min.js"></script>
+<script type="text/javascript" src="/jquery/jquery-2.1.4.min.js"></script>	
+<script src="/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+function edit(eacode,hcn,shsn,MEMBER_CODE,id)
+{
+					var data = {};
+					data.eacode = eacode;
+					data.hcn = hcn;
+					data.shsn = shsn;
+					data.MEMBER_CODE = MEMBER_CODE;
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/surveyform/form11/post',						
+                        success: function(data) {
+							
+							$('.modal-title-edit').text("Update "+data.GIVENNAME+"'s information");
+                            $('#id2').val(data.id);
+                            $('#GIVENNAME').val(data.GIVENNAME);
+                            $('#SURNAME').val(data.SURNAME);
+                            $('#NBI').val(data.NBI);
+                            $('#RHC').val(data.RHC);
+                            $('#DBIRTH').val(data.DBIRTH);
+                            $('#REFDATE').val(data.REFDATE);
+                            $('#AGE').val(data.AGE);
+                            $('#SEX').val(data.SEX);
+                            $('#CSC').val(data.CSC);
+                            $('#PSC').val(data.PSC);
+                            $('#EDUC').val(data.EDUC);
+                            $('#EDUC_OTH').val(data.EDUC_OTH);
+                            $('#EDUC_COURSE').val(data.EDUC_COURSE);
+                            $('#WORK').val(data.WORK);
+                            $('#OCCUPATION').val(data.OCCUPATION);
+                            $('#OCCUPATION_CODE').val(data.OCCUPATION_CODE);
+                            $('#WRKPLACE').val(data.WRKPLACE);
+                            $('#W_CLASS').val(data.W_CLASS);
+							$('#RELIGION').val(data.RELIGION);
+							$('#OTH_REL').val(data.OTH_REL);
+                            $('#REMARKS').val(data.REMARKS);
+                            $('#INTERVIEW_STATUS').val(data.INTERVIEW_STATUS);
+							$('#INTERVIEW_STATUS_OTH').val(data.INTERVIEW_STATUS_OTH);
+                            $('#eacode').val(data.eacode);
+                            $('#hcn').val(data.hcn);
+                            $('#shsn').val(data.shsn);
+                            $('#MEMBER_CODE').val(data.MEMBER_CODE);
+                            $('[name=ES_DBI2]').val(data.ES_DBI);
+							$('[name=BIOMOM2]').val(data.BIOMOM);
+                            $('[name=BIODAD2]').val(data.BIODAD);
+							$('[name=MATERNAL2]').val(data.MATERNAL);
+                            $('[name=SCHOOL2]').val(data.SCHOOL);
+                            $('[name=DATE_EDIT]').val(data.DATE_EDIT);
+                            $('#memkey').val(data.memkey);
+							<!-- $('#MOM').val(data.MOM); -->
+							<!-- $('#DAD').val(data.DAD); -->
+                            
+							if(data.AGE >20){
+							$('#MOM').attr('disabled',true);
+							$('#DAD').attr('disabled',true);
+							}
+							else {
+							$('#MOM').attr('disabled',false);
+							$('#DAD').attr('disabled',false);
+							$.ajax({
+							type: 'POST',
+							//dataType: 'json',
+							data: JSON.stringify(data),
+								contentType: 'application/json',
+										url: '/legone/survey/surveyform/form11/respondents',						
+										success: function(data) {
+										
+										$('#MOM').append("<optgroup label='Members'>");
+										$('#DAD').append("<optgroup label='Members'>");
+										for(var i=0;i<data.length;i++){
+
+										if(data[i].SEX == 2 && data[i].AGE > 13){
+										$('#MOM').append("<option value="+data[i].MEMBER_CODE+">"+data[i].MEMBER_CODE+" - "+data[i].SURNAME+" "+data[i].GIVENNAME+"</option>");
+										$('#MOM').attr('disabled',false);
+										}
+										if(data[i].SEX == 1 && data[i].AGE > 13){
+										$('#DAD').append("<option value="+data[i].MEMBER_CODE+">"+data[i].MEMBER_CODE+" - "+data[i].SURNAME+" "+data[i].GIVENNAME+"</option>");
+										$('#DAD').attr('disabled',false);
+										}
+										}
+										
+										$('#MOM').append("<option value='None'>NotAvailable</option>");
+										$('#DAD').append("<option value='None'>NotAvailable</option>");
+
+										
+									  }
+									
+									});
+									$('#MOM').empty();
+									$('#DAD').empty();
+							}
+							
+							$('#MOM').append('<optgroup label="Selected"><option value="'+data.MOM+'" selected="selected">'+data.MOM+'</option>');
+                            $('#DAD').append('<optgroup label="Selected"><option value="'+data.DAD+'" selected="selected">'+data.DAD+'</option>');
+							
+							if(data.OTH_REL != '')
+							{
+							$('#OTH_REL').attr('readonly',false);
+							}
+							else {
+							$('#OTH_REL').attr('readonly',true);
+							}
+						
+							if(data.INTERVIEW_STATUS_OTH != '')
+							{
+							$('#INTERVIEW_STATUS_OTH').attr('readonly',false);
+							}
+							else {
+							$('#INTERVIEW_STATUS_OTH').attr('readonly',true);
+							}
+							
+							if(data.WORK == '00' || data.WORK == '01' || data.WORK == '02' || data.WORK == '03')
+							{
+							$('#OCCUPATION').attr('readonly',true);
+							$('#OCCUPATION_CODE').attr('readonly',true);
+							$('#W_CLASS').attr('readonly',true);
+							$('#WRKPLACE').attr('readonly',true);
+							}
+							else{
+							$('#OCCUPATION').attr('readonly',false);
+							$('#OCCUPATION_CODE').attr('readonly',false);
+							$('#W_CLASS').attr('readonly',false);
+							$('#WRKPLACE').attr('readonly',false);
+							}
+							
+							if(data.SEX == 2) {
+				
+								  $("#PSC option[value='99']").hide();
+								  $("#RHC option[value='3']").hide();
+								  $("#RHC option[value='5']").hide();
+								  $("#RHC option[value='7']").hide();
+								  $("#RHC option[value='9']").hide();
+								  $("#RHC option[value='11']").hide();
+								  $("#RHC option[value='13']").hide();
+								  $("#RHC option[value='15']").hide();
+								  $("#RHC option[value='17']").hide(); 
+								  $("#RHC option[value='4']").show();
+								  $("#RHC option[value='6']").show();
+								  $("#RHC option[value='8']").show();
+								  $("#RHC option[value='10']").show();
+								  $("#RHC option[value='12']").show();
+								  $("#RHC option[value='14']").show();
+								  $("#RHC option[value='16']").show();
+								  $("#RHC option[value='18']").show();  
+							}   
+		
+							if(data.SEX==1){
+								  $("#RHC option[value='3']").show();
+								  $("#RHC option[value='5']").show();
+								  $("#RHC option[value='7']").show();
+								  $("#RHC option[value='9']").show();
+								  $("#RHC option[value='11']").show();
+								  $("#RHC option[value='13']").show();
+								  $("#RHC option[value='15']").show();
+								  $("#RHC option[value='17']").show();   
+								  $("#RHC option[value='4']").hide();
+								  $("#RHC option[value='6']").hide();
+								  $("#RHC option[value='8']").hide();
+								  $("#RHC option[value='10']").hide();
+								  $("#RHC option[value='12']").hide();
+								  $("#RHC option[value='14']").hide();
+								  $("#RHC option[value='16']").hide();
+								  $("#RHC option[value='18']").hide();  
+							} 
+										
+							<!-- if(data.SEX == '1' || data.AGE < 15) -->
+							<!-- { -->
+							<!-- $('#MATERNAL_DISP').hide(); -->
+							<!-- } -->
+							<!-- else { -->
+							<!-- $('#MATERNAL_DISP').show(); -->
+							<!-- } -->
+							
+						$('#MATERNAL2').prop('checked',true);
+							if(data.SEX == 1) {
+								$('#PSC').attr('disabled',true);
+							}
+							else {
+							$('#PSC').attr('disabled',false);
+							}
+                                $( "input[value*='999999']" ).parent().parent().find('li, input[type!=hidden],select').prop('disabled',true).addClass('disabled');
+                                $("input[value!='999999']").parent().find("input[value!='999999'],select").prop('disabled',false).removeClass('disabled');
+                                
+								
+								if($('#MATERNAL_').val() == '1'){
+								$('#MATERNAL').prop('checked',true)
+								}
+								
+								if($('#BIOMOM_').val() == '1'){
+								$('#BIOMOM').prop('checked',true)
+								}
+								
+								if($('#BIODAD_').val() == '1'){
+								$('#BIODAD').prop('checked',true)
+								}
+								
+								if($('#ES_DBI_').val() == '1'){
+								$('#ES_DBI').prop('checked',true)
+								}
+								
+								if($('#SCHOOL_').val() == '1'){
+								$('#SCHOOL').prop('checked',true)
+								}
+								
+								
+                                $( "input[type=hidden]" ).each(function() {
+                                var name = $(this).attr('name');
+                                var id = $(this).attr('id');
+                                var val = $(this).val();
+								
+                                
+                                $('li[id=chk_'+name+'_'+val+']').addClass('active');
+                                if($('input[name='+name+']').val() == '1') {
+                                $('input[name='+name+']').prop('checked',true); }
+                                });
+							
+                        }
+                    });
+                    
+		
+                    
+         $('#savef11').text('Updated');
+         $('#savef11').hide();
+         $('#updateButton').show();
+       $('#record_type').val('edit');
+        form_elements ='<form id="f11_edit" class="form-basic" method="post" action="#">';
+         row_id = $(this).attr("id");
+         $('#childname').text($('#GIVENNAME_' + row_id).val());
+         $('#memname').text($('#GIVENNAME_' + row_id).val());
+         /* check at set base on age*/
+          var age = $('#AGE_' + id).val();
+          var sex = $('#SEX_' + id).val();
+          var educ = $('#EDUC_' + id).val();
+		  
+          if(age<3){
+            $('#EDUC').prop("readonly",true);
+            $('#EDUC_COURSE').val("Not Applicable");
+            $('#EDUC_COURSE').prop("readonly",true);
+            
+          }
+          else{
+            $('#EDUC').prop("readonly",false);
+           $('#EDUC_COURSE').prop("readonly",false); 
+      
+          }
+
+          if(educ == 73){
+            $('#EDUC_OTH').css('display','block');
+          }
+          else{
+           $('#EDUC_OTH').css('display','none'); 
+          }
+
+           if(age<10){
+
+            $('#WORK').prop("disabled",true);
+            $('#OCCUPATION').prop("readonly",true);
+            $('#OCCUPATION_CODE').prop("readonly",true);
+            $('#WRKPLACE').prop("disabled",true);
+            $('#W_CLASS').prop("disabled",true);
+
+            $('#WORK').val('99');
+            $('#OCCUPATION').val('999999');
+            $('#OCCUPATION_CODE').val('999999');
+            $('#WRKPLACE').val('9');
+            $('#W_CLASS').val('9');  
+
+          }
+          else{
+            
+            $('#WORK').prop("disabled",false);
+            $('#OCCUPATION').prop("readonly",false);
+            $('#OCCUPATION_CODE').prop("readonly",false);
+            $('#WRKPLACE').prop("disabled",false);
+            $('#W_CLASS').prop("disabled",false);
+
+          }
+       
+          if(age>20){
+            $('#MOM, #DAD').val('999999');
+            $('#MOM,#DAD').prop("disabled",true);
+
+          }
+          else{
+            $('#MOM,#DAD').prop("disabled",false);
+          }
+
+         $('#id').val(row_id);
+         $('#members_form')[0].reset();
+
+        $("[id$=" + row_id +"]").each(function(){
+          hidden_id = $(this).attr("id");
+
+          if(hidden_id.indexOf(row_id)>=0 && hidden_id!='id'){
+            id_details = hidden_id.split("_");
+            lastindex = id_details.length-1;
+            id_details.splice(lastindex,1);
+            elem_id = id_details.join('_'); 
+            varvalue = $(this).val();
+
+           
+            if(elem_id=='ES_DBI' || elem_id=='SCHOOL' || elem_id=='BIOMOM'){
+              if(varvalue==1){
+                $('#' + elem_id + '2').prop("checked",true);
+                 $('#' + elem_id).val(1);
+              }
+              else{
+                $('#' + elem_id + '2').prop("checked",false);
+                $('#' + elem_id).val(0);
+              }
+            }
+              else{
+
+                 if(elem_id!='MOM' && elem_id!='DAD')
+                  $('#' + elem_id ).val(varvalue);
+
+                  if(varvalue.length==0){
+                    $('#' + elem_id ).parent('div').addClass('has-error')
+                  }
+                  else{
+                      $('#' + elem_id ).parent('div').removeClass('has-error')
+                  }
+
+                }
+                  
+                
+                //if(varvalue=='999999') $('#' + elem_id ).prop("disabled",true);
+           }
+       });
+           
+      form_elements += '</form>';
+
+	}	
+
+$('.button-mem').click(function() {
+
+	$('.f11_info').show();
+	$('#prevbtn').prop('disabled',true);
+	$('#newhhd').hide();
+	$(this).closest('div.viewhh').find('li').each(function() {
+	$(this).css('background-color','white');
+	$(this).find('a:first').css('color','black');
+	});
+	$(this).closest('li').css('background-color','#173e43');
+	$(this).closest('li').css('border-color','#173e43');
+	$(this).closest('a').css('color','white');
+	$('#prevbtn').prop('disabled',true);
+	
+		$(function() {
+        $("aaa").load("households.ejs").appendTo("html");;        
+    });
+});	
+
+	$('.ant-butt').click(function(){
+	
+		var duration = 0;
+		var old_num = $(this).parent().find('.ant-active-btn').val();
+		var new_num = $(this).val();
+		
+		
+		if(new_num > old_num)
+		{
+			
+			 $('#ant-page'+old_num).toggle('slide', {
+          duration,
+					direction: 'left',
+					complete:function(){
+
+						$('#ant-btn_page'+old_num).removeClass('ant-active-btn');
+						 $('#ant-page'+old_num).clearQueue();
+						 $('#ant-page'+old_num).removeClass('ant-active-page');
+						
+						 $('#ant-page'+new_num).addClass('ant-active-page');
+						$('#ant-btn_page'+new_num).addClass('ant-active-btn');
+					
+						
+						
+					
+					  $('#ant-page'+new_num).toggle('slide', {
+               duration,
+							 direction: 'right'
+						 });
+					}
+				});
+			
+		}
+		else
+		{
+			 $('#ant-page'+old_num).toggle('slide', {
+          duration,
+					direction: 'right',
+					complete:function(){
+						
+						
+					$('#ant-btn_page'+old_num).removeClass('ant-active-btn');
+						 $('#ant-page'+old_num).clearQueue();
+						 $('#ant-page'+old_num).removeClass('ant-active-page');
+						
+						 $('#ant-page'+new_num).addClass('ant-active-page');
+						$('#ant-btn_page'+new_num).addClass('ant-active-btn');
+						
+						
+						
+						
+					  $('#ant-page'+new_num).toggle('slide', {
+               duration,
+							 direction: 'left'
+						 });
+					}
+				});
+		}
+		
+		
+		$('#ant-btn_start').click(function(){
+		
+		
+			$('#ant-btn_page'+old_num).removeClass('ant-active-btn');
+			$('#ant-page'+old_num).clearQueue();
+			$('#ant-page'+old_num).removeClass('ant-active-page');
+						
+			$('#ant-page1').addClass('ant-active-page');
+			$('#ant-btn_page1').addClass('ant-active-btn');
+			
+		});
+		
+		$('#ant-btn_end').click(function(){
+		
+		
+			$('#ant-btn_page'+old_num).removeClass('ant-active-btn');
+			$('#ant-page'+old_num).clearQueue();
+			$('#ant-page'+old_num).removeClass('ant-active-page');
+						
+			$('#ant-page'+<%- z %>+'').addClass('ant-active-page');
+			$('#ant-btn_page'+<%- z %>+'').addClass('ant-active-btn');
+			
+		});
+		
+	});
+	
+		$('.butt').click(function(){
+		
+		var duration = 0;
+		$(this).css("font","white");
+		var old_num = $(this).parent().find('.active-btn').val();
+		var new_num = $(this).val();
+		
+		
+		if(new_num > old_num)
+		{
+			
+			 $('#page'+old_num).toggle('slide', {
+					duration,
+					direction: 'left',
+					complete:function(){
+						
+						
+						
+						$('#btn_page'+old_num).removeClass('active-btn');
+						 $('#page'+old_num).clearQueue();
+						 $('#page'+old_num).removeClass('active-page');
+						
+						 $('#page'+new_num).addClass('active-page');
+						$('#btn_page'+new_num).addClass('active-btn');
+					
+						
+						
+					
+					  $('#page'+new_num).toggle('slide', {
+							 duration,
+							 direction: 'right'
+						 });
+					}
+				});
+			
+		}
+		else
+		{
+			 $('#page'+old_num).toggle('slide', {
+					duration,
+					direction: 'right',
+					complete:function(){
+						
+						
+					$('#btn_page'+old_num).removeClass('active-btn');
+						 $('#page'+old_num).clearQueue();
+						 $('#page'+old_num).removeClass('active-page');
+						
+						 $('#page'+new_num).addClass('active-page');
+						$('#btn_page'+new_num).addClass('active-btn');
+						
+						
+						
+						
+					  $('#page'+new_num).toggle('slide', {
+							 duration,
+							 direction: 'left'
+						 });
+					}
+				});
+		}
+		
+		
+		
+	});
+	
+function update(id)
+{
+      var data = {};
+      data.id = $('[name=id2]').val();
+      data.GIVENNAME = $('[name=GIVENNAME]').val();	
+      data.SURNAME = $('[name=SURNAME]').val();	
+      data.NBI = $('[name=NBI]').val();
+      data.RHC = $('[name=RHC]').val();
+      data.DBIRTH = $('[name=DBIRTH]').val();
+      data.REFDATE = $('[name=REFDATE]').val();
+      data.AGE = $('[name=AGE]').val();
+      data.SEX = $('[name=SEX]').val();
+      data.CSC = $('[name=CSC]').val();
+      data.PSC = $('[name=PSC]').val();
+      data.MOM = $('[name=MOM]').val();
+      data.DAD = $('[name=DAD]').val();
+      data.EDUC = $('[name=EDUC]').val();
+      data.EDUC_OTH = $('[name=EDUC_OTH]').val();
+      data.EDUC_COURSE = $('[name=EDUC_COURSE]').val();
+      data.WORK = $('[name=WORK]').val();
+      data.OCCUPATION = $('[name=OCCUPATION]').val();
+      data.OCCUPATION_CODE = $('[name=OCCUPATION_CODE]').val();
+      data.WRKPLACE = $('[name=WRKPLACE]').val();
+      data.W_CLASS = $('[name=W_CLASS]').val();
+	  data.RELIGION = $('[name=RELIGION]').val();
+	  data.OTH_REL = $('[name=OTH_REL]').val();
+      data.REMARKS = $('[name=REMARKS]').val();
+      data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS]').val();
+	  data.INTERVIEW_STATUS_OTH = $('[name=INTERVIEW_STATUS_OTH]').val();
+	  data.eacode = $('[name=eacode]').val();
+	  data.hcn = $('[name=hcn]').val();
+	  data.shsn = $('[name=shsn]').val();
+	  data.MEMBER_CODE = $('[name=MEMBER_CODE]').val();
+      data.id2 = $('[name=id2]').val();
+      data.BIOMOM = $('input[type=hidden][name=BIOMOM2]').val();
+	  data.BIODAD = $('input[type=hidden][name=BIODAD2]').val();
+	  data.ES_DBI = $('input[type=hidden][name=ES_DBI2]').val();
+	  data.MATERNAL = $('input[type=hidden][name=MATERNAL2]').val();
+      data.SCHOOL = $('input[type=hidden][name=SCHOOL2]').val();
+      data.DATE_EDIT = $('[name=DATE_EDIT]').val();
+
+	  
+	if(data.GIVENNAME == '' || data.SURNAME == '' || data.NBI == '' || data.RHC =='' || data.DBIRTH == '' || data.CSC == '' || data.INTERVIEW_STATUS == '' ||
+	   data.GIVENNAME == null || data.SURNAME == null || data.NBI == null || data.RHC ==null || data.DBIRTH == null || data.CSC == null || data.INTERVIEW_STATUS == null	)
+	{       BootstrapDialog.show({
+                type:BootstrapDialog.TYPE_DANGER, 
+                title: 'Incomplete input',
+                message: 'Please fill up all fields. Penalty of 20seconds' 
+            });
+	}
+	else {
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/edit/form11',						
+                        success: function(data) {
+						
+                        }
+                    });
+				
+                     window.location.href='/legone/survey/surveyform/form11/'+eacode.value+hcn.value+shsn.value;
+}              
+}
+
+var v_age;
+var v_sex;
+function editAnthrop(id,age,sex)  
+{
+
+
+						$('#ant-btn_page2').removeClass('ant-active-btn');
+						 $('#ant-page2').clearQueue();
+						 $('#ant-page2').removeClass('ant-active-page');
+						 $('#ant-btn_page3').removeClass('ant-active-btn');
+						 $('#ant-page3').clearQueue();
+						 $('#ant-page3').removeClass('ant-active-page');
+						 $('#ant-btn_page4').removeClass('ant-active-btn');
+						 $('#ant-page4').clearQueue();
+						 $('#ant-page4').removeClass('ant-active-page');
+						 $('#ant-btn_page5').removeClass('ant-active-btn');
+						 $('#ant-page5').clearQueue();
+						 $('#ant-page5').removeClass('ant-active-page');
+						
+						 $('#ant-page1').addClass('ant-active-page');
+						$('#ant-btn_page1').addClass('ant-active-btn');
+					
+						
+						
+					
+					  $('#ant-page1').toggle('slide', {
+               duration,
+							 direction: 'right'
+						 });
+					
+				
+
+
+					var data = {};
+					data.id = id;
+					v_age = age;
+					v_sex = sex;
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/surveyform/form21/post',						
+                        success: function(data) {
+                            $('#id2').val(data.id);
+                            $('#DISABILITY').val(data.DISABILITY);
+                            $('#ETH_CODE').val(data.ETH_CODE);
+							$('#IP').val(data.IP);
+                            $('#ETHNICITY').val(data.ETHNICITY);
+                            $('#WEIGHT1').val(data.WEIGHT1);
+                            $('#WEIGHT2').val(data.WEIGHT2);
+                            $('#HEIGHT1').val(data.HEIGHT1);
+                            $('#HEIGHT2').val(data.HEIGHT2);
+                            $('#WAIST1').val(data.WAIST1);
+                            $('#WAIST2').val(data.WAIST2);
+							$('#WAIST3').val(data.WAIST3);
+							$('#HH_REMARKS').val(data.HH_REMARKS);
+							$('#OTH_REM').val(data.OTH_REM);
+                            $('#DISABILITY_OTH').val(data.DISABILITY_OTH);
+                            $('#HIP1').val(data.HIP1);
+                            $('#HIP2').val(data.HIP2);
+							$('#HIP3').val(data.HIP3);
+                            $('#WHH_REMARKS').val(data.WHH_REMARKS);
+                            $('#MUAC1').val(data.MUAC1);
+                            $('#MUAC2').val(data.MUAC2);
+							$('#MUAC3').val(data.MUAC3);
+                            $('#MUAC_REMARKS').val(data.MUAC_REMARKS);
+                            $('#INTERVIEW_STATUS_meas').val(data.INTERVIEW_STATUS_meas);
+							$('#MIL').val(data.MIL);
+                            $('#BP1_SYSTOLIC').val(data.BP1_SYSTOLIC);
+                            $('#BP1_DIASTOLIC').val(data.BP1_DIASTOLIC);
+                            $('#BP2_SYSTOLIC').val(data.BP2_SYSTOLIC);
+                            $('#BP2_DIASTOLIC').val(data.BP2_DIASTOLIC);
+                            $('#BP3_SYSTOLIC').val(data.BP3_SYSTOLIC);
+                            $('#BP3_DIASTOLIC').val(data.BP3_DIASTOLIC);
+                            $('#INTERVIEW_STATUS_BP').val(data.INTERVIEW_STATUS_BP);
+                            $('#BP_REMARKS').val(data.BP_REMARKS);
+                            $('#memkey').val(data.memkey);
+                            $('#measure_record').val(data.measure_record);
+                            $('#indivinfo').val(data.indivinfo);
+                            $('#anthrop_age').val(data.anthrop_age);
+                            $('#anthrop_sex').val(data.anthrop_sex);
+                            $('#anthrop_url').val(data.anthrop_url);
+                            $('#DATE_EDIT2').val(data.DATE_EDIT2);
+							$('#meas_wehe').val(data.meas_wehe);
+							$('#rec_wehe').val(data.rec_wehe);
+							$('#meas_wahi').val(data.meas_wahi);
+							$('#rec_wahi').val(data.rec_wahi);
+							$('#meas_bp').val(data.meas_bp);
+							$('#rec_bp').val(data.rec_bp);
+							$('#meas_muac').val(data.meas_muac);
+							$('#rec_muac').val(data.rec_muac);
+						
+							if(data.IP == '' || data.IP == null) {
+							$('#IP').hide();
+							}
+							else {
+							$('#IP').show(); }
+							
+							if(data.IP == 73) {
+							$('#ETHNICITY').show();
+							}
+							else {
+							$('#ETHNICITY').hide();
+							}
+							
+                        }
+                    });
+					
+					
+            $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/surveyform/form11/post2',						
+                        success: function(data) {
+
+						   $('.getName').append(data.GIVENNAME+" "+data.SURNAME);
+						   $('.getMC').append(data.MEMBER_CODE);
+                           if(data.AGE>=10)
+                              {
+                             //   $("input[name^='BP']").val('');
+                                $("input[name^='BP']").prop("readonly",false);
+                                $("#INTERVIEW_STATUS_BP").prop("readonly",false);
+								$("#meas_bp").prop("readonly",false);
+								$("#rec_bp").prop("readonly",false);
+                              }
+                           else{
+                                $("input[name^='BP']").val('999999');
+                                $("input[name^='BP']").prop("readonly",true);
+                                $("#INTERVIEW_STATUS_BP").prop("readonly",true);
+								$("#meas_bp").val('999999');
+                                $("#meas_bp").prop("readonly",true);
+								$("#rec_bp").val('999999');
+                                $("#rec_bp").prop("readonly",true);
+                           }
+							if(data.AGE <10){
+							$('.waist, .hip ').val('999999');
+                            $('.waist, .hip ').prop("readonly",true);
+							$('.waist, .hip ').attr("disabled",true);
+							}
+							else{
+                            //    $('.waist, .hip ').val('');
+                                $('.waist, .hip ').prop("readonly",false);
+								$('.waist, .hip ').attr("disabled",false);
+                           }  
+						   
+						   if((data.PSC < 13 && data.PSC > 0) || (data.AGE >= 0.333 && data.AGE < 20)){
+						    //    $('.muac ').val('');
+                                $('.muac ').prop("readonly",false);
+								$('.muac ').attr("disabled",false);
+						   
+							}
+							else{
+							$('.muac ').val('999999');
+                            $('.muac ').prop("readonly",true);
+							$('.muac ').attr("disabled",true);
+                           }  
+
+                           if( data.AGE>10 && data.PSC>='01' && data.PSC<='09')
+                              {
+                                $('.waist, .hip ').val('999999');
+                                $('.waist, .hip ').prop("readonly",true);
+                              }
+                           else{
+                            //    $('.waist, .hip ').val('');
+                                $('.waist, .hip ').prop("readonly",false);
+                           }  
+                           
+                          var agemos = data.AGE * 12;
+						  
+                        }
+						
+                    });
+                    $('.getName').empty();
+					$('.getMC').empty();
+ }
+ </script>
+ <script type="text/javascript" src="/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/jquery/bootstrap.min.js"></script>
+	<script src="/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/jquery/respondents.js"></script>
+    <script type="text/javascript">
+    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+	var act = bigIdString.substring(20,21);
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = document.lastModified;
+	var act = bigIdString.substring(20,21);
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+	<!-- $('[data-toggle="tooltip"]').tooltip();   -->
+	
+	
+function indivview(eacode,hcn,shsn,MEMBER_CODE)
+{
+
+    
+       var data = {};
+	   var type = '<%- session.username.substring(0,1)%>';
+	   var preg = eacode.substring(eacode.length-1);
+	   
+					data.eacode = eacode;
+					data.hcn = hcn;
+					data.shsn = shsn;
+					data.MEMBER_CODE = MEMBER_CODE;
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/indiv',						
+                        success: function(data, f) {
+						
+						if(data['f11'].INTERVIEW_STATUS > 2){
+						BootstrapDialog.show({
+								type:BootstrapDialog.TYPE_DANGER, 
+								title: "<h3>NOTICE</h3>",
+								message: "<h4>Member has an Interview Status of <b>"+$(".is option[value='"+data['f11'].INTERVIEW_STATUS+"']").text()+"</b>, you can't access his/her individual forms." 
+							});
+						return false;
+						}
+						else
+						{
+						
+						$('#indivformModal').modal("show");
+						ea = JSON.stringify(data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE);
+						if(preg == 'P') {
+						
+    /*f31*/                 if(type == 'A' || type == 'T' ) { 	 if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].SEX ==2 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                {     $('#indivformslist').append("<a onClick='return f31("+ea+")' href='/legone/survey/surveyform/save/f31/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f31']+" formlinks'> Form 3.1 - Maternal and Nutirition : Mother's Knowledge, Health-Seeking Behaviors and Practices (For currently pregnant women) </a>");  }   } 
+	/*f32*/					if(type == 'A' || type == 'T' ) { 	 if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].MATERNAL == 1 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)		{     $('#indivformslist').append("<a onClick='return f32("+ea+")'  href='/legone/survey/surveyform/save/f32/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f32']+" formlinks'> Form 3.2 - Maternal Health and Nutrition: Mother's Knowledge, Health-seeking Behaviors and Practices (For all mothers with child 0-36 months) </a>");  }  }  
+    /*f46*/ 	            if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].AGE >=60  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f46("+ea+")'  href='/legone/survey/surveyform/save/f46/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f46']+" formlinks'> Form 4.6 - Government Program Participation of Senior Citizens, 60 Years old and Above</a>");    }	}
+    /*f47*/                 if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].AGE >=15  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)   						   {     $('#indivformslist').append("<a onClick='return f47("+ea+")'  href='/legone/survey/surveyform/save/f47/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f47']+" formlinks'> Form 4.7 - Knowledge and Practice of Reading Product Labels of Packaged Foods and Beverages, 15 Years old and Above</a>");    }	}
+	/*f48*/                 if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].AGE >=21  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f48("+ea+")'  href='/legone/survey/surveyform/save/f48/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f48']+"  formlinks'> Form 4.8 - PhilHealth Membership, 21 Years old and Above</a>");    }	}
+	/*f49*/                 if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].SEX ==2 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f49("+ea+")'  href='/legone/survey/surveyform/save/f49/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f49']+"  formlinks'> Form 4.9 - Individual Food Security (Food Insecurity Experience Scale) for All Pregnant Women </a>");    }	}
+	/*f52*/	                if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].SEX ==2 &&  data['f11'].AGE >=18  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f52("+ea+")'  href='/legone/survey/surveyform/save/f52/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f52']+" formlinks'> Form 5.2 - History of Raised Blood Pressure and Diabetes Questionnaire of 18 Years Old and Above</a>");    } }
+	/*f53*/                 if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].SEX ==2 &&  data['f11'].AGE >=10  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f53("+ea+")'  href='/legone/survey/surveyform/save/f53/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f53']+" formlinks'> Form 5.3 - Smoking and Alcohol Consumption of 10 Years Old and Above</a>");    } }
+    /*f55*/                 if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].AGE >=18  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)  {     $('#indivformslist').append("<a onClick='return f55("+ea+")'  href='/legone/survey/surveyform/save/f55/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f55']+" formlinks'> Form 5.5 - History of Diseases and Other Risk Factors of 18 Years Old and Above</a>");    }	}
+	/*f56*/                 if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].AGE >=18  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f56("+ea+")'  href='/legone/survey/surveyform/save/f56/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f56']+" formlinks'> Form 5.6 - FFQ for 18 Years Old and Above  </a>");    }	}
+	<!-- /*f73*/                 if(type == 'A' || type == 'D' || type == 'T') { if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].SEX ==2  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7) 							   {     $('#indivformslist').append("<a onClick='return f73("+ea+")'  href='/legone/survey/surveyform/save/f73/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f73']+" formlinks'> Form 7.3 - Checklist of Food and Liquid Intake of Children 0-36 MONTHS  Checklist of Liquid and Solid, Semi-solid and Soft Foods Intake of Children 3</a>");    }	}							 -->
+	/*f82*/				    if(type == 'A' || type == 'T' ) {    if(data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].AGE >=0.5 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7) {	$('#indivformslist').append("<a onClick='return f82("+ea+")'  href='/legone/survey/surveyform/save/f82/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f82']+" formlinks'>Form 8.3 - Biochemical Information on Infections, Supplements and Medications for Members for 6 months and above</a>"); }}
+							if(type == 'A' || type == 'T' ) {	 if(data['f11'].PSC >= 10 || data['f11'].PSC == 0 ) { $('#indivformslist').append("<h1><center> MEMBER CANT BE INTERVIEWED </center></h1>");    }	}	
+						}else{
+    /*f31*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].PSC >0 && data['f11'].PSC <10 && data['f11'].AGE >=12 && data['f11'].SEX ==2 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                {     $('#indivformslist').append("<a onClick='return f31("+ea+")'  href='/legone/survey/surveyform/save/f31/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f31']+" formlinks'> Form 3.1 - Maternal and Nutirition : Mother's Knowledge, Health-Seeking Behaviors and Practices (For currently pregnant women) </a>");  }   } 
+    /*f32*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].MATERNAL == 1 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                {     $('#indivformslist').append("<a onClick='return f32("+ea+")'  href='/legone/survey/surveyform/save/f32/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f32']+" formlinks'> Form 3.2 - Maternal Health and Nutrition: Mother's Knowledge, Health-seeking Behaviors and Practices (For all mothers with child 0-36 months) </a>");  }   }
+    /*f41*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=0 && data['f11'].AGE <6)  {     $('#indivformslist').append("<a onClick='return f41("+ea+")'  href='/legone/survey/surveyform/save/f41/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f41']+" formlinks'> Form 4.1 - Birthweight and Related Information of Children, 0-71 Months</a>");    }	}
+    /*f42*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=0 	&&	 data['f11'].AGE <2)  {     $('#indivformslist').append("<a onClick='return f42("+ea+")'  href='/legone/survey/surveyform/save/f42/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f42']+" formlinks'> Form 4.2 - Infant and Young Children Feeding Practices of Children, 0-23 Months</a>");    }	}
+    /*f43*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=0 	&&	 data['f11'].AGE <6)  {     $('#indivformslist').append("<a onClick='return f43("+ea+")'  href='/legone/survey/surveyform/save/f43/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f43']+" formlinks'> Form 4.3 - Government Program Participation of Children, 0-71 Months.</a>");    }	}
+    /*f45*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=13  && data['f11'].AGE <19  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)  {     $('#indivformslist').append("<a onClick='return f45("+ea+")'  href='/legone/survey/surveyform/save/f45/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f45']+" formlinks'> Form 4.5 - Youth Development Sessions (YDS) and other Youth Education Programs, 13-18 Years Old </a>");    }	}
+    /*f44*/	                if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=6	&& data['f11'].AGE <13)     {     $('#indivformslist').append("<a onClick='return f44("+ea+")'  href='/legone/survey/surveyform/save/f44/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f44']+" formlinks'> Form 4.4 - Government Program Participation of Children, 6-12 Years Old</a>");    }	}
+    /*f46*/ 	            if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=60  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f46("+ea+")' href='/legone/survey/surveyform/save/f46/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f46']+" formlinks'> Form 4.6 - Government Program Participation of Senior Citizens, 60 Years old and Above</a>");    }	}
+    /*f47*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=15  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)   						   {     $('#indivformslist').append("<a onClick='return f47("+ea+")' onClick='return f47("+ea+")' href='/legone/survey/surveyform/save/f47/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f47']+" formlinks'> Form 4.7 - Knowledge and Practice of Reading Product Labels of Packaged Foods and Beverages, 15 Years old and Above</a>");    }	}
+    /*f48*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=21  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f48("+ea+")'  href='/legone/survey/surveyform/save/f48/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f48']+"  formlinks'> Form 4.8 - PhilHealth Membership, 21 Years old and Above</a>");    }	}
+    /*f410*/	            if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=15  && data['f11'].AGE <50 && data['f11'].SEX == 2 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f410("+ea+")'  href='/legone/survey/surveyform/save/f410/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f410']+" formlinks'> Form 4.10 - Reproductive History Questionnaire for all Women of Reproductive Age, 15 to 49 Years Old</a>");    } 	}
+    /*f411*/	            if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=13  && data['f11'].AGE <60 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f411("+ea+")'  href='/legone/survey/surveyform/save/f411/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f411']+" formlinks'> Form 4.11 - Knowledge on Micronutrient, 13 to 59 Years Old</a>");    } 	}
+	/*f52*/	                if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=20  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f52("+ea+")'  href='/legone/survey/surveyform/save/f52/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f52']+" formlinks'> Form 5.2 - History of Raised Blood Pressure and Diabetes Questionnaire of 20 Years Old and Above</a>");    } 	}
+    /*f53*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=10  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f53("+ea+")'  href='/legone/survey/surveyform/save/f53/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f53']+" formlinks'> Form 5.3 - Smoking and Alcohol Consumption of 10 Years Old and Above</a>");    } 	}
+    /*f54*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=10  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f54("+ea+")'  href='/legone/survey/surveyform/save/f54/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f54']+" formlinks'> Form 5.4 - Physical Activity of 10 Years old and Above</a>");    }	}
+    /*f55*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=20  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)  {     $('#indivformslist').append("<a onClick='return f55("+ea+")'  href='/legone/survey/surveyform/save/f55/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f55']+" formlinks'> Form 5.5 - History of Diseases and Other Risk Factors of 20 Years Old and Above</a>");    }	}
+    /*f56*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=15  && data['f11'].SEX == 2 || data['f11'].AGE >=20  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f56("+ea+")'  href='/legone/survey/surveyform/save/f56/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f56']+" formlinks'> Form 5.6 - FFQ for 20 Years Old and Above (15-49 for WRA)  </a>");    }	}
+    /*f57*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=20  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f57("+ea+")'  href='/legone/survey/surveyform/save/f57/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f57']+" formlinks'> Form 5.7 - History of Cancer Questionnaire of Adults 20 Years Old and above</a>");    } 	}
+    /*f58*/                 if(type == 'A' || type == 'T' ) {    if( data['listings'].diebio == 1 && data['f11'].AGE >=20  && data['f11'].SEX == 2 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f58("+ea+")'  href='/legone/survey/surveyform/save/f58/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f58']+" formlinks'> Form 5.8 - History, Symptoms and Physical Examination of Thyroid Disorders among Women 20 Years Old and above</a>");    } 	}
+    /*f59*/                 if(type == 'A' || type == 'T' ) {    if( data['f11'].AGE >=13 && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7)                           {     $('#indivformslist').append("<a onClick='return f59("+ea+")'  href='/legone/survey/surveyform/save/f59/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f59']+" formlinks'> Form 5.9 - Sun Exposure of Members, 13 Years Old and above</a>");    } 	}	
+	/*f73*/                 if(type == 'A' || type == 'D' || type == 'T') { if(data['f11'].AGE <3.083333) 							   {     $('#indivformslist').append("<a onClick='return f73("+ea+")'  href='/legone/survey/surveyform/save/f73/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f73']+" formlinks'> Form 7.3 - Checklist of Food and Liquid Intake of Children 0-36 MONTHS  Checklist of Liquid and Solid, Semi-solid and Soft Foods Intake of Children 3</a>");    }	}
+	/*f82*/				    if(type == 'A' || type == 'T' ) {   if(data['f11'].AGE >=0.5  && data['f11'].INTERVIEW_STATUS != 4 && data['f11'].INTERVIEW_STATUS != 3  && data['f11'].INTERVIEW_STATUS != 5 && data['f11'].INTERVIEW_STATUS != 6  && data['f11'].INTERVIEW_STATUS != 7) {	$('#indivformslist').append("<a onClick='return f82("+ea+")'  href='/legone/survey/surveyform/save/f82/"+data['f11'].eacode+data['f11'].hcn+data['f11'].shsn+data['f11'].MEMBER_CODE+data['f11'].memkey+"' class='list-group-item "+data['f82']+" formlinks'>Form 8.3 - Biochemical Information on Infections, Supplements and Medications for Members for 6 months and above</a>"); }}
+	/*refused*/				if(data['f11'].AGE > 13 )	  {	if(data['f11'].INTERVIEW_STATUS == 4 || data['f11'].INTERVIEW_STATUS == 3 || data['f11'].INTERVIEW_STATUS == 5 || data['f11'].INTERVIEW_STATUS == 6 || data['f11'].INTERVIEW_STATUS == 7) { $('#indivformslist').append("<h1><center> MEMBER CANT BE INTERVIEWED </center></h1>");    }		}	
+							}
+							}
+						}
+                    });              
+$('#indivformslist').empty();
+}
+
+	function f31(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f31',success: function(data) {}});
+	}
+	
+	function f32(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f32',success: function(data) {}});
+	}
+	
+	function f41(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f41',success: function(data) {}});
+	}
+	
+	function f42(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f42',success: function(data) {}});
+	}
+	
+	function f43(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f43',success: function(data) {}});
+	}
+	
+	function f44(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f44',success: function(data) {}});
+	}
+	
+	function f45(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f45',success: function(data) {}});
+	}
+	
+	function f46(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f46',success: function(data) {}});
+	}
+	
+	function f47(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f47',success: function(data) {}});
+	}
+	
+	function f48(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f48',success: function(data) {}});
+	}
+	
+	function f49(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f49',success: function(data) {}});
+	}
+	
+	function f410(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f410',success: function(data) {}});
+	}
+
+	function f411(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f411',success: function(data) {}});
+	}
+	
+	function f52(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f52',success: function(data) {}});
+	}
+	
+	function f53(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f53',success: function(data) {}});
+	}
+	
+	function f54(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f54',success: function(data) {}});
+	}
+	
+	function f55(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f55',success: function(data) {}});
+	}
+	
+	function f56(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f56',success: function(data) {}});
+	}
+	
+	function f57(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f57',success: function(data) {}});
+	}
+	
+	function f58(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f58',success: function(data) {}});
+	}
+
+	function f59(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f59',success: function(data) {}});
+	}
+	
+	function f73(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f73',success: function(data) {}});
+	}
+	
+	function f82(id)
+	{
+	var data = {};
+	data.eacode = id.substring(0,12);
+	data.hcn = id.substring(12,16);
+	data.shsn = id.substring(16,20);
+	data.MEMBER_CODE = id.substring(20,22);    data.username = '<%= session.username %>';
+	
+	$.ajax({type: 'POST',data: JSON.stringify(data),contentType: 'application/json',url: '/insert_f82',success: function(data) {}});
+	}
+	
+
+
+
+$('#btn_end').click(function() {
+$('#nextbtn').prop('disabled',true);
+$('#prevbtn').prop('disabled',false);
+});
+
+$('#btn_start').click(function() {
+$('#nextbtn').prop('disabled',false);
+$('#prevbtn').prop('disabled',true);
+});
+
+$(document).on('keyup','.measurew',function(){
+
+	var textbox1 = document.getElementById("WEIGHT1");
+	var textbox2 = document.getElementById("WEIGHT2");
+	var data = {};
+	var w1 = $(this).val();
+	data.w1 = w1;
+	data.v_age = v_age;
+	var agemos = v_age*12;
+	/////////////////// MALE WEIGHT /////////////////// 
+	if(v_sex == 1) {
+	if(agemos >= 0 && agemos <= 71 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/boys05',						
+                        success: function(data) {
+						if(data == 'err') { $('.measurew').css('border','2px solid red');					
+						$('.measurew').addClass('err');
+						}
+						else { $('.measurew').removeClass('err');
+						$('.measurew').css('border','1px solid #ccc');
+						}
+                        }
+                    });
+	}
+	if(agemos >= 72 && agemos <= 120 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/boys610',						
+                        success: function(data) {
+						if(data == 'err') { $('.measurew').css('border','2px solid red');						
+						$('.measurew').addClass('err');
+						}
+						else { $('.measurew').removeClass('err'); 
+						$('.measurew').css('border','1px solid #ccc');
+						}
+                        }
+                    });
+	}
+	if(agemos >= 121 && agemos <= 217 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/boys1118',						
+                        success: function(data) {
+						
+						if(data == 'err') { $('.measurew').css('border','2px solid red');						
+						$('.measurew').addClass('err');
+						}
+						else { $('.measurew').removeClass('err'); 
+						$('.measurew').css('border','1px solid #ccc');
+						}
+                        }
+                    });
+	}
+    }
+	/////////////////// FEMALE WEIGHT /////////////////// 
+	if(v_sex == 2) {
+	if(agemos >= 0 && agemos <= 71 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/girls05',						
+                        success: function(data) {
+						
+						if(data == 'err') { $('.measurew').css('border','2px solid red');						
+						$('.measurew').addClass('err');
+						}
+						else { $('.measurew').removeClass('err'); 
+						$('.measurew').css('border','1px solid #ccc');
+						}
+                        }
+                    });
+	}
+	if(agemos >= 72 && agemos <= 120 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/girls610',						
+                        success: function(data) {
+						if(data == 'err') { $('.measurew').css('border','2px solid red');						
+						$('.measurew').addClass('err');
+						}
+						else { $('.measurew').removeClass('err');
+						$('.measurew').css('border','1px solid #ccc');
+						}
+                        }
+                    });
+	}
+	if(agemos >= 121 && agemos <= 217 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/girls1118',						
+                        success: function(data) {
+						if(data == 'err') { $('.measurew').css('border','2px solid red');						
+						$('.measurew').addClass('err');
+						}
+						else { $('.measurew').removeClass('err'); 
+						$('.measurew').css('border','1px solid #ccc');
+						}
+                        }
+                    });
+	}
+    }
+	
+});
+
+$(document).on('keyup','.measureh',function(){
+
+	var textbox1 = document.getElementById("HEIGHT1");
+	var textbox2 = document.getElementById("HEIGHT2");
+	var data = {};
+	var w1 = $(this).val();
+	data.w1 = w1;
+	data.v_age = v_age;
+	var agemos = v_age*12;
+	/////////////////// MALE HEIGHT /////////////////// 
+	if(v_sex == 1) {
+	if(agemos >= 0 && agemos <= 71 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/boys05h',						
+                        success: function(data) {
+						if(data == 'err') { 
+						$('.measureh').css('border','2px solid red');					
+						$('.measureh').addClass('err');
+						}
+						else { $('.measureh').removeClass('err');
+						$('.measureh').css('border','1px solid #ccc');
+						}
+                        }
+                    });
+	}
+	if(agemos >= 72 && agemos <= 131 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/boys610h',						
+                        success: function(data) {
+						if(data == 'err') { $('.measureh').css('border','2px solid red');					
+						$('.measureh').addClass('err');
+						}
+						else { 
+						$('.measureh').css('border','1px solid #ccc');
+						$('.measureh').removeClass('err'); }
+                        }
+                    });
+	}
+	if(agemos >= 132 && agemos <= 217 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/boys1118h',						
+                        success: function(data) {
+						if(data == 'err') { $('.measureh').css('border','2px solid red');					
+						$('.measureh').addClass('err');
+						}
+						else {
+						$('.measureh').css('border','1px solid #ccc');
+						$('.measureh').removeClass('err'); }
+                        }
+                    });
+	}
+    }
+	/////////////////// FEMALE HEIGHT /////////////////// 
+	if(v_sex == 2) {
+	if(agemos >= 0 && agemos <= 71 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/girls05h',						
+                        success: function(data) {
+						if(data == 'err') { $('.measureh').css('border','2px solid red');				
+						$('.measureh').addClass('err');
+						}
+						else { 
+						$('.measureh').css('border','1px solid #ccc');
+						$('.measureh').removeClass('err'); }
+                        }
+                    });
+	}
+	if(agemos >= 72 && agemos <= 131 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/girls610h',						
+                        success: function(data) {
+						if(data == 'err') { $('.measureh').css('border','2px solid red');						
+						$('.measureh').addClass('err');
+						}
+						else { 
+						$('.measureh').css('border','1px solid #ccc');
+						$('.measureh').removeClass('err'); }
+                        }
+                    });
+	}
+	if(agemos >= 132 && agemos <= 217 ) {	
+						$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/valid/girls1118h',						
+                        success: function(data) {
+						if(data == 'err') { $('.measureh').css('border','2px solid red');					
+						$('.measureh').addClass('err');
+						}
+						else {
+						$('.measureh').css('border','1px solid #ccc');
+						$('.measureh').removeClass('err'); }
+                        }
+                    });
+	}
+    }
+	
+});
+
+
+function updateAnthrop(id)
+{
+      var data = {};
+      data.id = $('[name=id2]').val();
+      data.DISABILITY = $('[name=DISABILITY]').val();
+      data.ETH_CODE = $('[name=ETH_CODE]').val();
+	  data.IP = $('[name=IP]').val();
+      data.ETHNICITY = $('[name=ETHNICITY]').val();
+      data.WEIGHT1 = $('[name=WEIGHT1]').val();
+      data.WEIGHT2 = $('[name=WEIGHT2]').val();
+      data.HEIGHT1 = $('[name=HEIGHT1]').val();
+      data.HEIGHT2 = $('[name=HEIGHT2]').val();
+      data.WAIST1 = $('[name=WAIST1]').val();
+      data.WAIST2 = $('[name=WAIST2]').val();
+	  data.WAIST3 = $('[name=WAIST3]').val();
+	  data.HH_REMARKS = $('[name=HH_REMARKS]').val();
+	  data.OTH_REM = $('[name=OTH_REM]').val();
+      data.DISABILITY_OTH = $('[name=DISABILITY_OTH]').val();
+      data.HIP1 = $('[name=HIP1]').val();
+      data.HIP2 = $('[name=HIP2]').val();
+	  data.HIP3 = $('[name=HIP3]').val();
+      data.WHH_REMARKS = $('[name=WHH_REMARKS]').val();
+      data.MUAC1 = $('[name=MUAC1]').val();
+      data.MUAC2 = $('[name=MUAC2]').val();
+	  data.MUAC3 = $('[name=MUAC3]').val();
+      data.MUAC_REMARKS = $('[name=MUAC_REMARKS]').val();
+      data.INTERVIEW_STATUS_meas = $('[name=INTERVIEW_STATUS_meas]').val();
+	  data.MIL = $('[name=MIL]').val();
+      data.BP1_SYSTOLIC = $('[name=BP1_SYSTOLIC]').val();
+      data.BP1_DIASTOLIC = $('[name=BP1_DIASTOLIC]').val();
+      data.BP2_SYSTOLIC = $('[name=BP2_SYSTOLIC]').val();
+      data.BP2_DIASTOLIC = $('[name=BP2_DIASTOLIC]').val();
+      data.BP3_SYSTOLIC = $('[name=BP3_SYSTOLIC]').val();
+      data.BP3_DIASTOLIC = $('[name=BP3_DIASTOLIC]').val();
+      data.INTERVIEW_STATUS_BP = $('[name=INTERVIEW_STATUS_BP]').val();
+      data.BP_REMARKS = $('[name=BP_REMARKS]').val();
+      data.memkey = $('[name=memkey]').val();
+      data.measure_record = $('[name=measure_record]').val();
+      data.indivinfo = $('[name=indivinfo]').val();
+      data.anthrop_age = $('[name=anthrop_age]').val();
+      data.anthrop_sex = $('[name=anthrop_sex]').val();
+      data.anthrop_url = $('[name=anthrop_url]').val();
+      data.DATE_EDIT = $('[name=DATE_EDIT2]').val();
+	  data.meas_wehe = $('[name=meas_wehe]').val();
+	  data.rec_wehe = $('[name=rec_wehe]').val();
+	  data.meas_wahi = $('[name=meas_wahi]').val();
+	  data.rec_wahi = $('[name=rec_wahi]').val();
+	  data.meas_bp = $('[name=meas_bp]').val();
+	  data.rec_bp = $('[name=rec_bp]').val();
+	  data.meas_muac = $('[name=meas_muac]').val();
+	  data.rec_muac = $('[name=rec_muac]').val();
+	  
+	  
+	var wed = Math.abs(data.WEIGHT1 - data.WEIGHT2);
+	var hed = Math.abs(data.HEIGHT1 - data.HEIGHT2);
+	var wad1 = Math.abs(data.WAIST1 - data.WAIST2);
+	var wad2 = Math.abs(data.WAIST1 - data.WAIST3);
+	var wad3 = Math.abs(data.WAIST2 - data.WAIST3);
+	var hid1 = Math.abs(data.HIP1 - data.HIP2);
+	var hid2 = Math.abs(data.HIP1 - data.HIP3);
+	var hid3 = Math.abs(data.HIP2 - data.HIP3);
+	var m1 = Math.abs(data.MUAC1 - data.MUAC2);
+	var m2 = Math.abs(data.MUAC1 - data.MUAC3);
+	var m3 = Math.abs(data.MUAC2 - data.MUAC3);
+	
+    <!-- if (we1 == "") { -->
+         <!-- BootstrapDialog.show({ -->
+                <!-- type:BootstrapDialog.TYPE_DANGER,  -->
+                <!-- title: 'Incomplete input', -->
+                <!-- message: 'Please fill up all fields.'  -->
+            <!-- }); -->
+        <!-- return false; -->
+    <!-- } -->
+	
+	if($('.measurew').hasClass('err') && data.HH_REMARKS =='')
+	{
+	alert('Weight not in range (with no remarks), data will not process.');
+	return false;
+	}
+	
+	if($('.measureh').hasClass('err') && data.HH_REMARKS =='')
+	{
+	alert('Height not in range (with no remarks), data will not process.');
+	return false;
+	}
+	
+	if (wed >= 0.3001) {
+	alert('Weight input not acceptable ; Acceptable difference between two weights is 0.30 kilograms.');
+
+        return false;
+    }
+	
+	if (hed >= 0.5001) {
+	
+	alert('Height input not acceptable ; Acceptable difference between two heights is 0.50 centimeters.');
+
+        return false;
+    }
+	
+	if (m1 >= 0.5001) {
+	
+	alert('MUAC input not acceptable ; Acceptable difference between MUACs is 0.50 centimeters.');
+
+        return false;
+    }
+	
+	if (m2 >= 0.5001) {
+	
+	alert('MUAC input not acceptable ; Acceptable difference between MUACs is 0.50 centimeters.');
+
+        return false;
+    }
+	
+	if (m3 >= 0.5001) {
+	
+	alert('MUAC input not acceptable ; Acceptable difference between MUACs is 0.50 centimeters.');
+
+        return false;
+    }
+	
+	if(data.INTERVIEW_STATUS_BP < 1)
+	{       
+		alert('Please fill up all fields.');
+	}
+	else {
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/edit/form21',						
+                        success: function(data) {   
+                        }
+                    });
+  
+	
+
+					
+                    
+                     <!-- window.location.href='/legone/survey/surveyform/form11/'+eacode.value+hcn.value+shsn.value; -->
+					 
+	$('#recap').show();
+	
+	data.eacode = $('[name=eacode]').val();
+	data.hcn = $('[name=hcn]').val();
+	data.shsn = $('[name=shsn]').val();
+	data.MEMBER_CODE = $('.getMC').text();
+	
+	$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/surveyform/form21/view',						
+                        success: function(data) {   
+						
+						$('#listAnswers').append('<div class="row"><div class="col-md-6"><b>WEIGHT1</b> : '+data[0].WEIGHT1+
+						'<br><b>WEIGHT2</b> : '+data[0].WEIGHT2+
+						'<br><b>HEIGHT1</b> : '+data[0].HEIGHT1+
+						'<br><b>HEIGHT1</b> : '+data[0].HEIGHT2+
+						'<br><b>REMARKS HEIGHT/WEIGHT</b> : '+data[0].HH_REMARKS+
+						'<br><br><b>WAIST1</b> : '+data[0].WAIST1+
+						'<br><b>WAIST2</b> : '+data[0].WAIST2+
+						'<br><b>WAIST3</b> : '+data[0].WAIST3+
+						'<br><b>HIP1</b> : '+data[0].HIP1+
+						'<br><b>HIP2</b> : '+data[0].HIP2+
+						'<br><b>HIP3</b> : '+data[0].HIP3+
+						'<br><b>REMARKS WAIST/HIP</b> : '+data[0].WHH_REMARKS+
+						'</div><div class="col-md-6">'+
+						'<b>MIL</b> : '+data[0].MIL+
+						'<br><b>BP1 SYSTOLIC</b> : '+data[0].BP1_SYSTOLIC+
+						'<br><b>BP1 DIASTOLIC</b> : '+data[0].BP1_DIASTOLIC+
+						'<br><b>BP2 SYSTOLIC</b> : '+data[0].BP2_SYSTOLIC+
+						'<br><b>BP2 DIASTOLIC</b> : '+data[0].BP2_DIASTOLIC+
+						'<br><b>BP3 SYSTOLIC</b> : '+data[0].BP3_SYSTOLIC+
+						'<br><b>BP3 DIASTOLIC</b> : '+data[0].BP3_DIASTOLIC+
+						'<br><br><b>MUAC1</b> : '+data[0].MUAC1+
+						'<br><b>MUAC2</b> : '+data[0].MUAC2+
+						'<br><b>MUAC3</b> : '+data[0].MUAC3+
+						'<br><b>REMARKS MUAC</b> : '+data[0].MUAC_REMARKS+
+						
+						'</div><div>'
+						
+						);
+                        }
+                    });
+	
+	
+   $('#listAnswers').empty();       
+	}   
+}
+
+$('#closeModal').click(function (){
+	
+	 window.location.href='/legone/survey/surveyform/form11/'+eacode.value+hcn.value+shsn.value;
+	
+	});
+	
+	
+
+</script>
+
+
+
+
+
+
+
+

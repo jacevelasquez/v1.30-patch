@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links.ejs %>
+  </head>
+  <style>
+	  .centerDiv {
+
+		  margin: auto;
+  		  width: 50%;
+	  }
+	  .overFlow {
+		overflow-y: scroll;
+		}
+	  .rowC{
+		  background-color: white;
+	  }
+	  /* [name=row1]{
+		  background-color: gold;
+	  }
+	  [name=row2]{
+		  background-color: silver;
+	  }
+	  [name=row3]{
+		  background-color: burlywood;
+	  } */
+	  .rowC{
+		  background-color: :white;
+	  }
+
+		
+  </style>
+
+  <body class="login-page">
+
+	  <!-- Fixed navbar -->
+	  <div class="navbar navbar-default navbar-fixed-top">
+
+		
+			<div class="container home">
+			  <div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><b>National Nutrition Survey 2018</b></a>
+		
+			  </div>
+		  
+			  <div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+				  <li><a href="/legone/survey/surveyform"><span class="glyphicon glyphicon-list-alt"></span>&nbsp; Main menu</a></li>
+				  <li>               
+					 <a href="/"><%= session.username %>&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>            </li>
+				</ul>
+		
+			  </div><!--/.nav-collapse -->
+			</div>
+		  </div>
+
+	<div class="centerDiv">
+	<div class="container col-md-6 fixedSize" style="padding-top: 70px; margin-bottom: 10px;">
+
+			<form id="upload-form3" onsubmit="return upload_backup()" enctype="multipart/form-data">
+				<fieldset>
+						<div class="panel panel-default" style="height: 520px;">
+						<div class="panel-body">
+
+						<h3>Send Data to IT</h3>
+						Name: <input type="text" id="name" class="form-control" placeholder="Please type full name..." required> 
+						Team: 
+						<select id="team" class="form-control" required> 
+								<option value=""> Select Team</option>
+								<option value="1"> 1</option>
+								<option value="2"> 2</option>
+								<option value="3"> 3</option>
+								<option value="4"> 4</option>
+								<option value="5"> 5</option>
+								<option value="6"> 6</option>
+								<option value="7"> 7</option>
+								<option value="8"> 8</option>
+							</select>
+						Subteam: 
+						<select id="subteam" class="form-control" required> 
+							<option value=""> Select Subteam</option>
+							<option value="1"> 1</option>
+							<option value="2"> 2</option>
+							<option value="3"> 3</option>
+							<option value="4"> 4</option>
+							<option value="5"> 5</option>
+							<option value="6"> 6</option>
+						</select>
+						<br>
+						Concern (English or Tagalog) :<br> <textarea class="form-control" id="concern" cols="30" rows="3"> </textarea><br>
+						Upload file <b> (Note : Uploaded file must be on Downloads Folder) </b> <br>
+
+
+					<div>
+						<input type="file" name="upload" class="upload_backup">
+					</div>
+					<div style="margin-top:10px;margin-bottom:10px;">
+						<input type="submit" value="Submit" class="btn btn-success right" id="submit_all" />
+						<div style="clear: both"></div>
+					</div>
+				</div>
+			</div>
+				</fieldset>
+			</form>  	
+			
+	</div>
+
+	<div class="container col-md-4 fixedSize" style="padding-top: 70px; margin-bottom: 10px;">
+			<div class="panel panel-default overFlow"  style="height: 520px;">
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Rank</th>
+								<th>TeamLead</th>
+								<th>Count</th>
+							</tr>
+						</thead>
+						<tbody>
+								<% var i =1; j=1; rows.forEach(function(row){ %>
+									<tr>
+										<td class="rowC"><%=i%></td>
+										<td class="rowC" name="row<%=i++%>"><%= row.teamLead%></td>
+										<td class="rowC" name="row<%=j++%>"><%= row.Cnt%></td>
+									</tr>
+								<% });%>
+						</tbody>
+					</table>
+				</div>
+			  </div>
+		
+	</div>
+
+	</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	
+    <script type="text/javascript" src="/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="/jquery/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/jquery/bootstrap-typeahead.js"></script>
+	<script type="text/javascript" src="/jquery/global.js"></script>
+<!-- <script type="text/javascript" src="/jquery/settings.js"></script> -->
+  </body>
+</html>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+});
+
+function upload_backup() {
+
+var data = {};
+
+data.name = $('#name').val();
+data.team = $('#team').val();
+data.subteam = $('#subteam').val();
+data.concern = $('#concern').val();
+
+var fileUpload = $('.upload_backup')[0].files[0];
+var formData = new FormData();
+alert(formData);
+formData.append('userfile',fileUpload);
+
+		$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/submit_report',						
+                            success: function(data) {	
+							}
+		});
+		$.ajax({
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					processData: false,
+					url: '/upload_backup',						
+					success: function(data) { 
+					}
+		});
+			  
+};
+
+</script>

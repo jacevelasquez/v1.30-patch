@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+	<% include ../views/links.ejs %>
+
+  </head>
+
+  <body>
+
+    <% include ../views/header.ejs %>
+
+      <div class="container">
+        <div class="row">
+        <style type="text/css">
+
+.btn-group-lg>.btn, .btn-lg {
+    padding: 10px 16px;
+    font-size: 20px;
+    border-radius: 6px;
+    width: 150px;
+    margin-bottom: 5px;
+}
+
+.btn-success.all	{
+	height: 50px;
+	width: 400px;
+	font-size: 30px;
+}
+
+</style>
+<div class="page-header">
+</div>
+<div class="container" id="cnt1">
+<div class="row">
+	<div class="list-group">
+		<!-- display area name -->
+		<li class="list-group-item active"><a href="/legone/survey/surveyform/households/<%=array4[0].eacode%>" style="color:white;font-weight:bold;"><%=array4[0].eacode%> - <%=array4[0].areaname%></a>
+			<span class="pull-right">LGU Survey</span>
+		</li>
+		<!-- display informations -->
+
+		<li class="list-group-item">
+			<div class="panel-group" id="accordion">
+				<div>
+					<div class="panel-body"><h4>Backup forms individually:</h4><ul class="list-group">
+						<br>
+						<a href="/legone/survey/backupF11/<%=array4[0].eacode%>">Form 1.1 </a>
+						<button type="button" onclick="backupF11('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF11"> Form 1.1     </button>
+						<button type="button" onclick="backupF12('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF12"> Form 1.2     </button>
+						<button type="button" onclick="backupF13('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF13"> Form 1.3     </button>
+						<button type="button" onclick="backupF14('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF14"> Form 1.4     </button>
+						<button type="button" onclick="backupF15('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF15"> Form 1.5     </button>
+						<button type="button" onclick="backupF21('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF21"> Form 2.1     </button>
+						<button type="button" onclick="backupF31('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF31"> Form 3.1     </button>
+						<button type="button" onclick="backupF41('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF41"> Form 4.1     </button>
+						<button type="button" onclick="backupF42('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF42"> Form 4.2     </button>
+						<button type="button" onclick="backupF43('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF43"> Form 4.3     </button>
+						<button type="button" onclick="backupF44('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF44"> Form 4.4     </button>
+						<button type="button" onclick="backupF45('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF45"> Form 4.5     </button>
+						<button type="button" onclick="backupF46('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF46"> Form 4.6     </button>
+						<button type="button" onclick="backupF47('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF47"> Form 4.7     </button>
+						<button type="button" onclick="backupF48('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF48"> Form 4.8     </button>
+						<button type="button" onclick="backupF49('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF49"> Form 4.9     </button>
+						<button type="button" onclick="backupF52('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF52"> Form 5.2     </button>
+						<button type="button" onclick="backupF53('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF53"> Form 5.3     </button>
+						<button type="button" onclick="backupF54('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF54"> Form 5.4     </button>
+						<button type="button" onclick="backupF55('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF55"> Form 5.5     </button>
+						<button type="button" onclick="backupF56('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF56"> Form 5.6     </button>
+						<button type="button" onclick="backupF73('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF73"> Form 7.3     </button>
+						<button type="button" onclick="backupF82('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF82"> Form 8.2     </button>
+						<button type="button" onclick="backupF83('<%=array4[0].eacode%>','<%=array4[0].areaname%>')" class="btn btn-lg btn-success" id="backupF83"> Form 8.3     </button>
+					</div>
+				</div>			
+			</div>	
+		</li>
+	</div>
+</div>
+
+		
+					<div class="row">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			  <center>
+			    <a href="#" class="btn btn-success all" onclick="backup('<%=array4[0].eacode%>','<%=array4[0].areaname%>')"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;&nbsp;Download All Forms</a>
+			  </div>
+			</div></div>
+
+		
+
+</div>      </div>
+    </div>
+  
+  <script type="text/javascript">
+
+  function backup(eacode,areaname)
+  {
+
+
+  
+  var data = {};
+    data.eacode = eacode;
+    data.areaname = areaname;
+            $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/backuparea',						
+                        success: function(data) {
+                        }
+                    });
+		alert("Sucessful backup on all Forms");
+  }
+  
+  
+      function backupF11 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF11',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 11");
+  }
+  
+    function backupF12 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF12',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 12");
+  }
+  
+    function backupF13 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF13',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 13");
+  }
+  
+    function backupF14 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF14',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 14");
+  }
+  
+    function backupF15 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF15',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 15");
+  }
+        function backupF21 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF21',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 21");
+  }
+	
+	    function backupF31 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF31',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 31");
+  }
+  
+    function backupF41 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF41',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 41");
+  }
+  
+    function backupF42 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF42',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 42");
+  }
+  
+    function backupF43 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF43',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 43");
+  }
+  
+    function backupF44 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF44',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 44");
+  }
+  
+    function backupF45 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF45',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 45");
+  }
+  
+    function backupF46 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF46',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 46");
+  }
+  
+    function backupF47 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF47',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 47");
+  }
+  
+    function backupF48 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF48',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 48");
+  }
+  
+    function backupF49 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF49',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 49");
+  }
+    function backupF52 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF52',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 52");
+  }
+  
+    function backupF53 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF53',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 53");
+  }
+  
+    function backupF54 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF54',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 54");
+  }
+  
+    function backupF55 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF55',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 55");
+  }
+  
+    function backupF56 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF56',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 56");
+  }
+  
+  
+      function backupF73 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF73',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 73");
+  }
+  
+  
+      function backupF82 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF82',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 82");
+  }
+  
+      function backupF83 (eacode,areaname)
+  { 
+  var data = {};
+  data.eacode = eacode;
+  data.areaname = areaname;
+            $.ajax({type: 'POST', data: JSON.stringify(data), contentType: 'application/json', 
+					url: '/legone/survey/backupF83',						
+                    success: function(data) {  } });
+		alert("Sucessful backup on Form 83");
+  }
+  
+  
+
+
+  
+  
+  $(document).ready(function(){
+  
+  
+
+     });  
+       
+       </script>
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<% include ../views/links_d.ejs %>
+
+  </head>
+  
+  <style>
+
+
+  </style>
+
+  <body class="main-menu">
+	
+    <% include ../views/header_d.ejs %>
+
+    <div class="container">
+        <div class="row">
+		<h1>Households</h1> 
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>EACODE</th>
+					<th>HCN</th>
+					<th>SHSN</th>
+					<th>Members</th>
+					<th>Meal Pattern<br>Form 6.1</th>
+					<th>Food Record<br>Form 6.3</th>
+					<th>Food Recall<br>Form 7.1/7.2</th>
+					<th>Perception<br>Form 7.6</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<% rows.forEach(function(row){
+				%>
+				<tr>
+					<td><%= row.eacode%></td>
+					<td class="hcn"><%= row.hcn%></td>
+					<td class="shsn"><%= row.shsn%></td>
+					<td><label id="mem_<%= row.eacode%><%= row.hcn%><%= row.shsn%>">0</label></td>
+					<td><a href="/mealpattern/<%= row.eacode%><%= row.hcn%><%= row.shsn%>">edit</a></td>
+					<td><a href="/foodrecord/<%= row.eacode%><%= row.hcn%><%= row.shsn%>">edit</a>&nbsp;<label id="lines_<%= row.eacode%><%= row.hcn%><%= row.shsn%>">(0)<label></td>
+					<td><a href="/members/<%= row.eacode%><%= row.hcn%><%= row.shsn%>">edit</a></td>
+					<td><a href="#">edit</a></td>
+
+				</tr>
+				<% });%>
+				<tr>
+					<td><input type="text" class="form-control" placeholder="Enter eacode.." id="new_eacode"></td>
+					<td><input type="text" class="form-control" placeholder="Enter hcn.." id="new_hcn"></td>
+					<td><input type="text" class="form-control" placeholder="Enter shsn.." id="new_shsn"></td>
+					<td><button class="btn btn-info" id="save_newea" onclick="save_newea()">Add</button></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		
+
+		</div>
+    </div>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+	
+	var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+	
+	$('#new_eacode').val(A);
+	
+	$('.hcn').each(function() {
+	
+	var data = {};
+	data.eacode = A;
+	data.hcn = $(this).text();
+	data.shsn = $(this).closest('td').next('td').text();
+	
+	$.ajax({
+						type: 'POST',
+						//dataType: 'json',
+						data: JSON.stringify(data),
+							contentType: 'application/json',
+									url: '/dietaryhhlines',						
+									success: function(data) {
+
+									for(var i=0;i<data.length;i++){
+									$('#lines_'+data[i].eacode+data[i].hcn+data[i].shsn+'').text('('+data.length+')');
+									}
+									
+									}
+			
+	});
+	
+	$.ajax({
+						type: 'POST',
+						//dataType: 'json',
+						data: JSON.stringify(data),
+							contentType: 'application/json',
+									url: '/dietarymembercount',						
+									success: function(data) {
+									for(var i=0;i<data.length;i++){
+									$('#mem_'+data[i].eacode+data[i].hcn+data[i].shsn+'').text(''+data.length+'');
+									}
+									
+									}
+			
+	});
+	
+	
+	});
+	
+	});
+	
+	function save_newea() {
+	
+	var data = {};
+	data.eacode = $('#new_eacode').val(); 
+	data.hcn = $('#new_hcn').val();
+	data.shsn = $('#new_shsn').val();
+	
+	if(data.hcn.length != 4) {
+	alert('hcn must be 4 characters. Please check..');
+	}
+	else if(data.shsn.length != 4) {
+	alert('shsn must be 4 characters. Please check..');
+	}
+	else {
+	$.ajax({
+						type: 'POST',
+						//dataType: 'json',
+						data: JSON.stringify(data),
+							contentType: 'application/json',
+									url: '/dietaryhh',						
+									success: function(data) {
+									if(data == 'ok'){
+									window.location.href = '/dietaryhh/'+$('#new_eacode').val(); 
+									}
+									if(data == 'exist'){
+									alert("Existing data. Please check..");
+									}
+									}
+			
+		});
+	}
+	};
+	
+	
+	
+	
+	</script>
+  
+  
+
+  <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

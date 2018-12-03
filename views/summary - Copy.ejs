@@ -1,0 +1,1011 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link rel="icon" href="/FNRI.png"><META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <meta charset="utf-8">
+
+
+<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap-theme.css" />
+<link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />   <link href="/bootstrap-3.3.7-dist/css/color.css" rel="stylesheet" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>NNS2018</title>
+
+  
+
+       <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+<script type="text/javascript" src="/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap-typeahead.js"></script>
+<script type="text/javascript" src="/jquery/global.js"></script>
+    
+ 
+
+
+<script src="/jquery/bootstrap-dialog.min.js"></script>
+  </head>
+
+  <body class="form-summary">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b>National Nutrition Survey 2018</b></a>
+
+        </div>
+        <div class="navbar-collapse collapse">
+           <ul class="nav navbar-nav navbar-right">
+            <li><a href="/legone/survey/surveyform"><span class="glyphicon glyphicon-list-alt"></span>&nbsp; Main menu</a></li>
+            <li>
+               
+               <a href="/"><%= session.username %>&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>            </li>
+            
+          </ul>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+      <div class="container">
+        <div class="row">
+        
+<br />
+<br />
+<br />
+<div class="row">
+</div>
+
+<div class="panel panel-success">
+  <!-- Default panel contents -->
+  <div class="panel-heading" style="background-color:#DFDCE3"><a href="/legone/survey/surveyform/households/<%=array[0].eacode%>"><%=array[0].eacode%> - <%=array3[0].areaname%></a><span class="pull-right" style="font-family:'Arial';">&nbsp; <a href="/legone/survey/surveyform/households/<%=array[0].eacode%>"><i class="glyphicon glyphicon-th-list"></i>&nbsp;Listings</a></span></div>
+  <div class="panel-body">
+    <div class="col-md-4">
+ <b>HCN : </b><%=array[0].hcn%>    <b>SHSN</b> : <%=array[0].shsn%>  </div>
+  </div>
+
+  <!-- List group -->
+ 
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+ 
+    
+  <div class="panel panel-default">
+   <!--    <div class="panel-heading" style="background-color:#DFDCE3" role="tab" id="headingOne">
+      <h4 class="panel-title">
+     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>" aria-expanded="true" aria-controls="collapseOne">
+          
+        </a>
+      </h4>
+    </div>-->
+  <!--  <div id="<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">-->
+      <div class="panel-body">
+          <h3>Household Forms</h3>
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.2 - HOUSEHOLD AND OTHER DEMOGRAPHIC INFORMATION </a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f12" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f12" itemid="0" style='width:150px;'>
+				 <option value='' >Select Interview status</option>
+				 <option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Refused</option>
+				<option value='3'>3 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='4'>4 - Entire Household Absent for Extended Period of Time</option>
+				<option value='5'>5 - Vacant Housing Unit</option>
+				<option value='6'>6 - Housing Unit Destroyed/Demolished</option>
+				<option value='7'>7 - Address not a Housing Unit</option>
+				<option value='8'>8 - Housing Unit not Found</option>
+				<option value='9'>9 - Critical/Flooded Area</option>
+				<option value='10'>10 - Postponed</option>
+				<option value='11'>11 - Others</option></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f12" /></textarea></li>           
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.3 - HOUSEHOLD FOOD SECURITY (HOUSEHOLD FOOD INSECURITY ACCESS SCALE)</a> : <strong style="color:red;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f13" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f13" itemid="0" style='width:150px;'>
+				 <option value='' >Select Interview status</option>
+				<option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Refused</option>
+				<option value='3'>3 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='4'>4 - Entire Household Absent for Extended Period of Time</option>
+				<option value='5'>5 - Vacant Housing Unit</option>
+				<option value='6'>6 - Housing Unit Destroyed/Demolished</option>
+				<option value='7'>7 - Address not a Housing Unit</option>
+				<option value='8'>8 - Housing Unit not Found</option>
+				<option value='9'>9 - Critical/Flooded Area</option>
+				<option value='10'>10 - Postponed</option>
+				<option value='11'>11 - Others</option></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f13" /></textarea></li>           
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.4 - Household Dietary Diversity and Food Frequency </a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f14" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f14" itemid="0" style='width:150px;'>
+				 <option value='' >Select Interview status</option>
+				 <option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Refused</option>
+				<option value='3'>3 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='4'>4 - Entire Household Absent for Extended Period of Time</option>
+				<option value='5'>5 - Vacant Housing Unit</option>
+				<option value='6'>6 - Housing Unit Destroyed/Demolished</option>
+				<option value='7'>7 - Address not a Housing Unit</option>
+				<option value='8'>8 - Housing Unit not Found</option>
+				<option value='9'>9 - Critical/Flooded Area</option>
+				<option value='10'>10 - Postponed</option>
+				<option value='11'>11 - Others</option></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f14" /></textarea></li>           
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.5 - HOUSEHOLD FOOD SECURITY (FOOD INSECURITY EXPERIENCE SCALE)</a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f15" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f15" itemid="0" style='width:150px;'>
+				 <option value='' >Select Interview status</option>
+				 <option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Refused</option>
+				<option value='3'>3 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='4'>4 - Entire Household Absent for Extended Period of Time</option>
+				<option value='5'>5 - Vacant Housing Unit</option>
+				<option value='6'>6 - Housing Unit Destroyed/Demolished</option>
+				<option value='7'>7 - Address not a Housing Unit</option>
+				<option value='8'>8 - Housing Unit not Found</option>
+				<option value='9'>9 - Critical/Flooded Area</option>
+				<option value='10'>10 - Postponed</option>
+				<option value='11'>11 - Others</option></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f15" /></textarea></li>                 
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.6 - HOUSEHOLD GOVERNMENT PROGRAM PARTICIPATION</a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f16" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f16" itemid="0" style='width:150px;'>
+				 <option value='' >Select Interview status</option>
+				 <option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Refused</option>
+				<option value='3'>3 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='4'>4 - Entire Household Absent for Extended Period of Time</option>
+				<option value='5'>5 - Vacant Housing Unit</option>
+				<option value='6'>6 - Housing Unit Destroyed/Demolished</option>
+				<option value='7'>7 - Address not a Housing Unit</option>
+				<option value='8'>8 - Housing Unit not Found</option>
+				<option value='9'>9 - Critical/Flooded Area</option>
+				<option value='10'>10 - Postponed</option>
+				<option value='11'>11 - Others</option></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f16" /></textarea></li>                 
+                 <li class="list-group-item"><a href='#' class='checkform'>Form 1.7 - HOUSEHOLD AWARENESS AND USAGE OF IODIZED SALT</a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;
+				 <select name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f17" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f17" itemid="0" style='width:150px;'>
+				 <option value='' >Select Interview status</option>
+				 <option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Refused</option>
+				<option value='3'>3 - No Household Member at Home or no Competent Respondent on Home</option>
+				<option value='4'>4 - Entire Household Absent for Extended Period of Time</option>
+				<option value='5'>5 - Vacant Housing Unit</option>
+				<option value='6'>6 - Housing Unit Destroyed/Demolished</option>
+				<option value='7'>7 - Address not a Housing Unit</option>
+				<option value='8'>8 - Housing Unit not Found</option>
+				<option value='9'>9 - Critical/Flooded Area</option>
+				<option value='10'>10 - Postponed</option>
+				<option value='11'>11 - Others</option></select>
+				 <textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%>_f17" /></textarea></li>                 
+ 
+
+ 
+             <input type="hidden" id="eacode" name="eacode" value=""/ />
+            <input type="hidden" id="hcn" name="hcn" value=""/ />
+            <input type="hidden" id="shsn" name="shsn" value=""/>
+            <input type="hidden" id="MEMBER_CODE" name="MEMBER_CODE" value=""/>
+             <h3>Individual Forms</h3>
+            <% array2.forEach(function(row){
+            
+            
+             %>
+			
+                <li class='list-group-item active'><a  style="color:white" href="/legone/survey/surveyform/form11/<%=row.eacode%><%=row.hcn%><%=row.shsn%>"><%=row.MEMBER_CODE%> - <%=row.GIVENNAME%> <%=row.SURNAME%> </a>
+				<span class="pull-right">
+				<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo<%=row.id%>"><span class="glyphicon glyphicon-tag"></span> CALLBACK</button>
+				</span>
+				<div style="clear: both;"></div>
+				</li> 
+				
+                <li class="list-group-item">
+				
+			<div id="demo<%=row.id%>" class="collapse">
+			  <input type="date" class="form-control" placeholder="Visit 1 date" style="display:inline-block; width:330px" name="visit1_<%=row.id%>"  id="visit1_<%=row.id%>" onkeyup="is1(<%=row.id%>)" />
+      
+            <select name='INTERVIEW_STATUS1' style="display:inline-block; width:330px" id='INTERVIEW_STATUS1_<%=row.id%>' class='form-control' onchange="is1(<%=row.id%>)">
+			<option value=''>Select Interview status</option>
+				<option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Partly Completed</option>
+				<option value='3'>3 - Respondent Incapacitated</option>
+				<option value='4'>4 - Refused</option>
+				<option value='5'>5 - Not at Home (Away during the Survey Period)</option>
+				<option value='6'>6 - Away from an Extended Period of time Working/Schooling (LOCAL)</option>
+				<option value='7'>7 - 7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+				<option value='8'>8 - Others</option></select>
+			<input type="text" class="form-control" placeholder="..." style="display:inline-block; width:330px" name="comment1_<%=row.id%>"  id="comment1_<%=row.id%>" onkeyup="is1(<%=row.id%>)" />
+			<br>
+		   	
+			
+			<input type="date" class="form-control" placeholder="Visit 2 date" style="display:inline-block; width:330px" name="visit2_<%=row.id%>"  id="visit2_<%=row.id%>" onkeyup="is1(<%=row.id%>)" />
+            <select name='INTERVIEW_STATUS2' style="display:inline-block; width:330px" id='INTERVIEW_STATUS2_<%=row.id%>' class='form-control' onchange="is1(<%=row.id%>)">
+			<option value=''>Select Interview status</option>
+				<option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Partly Completed</option>
+				<option value='3'>3 - Respondent Incapacitated</option>
+				<option value='4'>4 - Refused</option>
+				<option value='5'>5 - Not at Home (Away during the Survey Period)</option>
+				<option value='6'>6 - Away from an Extended Period of time Working/Schooling (LOCAL)</option>
+				<option value='7'>7 - 7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+				<option value='8'>8 - Others</option></select>
+			<input type="text" class="form-control" placeholder="..." style="display:inline-block; width:330px" name="comment2_<%=row.id%>"  id="comment2_<%=row.id%>" onkeyup="is1(<%=row.id%>)" />
+			
+			<br>
+			<input type="date" class="form-control" placeholder="Visit 3 date" style="display:inline-block; width:330px" name="visit3_<%=row.id%>"  id="visit3_<%=row.id%>" onkeyup="is1(<%=row.id%>)" />
+            <select name='INTERVIEW_STATUS3' style="display:inline-block; width:330px" id='INTERVIEW_STATUS3_<%=row.id%>' class='form-control' onchange="is1(<%=row.id%>)">
+			<option value=''>Select Interview status</option>
+				<option value='1'>1 - Completed Interview</option>
+				<option value='2'>2 - Partly Completed</option>
+				<option value='3'>3 - Respondent Incapacitated</option>
+				<option value='4'>4 - Refused</option>
+				<option value='5'>5 - Not at Home (Away during the Survey Period)</option>
+				<option value='6'>6 - Away from an Extended Period of time Working/Schooling (LOCAL)</option>
+				<option value='7'>7 - 7 - Away from an Extended Period of time working/Schooling (ABROAD)</option>
+				<option value='8'>8 - Others</option></select>
+			<input type="text" class="form-control" placeholder="..." style="display:inline-block; width:330px" name="comment3_<%=row.id%>"  id="comment3_<%=row.id%>" onkeyup="is1(<%=row.id%>)" />
+			
+			</div>
+		
+				
+				<a href='#' class='checkform'><input type="hidden" id="MEMBER_CODE_xx" name="MEMBER_CODE" value="<%=row.MEMBER_CODE%>"/><input type="hidden" id="MEMBER_CODE_x" name="MEMBER_CODE" value="<%=row.MEMBER_CODE%>"/>Form 2.1 - Anthropometric measurements of All Household Members</a> : <strong style="color:green;">&nbsp;</strong>&nbsp;&nbsp;<select name="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%><%=array[0].MEMBER_CODE%>_f21" id="INTERVIEW_STATUS_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%><%=row.MEMBER_CODE%>_f21" itemid="1" style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id="INTERVIEW_STATUS_OTH_<%=array[0].eacode%><%=array[0].hcn%><%=array[0].shsn%><%=row.MEMBER_CODE%>_f21" /></textarea><span>&nbsp;&nbsp;<span style='color:orange;'>Interview status for MUAC and BP is in the anthrop form.</span></span>
+				</li>           
+				
+                 <li class="list-group-item"><input type="hidden" id="MEMBER_CODE_xx" name="MEMBER_CODE" value="<%=row.MEMBER_CODE%>"/> <div class="list-group" id="<%=row.eacode%><%=row.hcn%><%=row.shsn%><%=row.MEMBER_CODE%>"></li>
+				 
+				 
+
+               <%});%>
+
+                              
+            
+
+      </div>
+  <!--  </div>-->
+  </div>
+      
+  
+</div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  
+  
+       var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = bigIdString.substring(20,22);
+
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+    document.getElementById('MEMBER_CODE').value = D;
+   
+     
+       var data = {};
+    data.eacode = A;
+    data.hcn = B;
+    data.shsn = C;
+    data.MEMBER_CODE = D;
+
+	var type = '<%- session.username.substring(0,1)%>';
+	var preg = A.substring(A.length-1);
+
+				
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/legone/survey/surveyform/summary',						
+                        success: function(data) {
+                            for(var i=0;i<data['f11'].length;i++)
+                            { 
+                             $('#INTERVIEW_STATUS1_'+data['f11'][i].id+'').val(data['f11'][i].INTERVIEW_STATUS1); 
+							 $('#INTERVIEW_STATUS2_'+data['f11'][i].id+'').val(data['f11'][i].INTERVIEW_STATUS2); 
+							 $('#INTERVIEW_STATUS3_'+data['f11'][i].id+'').val(data['f11'][i].INTERVIEW_STATUS3);
+							 $('[name=visit1_'+data['f11'][i].id+']').val(data['f11'][i].visit1); 
+							 $('[name=visit2_'+data['f11'][i].id+']').val(data['f11'][i].visit2); 
+							 $('[name=visit3_'+data['f11'][i].id+']').val(data['f11'][i].visit3); 
+							 $('[name=comment1_'+data['f11'][i].id+']').val(data['f11'][i].comment1); 
+							 $('[name=comment2_'+data['f11'][i].id+']').val(data['f11'][i].comment2); 
+							 $('[name=comment3_'+data['f11'][i].id+']').val(data['f11'][i].comment3); 
+						
+                             $('#INTERVIEW_STATUS_'+data['f21'][i].eacode+data['f21'][i].hcn+data['f21'][i].shsn+data['f21'][i].MEMBER_CODE+'_f21').val(data['f21'][i].INTERVIEW_STATUS); 
+        /*f31*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].PSC >0 && data['f11'][i].PSC <10 && data['f11'][i].AGE >=12 && data['f11'][i].SEX ==2)                     {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f31/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 3.1 - Maternal and Nutirition : Mother's Knowledge, Health-Seeking Behaviors and Practices (For currently pregnant women) </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f31' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f31' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f31' /></textarea></li>"); $('#INTERVIEW_STATUS_'+data['f31'][i].eacode+data['f31'][i].hcn+data['f31'][i].shsn+data['f31'][i].MEMBER_CODE+'_f31').val(data['f31'][i].INTERVIEW_STATUS); }	}
+        /*f32*/     if(type == 'A' || type == 'T' ) {if(data['f11'].MATERNAL == 1)                     {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f32/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 3.2 - Maternal Health and Nutrition: Mother's Knowledge, Health-seeking Behaviors and Practices (For all mothers with child 0-36 months) </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f32' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f32' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f32' /></textarea></li>"); $('#INTERVIEW_STATUS_'+data['f32'][i].eacode+data['f32'][i].hcn+data['f32'][i].shsn+data['f32'][i].MEMBER_CODE+'_f32').val(data['f32'][i].INTERVIEW_STATUS); }	}      
+	    /*f41*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=0 && data['f11'][i].AGE <6 )  {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f41/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br>Form 4.1 - BIRTHWEIGHT AND RELATED INFORMATION OF CHILDREN, 0-71 MONTHS</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f41' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f41' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f41' /></textarea></li>");   $('#INTERVIEW_STATUS_'+data['f41'][i].eacode+data['f41'][i].hcn+data['f41'][i].shsn+data['f41'][i].MEMBER_CODE+'_f41').val(data['f41'][i].INTERVIEW_STATUS);   }	}
+        /*f42*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=0 &&	 data['f11'][i].AGE < 2)  {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f42/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 4.2 - INFANT AND YOUNG CHILD FEEDING PRACTICES OF CHILDREN, 0-23 MONTHS</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f42' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f42' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f42' /></textarea></li>");     $('#INTERVIEW_STATUS_'+data['f42'][i].eacode+data['f42'][i].hcn+data['f42'][i].shsn+data['f42'][i].MEMBER_CODE+'_f42').val(data['f42'][i].INTERVIEW_STATUS); }	}
+        /*f43*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=0 &&	 data['f11'][i].AGE < 6 )  {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f43/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 4.3 - GOVERNMENT PROGRAM PARTICIPATION OF CHILDREN, 0-71 MOS.</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f43' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f43' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f43' /></textarea></li>");   $('#INTERVIEW_STATUS_'+data['f43'][i].eacode+data['f43'][i].hcn+data['f43'][i].shsn+data['f43'][i].MEMBER_CODE+'_f43').val(data['f43'][i].INTERVIEW_STATUS);  }	}
+        /*f44*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=6 && data['f11'][i].AGE <=12.99)     {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f44/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 4.4 - GOVERNMENT PROGRAM PARTICIPATION OF CHILDREN, 6-12 YEARS OLD </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f44' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f44' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f44' /></textarea></li>"); $('#INTERVIEW_STATUS_'+data['f44'][i].eacode+data['f44'][i].hcn+data['f44'][i].shsn+data['f44'][i].MEMBER_CODE+'_f44').val(data['f44'][i].INTERVIEW_STATUS);   }	}
+        /*f45*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=13 && data['f11'][i].AGE <=18.99)  {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f45/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 4.5 - Youth Development Sessions (YDS), 13-18 Years Old </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f45' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f45' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f45' /></textarea></li>");  $('#INTERVIEW_STATUS_'+data['f45'][i].eacode+data['f45'][i].hcn+data['f45'][i].shsn+data['f45'][i].MEMBER_CODE+'_f45').val(data['f45'][i].INTERVIEW_STATUS);   }	}
+        /*f46*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=60 )                    {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f46/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 4.6 - Government Program Participation of Senior Citizens, 60 Years old and Above </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f46' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f46' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f46' /></textarea></li>");   $('#INTERVIEW_STATUS_'+data['f46'][i].eacode+data['f46'][i].hcn+data['f46'][i].shsn+data['f46'][i].MEMBER_CODE+'_f46').val(data['f46'][i].INTERVIEW_STATUS);  }	}
+        /*f47*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=13)    {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f47/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 4.7 - Knowledge and Practice of Reading Product Labels of Packaged Foods and Beverages, 13 Years old and Above </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f47' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f47' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f47' /></textarea></li>");      $('#INTERVIEW_STATUS_'+data['f47'][i].eacode+data['f47'][i].hcn+data['f47'][i].shsn+data['f47'][i].MEMBER_CODE+'_f47').val(data['f47'][i].INTERVIEW_STATUS);  }	}
+        /*f48*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=21)                    {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f48/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 4.8 - PhilHealth Membership, 21 Years old and Above </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f48' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f48' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f48' /></textarea></li>"); $('#INTERVIEW_STATUS_'+data['f48'][i].eacode+data['f48'][i].hcn+data['f48'][i].shsn+data['f48'][i].MEMBER_CODE+'_f48').val(data['f48'][i].INTERVIEW_STATUS);   }	}
+        /*f49*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].PSC >0 && data['f11'][i].PSC <10 && data['f11'][i].SEX ==2)                    {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f49/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 4.9 - Individual Food Security (Food Insecurity Experience Scale) for All Pregnant Women </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f49' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f49' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f49' /></textarea></li>");  $('#INTERVIEW_STATUS_'+data['f49'][i].eacode+data['f49'][i].hcn+data['f49'][i].shsn+data['f49'][i].MEMBER_CODE+'_f49').val(data['f49'][i].INTERVIEW_STATUS);  }	}
+		/*f52*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=18)                    {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f52/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 5.2 - HISTORY OF RAISED BLOOD PRESSURE AND DIABETES QUESTIONNAIRE OF 18 YEARS OLD AND ABOVE</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f52' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f52' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f52' /></textarea></li>"); $('#INTERVIEW_STATUS_'+data['f52'][i].eacode+data['f52'][i].hcn+data['f52'][i].shsn+data['f52'][i].MEMBER_CODE+'_f52').val(data['f52'][i].INTERVIEW_STATUS);   } 	}
+        /*f53*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=10)                    {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f53/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 5.3 - SMOKING AND ALCOHOL CONSUMPTION OF 10 YEARS OLD AND ABOVE</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f53' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f53' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f53' /></textarea></li>");   $('#INTERVIEW_STATUS_'+data['f53'][i].eacode+data['f53'][i].hcn+data['f53'][i].shsn+data['f53'][i].MEMBER_CODE+'_f53').val(data['f53'][i].INTERVIEW_STATUS); } 	}
+        /*f54*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=18)                    {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f54/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 5.4 - PHYSICAL ACTIVITY OF 18 YEARS OLD AND ABOVE</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f54' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f54' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f54' /></textarea></li>"); $('#INTERVIEW_STATUS_'+data['f54'][i].eacode+data['f54'][i].hcn+data['f54'][i].shsn+data['f54'][i].MEMBER_CODE+'_f54').val(data['f54'][i].INTERVIEW_STATUS);   }	}
+        /*f55*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=18)  {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f55/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 5.5 - HISTORY OF DISEASES AND RISK FACTORS OF 18 YEARS OLD AND ABOVE</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f55' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f55' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f55' /></textarea></li>");  $('#INTERVIEW_STATUS_'+data['f55'][i].eacode+data['f55'][i].hcn+data['f55'][i].shsn+data['f55'][i].MEMBER_CODE+'_f55').val(data['f55'][i].INTERVIEW_STATUS);  }	}
+        /*f56*/     if(type == 'A' || type == 'T' ) {if(data['f11'][i].AGE >=18)                    {     $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f56/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> FORM 5.6 - FFQ</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f56' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f56' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f56' /></textarea></li>");  $('#INTERVIEW_STATUS_'+data['f56'][i].eacode+data['f56'][i].hcn+data['f56'][i].shsn+data['f56'][i].MEMBER_CODE+'_f56').val(data['f56'][i].INTERVIEW_STATUS);  }	}
+		/*f73*/		if(type == 'A' || type == 'D' || type == 'T') {if(data['f11'][i].AGE < 3.083333)                    {  $('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f73/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 7.3 - Checklist of Food and Liquid Intake of Children 0-36 MONTHS  Checklist of Liquid and Solid, Semi-solid and Soft Foods Intake of Children 3</a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f73' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f73' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f73' /></textarea></li>");     $('#INTERVIEW_STATUS_'+data['f73'][i].eacode+data['f73'][i].hcn+data['f73'][i].shsn+data['f73'][i].MEMBER_CODE+'_f73').val(data['f73'][i].INTERVIEW_STATUS); }	}
+        /*f82*/     if(type == 'A' || type == 'T' ) {$('#'+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+'').append("<a href='/legone/survey/surveyform/save/f82/"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+data['f11'][i].memkey+"' class='checkform''><br> Form 8.3 - Biochemical Information on Infections, Supplements and Medications for Members for 6 months and above </a> <strong style='color:red;'>&nbsp;</strong>&nbsp;&nbsp;<select name='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+"_f82' id='INTERVIEW_STATUS_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f82' itemid='1' style='width:150px;'><option value='' >Select Interview status</option><option value='1' >1 - Completed</option><option value='2' >2 - Partly Completed</option><option value='3' >3 - Respondent Incapacitated</option><option value='4' >4  - Refused</option><option value='5' >5 - Not at Home (Away during the Survey Period)</option><option value='6' >6 - Away from an Extended Period of time working/Schooling (LOCAL)</option><option value='7' >7 - Away from an Extended Period of time working/Schooling (ABROAD)</option><option value='8'>Others</option></select><textarea style='display:none;width:200px;' placeholder='Please check list for proper status in the interview status list before entering reason(s) here.' name='INTERVIEW_STATUS' id='INTERVIEW_STATUS_OTH_"+data['f11'][i].eacode+data['f11'][i].hcn+data['f11'][i].shsn+data['f11'][i].MEMBER_CODE+"_f82' /></textarea></li>");     $('#INTERVIEW_STATUS_'+data['f82'][i].eacode+data['f82'][i].hcn+data['f82'][i].shsn+data['f82'][i].MEMBER_CODE+'_f82').val(data['f82'][i].INTERVIEW_STATUS); }
+                           
+						   }
+                        }
+                    });
+					
+		
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/household_summary/view',						
+                            success: function(data) {
+
+                                $('[name=INTERVIEW_STATUS_'+data['f12'][0].eacode+data['f12'][0].hcn+data['f12'][0].shsn+'_f12]').val(data['f12'][0].INTERVIEW_STATUS);
+                                $('[name=INTERVIEW_STATUS_'+data['f13'][0].eacode+data['f13'][0].hcn+data['f13'][0].shsn+'_f13]').val(data['f13'][0].INTERVIEW_STATUS);
+                                $('[name=INTERVIEW_STATUS_'+data['f14'][0].eacode+data['f14'][0].hcn+data['f14'][0].shsn+'_f14]').val(data['f14'][0].INTERVIEW_STATUS);
+                                $('[name=INTERVIEW_STATUS_'+data['f15'][0].eacode+data['f15'][0].hcn+data['f15'][0].shsn+'_f15]').val(data['f15'][0].INTERVIEW_STATUS);
+                                $('[name=INTERVIEW_STATUS_'+data['f16'][0].eacode+data['f16'][0].hcn+data['f16'][0].shsn+'_f16]').val(data['f16'][0].INTERVIEW_STATUS);
+								$('[name=INTERVIEW_STATUS_'+data['f17'][0].eacode+data['f17'][0].hcn+data['f17'][0].shsn+'_f17]').val(data['f17'][0].INTERVIEW_STATUS);
+                          
+                          }
+                        });    
+                        
+           $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/individual_summary/view',						
+                            success: function(data) {
+                           
+                          }
+                        });               
+                    
+
+
+    $('.checkform').click(function(event){
+      var i =$(this).parent('li').find('select').val()
+      if($(this).parent('li').find('select').val()>1){
+        event.preventDefault();
+        BootstrapDialog.show({
+                 type:BootstrapDialog.TYPE_WARNING, 
+                title: 'Form status',
+                message: 'Current form is locked. Form status is set to ' +  $(this).parent('li').find("select option[value=" + i + "]").text()
+            });
+      }
+    })
+
+  });
+  
+    var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+    var B = bigIdString.substring(12,16);
+    var C = bigIdString.substring(16,20);
+    var D = bigIdString.substring(20,22);
+    document.getElementById('eacode').value = A;
+    document.getElementById('hcn').value = B;
+    document.getElementById('shsn').value = C;
+    document.getElementById('MEMBER_CODE').value = D;
+	
+	function is1(id) {
+		var data = {};
+        data.hcn = $('[name=hcn]').val();
+        data.shsn = $('[name=shsn]').val();
+		data.eacode = $('[name=eacode]').val();
+		data.MEMBER_CODE = $('#INTERVIEW_STATUS1_'+id+'').closest('li').find('[name=MEMBER_CODE]').val();
+		data.INTERVIEW_STATUS1 = $('#INTERVIEW_STATUS1_'+id+'').closest('li').find('#INTERVIEW_STATUS1_'+id+'').val();
+		data.INTERVIEW_STATUS2 = $('#INTERVIEW_STATUS2_'+id+'').closest('li').find('#INTERVIEW_STATUS2_'+id+'').val();
+		data.INTERVIEW_STATUS3 = $('#INTERVIEW_STATUS3_'+id+'').closest('li').find('#INTERVIEW_STATUS3_'+id+'').val();
+		data.visit1= $('#INTERVIEW_STATUS1_'+id+'').closest('li').find('#visit1_'+id+'').val();
+		data.visit2 = $('#INTERVIEW_STATUS2_'+id+'').closest('li').find('#visit2_'+id+'').val();
+		data.visit3 = $('#INTERVIEW_STATUS3_'+id+'').closest('li').find('#visit3_'+id+'').val();
+		data.comment1 = $('#INTERVIEW_STATUS1_'+id+'').closest('li').find('#comment1_'+id+'').val();
+		data.comment2 = $('#INTERVIEW_STATUS2_'+id+'').closest('li').find('#comment2_'+id+'').val();
+		data.comment3 = $('#INTERVIEW_STATUS3_'+id+'').closest('li').find('#comment3_'+id+'').val();
+		
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+							contentType: 'application/json',
+									url: '/legone/survey/surveyform/summary/form11/post',						
+									success: function(data) {
+									}
+								});
+
+		}
+
+  $('[name=INTERVIEW_STATUS_'+A+B+C+'_f12]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f12]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form12/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+
+    $('[name=INTERVIEW_STATUS_'+A+B+C+'_f13]').change(function() {
+          var data = {};
+
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f13]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+          $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form13/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+      $('[name=INTERVIEW_STATUS_'+A+B+C+'_f14]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f14]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form14/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+      $('[name=INTERVIEW_STATUS_'+A+B+C+'_f15]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f15]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form15/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+        $('[name=INTERVIEW_STATUS_'+A+B+C+'_f16]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f16]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form16/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+        $('[name=INTERVIEW_STATUS_'+A+B+C+'_f17]').change(function() {
+          var data = {};
+
+            data.INTERVIEW_STATUS = $('[name=INTERVIEW_STATUS_'+A+B+C+'_f17]').val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form17/post',						
+                            success: function(data) {
+                            }
+                        });                   
+  });
+  
+  $('[name=INTERVIEW_STATUS_'+A+B+C+'_f21]').change(function() {
+          var data = {};  
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form21/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        });                   
+  });
+
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f31]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form31/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+
+});
+
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f32]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form31/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+
+});
+
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f41]', function() {
+  var data = {};
+  
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form41/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+
+});
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f42]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form42/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f43]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form43/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f44]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form44/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f45]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form45/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f46]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form46/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f47]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form47/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+                        
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f48]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form48/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+  
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f49]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form49/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f410]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form410/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f52]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form52/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f53]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form53/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f54]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form54/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f55]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form55/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f56]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form56/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+ 
+<!-- $(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f71]', function() { -->
+  <!-- var data = {}; -->
+            <!-- data.INTERVIEW_STATUS = $(this).val(); -->
+            <!-- data.eacode = $('[name=eacode]').val(); -->
+            <!-- data.hcn = $('[name=hcn]').val(); -->
+            <!-- data.shsn = $('[name=shsn]').val(); -->
+            <!-- data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val(); -->
+            <!-- $.ajax({ -->
+                <!-- type: 'POST', -->
+                <!-- data: JSON.stringify(data), -->
+                    <!-- contentType: 'application/json', -->
+                            <!-- url: '/legone/survey/surveyform/summary/form71/post',						 -->
+                            <!-- success: function(data) { -->
+                                
+                                
+                   
+                            <!-- } -->
+                        <!-- });  -->
+<!-- }); -->
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f73]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form73/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+
+$(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f82]', function() {
+  var data = {};
+            data.INTERVIEW_STATUS = $(this).val();
+            data.eacode = $('[name=eacode]').val();
+            data.hcn = $('[name=hcn]').val();
+            data.shsn = $('[name=shsn]').val();
+            data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/legone/survey/surveyform/summary/form82/post',						
+                            success: function(data) {
+                                
+                                
+                   
+                            }
+                        }); 
+});
+ 
+<!-- $(document).on('change', '[name=INTERVIEW_STATUS_'+A+B+C+'_f83]', function() { -->
+  <!-- var data = {}; -->
+            <!-- data.INTERVIEW_STATUS = $(this).val(); -->
+            <!-- data.eacode = $('[name=eacode]').val(); -->
+            <!-- data.hcn = $('[name=hcn]').val(); -->
+            <!-- data.shsn = $('[name=shsn]').val(); -->
+            <!-- data.MEMBER_CODE = $(this).closest('li').find('[name=MEMBER_CODE]').val(); -->
+            <!-- $.ajax({ -->
+                <!-- type: 'POST', -->
+                <!-- data: JSON.stringify(data), -->
+                    <!-- contentType: 'application/json', -->
+                            <!-- url: '/legone/survey/surveyform/summary/form83/post',						 -->
+                            <!-- success: function(data) { -->
+                                
+                                
+                   
+                            <!-- } -->
+                        <!-- });  -->
+<!-- }); -->
+
+
+
+</script>      </div>
+    </div>
+  
+  
+
+  <div class="container">
+    
+    <div class="row centered">
+    </div><!-- /row -->
+    <hr>
+    <p class="centered" id="version">&copy; Copyright&nbsp;2017. Food and Nutrition Research Institute. Department of Science and Technology.</p>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>

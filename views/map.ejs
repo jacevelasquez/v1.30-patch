@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+<link rel="icon" href="/FNRI.png"><META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<link rel="stylesheet" href="/fonts/font.css" />
+<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/lavish-bootstrap.css" />
+<link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />   <link href="/bootstrap-3.3.7-dist/css/dietarycss.css" rel="stylesheet" />
+<link href="/bootstrap-3.3.7-dist/css/version.css" rel="stylesheet" />
+    <title>NNS2018</title>
+
+<script type="text/javascript" src="/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap.min.js"></script>
+<script type="text/javascript" src="/jquery/bootstrap-typeahead.js"></script>
+<script type="text/javascript" src="/jquery/global.js"></script>
+
+<script src="/jquery/bootstrap-dialog.min.js"></script>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="\bootstrap-3.3.7-dist\css\autocomplete.css">
+ </head>
+<style>
+.vl {
+    border-left: 6px solid green;
+    height: 50%;
+}
+</style>
+ <body class="main-menu">
+	
+  <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b>National Nutrition Survey 2018</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+		    <li><a href="/main/">Switch Program&nbsp;<span class="glyphicon glyphicon-refresh"></span></a>            </li>
+            <li><a href="/dietaryhome"><span class="glyphicon glyphicon-list-alt"></span>&nbsp; HOME</a></li>
+            <li><a href="/"><%= session.username %>&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>            </li>
+            
+          </ul>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+
+<br><br><br>
+
+<div class="row">
+<div class="col-md-9">
+<select id="hhlist" class="form-control">
+</select>
+<div id="map"  style="width:100%;height:800px;" class="vl"></div>
+</div>
+<div class="col-md-3">
+<hr>
+<div id="infomap" onchange="myMap()"> 
+<!-- <input type="button" value="Toggle All Markers1" onClick="toggleMarkers1(); colorchange('select1')" id="select1" /> -->
+<select id="teamselect" class="form-control">
+<option value="">Please Select...</option>
+<option value="999">ALL AREAS</option>
+<option value="1">TEAM 1</option>
+<option value="11">TEAM 1 - SUBTEAM 1</option>
+<option value="12">TEAM 1 - SUBTEAM 2</option>
+<option value="13">TEAM 1 - SUBTEAM 3</option>
+<option value="14">TEAM 1 - SUBTEAM 4</option>
+<option value="15">TEAM 1 - SUBTEAM 5</option>
+<option value="16">TEAM 1 - SUBTEAM 6</option>
+<option value="2">TEAM 2</option>
+<option value="21">TEAM 2 - SUBTEAM 1</option>
+<option value="22">TEAM 2 - SUBTEAM 2</option>
+<option value="23">TEAM 2 - SUBTEAM 3</option>
+<option value="24">TEAM 2 - SUBTEAM 4</option>
+<option value="25">TEAM 2 - SUBTEAM 5</option>
+<option value="26">TEAM 2 - SUBTEAM 6</option>
+<option value="3">TEAM 3</option>
+<option value="31">TEAM 3 - SUBTEAM 1</option>
+<option value="32">TEAM 3 - SUBTEAM 2</option>
+<option value="33">TEAM 3 - SUBTEAM 3</option>
+<option value="34">TEAM 3 - SUBTEAM 4</option>
+<option value="35">TEAM 3 - SUBTEAM 5</option>
+<option value="36">TEAM 3 - SUBTEAM 6</option>
+<option value="4">TEAM 4</option>
+<option value="41">TEAM 4 - SUBTEAM 1</option>
+<option value="42">TEAM 4 - SUBTEAM 2</option>
+<option value="43">TEAM 4 - SUBTEAM 3</option>
+<option value="44">TEAM 4 - SUBTEAM 4</option>
+<option value="45">TEAM 4 - SUBTEAM 5</option>
+<option value="46">TEAM 4 - SUBTEAM 6</option>
+</select>
+<h3>EACODE:<label id="eacode_info" class="infomap"></label></h3>
+<h3>HCN:<label id="hcn_info" class="infomap"></label></h3>
+<h3>SHSN:<label id="shsn_info" class="infomap"></label></h3>
+<h3>Hhead:<label id="hhead_info" class="infomap"></label></h3>
+<h3>IS:<label id="is_info" class="infomap"></label></h3>
+<h3>Members:<label id="members_info" class="infomap"></label></h3>
+<h3>Latitude:<label id="latitude_info" class="infomap"></label></h3>
+<h3>Longitude:<label id="longitude_info" class="infomap"></label></h3>
+</div>
+</div>
+</div>	
+
+
+<script type="text/javascript" src="/jquery/script_dietary.js"></script>
+<script type="text/javascript">
+
+var gmarkers1 = [];
+var map;
+
+$(document).ready(function (){
+	
+	var url = window.location.href;
+    var urlArray = url.split("/");
+    var bigIdString = urlArray[urlArray.length-1];
+    var A = bigIdString.substring(0,12);
+	
+	var data = {};
+	data.eacode = A;
+	
+	
+	
+
+});	//document ready
+
+
+
+function myMap() {
+data.option = $('#teamselect').val();
+
+	
+	
+	$('#hhlist').empty();
+	$('#hhlist').append("<option value='999'>Select household</option>");
+	$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/hhlist_map',						
+                            success: function(data) {
+							for(var i=0;i<data.length;i++){
+							$('#hhlist').append("<option value="+data[i].latitude+"-"+data[i].longitude+"-"+data[i].eacode+"-"+data[i].hcn+"-"+data[i].shsn+">eacode:"+data[i].eacode+" hcn:"+data[i].hcn+" shsn:"+data[i].shsn+" </option>");
+							}
+							}
+							
+			});
+	
+	
+   
+			
+	$.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/hhmap',						
+                            success: function(data) {
+							
+							var hharray = [];
+							var hh2 = [];
+
+							for(var i=0;i<data.length;i++) {
+							hharray.push("<b>eacode:</b> "+data[i].eacode+"<br><b>hcn:</b> "+data[i].hcn+"<br><b>shsn:</b> "+data[i].shsn+"<br><b>hhead:</b> "+data[i].hhead);
+							hharray.push(data[i].latitude);
+							hharray.push(data[i].longitude);
+							hharray.push(i);
+							hharray.push(data[i].INTERVIEW_STATUS4);
+							hharray.push(data[i].eacode);
+							hharray.push(data[i].hcn);
+							hharray.push(data[i].shsn);
+							hh2.push(hharray.splice(0,8));
+							
+							}
+
+							map = new google.maps.Map(document.getElementById('map'), {
+							  zoom: 6.4,
+							  center: new google.maps.LatLng(12.8797, 121.7740),
+							  mapTypeId: google.maps.MapTypeId.ROADMAP
+							});
+
+							//////////////////////////////////////////
+
+							var infowindow = new google.maps.InfoWindow();
+
+							var i;
+							
+							
+							
+							//////////////////////////////////////////////////////////////////////////
+
+							for (i = 0; i < hh2.length; i++) {
+							if(hh2[i][2] != '') {
+							if(hh2[i][4] == '1') {
+							var  marker = new google.maps.Marker({
+								position: new google.maps.LatLng(hh2[i][1], hh2[i][2]),
+								map: map,
+								icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+							  });
+							}else if(hh2[i][4] == '2')  {
+							var marker = new google.maps.Marker({
+								position: new google.maps.LatLng(hh2[i][1], hh2[i][2]),
+								map: map,
+								icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+							  });
+							}else {
+							var marker = new google.maps.Marker({
+								position: new google.maps.LatLng(hh2[i][1], hh2[i][2]),
+								map: map,
+								icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+							  });
+							}
+							
+							
+							gmarkers1.push(marker);
+
+							google.maps.event.addListener(marker, 'click', (function(marker, i) {
+							  
+								return function() {
+								map.setZoom(10);
+								map.setCenter(marker.getPosition());
+								  infowindow.setContent(hh2[i][0]);
+								  infowindow.open(map, marker);
+								  
+								  
+								var data = {};
+								data.eacode = hh2[i][5];
+								data.hcn = hh2[i][6];
+								data.shsn = hh2[i][7];
+								
+								
+								$.ajax({
+								type: 'POST',
+								//dataType: 'json',
+								data: JSON.stringify(data),
+									contentType: 'application/json',
+											url: '/infomap',						
+											success: function(data) {
+											$('#eacode_info').text(data[0].eacode);
+											$('#hcn_info').text(data[0].hcn);
+											$('#shsn_info').text(data[0].shsn);
+											$('#hhead_info').text(data[0].hhead);
+											$('#is_info').text(data[0].INTERVIEW_STATUS4);
+											$('#latitude_info').text(data[0].latitude);
+											$('#longitude_info').text(data[0].longitude);
+											}
+										
+											
+								});
+								
+								$.ajax({
+								type: 'POST',
+								//dataType: 'json',
+								data: JSON.stringify(data),
+									contentType: 'application/json',
+											url: '/indivnum',						
+											success: function(data) {
+											$('#members_info').text(data.length);
+											}
+										
+											
+								});
+								
+								
+								$('.infomap').empty();
+								  
+								}
+							  })(marker, i));
+
+							  }
+							}
+
+							//////////////////////////////////////////////////////////////////////////////
+							
+							$(document).on('change', '#teamselect', function() { 
+							
+								map.setZoom(10);
+							
+							});
+							
+							
+							$(document).on('change', '#hhlist', function() {
+							
+								var div = $(this).find('option:selected').val().split('-');
+								map.setZoom(20);
+
+								map.setCenter(new google.maps.LatLng(div[0],div[1]));
+								var flightPlanCoordinates = new google.maps.LatLng(div[0],div[1]);
+								  
+								  
+								var pinIcon = new google.maps.MarkerImage(
+									"http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00",
+									null, /* size is determined at runtime */
+									null, /* origin is 0,0 */
+									null, /* anchor is bottom center of the scaled image */
+									new google.maps.Size(42, 68)
+								); 
+								
+								
+								var beachMarker = new google.maps.Marker({
+									position: flightPlanCoordinates,
+									map: map,
+									icon: pinIcon
+								});
+								
+								if(beachMarker != null) {            //already set marker to clear
+								   beachMarker.setMap(null);
+								   beachMarker = null;
+								}
+								  
+								  
+								  
+								var data = {};
+								data.eacode = div[2];
+								data.hcn = div[3];
+								data.shsn = div[4];
+								
+								
+							$.ajax({
+							type: 'POST',
+							//dataType: 'json',
+							data: JSON.stringify(data),
+								contentType: 'application/json',
+										url: '/infomap',						
+										success: function(data) {
+										$('#eacode_info').text(data[0].eacode);
+										$('#hcn_info').text(data[0].hcn);
+										$('#shsn_info').text(data[0].shsn);
+										$('#hhead_info').text(data[0].hhead);
+										$('#is_info').text(data[0].INTERVIEW_STATUS4);
+										$('#latitude_info').text(data[0].latitude);
+										$('#longitude_info').text(data[0].longitude);
+										}
+									
+										
+							});
+							
+							$.ajax({
+							type: 'POST',
+							//dataType: 'json',
+							data: JSON.stringify(data),
+								contentType: 'application/json',
+										url: '/indivnum',						
+										success: function(data) {
+										$('#members_info').text(data.length);
+										}
+									
+										
+							});
+								$('.infomap').empty();
+								
+	
+							});
+
+                          }
+                        }); 
+
+   
+}
+
+function removeMarkers1(){
+    for(i=0; i<gmarkers1.length; i++){
+        gmarkers1[i].setMap(null);
+    }
+}
+
+
+function toggleMarkers1() {
+  for (i = 0; i < gmarkers1.length; i++) {
+    if (gmarkers1[i].getMap() != null) gmarkers1[i].setMap(null);
+    else gmarkers1[i].setMap(map);
+  }
+}
+
+
+function colorchange(id) {
+
+    var background = document.getElementById(id).style.backgroundColor;
+    if (background == "rgb(255, 145, 0)") {
+        document.getElementById(id).style.background = "rgb(26,255,0)";
+    } else {
+        document.getElementById(id).style.background = "rgb(255,145,0)";
+    }
+
+}
+
+// This function is called when the user clicks the UI button requesting
+// a geocode of a place ID.
+<!-- function geocodePlaceId(geocoder, map, infowindow) { -->
+  <!-- var placeId = document.getElementById('place-id').value; -->
+  <!-- geocoder.geocode({'placeId': placeId}, function(results, status) { -->
+    <!-- if (status === 'OK') { -->
+      <!-- if (results[0]) { -->
+        <!-- map.setZoom(11); -->
+        <!-- map.setCenter(results[0].geometry.location); -->
+        <!-- var marker = new google.maps.Marker({ -->
+          <!-- map: map, -->
+          <!-- position: results[0].geometry.location -->
+        <!-- }); -->
+        <!-- infowindow.setContent(results[0].formatted_address); -->
+        <!-- infowindow.open(map, marker); -->
+      <!-- } else { -->
+        <!-- window.alert('No results found'); -->
+      <!-- } -->
+    <!-- } else { -->
+      <!-- window.alert('Geocoder failed due to: ' + status); -->
+    <!-- } -->
+  <!-- }); -->
+<!-- } -->
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiJffThn-t5frdcygW2CZbqMFyTy-y54E&callback=myMap"></script>
+
+ </body>
+</html>
+

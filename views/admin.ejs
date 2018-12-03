@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../views/links.ejs %>
+
+  </head>
+  <style>
+  .btn.btn-default
+  {
+  width:900px;
+  text-align: left;
+  }
+  
+  </style>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <% include ../views/header.ejs %>
+	
+	<br><br><br><br>
+	<div class="container">
+		<div class="list-group">
+			<div class="row">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="form-group">  
+							
+							<ul class="nav nav-tabs">
+							  <li class=""><a href="#questions" data-toggle="tab" aria-expanded="false">Questions</a></li>
+							  <li class=""><a href="#answers" data-toggle="tab" aria-expanded="true">Answers</a></li>
+							  <li class=""><a href="#editQ" data-toggle="tab" aria-expanded="true">Edit/Update Questions</a></li>
+							  <li class=""><a href="#editA" data-toggle="tab" aria-expanded="true">Edit/Update Answers</a></li>
+							  <li class=""><a href="#disableQ" data-toggle="tab" aria-expanded="true">Execute Query</a></li> 
+							</ul>
+							
+					<div id="myTabContent" class="tab-content">
+						<div class="tab-pane fade active in" id="questions">
+						<form>
+								<label>
+								qkey : 
+								</label>
+									<input type="text" class="form-control" id="qkeyQ" name="qkeyQ"  placeholder="e.g. f12_01 (Form Number and Question Number)" >
+								<label>
+								Question : 
+								</label>
+									<input type="textarea" class="form-control" id="question" name="question" placeholder="Question in english, Please specify the question number before the question..." required>
+								<label>
+								Question in tagalog : 
+								</label>
+									<input type="text" class="form-control" id="questionT" name="questionT" placeholder="Question in Tagalog" required>
+								<label>
+								title : 
+								</label>
+									<input type="text" class="form-control" id="title" name="title" placeholder="Title (can be blank)">
+								<label>
+								Note : 
+								</label>
+									<input type="text" class="form-control" id="note" name="note" placeholder="Notes (can be blank)">
+								<label>
+								Others : 
+								</label>
+									<input type="text" class="form-control" id="others" name="others" placeholder="Others (can be blank)">
+								<label>
+								
+									<br>
+				
+								<button type="submit"  id="questions_check"  class="btn btn-lg btn-warning btn-save">								
+										  Save				
+										</button> 								
+								</form>
+							  </div>
+							  
+						<div class="tab-pane fade" id="answers">
+						<form action="/adminModeA" method="post">	
+								<label>
+								qkey : 
+								</label>
+									<input type="text" class="form-control" id="qkey" name="qkey" placeholder="e.g. f12_01 (Form Number and Question Number") required>
+								<label>
+								Text Answer : 
+								</label>
+									<input type="text" class="form-control" id="answer_text" name="answer_text" placeholder="e.g. Yes or No" required>
+								<label>
+								Value Answer : 
+								</label>
+									<input type="text" class="form-control" id="answer_value" name="answer_value" placeholder="Value of answer e.g. 1, 2 or 999999">
+								<label>
+								Type Answer : 
+								</label>
+								<select class="form-control FREQ " id="input_type" name="input_type" required><option value=''>Please select one option..</option>
+										<option value="text" > text</option>
+										<option value="checkbox" > checkbox</option> 
+										<option value="header" > header </option> 
+										<option value="radio" > radio </option> 
+								</select>
+								<label>
+								Variable Name : 
+								</label>
+									<input type="text" class="form-control" id="variable_name" name="variable_name" placeholder="e.g. f12_01 (Form Number and Question Number" required>
+								
+									<br>
+								<button type="submit"  class="btn btn-lg btn-warning btn-save">
+										  Save
+										</button> 
+								</form>
+									
+							  </div>
+							  
+							  
+							<div class="tab-pane fade" id="editQ">
+							<form action="/updateQ" method="post">
+
+							<div class="form-group right-inner-addon">
+									<div class="row">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                 
+                      <label> Enter qkey (Form 1.1 --> f11     or     Form 4.3 --> f43) </label>
+                      <input class="form-control" id="searchQkey" type="text" autocomplete="off" placeholder="Type qkey keyword..." />
+                      </div>
+                    </div>
+									</div>
+							</div>
+
+							  <div id="listQkey" class="list-group autocomplete">
+												 
+							  </div>
+							
+								<label>
+								qkey : 
+								</label>
+									<input type="text" class="form-control" id="qkeyE" name="qkeyE" style="width:150px">
+								<label>
+								Question : 
+								</label>
+									<input type="textarea" class="form-control" id="questionE" name="questionE" style="length:150px">
+								<label>
+								Question in tagalog : 
+								</label>
+									<input type="text" class="form-control" id="questionTE" name="questionTE">
+								<label>
+								Title : 
+								</label>
+									<input type="text" class="form-control" id="titleE" name="titleE">
+								<label>
+								Note : 
+								</label>
+									<input type="text" class="form-control" id="noteE" name="noteE">
+								<label>
+								Others : 
+								</label>
+									<input type="text" class="form-control" id="othersE" name="othersE">
+									<br>
+								<button type="submit"  class="btn btn-lg btn-warning btn-save">
+										  Save
+										</button> 
+								</form>
+									
+							  </div>
+
+							  
+							<div class="tab-pane fade" id="editA">
+							<form action="/updateA" method="post">
+
+							<div class="form-group right-inner-addon">
+                  <div class="row">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                  
+                      <label> Enter qkey (Form 1.1 --> f11     or     Form 4.3 --> f43) </label>
+                      <input class="form-control" id="searchQkey2" type="text" autocomplete="off" placeholder="Type qkey keyword..." />
+                      </div>
+                    </div>
+									</div>
+							</div>
+
+							  <div id="listQkey2" class="list-group autocomplete">								 
+							  </div>		  
+							  <div id="answerarea">
+							  </div>
+								
+								<input type="hidden" class="form-control" id="row_idA" name="row_idA" style="width:150px">
+											<p><label for="qkeyA">
+											qkey : 
+										
+												<input type="text" class="form-control" id="qkeyA" name="qkeyA" style="width:150px">
+											</label></p>
+											<label>
+											Text Answer : 
+											</label>
+												<input type="text" class="form-control" id="answer_textA" name="answer_textA">
+											<label>
+											Value Answer : 
+											</label>
+												<input type="text" class="form-control" id="answer_valueA" name="answer_valueA">
+											<label>
+                      Type Answer : 
+                      </label>
+                      <select class="form-control FREQ " id="input_typeA" name="input_typeA" required>
+                          <option value="text" > text</option>
+                          <option value="checkbox" > checkbox</option> 
+                          <option value="header" > header </option> 
+                          <option value="radio" > radio </option> 
+                      </select>
+											<label>
+											Variable Name : 
+											</label>
+												<input type="text" class="form-control" id="variable_nameA" name="variable_nameA">
+											
+												<br>
+											
+											<button type="submit"  class="btn btn-lg btn-warning btn-save">
+													  Save
+													</button> 
+								
+								</form>
+								 	
+							  </div>
+							  
+							
+							<div class="tab-pane fade" id="disableQ">
+								<br>
+								<label>
+											Enter MySQL command : 
+											</label>
+												<input type="text" class="form-control" id="query_text" name="query_text">
+											
+												<br>
+											
+											<span class="pull-right"><button id="query"  class="btn btn-lg btn-danger btn-save">
+													  Go
+													</button>	</span>
+							</div>
+				
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+      <div class="container">
+        <div class="row">
+       
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+	$( "#searchQkey" ).keyup(function() {
+       var data = {};
+     
+       data.qkey = $('#searchQkey').val();
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/editQuestions',						
+                        success: function(data) { 
+                      
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#listQkey').append('<a class="list-group-item editQs" href="#"><span>'+data[i].qkey+'</span></a>');
+							
+                              }
+							
+							  
+                        }
+                     }
+                  });
+        
+  
+});
+  
+  
+$( "#searchQkey2" ).keyup(function() {
+       var data = {};
+     
+       data.qkey = $('#searchQkey2').val();
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/editAnswers',						
+                        success: function(data) { 
+                      
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#listQkey2').append('<a class="list-group-item editAs" href="#"><span>'+data[i].qkey+'</span></a>');
+							
+                              }
+							
+							  
+                        }
+                     }
+                  });
+        
+  
+});
+
+
+$( "#searchQkey3" ).keyup(function() {
+       var data = {};
+     
+       data.qkey = $('#searchQkey3').val();
+             $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/disableQ',						
+                        success: function(data) { 
+                      
+                       if(data == "nodata")
+                       {
+                       $('.autocomplete').empty();
+                       }
+                       else 
+                       {
+                            $('.autocomplete').empty();
+                            for (var i in data) 
+                              {
+                                  $('#listQkey3').append('<a class="list-group-item disableQs" href="#"><span>'+data[i].qkey+'</span></a>');
+							
+                              }
+							
+							  
+                        }
+                     }
+                  });
+        
+  
+});
+  
+});
+
+
+$(document).on('click','#query', function() {
+
+var data = {};
+ data.query_text = $('#query_text').val();
+ 
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/execute',						
+                        success: function(data) {
+						alert('ngayeftttt....!');
+						window.location.href='/adminMode';
+                     }
+                  });
+
+
+});
+  
+$(document).on('click','.editQs', function() {
+
+var data = {};
+ data.qkey = $(this).text();
+
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/editQ',						
+                        success: function(data) { 
+						$('#qkeyE').val(data[0].qkey);
+						$('#questionE').val(data[0].question);
+						$('#questionTE').val(data[0].alt_question);
+						$('#titleE').val(data[0].title);
+						$('#noteE').val(data[0].note);
+						$('#othersE').val(data[0].others);
+						$('#requiredE').val(data[0].REQUIRED);
+						$('#tabE').val(data[0].tabular);
+						$('#rowsE').val(data[0].rows);
+						$('#colsE').val(data[0].cols);
+						$('#colhE').val(data[0].colheader);
+						$('#pageQE').val(data[0].page);
+						
+						$('.editQs').remove();
+                     }
+                  });
+
+
+});
+
+$(document).on('click','.editAs', function() {
+
+$('#answerarea').empty();
+var data = {};
+ data.qkey = $(this).text();
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/editA',						
+                        success: function(data) { 
+						for (var i in data) 
+                        {
+						$('#answerarea').append("<div><button  type='button' id='"+data[i].row_id+"' class='btn btn-default' data-toggle='modal' data-target='#answerModal' onclick='view_dependents("+data[i].row_id+")'> <b>qkey:</b> "+data[i].qkey+'    <b>id:</b> '+data[i].row_id+"     <b>answer text:</b> "+ data[i].answer_text+"</button></div>");
+						}
+						
+						$('.editAs').remove();
+					
+                     }
+                  });
+
+	
+});
+
+
+$(document).on('click','.disableQs', function() {
+
+var data = {};
+ data.qkey = $(this).text();
+
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',	
+                        url: '/editD',						
+                        success: function(data) { 
+						for (var i in data) 
+                        {
+							
+						}
+						$('.disableQ').remove();
+                     }
+                  });
+
+
+});
+
+
+function view_dependents(row_id) {
+
+var data= {};  
+    data.row_id = row_id;
+ 
+            $.ajax({
+                type: 'POST',
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                    contentType: 'application/json',
+                            url: '/ans',						
+                            success: function(data) {
+                                      
+								$('#row_idA').val(data.row_id);
+								$('#qkeyA').val(data.qkey);
+								$('#answer_textA').val(data.answer_text);
+								$('#answer_textA').val(data.answer_text);
+								$('#answer_valueA').val(data.answer_value);
+								$('#input_typeA').val(data.input_type);
+								$('#variable_nameA').val(data.variable_name);
+								$('#classAA').val(data.class);
+								$('#group_idA').val(data.group_id);
+								$('#group_rowsA').val(data.group_rows);
+								$('#group_colsA').val(data.group_cols);
+								$('#dependent_varsA').val(data.dependent_vars);
+								$('#nextqA').val(data.nextq);
+								$('#attribA').val(data.attrib);
+								
+								
+
+                          }
+                        }); 
+
+
+}
+
+$( "#questions_check" ).click(function() {
+
+    			var qkey = $('#qkeyQ').val();
+				  var question= $('#question').val();
+					var alt_question	= $('#questionT').val();
+					var title	= $('#title').val();
+					var note	= $('#note').val();
+					var others	= $('#others').val();
+					var REQUIRED	= $('#required').val();
+					var tabular	= $('#tab').val();
+					var rows	= $('#rows').val();
+					var cols	= $('#cols').val();
+					var colheader	= $('#colh').val();
+					var page	= $('#pageQ').val();
+
+    var qkey =  $('#qkeyQ').val();
+    
+      $.post('/check/qkey/questions',{qkeyQ:qkey},function(data){
+        if(data=="existing")
+         {
+            alert('The qkey already exist or qkey is blank.'); 
+         }
+         else
+         {
+         alert("Success!");
+		$.post("/adminModeQ",{qkeyQ:qkey,question:question,questionT:alt_question,title:title,note:note,others:others,required:REQUIRED,
+        tab:tabular,rows:rows,cols:cols,colh:colheader,pageQ:page}
+         ,function(data){
+         window.location.href='/adminMode';
+         });
+         }
+         
+     });
+});
+
+  
+</script>
+
+ 
+
+      </div>
+    </div>
+    
+    <div class="container">
+    <% include ../views/footer.ejs %>
+  </div><!-- /container -->
+  
+
+  </body>
+</html>
