@@ -26,7 +26,6 @@ function JSON2Sqlite(json,name,form_name,username){
                     db2.all(sql  ,function(err,rows){
                       if(err) //console.log(err);
                        rn++;
-                    
                    });
                          col = [];
                          values = [];
@@ -42,14 +41,12 @@ function JSON2Sqlite(json,name,form_name,username){
                    
                  db2.all(sql  ,function(err,rows){
                     if(err) { console.log("Error number : " + err); 
-                    fs.appendFile('logs_'+req.session.username+'.txt', '['+dateLog+'] Error on consolidation on '+form_name+' : '+err+' \n');
+                    fs.appendFile('logs_'+username+'.txt', '['+dateLog+'] Error on consolidation on '+form_name+' : '+err+' \n');
                  }
                                        rn++;
-
                 });
                   col = [];
                   values = [];
-
              }
 }
 

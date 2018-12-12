@@ -27,7 +27,7 @@ db2.all("SELECT * FROM f12 WHERE eacode = ? and  hcn= ? and shsn= ?",[eacode2, h
 			
 			db2.all("SELECT * FROM survey_forms WHERE table_name='f12'", function(err,rows5){
 			
-				res.render('form12.ejs',{array:rows,array3:rows3,array4:rows4,array5:rows5,layout:false,session:req.session}); 
+				res.render('form12.ejs',{array:rows,array3:rows3,array4:rows4,array5:rows5,layout:false,session:req.session}); //view form 1.2 from views folders
 			
 			});
 		}); 

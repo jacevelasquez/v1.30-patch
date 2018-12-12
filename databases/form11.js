@@ -338,8 +338,12 @@ exports.post = function(req, res){
 			}
 			}
 		
-			
-	db2.run("INSERT INTO f11(GIVENNAME, SURNAME, NBI, RHC, DBIRTH, REFDATE, AGE, SEX, CSC, PSC, EDUC, EDUC_OTH, EDUC_COURSE, WORK, OCCUPATION, OCCUPATION_CODE, WRKPLACE, W_CLASS, RELIGION, OTH_REL, REMARKS, INTERVIEW_STATUS, INTERVIEW_STATUS_OTH, id, eacode, hcn, shsn, MEMBER_CODE, ES_DBI, MOM, DAD, BIOMOM, BIODAD, MATERNAL, SCHOOL, memkey, username, is_f31, is_f32, is_f41, is_f42, is_f43, is_f44, is_f45, is_f46, is_f47, is_f48, is_f410, is_f411, is_f52, is_f53, is_f54, is_f55, is_f56, is_f57, is_f58, is_f59, is_f73, is_f82 ) VALUES ($GIVENNAME, $SURNAME, $NBI, $RHC, $DBIRTH, $REFDATE, $AGE, $SEX, $CSC, $PSC, $EDUC, $EDUC_OTH, $EDUC_COURSE, $WORK, $OCCUPATION, $OCCUPATION_CODE, $WRKPLACE, $W_CLASS, $RELIGION, $OTH_REL, $REMARKS, $INTERVIEW_STATUS, $INTERVIEW_STATUS_OTH,$id, $eacode, $hcn, $shsn, $MEMBER_CODE, $ES_DBI, $MOM, $DAD, $BIOMOM, $BIODAD, $MATERNAL, $SCHOOL, $memkey, $username, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS)",
+	db2.all("SELECT * FROM localarea_listings WHERE eacode = ? and hcn = ? and shsn=? ",[eacode, hcn, shsn], function(err,rows2) {		
+
+	
+
+
+	db2.run("INSERT INTO f11(GIVENNAME, SURNAME, NBI, RHC, DBIRTH, REFDATE, AGE, SEX, CSC, PSC, EDUC, EDUC_OTH, EDUC_COURSE, WORK, OCCUPATION, OCCUPATION_CODE, WRKPLACE, W_CLASS, RELIGION, OTH_REL, REMARKS, INTERVIEW_STATUS, INTERVIEW_STATUS_OTH, id, eacode, hcn, shsn, MEMBER_CODE, ES_DBI, MOM, DAD, BIOMOM, BIODAD, MATERNAL, SCHOOL, memkey, username, is_f31, is_f32, is_f41, is_f42, is_f43, is_f44, is_f45, is_f46, is_f47, is_f48, is_f410, is_f411, is_f52, is_f53, is_f54, is_f55, is_f56, is_f57, is_f58, is_f59, is_f73, is_f82, die2ndgen ) VALUES ($GIVENNAME, $SURNAME, $NBI, $RHC, $DBIRTH, $REFDATE, $AGE, $SEX, $CSC, $PSC, $EDUC, $EDUC_OTH, $EDUC_COURSE, $WORK, $OCCUPATION, $OCCUPATION_CODE, $WRKPLACE, $W_CLASS, $RELIGION, $OTH_REL, $REMARKS, $INTERVIEW_STATUS, $INTERVIEW_STATUS_OTH,$id, $eacode, $hcn, $shsn, $MEMBER_CODE, $ES_DBI, $MOM, $DAD, $BIOMOM, $BIODAD, $MATERNAL, $SCHOOL, $memkey, $username, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, $INTERVIEW_STATUS, '"+rows2[0].die2ndgen+"')",
 	{
 		$GIVENNAME : GIVENNAME,
 		$SURNAME : SURNAME,
@@ -381,7 +385,7 @@ exports.post = function(req, res){
 		
       },function(err,rows){
 		if(err) {
-		fs.appendFile('logs_'+req.session.username+'.txt', '['+dateLog+'] Error updating Inserting f11 : '+eacode+' | '+hcn+' | '+shsn+'  \n');
+		fs.appendFile('logs_'+req.session.username+'.txt', '['+dateLog+'] Error updating Inserting f11 : '+eacode+' | '+hcn+' | '+shsn+' ; '+err+'  \n');
 		}
 	  });
 	  
@@ -395,11 +399,13 @@ exports.post = function(req, res){
 	$username : username
 	},function(err,rows){
 		if(err){
-		fs.appendFile('logs_'+req.session.username+'.txt', '['+dateLog+'] Error updating Inserting f21 : '+eacode+' | '+hcn+' | '+shsn+'  \n');
+		fs.appendFile('logs_'+req.session.username+'.txt', '['+dateLog+'] Error updating Inserting f21 : '+eacode+' | '+hcn+' | '+shsn+' ; '+err+'  \n');
 		}
 		});
 
 	 });
+
+	});
 	 res.redirect("/legone/survey/surveyform/form11/"+eacode+hcn+shsn);
 		
 };

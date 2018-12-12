@@ -56,7 +56,7 @@ nodemailer.createTestAccount((err, account) => {
     // setup email data with unicode symbols
     let mailOptions = {
         from: 'enns.fnridost@gmail.com', // sender address
-        to: 'jace.velasquez@yahoo.com', // list of receivers
+        to: 'fnri.namd.nsis.trans@gmail.com', // list of receivers
         subject: 'FROM : '+ req.session.username, // Subject line
         text: 'Transmitted data', // plain text body
         html: 'Transmitted data sent by '+req.body.name+'. Please download attached file (in zip)', // html body

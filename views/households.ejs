@@ -49,23 +49,21 @@ body .modal {
 			<% array.forEach(function(row){
 			var all = ""+row.eacode+row.hcn+row.shsn+"";
 			%>
-			<li class="list-group-item"> <%=row.eacode.substring(9,12)%> &nbsp;
+			<li class="list-group-item" id="filter_<%= all%>"> <%=row.eacode.substring(9,12)%> &nbsp;
 				<a class="hhead" id="<%= all%>" href="/legone/survey/surveyform/form11/<%=row.eacode.substring(0,9)%><%=row.eacode.substring(9,12)%><%=row.hcn%><%=row.shsn%>" > <%=row.hcn%> | <%=row.shsn%></a>&nbsp;&nbsp;
 				<input type="text" value='<%=row.hhead%>' name="<%=row.hhead%>" id="hhead_<%= all%>" class="form-control" style="display:inline-block; width:175px" onkeyup="hhead('<%= all%>')" />       
 				
 			 
-			  <button type="button" class="btn btn-danger" style="margin: 0;" data-toggle="collapse" data-target="#demo<%= all%>"><span class="glyphicon glyphicon-calendar"></span> CALLBACK</button>
+			  <button type="button" class="btn btn-primary callb" style="margin: 0;" data-toggle="collapse" data-target="#demo<%= all%>"><font size="3">&#8595;</font></button>
 				&nbsp;&nbsp;
-				<button type="button" id="map_<%= all%>" class="btn" data-toggle="modal" data-target="#maps_<%= all%>"><span class="glyphicon glyphicon-map-marker"></span></button>
+				<button type="button" id="map_<%= all%>" class="btn" data-toggle="modal" data-target="#maps_<%= all%>"><span id="edit_<%= all%>"></span></button>
 				&nbsp;&nbsp;
 			  		<div id="indivnumlist_<%= all%>" style="display: inline-block; vertical-align: middle;"> </div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="checkbox checkbox-info replace_cb" id="replacement_show_<%= all%>" style="display: inline-block;">
-					<input type="checkbox" name="replacement_<%= all%>" id="replacement_<%= all%>">
-					<label>Replaced:</label>
 					<input type='hidden' value='' name='replacement_<%= all%>' id='replacement_<%= all%>_' />
 					
-					<input type="text" id="replace_<%= all%>" class="updateReplacement" style="display: inline-block; vertical-align: middle;" onkeyup="updateReplacement('<%= all%>')">
+					
 					</div>
 					
 				<div class="modal" id="maps_<%= all%>">
@@ -86,8 +84,12 @@ body .modal {
 						Latitude : <input type="text" id="lati_<%= all%>" class="form-control" onchange='map("<%= all%>")'> 
 						</div>
 						<hr>
-						<div class="col-md-12">
+						<div class="col-md-6">
 							Address : <input type="text" id="addr_<%= all%>" class="form-control" onchange='map("<%= all%>")'> 
+						</div>
+						<div class="col-md-6" id="replaced_<%= all%>">
+							Replaced :
+						<input type="text" id="replace_<%= all%>" class="form-control updateReplacement" onkeyup="updateReplacement('<%= all%>')">
 						</div>
 						</div>
 						
@@ -166,7 +168,7 @@ body .modal {
 
 			  <span class="pull-right"><div class="checkbox checkbox-success" style="margin: 5px;">
 					<input type="checkbox"  class="diebio" name="diebio_<%= all%>" id="diebio_<%= all%>">
-						<label> Dietary/Biochem </label>
+						<label id="die2ndgenVal_<%= all%>"> Dietary/Biochem </label>
 					<input type='hidden' value='' name='diebio_<%= all%>' id='diebio_<%= all%>_' />
 	
 					<button class="btn btn-primary trash" id="edithouse-btn"  data-toggle="modal" data-target="#edithousehold_dialog" onclick="view('<%= all%>')"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -178,7 +180,7 @@ body .modal {
 				<button type="button" id="form12_<%= all%>" class="btn btn-warning" style="display:inline-block;width:70px;margin-right: 5px;" data-toggle="modal" data-target="#f12_<%= all%>"><span class="glyphicon glyphicon-home"></span> F1.2 </button>
 				<select name='INTERVIEW_STATUS4' style="display:inline-block;width:175px;margin-right: 5px;" id='INTERVIEW_STATUS4_<%= all%>' class='form-control inter' onchange="is4('<%= all%>')">
 				<option value=''>Select Interview Status</option>
-				<option value='99' style="color: red;">*START INTERVIEW AND DATA COLLECTON*</option>
+				<option value='99' style="color: red;">*START INTERVIEW AND DATA COLLECTION*</option>
 				<optgroup label="Covered"><option value='1'>1 - Covered Household</option>
 				<option value='2'>2 - Partly Completed</option>
 				</optgroup>
@@ -293,12 +295,7 @@ body .modal {
           <label>SHSN:</label>
           <input type="text" name="shsn" id="shsn" value="" class="form-control">
         </div>
-		<div class="form-group col-md-3">
-          
-          <input type="checkbox" style="width: 35px;  height: 35px;" name="diebio" id="diebio">
-		  <label>Dietary/Biochem:</label>
-		  <input type='hidden' value='' name='diebio' id='diebio_' />
-        </div>
+		
 	</div>
 	<div class="row">
       <div class="form-group col-md-3">
@@ -316,7 +313,7 @@ body .modal {
        </div>
 	</div>
 	
-       
+       <div class="row">
 		<div class="form-group col-md-3">
           
           <input type="checkbox" style="width: 35px;  height: 35px;" name="REF_DATE" id="REF_DATE">
@@ -328,9 +325,28 @@ body .modal {
 		<label>Enter replaced household (Please follow the format: HCN/SHSN) </label>
 		<input type='text' name='DATE_EDIT' id='DATE_EDIT' class="form-control" placeholder="HCN/SHSN" />
 		</div>
+		</div>
+		<div class="row">
+		<div class="form-group col-md-3">
+          
+			<input type="checkbox" style="width: 35px;  height: 35px;" name="diebio" id="diebio">
+			<label>Dietary/Biochem:</label>
+			<input type='hidden' value='' name='diebio' id='diebio_' />
+		</div>
+		<div class="col-md-3" id="die2ndgenView">
+			<label>Type of Dietary Household : </label>
+			<select name="die2ndgen" id="die2ndgen" class="form-control">
+				<option value="">Please select..</option>
+				<option value="1">1 - with dietary only</option>
+				<option value="2">2 - with dietary & genomics only</option>
+				<option value="3">3 - with dietary & 2nd day recall only</option>
+				<option value="4">4 - with dietary, 2nd day recall & genomics</option>
+			</select>
+			</div>
+		</div>
           <input type="hidden" name="eacode" id="eacode" value="">
 		<br>
-		 <div class="form-group col-md-6">
+		 <div class="form-group col-md-9">
           <span class="pull-right"><button type="button" id="savehousehold_btn" class="btn btn-primary">Save household</button></span>
         </div>
   <div style="clear: both"></div>
@@ -382,7 +398,8 @@ body .modal {
 <script type="text/javascript">
   $(document).ready(function(){
  
-  
+
+ 
     var url = window.location.href;
     var urlArray = url.split("/");
     var bigIdString = urlArray[urlArray.length-1];
@@ -392,7 +409,7 @@ body .modal {
 	
 	$('.sum').hide();
 	$('.replace_cb').hide();
-	$('#replacement_text').hide();
+	$('#replacement_text, #die2ndgenView').hide();
 	
 	var username = '<%= session.username %>';
 	if(username != 'ADMIN'){
@@ -454,13 +471,18 @@ body .modal {
 								$('#lati_'+all+'').val(data[i].latitude);
 								$('#addr_'+all+'').val(data[i].address);
 								$('#diebio_'+all+'_').val(data[i].diebio);
+								if(data[i].die2ndgen > 0){
+								$('#die2ndgenVal_'+all+'').append("("+data[i].die2ndgen+")");
+								}
 								$('#replacement_'+all+'_').val(data[i].REF_DATE);
 								
 								if($('#long_'+all+'').val() > 0 && $('#lati_'+all+'').val() > 0) {
-								$('#map_'+all+'').addClass('btn-primary');
+								$('#map_'+all+'').addClass('btn-success');
+								$('#edit_'+all+'').addClass('glyphicon glyphicon-ok');
 								}
 								else {
-								$('#map_'+all+'').addClass('btn-warning');
+								$('#map_'+all+'').addClass('btn-danger');
+								$('#edit_'+all+'').addClass('glyphicon glyphicon-remove');
 								}
 							
 								if($('#INTERVIEW_STATUS3_'+all+'').val() >0 || $('#INTERVIEW_STATUS2_'+all+'').val() >0 || $('#INTERVIEW_STATUS1_'+all+'').val() >0)
@@ -495,8 +517,13 @@ body .modal {
 								}
 								
 								if($('#replacement_'+all+'_').val() == 1){
+								$('#filter_'+all+'').css('border','solid red 4px');
 								$('#replacement_show_'+all+'').show();
-								$('#replacement_'+all+'').prop('checked',true); }
+								$('#replacement_'+all+'').prop('checked',true); 
+								} else {
+								$('#replaced_'+all+'').hide();
+								
+								}
 								
 								if($('#diebio_'+all+'_').val() == 1){
 								$('#diebio_'+all+'').prop('checked',true) }
@@ -676,18 +703,19 @@ $( "#savehousehold_btn" ).click(function() {
 	var diebio = $('#diebio_').val();
 	var REF_DATE = $('#REF_DATE_').val();
 	var DATE_EDIT = $('#DATE_EDIT').val();
+	var die2ndgen = $('#die2ndgen').val();
 	
     
       if( hcn.length == 4 && shsn.length == 4 && eacode.length == 12)
       {
       
-      $.post("/legone/survey/surveyform/households_check",{eacode:eacode,hcn:hcn,shsn:shsn,address:address,respondent:respondent,hhead:hhead,diebio:diebio,REF_DATE,DATE_EDIT},function(data){
+      $.post("/legone/survey/surveyform/households_check",{eacode:eacode,hcn:hcn,shsn:shsn,address:address,respondent:respondent,hhead:hhead,diebio:diebio,REF_DATE,DATE_EDIT,die2ndgen},function(data){
         if(data=="existing")
          { 
             alert('The household already exist.'); 
          }
         else{
-               $.post("/legone/survey/surveyform/households",{eacode:eacode,hcn:hcn,shsn:shsn,address:address,respondent:respondent,hhead:hhead,diebio:diebio,REF_DATE,DATE_EDIT},function(data){
+               $.post("/legone/survey/surveyform/households",{eacode:eacode,hcn:hcn,shsn:shsn,address:address,respondent:respondent,hhead:hhead,diebio:diebio,REF_DATE,DATE_EDIT,die2ndgen},function(data){
              window.location.href='/legone/survey/surveyform/households/'+eacode+'';})
 
         }
@@ -1063,6 +1091,13 @@ else {
 		$('#replacement_text').hide();
 	 }
 	 
+	 if($('#diebio').is(':checked')) {
+		$('#die2ndgenView').show();
+	 } else {
+		$('#die2ndgenView').hide();
+	 }
+
+	 
 	 var data = {};
 	 data.id = $(this).attr("id").substring(7);
 	 data.diebio = $('input[type=hidden][name='+checkbx + "]").val();
@@ -1083,6 +1118,12 @@ else {
 	}
    });
    
+   $('.callb').click(function(){
+    $(this).text(function(i,old){
+        return old=='↓' ?  '↑' : '↓';
+    });
+});
+
    
 $('.radio-choice').click(function(){
 	  var radio = $(this);

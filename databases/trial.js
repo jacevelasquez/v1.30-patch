@@ -27,9 +27,9 @@ db2.all("SELECT * FROM localarea_listings", function(err,rows){
 
 exports.view = function(req, res){
 	
-	console.log("UPDATE localarea_listings SET latitude = '"+req.body.latitude+"', longitude = '"+req.body.longitude+"' where eacode = '"+req.body.eacode+"' ")
+	console.log("UPDATE localsurveyareas SET latitude = '"+req.body.latitude+"', longitude = '"+req.body.longitude+"' where eacode = '"+req.body.eacode+"' ")
 	
-	connection.query("UPDATE localarea_listings_tl_map SET latitude = '"+req.body.latitude+"',  longitude = '"+req.body.longitude+"' where eacode = '"+req.body.eacode+"' ",function(err,rows){
+	connection.query("UPDATE localsurveyareas SET latitude = '"+req.body.latitude+"',  longitude = '"+req.body.longitude+"' where eacode = '"+req.body.eacode+"' ",function(err,rows){
 		if (err) {
               console.log("Error Updating : %s ",err );
 		}

@@ -1,0 +1,6 @@
+UPDATE questions SET note = REPLACE(note, '\n', '');
+UPDATE questions SET question = REPLACE(question, '\n', '');
+UPDATE questions SET alt_question = REPLACE(alt_question, '\n', '');
+UPDATE questions SET others = REPLACE(others, '\n', '');
+UPDATE questions SET title = REPLACE(title, '\n', '');
+UPDATE answers SET answer_text = REPLACE(answer_text, '\n', '');

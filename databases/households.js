@@ -81,7 +81,7 @@ exports.post = function(req, res){
 
 	fs.appendFile('logs_'+req.session.username+'.txt', '['+dateLog+'] Inserted household '+eacode+' | '+hcn+' | '+shsn+'  \n');
 	
-	db2.run("INSERT INTO localarea_listings (eacode, hcn, shsn, address, respondent, hhead, diebio, REF_DATE, DATE_EDIT) VALUES ($eacode, $hcn, $shsn, $address, $respondent, $hhead, '"+req.body.diebio+"', '"+req.body.REF_DATE+"', '"+req.body.DATE_EDIT+"')",
+	db2.run("INSERT INTO localarea_listings (eacode, hcn, shsn, address, respondent, hhead, diebio, REF_DATE, DATE_EDIT, die2ndgen) VALUES ($eacode, $hcn, $shsn, $address, $respondent, $hhead, '"+req.body.diebio+"', '"+req.body.REF_DATE+"', '"+req.body.DATE_EDIT+"', '"+req.body.die2ndgen+"')",
 	{	
 	
 	$eacode : eacode,

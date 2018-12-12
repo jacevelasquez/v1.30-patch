@@ -81,7 +81,8 @@ var barangay = require('./databases/barangay');
 var listareas = require('./databases/listareas');
 var summary_update = require('./databases/summary_update');			//update IS		
 var admin = require('./databases/admin');
-var report = require('./databases/report')
+var report = require('./databases/report');
+var trial = require('./databases/trial');
 
 /*************** DIETARY ***************/
 
@@ -538,6 +539,11 @@ app.post('/cpr', cpr.view);
 app.post('/insertcpr', cpr.save);
 app.post('/call_f11', cpr.call_f11);
 app.post('/respondents_f11', cpr.respondents_f11);
+
+////////////////////////////////////////////////////////////////////////////////
+
+app.get('/get_trial', trial.get);
+app.post('/trial', trial.view);
 
 
 

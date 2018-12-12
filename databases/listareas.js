@@ -4,8 +4,6 @@ var sqlite3 = require('sqlite3').verbose();
 db2 = new sqlite3.Database('nns2019.db');
 var http = require('http');
 
-
-
 exports.post = function(req, res){
 	var obj = [];
 	
